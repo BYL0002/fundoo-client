@@ -8,7 +8,7 @@ import React from 'react';
 import {TextField, IconButton, InputAdornment, FormControl, InputLabel, Input} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import userService from '../service/user';
+// import userService from '../service/user';
 
 function Display(props) {
     return <h2>Hello {props.name} </h2>

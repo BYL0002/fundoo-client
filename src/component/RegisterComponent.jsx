@@ -6,7 +6,7 @@
  * @module component
  */
 import React from 'react';
-import {TextField, IconButton, InputAdornment} from '@material-ui/core';
+import {TextField, IconButton, InputAdornment, Button} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import UserService from '../service/UserService';
@@ -25,6 +25,7 @@ class RegisterComponent extends React.Component {
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
+        this.registerUser = this.registerUser.bind(this);
     }
 
     /**
@@ -50,11 +51,9 @@ class RegisterComponent extends React.Component {
     }
 
     render() {
-        console.log('email : ', this.state.email);
-        
         return (
             <div className = "Form">
-                <TextField className = "Textfields" label = {this.props.name} name = {this.props.name} onChange = {this.setValue} ></TextField>
+                <TextField className = "Textfields" label = {this.props.name} name = "email" onChange = {this.setValue} value = {this.state.email} ></TextField>
                 <TextField label = "Password" type = {this.state.showpassword ? 'text' : 'password'} 
                     value = {this.state.password1} onChange = {this.setValue} name = "password1"
                     InputProps = {{
@@ -67,7 +66,7 @@ class RegisterComponent extends React.Component {
                     )}}
                 />
                 <TextField label = "Confirm Password" type = {this.state.showpassword ? 'text' : 'password'} 
-                    value = {this.state.password1} onChange = {this.setValue} name = "password2"
+                    value = {this.state.password2} onChange = {this.setValue} name = "password2"
                     InputProps = {{
                         endAdornment : (
                             <InputAdornment position="end">
@@ -77,6 +76,10 @@ class RegisterComponent extends React.Component {
                             </InputAdornment>
                     )}}
                 />
+
+            <div>
+                <Button onClick = {this.registerUser}>Register</Button>
+            </div>
             </div>
         )
     }
