@@ -8,18 +8,19 @@ import React from 'react';
 import {TextField, IconButton, InputAdornment, FormControl, InputLabel, Input} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import userService from '../service/user';
 
 function Display(props) {
     return <h2>Hello {props.name} </h2>
 }
 
 
-class Login extends React.Component {
+class TextFieldPassword extends React.Component {
     constructor(props) {
         super(props);
+        let stateVariable = props.name;
         this.state = {
-            email : '',
-            password : '',
+            stateVariable : '',
             showpassword : false
         }
         this.setValue = this.setValue.bind(this);
@@ -28,8 +29,10 @@ class Login extends React.Component {
 
     setValue = (event) => {
         this.setState ({
-            password : event.target.value
+            stateVariable : event.target.value
         })
+        // userService.set(this.state.stateVariable);
+        // userService.set1();
     }
 
     handleShowPassword() {
@@ -38,25 +41,34 @@ class Login extends React.Component {
         })
     }
 
+    get() {
+        this.props.get(this.state.stateVariable);
+    }
+
     render() {
+        // console.log("sdcfvbn",this.state.showpassword);
+        this.props.get(this.state.stateVariable);
         return (
-            <div className = "Form">
-                <TextField label = {this.props.name} variant = "outlined" onChange = {this.setValue} ></TextField>
-                <TextField label = "Password" variant = "outlined" type = {this.state.showpassword ? 'text' : 'password'} 
-                    value = {this.state.password} onChange = {this.setValue} 
+            <div>
+                <span><TextField label = "Password" name = {this.props.name} variant = "outlined" type = {this.state.showpassword ? 'text' : 'password'} 
+                    value = {this.state.stateVariable} onChange = {this.setValue} 
                     InputProps = {{
                         endAdornment : (
                             <InputAdornment position="end">
                                 <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
-                                {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                             </InputAdornment>
                     )}}
-                />
-                <Display name = {this.state.password} />
+                /></span>
+                <Display name = {this.state.stateVariable} />
+                <button onClick = {this.get.bind(this)} >Click</button>
             </div>
         )
     }
 }
 
-export default Login;
+/**
+ * @exports TextFieldPassword component to get textfield for password as to increase reusability
+ */
+export default TextFieldPassword;
