@@ -11,7 +11,7 @@ class Textfield extends React.Component {
     constructor(props) {
         super(props);
         let stateVariable = props.name;
-        console.log(stateVariable);
+        console.log('asdasdasdad',stateVariable);
         
         this.state = {
             stateVariable : ''
@@ -21,7 +21,7 @@ class Textfield extends React.Component {
 
     setValue = (event) => {
         this.setState ({
-            variable : event.target.value
+            stateVariable : event.target.value
         })
     }
 

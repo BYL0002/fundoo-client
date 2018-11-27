@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router , Route} from 'react-router-dom';
 import './App.css';
-import LoginS from './screen/LoginS';
+import LoginScreen from './screen/LoginScreen';
+import RegisterScreen from './screen/RegisterScreen';
 
 class App extends Component {
   render() {
@@ -9,7 +10,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Route path = '/' component = {LoginS} />
+            <Route path = '/' component = {LoginScreen} />
+            <Route path = '/register' component = {RegisterScreen} />
           </div>
         </Router>
       </div>
