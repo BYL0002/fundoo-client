@@ -9,7 +9,7 @@ import React from 'react';
 import {TextField, IconButton, InputAdornment, Button} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import UserServices from '../service/user';
+import UserServices from '../service/UserService';
 
 // child component to reflet entered value in textfield
 // function Display(props) {
@@ -51,27 +51,31 @@ class LoginComponent extends React.Component {
     }
 
     loginUser() {
-        // UserServices.
+        UserServices.loginService(this.state.email, this.state.password );
     }
+
     render() {
         console.log('email : ', this.state.email);
         
         return (
             <div className="Form">
                 <div>
-                    <TextField className = "TextFields" label = {this.props.name} name = {this.props.name} variant = "outlined" onChange = {this.setValue} ></TextField>
+                    <TextField className = "Textfields" label = {this.props.name} name = {this.props.name} onChange = {this.setValue} ></TextField>
                 </div>
-                <TextField label = "Password" variant = "outlined" type = {this.state.showpassword ? 'text' : 'password'} 
-                    value = {this.state.password1} onChange = {this.setValue} name = "password"
-                    InputProps = {{
-                        endAdornment : (
-                            <InputAdornment position="end">
-                                <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
-                                {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                    )}}
-                />
+                <div>
+                    <TextField label = "Password" type = {this.state.showpassword ? 'text' : 'password'} 
+                        value = {this.state.password1} onChange = {this.setValue} name = "password"
+                        InputProps = {{
+                            endAdornment : (
+                                <InputAdornment position="end">
+                                    <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
+                                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                        )}}
+                    />
+                </div>
+                
                 <div><a href="/register">Register</a>
                 <Button onClick = {this.loginUser} >Login</Button></div>
                 {/* child component displaying entered value */}

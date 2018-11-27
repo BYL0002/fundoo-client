@@ -1,9 +1,6 @@
-.Topbar {
-
-}
-
-.TextFields {
-  width : 280px;
+.Textfields {
+  width : 250px;
+  display: block;
 }
 
 .Form {
@@ -13,8 +10,6 @@
   left: 32%;
   width:25em;
   height:25em;
-  /* margin-top: -9em; set to a negative number 1/2 of your height */
-  /* margin-left: -15em; set to a negative number 1/2 of your width */
   border: none;
 }
 /* ---------------------------------------------------------------------- */

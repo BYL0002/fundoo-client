@@ -3,6 +3,7 @@ import {BrowserRouter as Router , Route} from 'react-router-dom';
 import './App.css';
 import LoginScreen from './screen/LoginScreen';
 import RegisterScreen from './screen/RegisterScreen';
+import Dashboard from './screen/Dashboard';
 
 class App extends Component {
   render() {
@@ -10,8 +11,9 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Route path = '/' component = {LoginScreen} />
+            <Route exact path = '/' component = {LoginScreen} />
             <Route path = '/register' component = {RegisterScreen} />
+            <Route path = '/dashboard' component = {Dashboard} />
           </div>
         </Router>
       </div>
