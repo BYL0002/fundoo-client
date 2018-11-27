@@ -61,7 +61,7 @@ function registerService(email, password1, password2) {
 function loginService(email, password) {
     
     axios.post('/login', {
-        email: email_id,
+        email: email,
         password: password
     })
     .then(response => {
@@ -69,7 +69,7 @@ function loginService(email, password) {
         if (response.data) {
             console.log('successful login');
             alert('Successful Login');
-            localStorage.setItem('user_login', email_id);
+            localStorage.setItem('user_login', email);
             window.location.replace('/chat_page')
         }
         else {
