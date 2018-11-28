@@ -4,7 +4,7 @@ import './App.css';
 import LoginScreen from './screen/LoginScreen';
 import RegisterScreen from './screen/RegisterScreen';
 import Dashboard from './screen/Dashboard';
-import Register from './screen/Register';
+import Register from './component/Register';
 
 class App extends Component {
   render() {

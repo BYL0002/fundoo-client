@@ -7,6 +7,37 @@
 
 const axios = require('axios');
 
+function registerUserVerify (email) {
+    try {
+        if(email === "") throw "email empty"
+        {
+            if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
+                axios.post('/registerUserVerify', {
+                    email: email
+                })
+                    .then(response => {
+                        if (response.data) {
+                            alert('successful register client services');
+                            window.location.replace("/");
+                        }
+                        else {
+                            alert('Registration Failed');
+                        }
+                    }).catch(error => {
+                        alert('error up on server');
+                        console.log('error occured, try later');
+                        console.log(error);
+                    })
+            }
+
+        }
+    }
+    catch(err) {
+        console.log(err);
+        
+    }
+}
+
 function registerService(email, password1, password2) {
     try {
         if (email === "" && password1 === "" && password2 === "") throw 'Empty'

@@ -76,7 +76,7 @@ class LoginComponent extends React.Component {
                     />
                 </div>
                 
-                <div><a href="/register">Register</a>
+                <div><a href="/register1">Register</a>
                 <Button onClick = {this.loginUser} >Login</Button></div>
                 {/* child component displaying entered value */}
                 {/* <Display name = {this.state.password} /> */} 

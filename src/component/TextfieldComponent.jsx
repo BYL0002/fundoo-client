@@ -5,7 +5,8 @@
  * @version 1.1
  */
 import React from 'react';
-import {TextField} from '@material-ui/core';
+import {TextField, Button} from '@material-ui/core';
+import userService from '../service/UserService';
 
 class Textfield extends React.Component {
     constructor(props) {
@@ -25,14 +26,16 @@ class Textfield extends React.Component {
         })
     }
 
+    handleclick = () => {
+
+    }
     render() {
         console.log('sdfsd', this.state.stateVariable);
         
         return (
             <div>
-                <TextField label = {this.props.name} name = {this.state.stateVariable} variant = "outlined" 
-                    onChange = {this.setValue} value = {this.state.stateVariable}
-                >
+                <TextField label = {this.props.name} name = {this.state.stateVariable} onChange = {this.setValue} value = {this.state.stateVariable} >
+                <Button onClick = {this.handleclick} >Submit</Button>
                 </TextField>
             </div>
         )
