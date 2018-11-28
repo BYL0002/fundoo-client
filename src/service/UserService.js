@@ -150,8 +150,8 @@ function logoutService() {
  * @description Method to send request for reseting password
  */
 function forgotService(email) {
-    axios.post('/forgot_password', {
-        user_forgot_email_id: email,
+    axios.post('/forgotpassword', {
+        email : email,
     })
         .then(response => {
             console.log(response);

@@ -3,6 +3,7 @@ import {BrowserRouter as Router , Route} from 'react-router-dom';
 import './App.css';
 import LoginScreen from './screen/LoginScreen';
 import SetPassword from './component/SetPassword';
+import ForgotPassword from './component/ForgotPassword';
 import Dashboard from './screen/Dashboard';
 import Register from './component/Register';
 
@@ -14,8 +15,9 @@ class App extends Component {
           <div>
             <Route exact path = '/' component = {LoginScreen} />
             <Route path = '/setpassword/:token' component = {SetPassword} />
+            <Route path = '/forgotpassword' component = {ForgotPassword} />
             <Route path = '/dashboard' component = {Dashboard} />
-            <Route path = '/register1' component = {Register} />
+            <Route path = '/register' component = {Register} />
           </div>
         </Router>
       </div>
