@@ -51,20 +51,20 @@ class LoginComponent extends React.Component {
     }
 
     loginUser() {
+        // console.log('state values : - ', this.state.email);
+        // console.log('state values pass : = ', this.state.password);
         UserServices.loginService(this.state.email, this.state.password );
     }
 
     render() {
-        console.log('email : ', this.state.email);
-        
         return (
             <div className="Form">
                 <div>
-                    <TextField className = "Textfields" label = {this.props.name} name = {this.props.name} onChange = {this.setValue} ></TextField>
+                    <TextField className = "Textfields" label = {this.props.name} name = "email" onChange = {this.setValue} ></TextField>
                 </div>
                 <div>
                     <TextField label = "Password" type = {this.state.showpassword ? 'text' : 'password'} 
-                        value = {this.state.password1} onChange = {this.setValue} name = "password"
+                        value = {this.state.password} onChange = {this.setValue} name = "password"
                         InputProps = {{
                             endAdornment : (
                                 <InputAdornment position="end">

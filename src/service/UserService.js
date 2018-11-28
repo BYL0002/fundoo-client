@@ -55,10 +55,11 @@ function registerService(email, password1, password2) {
 
 /**
  * @description Method to send request for login already a user from client side to server side
- * @param {String} email_id 
+ * @param {String} email
  * @param {String} password 
  */
 function loginService(email, password) {
+    // console.log('values', email, password);
     
     axios.post('/login', {
         email: email,
@@ -69,8 +70,8 @@ function loginService(email, password) {
         if (response.data) {
             console.log('successful login');
             alert('Successful Login');
-            localStorage.setItem('user_login', email);
-            window.location.replace('/chat_page')
+            localStorage.setItem('userLogged', email);
+            window.location.replace('/dashboard');
         }
         else {
             console.log('No Such User Exits');
@@ -88,14 +89,16 @@ function loginService(email, password) {
  */
 function logoutService() {
 
-    let log_user_email_id = localStorage.getItem("user_login");
+    let loggedUser = localStorage.getItem("userLogged");
+    console.log('service client user logged in ', loggedUser);
+    
     
     axios.post('/logout', {
-        log_user_email_id: log_user_email_id,
+        email: loggedUser,
     })
         .then(response => {
             console.log(response);
-            if (response.data) {
+            if (response) {
                 console.log('Successful Logout');
                 localStorage.clear();
                 window.location.replace("/");

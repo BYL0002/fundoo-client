@@ -78,6 +78,7 @@ class RegisterComponent extends React.Component {
                 />
 
             <div>
+            <a href = "/">Login</a>
                 <Button onClick = {this.registerUser}>Register</Button>
             </div>
             </div>

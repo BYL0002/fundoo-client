@@ -4,6 +4,7 @@ import './App.css';
 import LoginScreen from './screen/LoginScreen';
 import RegisterScreen from './screen/RegisterScreen';
 import Dashboard from './screen/Dashboard';
+import Register from './screen/Register';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
             <Route exact path = '/' component = {LoginScreen} />
             <Route path = '/register' component = {RegisterScreen} />
             <Route path = '/dashboard' component = {Dashboard} />
+            <Route path = '/register1' component = {Register} />
           </div>
         </Router>
       </div>
