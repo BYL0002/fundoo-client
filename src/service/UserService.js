@@ -7,29 +7,33 @@
 
 const axios = require('axios');
 
-function registerUserVerify (email) {
+function registerUserVerify (name, email) {
     try {
-        if(email === "") throw "email empty"
+        if(name === "") throw 'name empty' 
         {
-            if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
-                axios.post('/registerUserVerify', {
-                    email: email
-                })
-                    .then(response => {
-                        if (response.data) {
-                            alert('successful register client services');
-                            window.location.replace("/");
-                        }
-                        else {
-                            alert('Registration Failed');
-                        }
-                    }).catch(error => {
-                        alert('error up on server');
-                        console.log('error occured, try later');
-                        console.log(error);
+            if(email === "") throw "email empty"
+            {
+                if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
+                    axios.post('/registerUserVerify', {
+                        name : name,
+                        email: email
                     })
-            }
+                        .then(response => {
+                            if (response.data) {
+                                alert('successful register client services');
+                                window.location.replace("/");
+                            }
+                            else {
+                                alert('Registration Failed');
+                            }
+                        }).catch(error => {
+                            alert('error up on server');
+                            console.log('error occured, try later');
+                            console.log(error);
+                        })
+                }
 
+            }
         }
     }
     catch(err) {
@@ -38,44 +42,38 @@ function registerUserVerify (email) {
     }
 }
 
-function registerService(email, password1, password2) {
+function registerService(token, password1, password2) {
     try {
-        if (email === "" && password1 === "" && password2 === "") throw 'Empty'
+        if (token === "" && password1 === "" && password2 === "") throw 'Empty'
         {
-            if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
-                
-                if ( (/^[a-zA-Z][\w!]{5,9}$/g.test(password1) ) && (/^[a-zA-Z][\w!]{5,9}$/g.test(password2) ) ) {
-                
-                    if (password1 === password2) {
-                            axios.post('/register', {
-                                email: email,
-                                password1: password1,
-                                password2 : password2
+            if ( (/^[a-zA-Z][\w!]{5,9}$/g.test(password1) ) && (/^[a-zA-Z][\w!]{5,9}$/g.test(password2) ) ) {
+            
+                if (password1 === password2) {
+                        axios.post('/register', {
+                            token: token,
+                            password1: password1,
+                            password2 : password2
+                        })
+                            .then(response => {
+                                if (response.data) {
+                                    alert('successful register client services');
+                                    window.location.replace("/");
+                                }
+                                else {
+                                    alert('Registration Failed');
+                                }
+                            }).catch(error => {
+                                alert('error up on server');
+                                console.log('error occured, try later');
+                                console.log(error);
                             })
-                                .then(response => {
-                                    if (response.data) {
-                                        alert('successful register client services');
-                                        window.location.replace("/");
-                                    }
-                                    else {
-                                        alert('Registration Failed');
-                                    }
-                                }).catch(error => {
-                                    alert('error up on server');
-                                    console.log('error occured, try later');
-                                    console.log(error);
-                                })
-                    }
-                    else {
-                        alert("Password doen't match");
-                    }
                 }
                 else {
-                    alert('Password Invalid');
+                    alert("Password doen't match");
                 }
             }
             else {
-                alert('Email-id not valid');
+                alert('Password Invalid');
             }
         }
     }
@@ -204,4 +202,4 @@ function resetPasswordService(email) {
         })
 }
 
-module.exports = {registerService, loginService, logoutService, forgotService, resetPasswordService};
+module.exports = {registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify};

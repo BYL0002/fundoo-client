@@ -6,13 +6,11 @@
  */
 import React from 'react';
 import {TextField, Button} from '@material-ui/core';
-import userService from '../service/UserService';
 
 class Textfield extends React.Component {
     constructor(props) {
         super(props);
         let stateVariable = props.name;
-        console.log('asdasdasdad',stateVariable);
         
         this.state = {
             stateVariable : ''
@@ -26,17 +24,20 @@ class Textfield extends React.Component {
         })
     }
 
-    handleclick = () => {
-
+    handleclick() {
+        this.props.get(this.state.stateVariable)
     }
+
     render() {
-        console.log('sdfsd', this.state.stateVariable);
-        
+
         return (
             <div>
-                <TextField label = {this.props.name} name = {this.state.stateVariable} onChange = {this.setValue} value = {this.state.stateVariable} >
-                <Button onClick = {this.handleclick} >Submit</Button>
+                <TextField label = {this.props.name} name = {this.state.stateVariable} onChange = {this.setValue} 
+                value = {this.state.stateVariable} >
                 </TextField>
+                <div>
+                <Button onClick = {this.handleclick.bind(this)} >Submit</Button>
+                </div>
             </div>
         )
     }

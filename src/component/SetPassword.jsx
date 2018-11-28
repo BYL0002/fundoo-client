@@ -12,16 +12,17 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import UserService from '../service/UserService';
 
 /**
- * @description RegisterComponent class component for login
+ * @description SetPassword class component for login
  */
-class RegisterComponent extends React.Component {
+class SetPassword extends React.Component {
     constructor(props) {
         super(props);
+        let token = this.props.match.params.token;
         this.state = {
-            email : '',
             password1 : '',
             password2 : '',
-            showpassword : false
+            showpassword : false,
+            token : token
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -47,13 +48,13 @@ class RegisterComponent extends React.Component {
     }
 
     registerUser() {
-        UserService.registerService(this.state.email, this.state.password1, this.state.password2);
+        UserService.registerService(this.state.token, this.state.password1, this.state.password2);
     }
 
     render() {
+        console.log(this.props.match.params.token);
         return (
             <div className = "Form">
-                <TextField className = "Textfields" label = {this.props.name} name = "email" onChange = {this.setValue} value = {this.state.email} ></TextField>
                 <TextField label = "Password" type = {this.state.showpassword ? 'text' : 'password'} 
                     value = {this.state.password1} onChange = {this.setValue} name = "password1"
                     InputProps = {{
@@ -78,7 +79,6 @@ class RegisterComponent extends React.Component {
                 />
 
             <div>
-            <a href = "/">Login</a>
                 <Button onClick = {this.registerUser}>Register</Button>
             </div>
             </div>
@@ -87,6 +87,6 @@ class RegisterComponent extends React.Component {
 }
 
 /**
- * @exports RegisterComponent component so as screens can import it
+ * @exports SetPassword component so as screens can import it
  */
-export default RegisterComponent;
+export default SetPassword;
