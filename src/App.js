@@ -7,6 +7,17 @@ import ForgotPassword from './component/ForgotPassword';
 import Dashboard from './screen/Dashboard';
 import Register from './component/Register';
 
+function PrivateRoute ({component: Component, authed, ...rest}) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => authed === true
+        ? <Component {...props} />
+        : <Redirect to={{pathname: '/', state: {from: props.location}}} />}
+    />
+  )
+}
+
 class App extends Component {
   render() {
     return (
@@ -16,8 +27,9 @@ class App extends Component {
             <Route exact path = '/' component = {LoginScreen} />
             <Route path = '/setpassword/:token' component = {SetPassword} />
             <Route path = '/forgotpassword' component = {ForgotPassword} />
-            <Route path = '/dashboard' component = {Dashboard} />
             <Route path = '/register' component = {Register} />
+            <Route authed={this.state.authed} path = '/dashboard' component = {Dashboard} />
+            <PrivateRoute path = '/' Component = {LoginScreen} />
           </div>
         </Router>
       </div>
