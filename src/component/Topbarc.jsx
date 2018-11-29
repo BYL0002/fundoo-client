@@ -99,7 +99,7 @@ class TopbarComponent extends React.Component {
 
     return (
       <div>
-        <AppBar position="static">
+        <AppBar position="static" className = "topBar" >
           <Toolbar>
             <IconButton color="inherit" aria-label="Open drawer">
               <MenuIcon />
@@ -108,18 +108,19 @@ class TopbarComponent extends React.Component {
               Fundoo
             </Typography>
             <div >
-              <InputBase placeholder="Search…" />
+              <InputBase className = "topSearchBar" placeholder="Search…" />
                 <SearchIcon />
             </div>
             <div  />
             <div >
               <IconButton
+                
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                 aria-haspopup="true"
                 onClick={this.handleProfileMenuOpen}
                 color="inherit"
               >
-                <AccountCircle />
+                <AccountCircle  className = "topUserIcon" />
               </IconButton>
             </div>
             <div >

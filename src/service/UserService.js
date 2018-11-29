@@ -87,31 +87,32 @@ function registerService(token, password1, password2) {
  * @param {String} email
  * @param {String} password 
  */
-function loginService(email, password) {
+function loginService(req, res) {
     // console.log('values', email, password);
     
-    axios.post('/login', {
-        email: email,
-        password: password
+   return axios.post('/login', {
+        email: req.email,
+        password: req.password
     })
     .then(response => {
         console.log(response);
-        if (response.data) {
+        if (response) {
             console.log('successful login');
-            alert('Successful Login');
-            localStorage.setItem('userLogged', email);
-            window.location.replace('/dashboard');
-            // return callback(null, response);
+
+            localStorage.setItem('userLogged', req.email);
+            localStorage.setItem('userLogToken', response.data.token);
+            // console.log('sadasfdsf');            
+            // console.log(localStorage.getItem("userLogToken"));
+            
+            // window.location.replace('/dashboard');
+            return response.data.status;
         }
         else {
             console.log('No Such User Exits');
-            alert('No Such User Exits');
         }
     }).catch(error => {
         console.log('error occured, try later');
         console.log(error);
-        alert('error occured, try later');
-        // return callback(error);
     })
 }
 
@@ -137,12 +138,10 @@ function logoutService() {
             }
             else {
                 console.log('logout Failed');
-                alert('Logout Failed ');
                 return null;
             }
         }).catch(error => {
             console.log('Logout error up on server');
-            alert('error occured, try later');
             console.log(error);
             return null;
         })

@@ -13,10 +13,24 @@
   border: none;
 }
 
+.topBar {
+  padding: 2px;
+  width: 5px;
+}
+
 .Links {
   text-decoration: none;
   color: black ;
 }
+
+.topSearchBar {
+  margin-left: 80px;
+}
+
+.topUserIcon {
+  margin-left: 250px;
+}
+
 /* ---------------------------------------------------------------------- */
 .App {
   text-align: center;
