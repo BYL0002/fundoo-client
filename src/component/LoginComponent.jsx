@@ -6,10 +6,12 @@
  * @module component
  */
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import {TextField, IconButton, InputAdornment, Button} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import UserServices from '../service/UserService';
+import App from '../App.js';
 
 // child component to reflet entered value in textfield
 // function Display(props) {
@@ -25,7 +27,8 @@ class LoginComponent extends React.Component {
         this.state = {
             email : '',
             password : '',
-            showpassword : false
+            showpassword : false,
+            redirectToReferrer : false
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -53,7 +56,18 @@ class LoginComponent extends React.Component {
     loginUser() {
         // console.log('state values : - ', this.state.email);
         // console.log('state values pass : = ', this.state.password);
-        UserServices.loginService(this.state.email, this.state.password );
+        UserServices.loginService(this.state.email, this.state.password, function(err, data) {
+            if(err) 
+            {
+                console.log('err in login');                
+                return <Redirect to='/' />
+            }
+            else 
+            {
+                console.log('dashboard from login');
+                return (<Redirect to='/dashboard' />)
+            }
+        } );
     }
 
     render() {
