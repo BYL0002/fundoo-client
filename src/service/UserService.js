@@ -87,7 +87,7 @@ function registerService(token, password1, password2) {
  * @param {String} email
  * @param {String} password 
  */
-function loginService(email, password, callback) {
+function loginService(email, password) {
     // console.log('values', email, password);
     
     axios.post('/login', {
@@ -100,8 +100,8 @@ function loginService(email, password, callback) {
             console.log('successful login');
             alert('Successful Login');
             localStorage.setItem('userLogged', email);
-            // window.location.replace('/dashboard');
-            callback(null, response);
+            window.location.replace('/dashboard');
+            // return callback(null, response);
         }
         else {
             console.log('No Such User Exits');
@@ -111,7 +111,7 @@ function loginService(email, password, callback) {
         console.log('error occured, try later');
         console.log(error);
         alert('error occured, try later');
-        callback(error);
+        // return callback(error);
     })
 }
 
