@@ -57,32 +57,34 @@ class LoginComponent extends React.Component {
 
     loginUser() {
 
-        const userDetails = {
-            email: this.state.email,
-            password: this.state.password
-        }
-        loginService(userDetails)
-            .then(res => {
-                if (res) {
-                    this.setState({
-                        valueReturned: true
-                    });
+        if (this.state.email !== "") {
+            if (this.state.password !== "") {
+                const userDetails = {
+                    email: this.state.email,
+                    password: this.state.password
                 }
-            })
 
+                loginService(userDetails)
+                    .then(res => {
+                        if (res) {
+                            this.setState({
+                                valueReturned: true
+                            });
+                        }
+                    })
+            }
+            else
+            {
+                
+            }
+        }
+        else 
+        {
+
+        }
     }
 
     render() {
-
-        let logUserToken = localStorage.getItem('userLogToken');
-        // console.log('sfdfgf');
-        
-        // console.log(localStorage.getItem('userLogToken'));
-        // console.log(logUserToken);        
-        // if(logUserToken != null)
-        // {
-        //     return (<Redirect to="/dashboard" />)
-        // }
         if (this.state.valueReturned) return (<Redirect to="/dashboard" />)
 
         return (

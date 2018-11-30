@@ -7,6 +7,40 @@
 
 const axios = require('axios');
 
+// function sendRequest (request) {
+//     try {
+//         if(name === "") throw 'name empty' 
+//         {
+//             if(email === "") throw "email empty"
+//             {
+//                 if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
+//                     axios.post('/registerUserVerify', {
+//                         name : name,
+//                         email: email
+//                     })
+//                         .then(response => {
+//                             if (response.data) {
+//                                 alert('successful register client services');
+//                                 window.location.replace("/");
+//                             }
+//                             else {
+//                                 alert('Registration Failed');
+//                             }
+//                         }).catch(error => {
+//                             alert('error up on server');
+//                             console.log('error occured, try later');
+//                             console.log(error);
+//                         })
+//                 }
+
+//             }
+//         }
+//     }
+//     catch(err) {
+//         console.log(err);   
+//     }
+// }
+
 function registerUserVerify (name, email) {
     try {
         if(name === "") throw 'name empty' 
@@ -204,3 +238,4 @@ function resetPasswordService(email) {
 }
 
 module.exports = {registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify};
+
