@@ -7,11 +7,14 @@
  */
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { TextField, IconButton, InputAdornment, Button } from '@material-ui/core';
+import { TextField, IconButton, InputAdornment, Button, Snackbar } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
-import Promise from 'promise';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+
+import {snackBarVariantIcon, snackBar} from './ThemesComponent';
 import App from '../App.js';
 
 // child component to reflet entered value in textfield
@@ -30,10 +33,13 @@ class LoginComponent extends React.Component {
             password: '',
             showpassword: false,
             redirectToReferrer: false,
-            valueReturned: false
+            valueReturned: false,
+            snackOpen : false,
+            snackMessage : ""
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
+        this.handleSnackClose = this.handleSnackClose.bind(this);
         this.loginUser = this.loginUser.bind(this);
     }
 
@@ -55,6 +61,14 @@ class LoginComponent extends React.Component {
         })
     }
 
+    handleSnackClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        this.setState({ snackOpen : false });
+      };
+
     loginUser() {
 
         if (this.state.email !== "") {
@@ -75,19 +89,30 @@ class LoginComponent extends React.Component {
             }
             else
             {
-                
+                this.setState({
+                    snackOpen : true,
+                    snackMessage : "Password Empty"
+                });
             }
         }
         else 
         {
-
+            this.setState({ 
+                snackOpen : true,
+                snackMessage : "Email Empty"
+            });
         }
     }
 
     render() {
         if (this.state.valueReturned) return (<Redirect to="/dashboard" />)
 
+        // const Icon = snackBarVariantIcon[variant];
+        // const { classes, className, message, onClose, variant, ...other } = props;
+
+
         return (
+            <MuiThemeProvider theme = {snackBar} >
             <div className="Form">
                 <div>
                     <TextField className="Textfields" label={this.props.name} name="email" onChange={this.setValue} ></TextField>
@@ -112,9 +137,30 @@ class LoginComponent extends React.Component {
                 <div>
                     <a className="Links" href="/forgotpassword">Forgot Password</a>
                 </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    variant = "error"
+                    className = "errorSnackBar"
+                    open={this.state.snackOpen}
+                    autoHideDuration={6000}
+                    onClose={this.handleSnackClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">{this.state.snackMessage}</span>}
+                    action={[
+                        <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
+                        <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
                 {/* child component displaying entered value */}
                 {/* <Display name = {this.state.password} /> */}
             </div>
+            </MuiThemeProvider>
         )
     }
 }
