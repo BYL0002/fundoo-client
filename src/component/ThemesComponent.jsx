@@ -45,5 +45,17 @@ export const snackBar = theme => ({
         display: 'flex',
         alignItems: 'center',
     },
+
 });
+
+export const ntheme= {
+    palette:{
+        error:{
+            main:'#D50000',
+        },
+        secondry:{
+            main:'#D50000',
+        },
+    },
+}
 

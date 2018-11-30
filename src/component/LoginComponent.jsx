@@ -7,16 +7,19 @@
  */
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { TextField, IconButton, InputAdornment, Button, Snackbar } from '@material-ui/core';
+import { TextField, IconButton, InputAdornment, Button, Snackbar, SnackbarContent } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import {snackBarVariantIcon, snackBar} from './ThemesComponent';
+import {snackBarVariantIcon, snackBar ,ntheme} from './ThemesComponent';
 import App from '../App.js';
 
+const snackBarTheme = createMuiTheme(snackBar);
+const nTheme = createMuiTheme(ntheme);
+const snackbarIcon = createMuiTheme(snackBarVariantIcon);
 // child component to reflet entered value in textfield
 // function Display(props) {
 //     return <h2>Hello {props.name} </h2>
@@ -112,7 +115,7 @@ class LoginComponent extends React.Component {
 
 
         return (
-            <MuiThemeProvider theme = {snackBar} >
+            <MuiThemeProvider theme = {nTheme} >
             <div className="Form">
                 <div>
                     <TextField className="Textfields" label={this.props.name} name="email" onChange={this.setValue} ></TextField>
@@ -150,6 +153,7 @@ class LoginComponent extends React.Component {
                     ContentProps={{
                         'aria-describedby': 'message-id',
                     }}
+                    color = "red"
                     message={<span id="message-id">{this.state.snackMessage}</span>}
                     action={[
                         <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
@@ -157,6 +161,11 @@ class LoginComponent extends React.Component {
                         </IconButton>,
                     ]}
                 />
+                {/* <MySnackbarContentWrapper
+                    variant="error"
+                    className={classes.margin}
+                    message="This is an error message!"
+                /> */}
                 {/* child component displaying entered value */}
                 {/* <Display name = {this.state.password} /> */}
             </div>
@@ -169,3 +178,7 @@ class LoginComponent extends React.Component {
  * @exports LoginComponent component so as screens can import it
  */
 export default LoginComponent;
+
+
+
+
