@@ -2,13 +2,15 @@ import React from 'react';
 // import TextFieldComponent from '../component/TextfieldComponent';
 import { TextField, Button } from '@material-ui/core';
 import userService from '../service/UserService';
+import {Redirect} from 'react-router-dom';
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email : "",
-            name : ""
+            name : "",
+            responseGot : false
         }
         this.setValue = this.setValue.bind(this);
     }
@@ -30,7 +32,20 @@ class Register extends React.Component {
                 }
             }
             
-            userService.registerUserVerify(request);
+            userService.registerUserVerify(request)
+            .then(res => {
+                if (res) {
+                    this.setState({
+                        responseGot: true
+                    })
+                }
+                else {
+                    this.setState({
+                        snackOpen: true,
+                        snackMessage: "Error Occured"
+                    })
+                }
+            })
         }
         else
         {
@@ -40,6 +55,7 @@ class Register extends React.Component {
     }
 
     render() {
+        if(this.state.responseGot) return <Redirect to = "/" />
         return (
             <div className = "Form" >
                 <TextField label = "Name" name = "name" onChange = {this.setValue} value = {this.state.name} ></TextField>

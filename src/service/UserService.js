@@ -17,12 +17,12 @@ const sendRequest = (request) => {
     try {
         console.log('req from service', request.data);
         
-        axios.post(request.thread, {
+       return axios.post(request.thread, {
             data: request.data
         })
             .then(response => {
-                if (response.data) {
-                    window.location.replace("/");
+                if (response.data.status) {
+                    return response.data;
                 }
                 else {
                     console.log('Registration Failed');
@@ -68,7 +68,8 @@ function loginService(request) {
     if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
 
         if (/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password)) {
-            sendRequest(request);
+            localStorage.setItem("userLogged",request.data.email);
+             return sendRequest(request);
         }
     }
     else {

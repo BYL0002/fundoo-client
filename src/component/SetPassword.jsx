@@ -11,6 +11,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import UserService from '../service/UserService';
 import SnackBarComponent from './SnackBarComponent';
+import {Redirect} from 'react-router-dom';
 /**
  * @description SetPassword class component for login
  */
@@ -23,7 +24,8 @@ class SetPassword extends React.Component {
             password2 : '',
             showpassword : false,
             token : token,
-            snackbarStatus : false
+            snackbarStatus : false,
+            responseGot : false
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -61,7 +63,20 @@ class SetPassword extends React.Component {
             console.log('safsdfdsfgdfghfghfghfghjhjghj');
             console.log(request);          
             
-            UserService.registerService(request);
+            UserService.registerService(request)
+            .then(res => {
+                if (res) {
+                    this.setState({
+                        responseGot: true
+                    })
+                }
+                else {
+                    this.setState({
+                        snackOpen: true,
+                        snackMessage: "Error Occured"
+                    })
+                }
+            })
         }
         else
         {
@@ -75,7 +90,7 @@ class SetPassword extends React.Component {
     }
 
     render() {
-        console.log(this.props.match.params.token);
+        if(this.state.responseGot) return <Redirect to="/" />
         return (
             <div className = "Form">
                 <TextField label = "Password" type = {this.state.showpassword ? 'text' : 'password'} 

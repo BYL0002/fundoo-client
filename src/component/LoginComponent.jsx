@@ -37,7 +37,7 @@ class LoginComponent extends React.Component {
             password: '',
             showpassword: false,
             redirectToReferrer: false,
-            valueReturned: false,
+            responseGot : false,
             snackOpen: false,
             snackMessage: ""
         }
@@ -89,9 +89,20 @@ class LoginComponent extends React.Component {
                 loginService(request)
                     .then(res => {
                         if (res) {
+                            console.log('dsfsdfdgfdg');
+                            console.log(res);
+                            localStorage.setItem("userLogToken",res.token);
+
                             this.setState({
-                                valueReturned: true
+                                responseGot : true
                             });
+                        }
+                        else
+                        {
+                            this.setState({
+                                snackOpen : true,
+                                snackMessage : "Error Occured, Try Later!"
+                            })
                         }
                     })
             }
@@ -111,7 +122,7 @@ class LoginComponent extends React.Component {
     }
 
     render() {
-        if (this.state.valueReturned) return (<Redirect to="/dashboard" />)
+        if (this.state.responseGot) return (<Redirect to="/dashboard" />)
 
         return (
             // <MuiThemeProvider theme={nTheme} >
@@ -176,7 +187,3 @@ class LoginComponent extends React.Component {
  * @exports LoginComponent component so as screens can import it
  */
 export default LoginComponent;
-
-
-
-

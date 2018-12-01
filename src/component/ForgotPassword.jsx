@@ -5,59 +5,98 @@
  * @version 1.1
  */
 import React from 'react';
-import {TextField, Button} from '@material-ui/core';
+import { TextField, Button, IconButton, Snackbar} from '@material-ui/core';
 import userService from '../service/UserService';
+import {Redirect} from 'react-router-dom';
+import CloseIcon from '@material-ui/icons/Close';
 
 class ForgotPassword extends React.Component {
     constructor(props) {
-        super(props);        
+        super(props);
         this.state = {
-            email : ''
+            email: '',
+            responseGot: false,
+            snackOpen: false,
+            snackMessage: ""
+
         }
         this.setValue = this.setValue.bind(this);
     }
 
     setValue = (event) => {
-        this.setState ({
-            email : event.target.value
+        this.setState({
+            email: event.target.value
         })
     }
 
     handleclick() {
-        if(this.state.email !== "")
-        {
+        if (this.state.email !== "") {
             let request = {
-                thread : "/forgotpassword",
-                data : {email : this.state.email}
+                thread: "/forgotpassword",
+                data: { email: this.state.email }
             }
-            userService.forgotService(request);
+            userService.forgotService(request)
+                .then(res => {
+                    if (res) {
+                        this.setState({
+                            responseGot: true
+                        })
+                    }
+                    else {
+                        this.setState({
+                            snackOpen: true,
+                            snackMessage: "Error Occured"
+                        })
+                    }
+                })
         }
-        else
-        {
-            console.log('error');            
+        else {
+            this.setState({
+                snackOpen: true,
+                snackMessage: "Email Left Empty"
+            })
         }
     }
 
     render() {
-
+        if(this.state.responseGot) return <Redirect to = "/" />
         return (
-            <div className = "Form" >
-                <div className = "formHeader">
+            <div className="Form" >
+                <div className="formHeader">
                     Forgot Password
                 </div>
-                
-                <div className = "inputTextBoxes">
+
+                <div className="inputTextBoxes">
                 </div>
                 <div>
-                    <TextField className = "textFields" label = "Email" name = "email" onChange = {this.setValue} value = {this.state.stateVariable} > </TextField>
+                    <TextField className="textFields" label="Email" name="email" onChange={this.setValue} value={this.state.stateVariable} > </TextField>
                 </div>
-                
+
                 <div>
-                    <a  className="registerLinkLoginPage" href= "/"> Login </a>
+                    <a className="registerLinkLoginPage" href="/"> Login </a>
                 </div>
                 <div>
-                    <Button onClick = {this.handleclick.bind(this)} >Submit</Button>
+                    <Button onClick={this.handleclick.bind(this)} >Submit</Button>
                 </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.snackOpen}
+                    autoHideDuration={6000}
+                    onClose={this.handleSnackClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    color="primary "
+                    message={<span id="message-id">{this.state.snackMessage}</span>}
+                    action={[
+                        <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
             </div>
         )
     }
