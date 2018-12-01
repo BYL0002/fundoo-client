@@ -74,12 +74,24 @@ class LoginComponent extends React.Component {
 
     loginUser() {
 
+
+        let request = [{
+            thread : { thread : "/register"},
+            data : {    
+                // token : this.state.token,
+                password1 : this.state.email,
+                password2 : this.state.password
+        } }]
+        console.log("asfdsadfsdf--------------------");
+        console.log(request);
         if (this.state.email !== "") {
             if (this.state.password !== "") {
                 const userDetails = {
                     email: this.state.email,
                     password: this.state.password
                 }
+                
+                
 
                 loginService(userDetails)
                     .then(res => {
@@ -110,15 +122,12 @@ class LoginComponent extends React.Component {
     render() {
         if (this.state.valueReturned) return (<Redirect to="/dashboard" />)
 
-        // const Icon = snackBarVariantIcon[variant];
-        // const { classes, className, message, onClose, variant, ...other } = props;
-
-
         return (
-            <MuiThemeProvider theme = {nTheme} >
+            <MuiThemeProvider theme = {snackBarTheme} >
+            <form>
             <div className="Form">
                 <div>
-                    <TextField className="Textfields" label={this.props.name} name="email" onChange={this.setValue} ></TextField>
+                    <TextField className="Textfields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
                 </div>
                 <div>
                     <TextField label="Password" type={this.state.showpassword ? 'text' : 'password'}
@@ -145,15 +154,13 @@ class LoginComponent extends React.Component {
                         vertical: 'bottom',
                         horizontal: 'left',
                     }}
-                    variant = "error"
-                    className = "errorSnackBar"
                     open={this.state.snackOpen}
                     autoHideDuration={6000}
                     onClose={this.handleSnackClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',
                     }}
-                    color = "red"
+                    color = "error"
                     message={<span id="message-id">{this.state.snackMessage}</span>}
                     action={[
                         <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
@@ -161,14 +168,10 @@ class LoginComponent extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                {/* <MySnackbarContentWrapper
-                    variant="error"
-                    className={classes.margin}
-                    message="This is an error message!"
-                /> */}
                 {/* child component displaying entered value */}
                 {/* <Display name = {this.state.password} /> */}
             </div>
+            </form>
             </MuiThemeProvider>
         )
     }

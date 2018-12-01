@@ -10,7 +10,7 @@ import {TextField, IconButton, InputAdornment, Button} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import UserService from '../service/UserService';
-
+import SnackBarComponent from './SnackBarComponent';
 /**
  * @description SetPassword class component for login
  */
@@ -22,7 +22,8 @@ class SetPassword extends React.Component {
             password1 : '',
             password2 : '',
             showpassword : false,
-            token : token
+            token : token,
+            snackbarStatus : false
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -48,7 +49,25 @@ class SetPassword extends React.Component {
     }
 
     registerUser() {
-        UserService.registerService(this.state.token, this.state.password1, this.state.password2);
+        if (this.state.token !== "" && this.state.password1 !== "" && this.state.password2 !== "")
+        {
+            let request = [{
+                thread : { thread : "/register"},
+                data : {    
+                    token : this.state.token,
+                    password1 : this.state.password1,
+                    password2 : this.state.password2
+            } }]
+            
+            UserService.registerService(request);
+        }
+        else
+        {
+            this.setState({
+                snackbarStatus : true
+            })
+        }
+        
     }
 
     render() {
@@ -77,7 +96,7 @@ class SetPassword extends React.Component {
                             </InputAdornment>
                     )}}
                 />
-
+                {/* <SnackBarComponent /> */}
             <div>
                 <Button onClick = {this.registerUser}>Register</Button>
             </div>

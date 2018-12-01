@@ -20,7 +20,8 @@ class Register extends React.Component {
     }
 
     handleclick = () => {
-        userService.registerUserVerify(this.state.name, this.state.email);
+        // userService.registerUserVerify(this.state.name, this.state.email);
+        userService.emitterLogin("hi");
     }
 
     render() {

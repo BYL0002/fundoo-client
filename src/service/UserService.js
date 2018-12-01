@@ -6,42 +6,56 @@
  */
 
 const axios = require('axios');
+// const EventEmitter = require('events');
+// const eventEmitter = new EventEmitter();
 
-// function sendRequest (request) {
-//     try {
-//         if(name === "") throw 'name empty' 
-//         {
-//             if(email === "") throw "email empty"
-//             {
-//                 if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
-//                     axios.post('/registerUserVerify', {
-//                         name : name,
-//                         email: email
-//                     })
-//                         .then(response => {
-//                             if (response.data) {
-//                                 alert('successful register client services');
-//                                 window.location.replace("/");
-//                             }
-//                             else {
-//                                 alert('Registration Failed');
-//                             }
-//                         }).catch(error => {
-//                             alert('error up on server');
-//                             console.log('error occured, try later');
-//                             console.log(error);
-//                         })
-//                 }
+const EventEmitter = require('events').EventEmitter;
+const eventEmitter = new EventEmitter;
 
-//             }
-//         }
-//     }
-//     catch(err) {
-//         console.log(err);   
-//     }
-// }
+
+const sendRequest =  (request) => {
+    try { 
+        axios.post(request.thread, {
+            request : request.data
+        })
+            .then(response => {
+                if (response.data) {
+                    window.location.replace("/");
+                }
+                else {
+                    console.log('Registration Failed');
+                }
+            }).catch(error => {
+                console.log('error occured, try later');
+            })
+    }
+    catch(err) {
+        console.log(err);   
+    }
+
+    // axios.post('/register    /register', {
+    //     token: token,
+    //     password1: password1,
+    //     password2 : password2
+    // })
+    //     .then(response => {
+    //         if (response.data) {
+    //             alert('successful register client services');
+    //             window.location.replace("/");
+    //         }
+    //         else {
+    //             alert('Registration Failed');
+    //         }
+    //     }).catch(error => {
+    //         alert('error up on server');
+    //         console.log('error occured, try later');
+    //         console.log(error);
+    //     })
+}
 
 function registerUserVerify (name, email) {
+    
+    
     try {
         if(name === "") throw 'name empty' 
         {
@@ -78,29 +92,9 @@ function registerUserVerify (name, email) {
 
 function registerService(token, password1, password2) {
     try {
-        if (token === "" && password1 === "" && password2 === "") throw 'Empty'
-        {
             if ( (/^[a-zA-Z][\w!]{5,9}$/g.test(password1) ) && (/^[a-zA-Z][\w!]{5,9}$/g.test(password2) ) ) {
             
                 if (password1 === password2) {
-                        axios.post('/register', {
-                            token: token,
-                            password1: password1,
-                            password2 : password2
-                        })
-                            .then(response => {
-                                if (response.data) {
-                                    alert('successful register client services');
-                                    window.location.replace("/");
-                                }
-                                else {
-                                    alert('Registration Failed');
-                                }
-                            }).catch(error => {
-                                alert('error up on server');
-                                console.log('error occured, try later');
-                                console.log(error);
-                            })
                 }
                 else {
                     alert("Password doen't match");
@@ -109,7 +103,6 @@ function registerService(token, password1, password2) {
             else {
                 alert('Password Invalid');
             }
-        }
     }
     catch(err) {
         console.log(err);        
@@ -213,6 +206,12 @@ function forgotService(email) {
  * @description Method to send request for reseting password
  */
 function resetPasswordService(email) {
+    
+    if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
+    
+        sendRequest(email)
+    }
+
     axios.post('/reset_password', {
         user_forgot_email_id: email,
     })
@@ -237,5 +236,11 @@ function resetPasswordService(email) {
         })
 }
 
-module.exports = {registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify};
+function emitterLogin (userDetails) {
+    
+    eventEmitter.emit("request", userDetails);
+}
+
+
+module.exports = {registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify, emitterLogin, sendRequest};
 

@@ -13,6 +13,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles'
+import { read } from 'fs';
 
 export const snackBarVariantIcon = {
     success: CheckCircleIcon,
@@ -26,7 +27,7 @@ export const snackBar = theme => ({
         backgroundColor: green[600],
     },
     error: {
-        backgroundColor: theme.palette.error.dark,
+        backgroundColor : green[600],
     },
     info: {
         backgroundColor: theme.palette.primary.dark,
