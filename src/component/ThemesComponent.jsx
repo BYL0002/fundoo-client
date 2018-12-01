@@ -15,42 +15,46 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles'
 import { read } from 'fs';
 
-export const snackBarVariantIcon = {
-    success: CheckCircleIcon,
-    warning: WarningIcon,
-    error: ErrorIcon,
-    info: InfoIcon,
-}
+// export const snackBarVariantIcon = {
+//     success: CheckCircleIcon,
+//     warning: WarningIcon,
+//     error: ErrorIcon,
+//     info: InfoIcon,
+// }
 
-export const snackBar = theme => ({
-    success: {
-        backgroundColor: green[600],
-    },
-    error: {
-        backgroundColor : green[600],
-    },
-    info: {
-        backgroundColor: theme.palette.primary.dark,
-    },
-    warning: {
-        backgroundColor: amber[700],
-    },
-    icon: {
-        fontSize: 20,
-    },
-    iconVariant: {
-        opacity: 0.9,
-        marginRight: theme.spacing.unit,
-    },
-    message: {
-        display: 'flex',
-        alignItems: 'center',
-    },
+// export const snackBar = theme => ({
+//     success: {
+//         backgroundColor: green[600],
+//     },
+//     error: {
+//         backgroundColor : green[600],
+//     },
+//     info: {
+//         backgroundColor: theme.palette.primary.dark,
+//     },
+//     warning: {
+//         backgroundColor: amber[700],
+//     },
+//     icon: {
+//         fontSize: 20,
+//     },
+//     iconVariant: {
+//         opacity: 0.9,
+//         marginRight: theme.spacing.unit,
+//     },
+//     message: {
+//         display: 'flex',
+//         alignItems: 'center',
+//     },
 
-});
+// });
 
-export const ntheme= {
+export default {
     palette:{
+        primary:{
+            main:'#F44336',
+
+        },
         error:{
             main:'#D50000',
         },

@@ -15,7 +15,7 @@ class LoginScreen extends React.Component {
     render() {
         return (
             // <div className = "Form" >
-            <div>
+            <div >
                 <LoginComponent name = "Email"/>
                 {/* <Textfield name = "Email" />
                 { <TextFieldPassword name = "password1" get = {this.get.bind(this)} /> }

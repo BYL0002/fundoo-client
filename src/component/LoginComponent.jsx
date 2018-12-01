@@ -14,12 +14,13 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import { snackBarVariantIcon, snackBar, ntheme } from './ThemesComponent';
+//import { snackBarVariantIcon, snackBar, ntheme } from './ThemesComponent';
+import ntheme from '../component/ThemesComponent';
 import App from '../App.js';
 
-const snackBarTheme = createMuiTheme(snackBar);
+// const snackBarTheme = createMuiTheme(snackBar);
 const nTheme = createMuiTheme(ntheme);
-const snackbarIcon = createMuiTheme(snackBarVariantIcon);
+// const snackbarIcon = createMuiTheme(snackBarVariantIcon);
 // child component to reflet entered value in textfield
 // function Display(props) {
 //     return <h2>Hello {props.name} </h2>
@@ -113,14 +114,16 @@ class LoginComponent extends React.Component {
         if (this.state.valueReturned) return (<Redirect to="/dashboard" />)
 
         return (
-            <MuiThemeProvider theme={snackBarTheme} >
-                <form>
+            // <MuiThemeProvider theme={nTheme} >
                     <div className="Form">
-                        <div>
-                            <TextField className="Textfields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
+                    <div className = "formHeader">
+                        Log in{/* <span >Log in</span> */}
+                    </div>
+                        <div className = "inputTextBoxes">
+                            <TextField className="loginTextFields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
                         </div>
                         <div>
-                            <TextField label="Password" type={this.state.showpassword ? 'text' : 'password'}
+                            <TextField className="loginTextFields" label="Password" type={this.state.showpassword ? 'text' : 'password'} required
                                 value={this.state.password} onChange={this.setValue} name="password"
                                 InputProps={{
                                     endAdornment: (
@@ -133,11 +136,14 @@ class LoginComponent extends React.Component {
                                 }}
                             />
                         </div>
-
-                        <div><a className="Links" href="/register">Register</a>
-                            <Button onClick={this.loginUser} >Login</Button></div>
                         <div>
-                            <a className="Links" href="/forgotpassword">Forgot Password</a>
+                            <a id = "forgotPasswordLinks" href="/forgotpassword">Forgot <b>Password</b></a>                        
+                        </div>
+
+                        <div>
+                            <Button id = "loginButton" onClick={this.loginUser} variant='extendedFab' color = "primary" >Login</Button></div>
+                        <div className = "registerLink">
+                            <span className = "textStyle" >Don't have account? </span><a href="/register"><b>Register</b></a>
                         </div>
                         <Snackbar
                             anchorOrigin={{
@@ -150,7 +156,7 @@ class LoginComponent extends React.Component {
                             ContentProps={{
                                 'aria-describedby': 'message-id',
                             }}
-                            color="error"
+                            color="primary "
                             message={<span id="message-id">{this.state.snackMessage}</span>}
                             action={[
                                 <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
@@ -161,8 +167,7 @@ class LoginComponent extends React.Component {
                         {/* child component displaying entered value */}
                         {/* <Display name = {this.state.password} /> */}
                     </div>
-                </form>
-            </MuiThemeProvider>
+            // </MuiThemeProvider>
         )
     }
 }
