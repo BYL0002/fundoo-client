@@ -27,7 +27,7 @@ class ForgotPassword extends React.Component {
         if(this.state.email !== "")
         {
             let request = {
-                thread : {thread : "/forgotpassword"},
+                thread : "/forgotpassword",
                 data : {email : this.state.email}
             }
             userService.forgotService(request);
@@ -42,9 +42,21 @@ class ForgotPassword extends React.Component {
 
         return (
             <div className = "Form" >
-                <TextField label = "Email" name = "email" onChange = {this.setValue} value = {this.state.stateVariable} > </TextField>
+                <div className = "formHeader">
+                    Forgot Password
+                </div>
+                
+                <div className = "inputTextBoxes">
+                </div>
                 <div>
-                <Button onClick = {this.handleclick.bind(this)} >Submit</Button>
+                    <TextField className = "textFields" label = "Email" name = "email" onChange = {this.setValue} value = {this.state.stateVariable} > </TextField>
+                </div>
+                
+                <div>
+                    <a  className="registerLinkLoginPage" href= "/"> Login </a>
+                </div>
+                <div>
+                    <Button onClick = {this.handleclick.bind(this)} >Submit</Button>
                 </div>
             </div>
         )

@@ -79,7 +79,7 @@ class LoginComponent extends React.Component {
             if (this.state.password !== "") {
 
                 let request = {
-                    thread: { thread: "/login" },
+                    thread: "/login" ,
                     data: {
                         email: this.state.email,
                         password: this.state.password
@@ -120,10 +120,10 @@ class LoginComponent extends React.Component {
                         Log in{/* <span >Log in</span> */}
                     </div>
                         <div className = "inputTextBoxes">
-                            <TextField className="loginTextFields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
+                            <TextField className="textFields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
                         </div>
                         <div>
-                            <TextField className="loginTextFields" label="Password" type={this.state.showpassword ? 'text' : 'password'} required
+                            <TextField className="textFields" label="Password" type={this.state.showpassword ? 'text' : 'password'} required
                                 value={this.state.password} onChange={this.setValue} name="password"
                                 InputProps={{
                                     endAdornment: (
@@ -142,8 +142,8 @@ class LoginComponent extends React.Component {
 
                         <div>
                             <Button id = "loginButton" onClick={this.loginUser} variant='extendedFab' color = "primary" >Login</Button></div>
-                        <div className = "registerLink">
-                            <span className = "textStyle" >Don't have account? </span><a href="/register"><b>Register</b></a>
+                        <div>
+                            <span className = "textStyle" >Don't have account? </span><a className = "registerLinkLoginPage" href="/register"> <b>Register</b> </a>
                         </div>
                         <Snackbar
                             anchorOrigin={{

@@ -52,17 +52,21 @@ class SetPassword extends React.Component {
         if (this.state.token !== "" && this.state.password1 !== "" && this.state.password2 !== "")
         {
             let request = {
-                thread : { thread : "/register"},
+                thread : "/register" ,
                 data : {    
                     token : this.state.token,
                     password1 : this.state.password1,
                     password2 : this.state.password2
             } }
+            console.log('safsdfdsfgdfghfghfghfghjhjghj');
+            console.log(request);          
             
             UserService.registerService(request);
         }
         else
         {
+            console.log();
+            
             this.setState({
                 snackbarStatus : true
             })
