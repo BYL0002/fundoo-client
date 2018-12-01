@@ -15,8 +15,10 @@ const eventEmitter = new EventEmitter;
 
 const sendRequest = (request) => {
     try {
-        axios.post(request.thread.thread, {
-            request: request.data
+        console.log('req from service', request.data);
+        
+        axios.post(request.thread, {
+            data: request.data
         })
             .then(response => {
                 if (response.data) {
@@ -65,7 +67,7 @@ function registerService(request) {
 function loginService(request) {
     if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
 
-        if (/^[a-zA-Z][\w!]{5,9}$/g.test(password1)) {
+        if (/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password)) {
             sendRequest(request);
         }
     }

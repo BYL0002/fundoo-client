@@ -77,13 +77,13 @@ class LoginComponent extends React.Component {
         if (this.state.email !== "") {
             if (this.state.password !== "") {
 
-                let request = [{
+                let request = {
                     thread: { thread: "/login" },
                     data: {
                         email: this.state.email,
                         password: this.state.password
                     }
-                }]
+                }
 
                 loginService(request)
                     .then(res => {

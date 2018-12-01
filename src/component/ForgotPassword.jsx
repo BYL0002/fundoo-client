@@ -26,10 +26,10 @@ class ForgotPassword extends React.Component {
     handleclick() {
         if(this.state.email !== "")
         {
-            let request = [{
+            let request = {
                 thread : {thread : "/forgotpassword"},
                 data : {email : this.state.email}
-            }]
+            }
             userService.forgotService(request);
         }
         else

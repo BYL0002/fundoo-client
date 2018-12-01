@@ -51,13 +51,13 @@ class SetPassword extends React.Component {
     registerUser() {
         if (this.state.token !== "" && this.state.password1 !== "" && this.state.password2 !== "")
         {
-            let request = [{
+            let request = {
                 thread : { thread : "/register"},
                 data : {    
                     token : this.state.token,
                     password1 : this.state.password1,
                     password2 : this.state.password2
-            } }]
+            } }
             
             UserService.registerService(request);
         }
