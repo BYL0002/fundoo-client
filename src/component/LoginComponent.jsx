@@ -14,7 +14,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import {snackBarVariantIcon, snackBar ,ntheme} from './ThemesComponent';
+import { snackBarVariantIcon, snackBar, ntheme } from './ThemesComponent';
 import App from '../App.js';
 
 const snackBarTheme = createMuiTheme(snackBar);
@@ -37,8 +37,8 @@ class LoginComponent extends React.Component {
             showpassword: false,
             redirectToReferrer: false,
             valueReturned: false,
-            snackOpen : false,
-            snackMessage : ""
+            snackOpen: false,
+            snackMessage: ""
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -66,34 +66,26 @@ class LoginComponent extends React.Component {
 
     handleSnackClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
-    
-        this.setState({ snackOpen : false });
-      };
+
+        this.setState({ snackOpen: false });
+    };
 
     loginUser() {
 
-
-        let request = [{
-            thread : { thread : "/register"},
-            data : {    
-                // token : this.state.token,
-                password1 : this.state.email,
-                password2 : this.state.password
-        } }]
-        console.log("asfdsadfsdf--------------------");
-        console.log(request);
         if (this.state.email !== "") {
             if (this.state.password !== "") {
-                const userDetails = {
-                    email: this.state.email,
-                    password: this.state.password
-                }
-                
-                
 
-                loginService(userDetails)
+                let request = [{
+                    thread: { thread: "/login" },
+                    data: {
+                        email: this.state.email,
+                        password: this.state.password
+                    }
+                }]
+
+                loginService(request)
                     .then(res => {
                         if (res) {
                             this.setState({
@@ -102,19 +94,17 @@ class LoginComponent extends React.Component {
                         }
                     })
             }
-            else
-            {
+            else {
                 this.setState({
-                    snackOpen : true,
-                    snackMessage : "Password Empty"
+                    snackOpen: true,
+                    snackMessage: "Password Empty"
                 });
             }
         }
-        else 
-        {
-            this.setState({ 
-                snackOpen : true,
-                snackMessage : "Email Empty"
+        else {
+            this.setState({
+                snackOpen: true,
+                snackMessage: "Email Empty"
             });
         }
     }
@@ -123,55 +113,55 @@ class LoginComponent extends React.Component {
         if (this.state.valueReturned) return (<Redirect to="/dashboard" />)
 
         return (
-            <MuiThemeProvider theme = {snackBarTheme} >
-            <form>
-            <div className="Form">
-                <div>
-                    <TextField className="Textfields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
-                </div>
-                <div>
-                    <TextField label="Password" type={this.state.showpassword ? 'text' : 'password'}
-                        value={this.state.password} onChange={this.setValue} name="password"
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
-                                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-                </div>
+            <MuiThemeProvider theme={snackBarTheme} >
+                <form>
+                    <div className="Form">
+                        <div>
+                            <TextField className="Textfields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
+                        </div>
+                        <div>
+                            <TextField label="Password" type={this.state.showpassword ? 'text' : 'password'}
+                                value={this.state.password} onChange={this.setValue} name="password"
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
+                                                {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    )
+                                }}
+                            />
+                        </div>
 
-                <div><a className="Links" href="/register">Register</a>
-                    <Button onClick={this.loginUser} >Login</Button></div>
-                <div>
-                    <a className="Links" href="/forgotpassword">Forgot Password</a>
-                </div>
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.snackOpen}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    color = "error"
-                    message={<span id="message-id">{this.state.snackMessage}</span>}
-                    action={[
-                        <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
-                        <CloseIcon />
-                        </IconButton>,
-                    ]}
-                />
-                {/* child component displaying entered value */}
-                {/* <Display name = {this.state.password} /> */}
-            </div>
-            </form>
+                        <div><a className="Links" href="/register">Register</a>
+                            <Button onClick={this.loginUser} >Login</Button></div>
+                        <div>
+                            <a className="Links" href="/forgotpassword">Forgot Password</a>
+                        </div>
+                        <Snackbar
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            open={this.state.snackOpen}
+                            autoHideDuration={6000}
+                            onClose={this.handleSnackClose}
+                            ContentProps={{
+                                'aria-describedby': 'message-id',
+                            }}
+                            color="error"
+                            message={<span id="message-id">{this.state.snackMessage}</span>}
+                            action={[
+                                <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
+                                    <CloseIcon />
+                                </IconButton>,
+                            ]}
+                        />
+                        {/* child component displaying entered value */}
+                        {/* <Display name = {this.state.password} /> */}
+                    </div>
+                </form>
             </MuiThemeProvider>
         )
     }

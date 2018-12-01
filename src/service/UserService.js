@@ -13,10 +13,10 @@ const EventEmitter = require('events').EventEmitter;
 const eventEmitter = new EventEmitter;
 
 
-const sendRequest =  (request) => {
-    try { 
-        axios.post(request.thread, {
-            request : request.data
+const sendRequest = (request) => {
+    try {
+        axios.post(request.thread.thread, {
+            request: request.data
         })
             .then(response => {
                 if (response.data) {
@@ -29,83 +29,31 @@ const sendRequest =  (request) => {
                 console.log('error occured, try later');
             })
     }
-    catch(err) {
-        console.log(err);   
+    catch (err) {
+        console.log(err);
     }
-
-    // axios.post('/register    /register', {
-    //     token: token,
-    //     password1: password1,
-    //     password2 : password2
-    // })
-    //     .then(response => {
-    //         if (response.data) {
-    //             alert('successful register client services');
-    //             window.location.replace("/");
-    //         }
-    //         else {
-    //             alert('Registration Failed');
-    //         }
-    //     }).catch(error => {
-    //         alert('error up on server');
-    //         console.log('error occured, try later');
-    //         console.log(error);
-    //     })
 }
 
-function registerUserVerify (name, email) {
-    
-    
-    try {
-        if(name === "") throw 'name empty' 
-        {
-            if(email === "") throw "email empty"
-            {
-                if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
-                    axios.post('/registerUserVerify', {
-                        name : name,
-                        email: email
-                    })
-                        .then(response => {
-                            if (response.data) {
-                                alert('successful register client services');
-                                window.location.replace("/");
-                            }
-                            else {
-                                alert('Registration Failed');
-                            }
-                        }).catch(error => {
-                            alert('error up on server');
-                            console.log('error occured, try later');
-                            console.log(error);
-                        })
-                }
+function registerUserVerify(request) {
 
-            }
+    if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
+        sendRequest(request);
+    }
+}
+
+function registerService(request) {
+    if ((/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password1)) && (/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password2))) {
+
+        if (request.data.password1 === request.data.password2) {
+            sendRequest(request);
+        }
+        else {
+            console.log('error service page');
+
         }
     }
-    catch(err) {
-        console.log(err);
-        
-    }
-}
-
-function registerService(token, password1, password2) {
-    try {
-            if ( (/^[a-zA-Z][\w!]{5,9}$/g.test(password1) ) && (/^[a-zA-Z][\w!]{5,9}$/g.test(password2) ) ) {
-            
-                if (password1 === password2) {
-                }
-                else {
-                    alert("Password doen't match");
-                }
-            }
-            else {
-                alert('Password Invalid');
-            }
-    }
-    catch(err) {
-        console.log(err);        
+    else {
+        console.log('error service page');
     }
 }
 
@@ -114,33 +62,16 @@ function registerService(token, password1, password2) {
  * @param {String} email
  * @param {String} password 
  */
-function loginService(req, res) {
-    // console.log('values', email, password);
-    
-   return axios.post('/login', {
-        email: req.email,
-        password: req.password
-    })
-    .then(response => {
-        console.log(response);
-        if (response) {
-            console.log('successful login');
+function loginService(request) {
+    if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
 
-            localStorage.setItem('userLogged', req.email);
-            localStorage.setItem('userLogToken', response.data.token);
-            // console.log('sadasfdsf');            
-            // console.log(localStorage.getItem("userLogToken"));
-            
-            // window.location.replace('/dashboard');
-            return response.data.status;
+        if (/^[a-zA-Z][\w!]{5,9}$/g.test(password1)) {
+            sendRequest(request);
         }
-        else {
-            console.log('No Such User Exits');
-        }
-    }).catch(error => {
-        console.log('error occured, try later');
-        console.log(error);
-    })
+    }
+    else {
+        console.log('service something left');
+    }
 }
 
 /**
@@ -150,65 +81,30 @@ function logoutService() {
 
     let loggedUser = localStorage.getItem("userLogged");
     console.log('service client user logged in ', loggedUser);
-    
-    
-    axios.post('/logout', {
-        email: loggedUser,
-    })
-        .then(response => {
-            console.log(response);
-            if (response) {
-                console.log('Successful Logout');
-                localStorage.clear();
-                window.location.replace("/");
-                // return response;
-            }
-            else {
-                console.log('logout Failed');
-                return null;
-            }
-        }).catch(error => {
-            console.log('Logout error up on server');
-            console.log(error);
-            return null;
-        })
+
+    let request = [{
+        thread: { thread: "/logout" },
+        data: { email: loggedUser }
+    }]
+    sendRequest(request);
 }
 
 /**
  * @description Method to send request for reseting password
  */
-function forgotService(email) {
-    axios.post('/forgotpassword', {
-        email : email,
-    })
-        .then(response => {
-            console.log(response);
-            if (response.data) {
-                console.log('Successful Link Sent');
-                window.location.replace("/");
-                alert('Check Account , Email Sent !');
-                // return response;
-            }
-            else {
-                console.log('logout Failed');
-                alert(' Forgot Password Process Failed ');
-                return null;
-            }
-        }).catch(error => {
-            console.log('forgot password error up on server');
-            alert('error occured, try later');
-            console.log(error);
-            return null;
-        })
+function forgotService(request) {
+    if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
+        sendRequest(request);
+    }
 }
 
 /**
  * @description Method to send request for reseting password
  */
 function resetPasswordService(email) {
-    
+
     if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
-    
+
         sendRequest(email)
     }
 
@@ -236,11 +132,11 @@ function resetPasswordService(email) {
         })
 }
 
-function emitterLogin (userDetails) {
-    
+function emitterLogin(userDetails) {
+
     eventEmitter.emit("request", userDetails);
 }
 
 
-module.exports = {registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify, emitterLogin, sendRequest};
+module.exports = { registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify, emitterLogin, sendRequest };
 

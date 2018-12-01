@@ -20,8 +20,22 @@ class Register extends React.Component {
     }
 
     handleclick = () => {
-        // userService.registerUserVerify(this.state.name, this.state.email);
-        userService.emitterLogin("hi");
+        if(this.state.name !== "" && this.state.email !== "")
+        {
+            let request = [{
+                thread = {thread : "/registerUserVerify"},
+                data = {
+                    name : this.state.name,
+                    email : this.state.email
+                }
+            }]
+            userService.registerUserVerify(request);
+        }
+        else
+        {
+            console.log('error');            
+        }
+        
     }
 
     render() {
