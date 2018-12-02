@@ -1,5 +1,19 @@
+// import React, { Component } from 'react';
+
+// import { IconButton, InputAdornment, Button, Snackbar, SnackbarContent } from '@material-ui/core';
+// import CloseIcon from '@material-ui/icons/Close';
+// import Visibility from '@material-ui/icons/Visibility';
+// import VisibilityOff from '@material-ui/icons/VisibilityOff';
+// import { loginService } from '../service/UserService';
+// import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+
 // function SnackBarComponent(porps) {
-//   return (
+
+//     function handleSnackClose() {
+
+//     }
+    
+//     return (
 //     <Snackbar
 //       anchorOrigin={{
 //         vertical: 'bottom',

@@ -93,7 +93,10 @@ class SetPassword extends React.Component {
         if(this.state.responseGot) return <Redirect to="/" />
         return (
             <div className = "Form">
-                <TextField label = "Password" type = {this.state.showpassword ? 'text' : 'password'} 
+            <div className = "formHeader">
+            Set Password<span className = "beforeDashboardTitle" >Fundoo Notes</span> 
+            </div>
+                <TextField className = "textFields" label = "Password" type = {this.state.showpassword ? 'text' : 'password'} 
                     value = {this.state.password1} onChange = {this.setValue} name = "password1"
                     InputProps = {{
                         endAdornment : (
@@ -104,7 +107,7 @@ class SetPassword extends React.Component {
                             </InputAdornment>
                     )}}
                 />
-                <TextField label = "Confirm Password" type = {this.state.showpassword ? 'text' : 'password'} 
+                <TextField className = "textFields" label = "Confirm Password" type = {this.state.showpassword ? 'text' : 'password'} 
                     value = {this.state.password2} onChange = {this.setValue} name = "password2"
                     InputProps = {{
                         endAdornment : (
@@ -117,7 +120,7 @@ class SetPassword extends React.Component {
                 />
                 {/* <SnackBarComponent /> */}
             <div>
-                <Button onClick = {this.registerUser}>Register</Button>
+                <Button id = "setPasswordSubmitButton" onClick = {this.registerUser} variant = "extendedFab" color = "primary" >Register</Button>
             </div>
             </div>
         )

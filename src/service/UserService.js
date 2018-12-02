@@ -6,12 +6,6 @@
  */
 
 const axios = require('axios');
-// const EventEmitter = require('events');
-// const eventEmitter = new EventEmitter();
-
-const EventEmitter = require('events').EventEmitter;
-const eventEmitter = new EventEmitter;
-
 
 const sendRequest = (request) => {
     try {
@@ -137,7 +131,6 @@ function resetPasswordService(email) {
 
 function emitterLogin(userDetails) {
 
-    eventEmitter.emit("request", userDetails);
 }
 
 

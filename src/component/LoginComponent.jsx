@@ -7,21 +7,15 @@
  */
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { TextField, IconButton, InputAdornment, Button, Snackbar, SnackbarContent } from '@material-ui/core';
+import { TextField, IconButton, InputAdornment, Button, Snackbar} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-
-//import { snackBarVariantIcon, snackBar, ntheme } from './ThemesComponent';
-import ntheme from '../component/ThemesComponent';
-import App from '../App.js';
-
+// import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+// import App from '../App.js';
 // const snackBarTheme = createMuiTheme(snackBar);
-const nTheme = createMuiTheme(ntheme);
-// const snackbarIcon = createMuiTheme(snackBarVariantIcon);
-// child component to reflet entered value in textfield
+
 // function Display(props) {
 //     return <h2>Hello {props.name} </h2>
 // }
@@ -128,7 +122,7 @@ class LoginComponent extends React.Component {
             // <MuiThemeProvider theme={nTheme} >
                     <div className="Form">
                     <div className = "formHeader">
-                        Log in{/* <span >Log in</span> */}
+                    Log in<span className = "beforeDashboardTitle" >Fundoo Notes</span>
                     </div>
                         <div className = "inputTextBoxes">
                             <TextField className="textFields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
@@ -148,7 +142,7 @@ class LoginComponent extends React.Component {
                             />
                         </div>
                         <div>
-                            <a id = "forgotPasswordLinks" href="/forgotpassword">Forgot <b>Password</b></a>                        
+                            <a className = "forgotPasswordLinkLoginPage" href="/forgotpassword">Forgot <b>Password</b></a>                        
                         </div>
 
                         <div>

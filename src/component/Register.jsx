@@ -50,22 +50,29 @@ class Register extends React.Component {
         else
         {
             console.log('error');            
-        }
-        
+        }        
     }
 
     render() {
         if(this.state.responseGot) return <Redirect to = "/" />
         return (
+            
             <div className = "Form" >
-                <TextField label = "Name" name = "name" onChange = {this.setValue} value = {this.state.name} ></TextField>
+            <div className = "formHeader">
+            Register<span className = "beforeDashboardTitle" >Fundoo Notes</span> 
+            </div>
+            <div className="inputTextBoxes">
+                <TextField className="textFields" label = "Name" name = "name" onChange = {this.setValue} value = {this.state.name} ></TextField>
                 <div>
-                    <TextField label = "Email" name = "email" onChange = {this.setValue} value = {this.state.email} ></TextField>
+                    <TextField className="textFields" label = "Email" name = "email" onChange = {this.setValue} value = {this.state.email} ></TextField>
                 </div>
                 <div>
-                    <a href="/" >Login</a>
-                    <Button onClick = {this.handleclick.bind(this)} >Submit</Button>
+                    <Button id = "registerButton" onClick = {this.handleclick.bind(this)} variant = "extendedFab" color="primary" >Submit</Button>
                 </div>
+                <div>
+                <span className = "textStyle" >have an account? </span><a className = "registerLinkLoginPage" href="/"> <b>Login</b> </a>
+                </div>
+            </div>
             </div>
         )        
     }

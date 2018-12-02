@@ -63,20 +63,20 @@ class ForgotPassword extends React.Component {
         return (
             <div className="Form" >
                 <div className="formHeader">
-                    Forgot Password
+                Forgot Password<span className = "beforeDashboardTitle" >Fundoo Notes</span>
                 </div>
 
                 <div className="inputTextBoxes">
                 </div>
                 <div>
                     <TextField className="textFields" label="Email" name="email" onChange={this.setValue} value={this.state.stateVariable} > </TextField>
-                </div>
-
+                
                 <div>
-                    <a className="registerLinkLoginPage" href="/"> Login </a>
+                    <Button id="submitPasswordButton" onClick={this.handleclick.bind(this)} variant="extendedFab" color="primary" >Submit</Button>
                 </div>
                 <div>
-                    <Button onClick={this.handleclick.bind(this)} >Submit</Button>
+                    <span className = "textStyle" >Remember old Password? </span><a className = "registerLinkLoginPage" href="/"> <b>Login</b> </a>
+                </div>
                 </div>
                 <Snackbar
                     anchorOrigin={{

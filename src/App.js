@@ -6,6 +6,7 @@ import SetPassword from './component/SetPassword';
 import ForgotPassword from './component/ForgotPassword';
 import Dashboard from './screen/Dashboard';
 import Register from './component/Register';
+import Favicon from 'react-favicon';
 
 const Auth = {
   isAuth : false,
@@ -31,9 +32,13 @@ function PrivateRoute ({component: Component, authed, ...rest}) {
 }
 
 class App extends Component {
+  componentDidMount(){
+    document.title = "Fundoo Notes"
+  }
   render() {
     return (
       <div className="App">
+        <Favicon url = {require('../src/assets/images/note-circle.ico')} />
         <Router>
           <div>
             <Route exact path = '/' component = {LoginScreen} />
