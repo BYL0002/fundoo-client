@@ -148,7 +148,8 @@ class LoginComponent extends React.Component {
                         <div>
                             <Button id = "loginButton" onClick={this.loginUser} variant='extendedFab' color = "primary" >Login</Button></div>
                         <div>
-                            <span className = "textStyle" >Don't have account? </span><a className = "registerLinkLoginPage" href="/register"> <b>Register</b> </a>
+                            <span className = "textStyle" >Don't have account? </span>
+                            <a className = "registerLinkLoginPage" href="/register"> <b>Register</b> </a>
                         </div>
                         <Snackbar
                             anchorOrigin={{

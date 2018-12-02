@@ -70,7 +70,6 @@ class ForgotPassword extends React.Component {
                 </div>
                 <div>
                     <TextField className="textFields" label="Email" name="email" onChange={this.setValue} value={this.state.stateVariable} > </TextField>
-                
                 <div>
                     <Button id="submitPasswordButton" onClick={this.handleclick.bind(this)} variant="extendedFab" color="primary" >Submit</Button>
                 </div>
