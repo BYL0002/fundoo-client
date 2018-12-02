@@ -33,7 +33,7 @@ const sendRequest = (request) => {
 function registerUserVerify(request) {
 
     if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
-        sendRequest(request);
+        return sendRequest(request);
     }
 }
 
@@ -129,10 +129,4 @@ function resetPasswordService(email) {
         })
 }
 
-function emitterLogin(userDetails) {
-
-}
-
-
-module.exports = { registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify, emitterLogin, sendRequest };
-
+module.exports = { registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify};

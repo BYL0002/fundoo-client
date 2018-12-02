@@ -10,7 +10,7 @@ import {TextField, IconButton, InputAdornment, Button} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import UserService from '../service/UserService';
-import SnackBarComponent from './SnackBarComponent';
+// import SnackBarComponent from './SnackBarComponent';
 import {Redirect} from 'react-router-dom';
 /**
  * @description SetPassword class component for login

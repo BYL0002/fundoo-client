@@ -1,7 +1,7 @@
 import React from 'react';
 // import TextFieldComponent from '../component/TextfieldComponent';
 import { TextField, Button } from '@material-ui/core';
-import userService from '../service/UserService';
+import {registerUserVerify} from '../service/UserService';
 import {Redirect} from 'react-router-dom';
 
 class Register extends React.Component {
@@ -24,15 +24,25 @@ class Register extends React.Component {
     handleclick = () => {
         if(this.state.name !== "" && this.state.email !== "")
         {
+            //for API
+            // let request = {
+            //     thread : "/registerUserVerify",
+            //     data : {
+            //         name : this.state.name,
+            //         email : this.state.email
+            //     }
+            // }
+            
+            //for Event Emitter
             let request = {
-                thread : "/registerUserVerify",
+                thread : "/registerUserVerifyEventEmitter",
                 data : {
                     name : this.state.name,
                     email : this.state.email
                 }
             }
             
-            userService.registerUserVerify(request)
+            registerUserVerify(request)
             .then(res => {
                 if (res) {
                     this.setState({

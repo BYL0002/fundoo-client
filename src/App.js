@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router , Route, Redirect, Link} from 'react-router-dom';
+import {BrowserRouter as Router , Route, Redirect} from 'react-router-dom';
 import './App.css';
 import LoginScreen from './screen/LoginScreen';
 import SetPassword from './component/SetPassword';
@@ -8,28 +8,28 @@ import Dashboard from './screen/Dashboard';
 import Register from './component/Register';
 import Favicon from 'react-favicon';
 
-const Auth = {
-  isAuth : false,
-  authenticate(cb) {
-    this.isAuth = true
-  },
-  signout(cb) {
-    this.isAuth = false
-  }
-}
+// const Auth = {
+//   isAuth : false,
+//   authenticate(cb) {
+//     this.isAuth = true
+//   },
+//   signout(cb) {
+//     this.isAuth = false
+//   }
+// }
 
-function PrivateRoute ({component: Component, authed, ...rest}) {
-  return (
-    <Route
-      {...rest}
-      render={(props) => ( 
-        authed === true
-        ? <Component {...props} />
-        : <Redirect to={{pathname: '/', state: {from: props.location}}} 
-  />)}
-    />
-  )
-}
+// function PrivateRoute ({component: Component, authed, ...rest}) {
+//   return (
+//     <Route
+//       {...rest}
+//       render={(props) => ( 
+//         authed === true
+//         ? <Component {...props} />
+//         : <Redirect to={{pathname: '/', state: {from: props.location}}} 
+//   />)}
+//     />
+//   )
+// }
 
 class App extends Component {
   componentDidMount(){
