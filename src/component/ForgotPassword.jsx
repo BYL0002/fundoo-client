@@ -31,8 +31,16 @@ class ForgotPassword extends React.Component {
 
     handleclick() {
         if (this.state.email !== "") {
+            
+            // //for API
+            // let request = {
+            //     thread: "/forgotpassword",
+            //     data: { email: this.state.email }
+            // }
+
+            //for Emitter
             let request = {
-                thread: "/forgotpassword",
+                thread: "/forgotPasswordEventEmitter",
                 data: { email: this.state.email }
             }
             userService.forgotService(request)

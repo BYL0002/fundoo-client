@@ -53,16 +53,25 @@ class SetPassword extends React.Component {
     registerUser() {
         if (this.state.token !== "" && this.state.password1 !== "" && this.state.password2 !== "")
         {
+            // //for API
+            // let request = {
+            //     thread : "/register" ,
+            //     data : {    
+            //         token : this.state.token,
+            //         password1 : this.state.password1,
+            //         password2 : this.state.password2
+            // } }
+            
+            //for Event Emitter
             let request = {
-                thread : "/register" ,
+                thread : "/registerEventEmitter" ,
                 data : {    
                     token : this.state.token,
                     password1 : this.state.password1,
                     password2 : this.state.password2
             } }
-            console.log('safsdfdsfgdfghfghfghfghjhjghj');
-            console.log(request);          
             
+
             UserService.registerService(request)
             .then(res => {
                 if (res) {
@@ -120,7 +129,7 @@ class SetPassword extends React.Component {
                 />
                 {/* <SnackBarComponent /> */}
             <div>
-                <Button id = "setPasswordSubmitButton" onClick = {this.registerUser} variant = "extendedFab" color = "primary" >Register</Button>
+                <Button id = "setPasswordSubmitButton" onClick = {this.registerUser} variant = "extendedFab" color = "primary" >Submit</Button>
             </div>
             </div>
         )

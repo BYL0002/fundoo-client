@@ -41,15 +41,16 @@ function registerService(request) {
     if ((/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password1)) && (/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password2))) {
 
         if (request.data.password1 === request.data.password2) {
-            sendRequest(request);
+            return sendRequest(request);
         }
         else {
             console.log('error service page');
-
+            return (false);
         }
     }
     else {
         console.log('error service page');
+        return false;
     }
 }
 
@@ -68,6 +69,7 @@ function loginService(request) {
     }
     else {
         console.log('service something left');
+        return false;
     }
 }
 
@@ -79,11 +81,11 @@ function logoutService() {
     let loggedUser = localStorage.getItem("userLogged");
     console.log('service client user logged in ', loggedUser);
 
-    let request = [{
-        thread: { thread: "/logout" },
+    let request = {
+        thread: "/logout",
         data: { email: loggedUser }
-    }]
-    sendRequest(request);
+    }
+    return sendRequest(request);
 }
 
 /**
@@ -91,42 +93,8 @@ function logoutService() {
  */
 function forgotService(request) {
     if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
-        sendRequest(request);
+        return sendRequest(request);
     }
 }
 
-/**
- * @description Method to send request for reseting password
- */
-function resetPasswordService(email) {
-
-    if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(email)) {
-
-        sendRequest(email)
-    }
-
-    axios.post('/reset_password', {
-        user_forgot_email_id: email,
-    })
-        .then(response => {
-            console.log(response);
-            if (response.data) {
-                console.log('Successful Password Reset');
-                window.location.replace("/");
-                alert('Password Reset Successful !');
-                // return response;
-            }
-            else {
-                console.log('password reset Failed');
-                alert(' Password Reset Process Failed ');
-                return null;
-            }
-        }).catch(error => {
-            console.log('reset error up on server');
-            alert('error occured, try later');
-            console.log(error);
-            return null;
-        })
-}
-
-module.exports = { registerService, loginService, logoutService, forgotService, resetPasswordService, registerUserVerify};
+module.exports = { registerService, loginService, logoutService, forgotService, registerUserVerify};

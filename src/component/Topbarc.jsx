@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,6 +24,7 @@ class TopbarComponent extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
+    responseGot : false
   };
 
   handleProfileMenuOpen = event => {
@@ -43,9 +45,22 @@ class TopbarComponent extends React.Component {
   };
 
   handleLogout = () => {
-    userService.logoutService();
+    userService.logoutService()
+    .then(res => {
+      if(res)
+      {
+        this.setState({
+          responseGot : true
+        });
+      }
+
+    })
   }
   render() {
+
+    if(this.state.responseGot) return <Redirect to="/" />
+
+
     const { anchorEl, mobileMoreAnchorEl } = this.state;
     
     const isMenuOpen = Boolean(anchorEl);
