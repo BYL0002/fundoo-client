@@ -16,7 +16,7 @@ const sendRequest = (request) => {
         })
             .then(response => {
                 if (response.data.status) {
-                    return response.data;
+                    return response.data.status;
                 }
                 else {
                     console.log('Registration Failed');

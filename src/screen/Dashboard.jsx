@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import Topbar from '../component/Topbarc';
+import Topbar from '../component/Topbar';
 
 class Dashboard extends React.Component {
     render() {
