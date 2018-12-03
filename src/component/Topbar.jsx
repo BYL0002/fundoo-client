@@ -5,10 +5,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+// import InputBase from '@material-ui/core/InputBase';
+// import Badge from '@material-ui/core/Badge';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import Menu from '@material-ui/core/Menu';
 // import { fade } from '@material-ui/core/styles/colorManipulator';
 // import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -20,12 +20,28 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { Button } from '@material-ui/core';
 import userService from '../service/UserService';
 import Sidebar from './Sidebar';
+import TopBarSearchComponent from './TobBarSearchComponent';
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiToolbar: {
+          paperAnchorLeft: {
+              top: 64,
+              width: 280,
+              background: 'white'
+          }
+      }
+  },
+})
+
+.MuiToolbar-regular-39
 
 class TopbarComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      sidebarOpenStatus: false
+      sidebarOpenStatus: false,
+      responseGot : false
     };
   }
 
@@ -48,9 +64,10 @@ class TopbarComponent extends React.Component {
     })
   }
   render() {
+    if(this.state.responseGot) return <Redirect to="/" />
     return (
       <div>
-        <AppBar position="fixed">
+        <AppBar position="fixed" >
           <Toolbar>
             <IconButton color="inherit" aria-label="Open drawer" >
               <MenuIcon onClick={this.handleSideBar.bind(this)} />
@@ -60,7 +77,8 @@ class TopbarComponent extends React.Component {
             <Typography variant="h6" color="inherit" noWrap>
               Fundoo Notes
             </Typography>
-            <Button onClick={this.handleLogout}>Logout</Button>
+            <TopBarSearchComponent />
+            <Button className = "logoutButton" onClick={this.handleLogout.bind(this)}>Logout</Button>
           </Toolbar>
         </AppBar>
 

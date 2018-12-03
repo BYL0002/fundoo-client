@@ -100,6 +100,59 @@ div.Form {
   margin-bottom: 30px;
 }
 
+.sideBarImages {
+  margin-left: 5%;
+  margin-right: 10%;
+  float: left;
+  padding: 2%;
+  display: flex;
+}
+
+.sideBarText {
+  padding: 2%;
+  float: left;
+  display: flex;
+  
+}
+
+.textAlignLeft {
+  float: left;
+  margin-bottom: 2%;
+  padding: 2%;
+}
+
+.sideBarTextBottom {
+  margin-top : 2%;
+  align-self: center;
+  margin-right: 8%;
+  font-size: 65%;
+}
+
+#SideBarMenuItemSpace {
+  margin-bottom: 10%;
+  color: #61dafb;
+  /* margin-top: 20%;
+  height: 20%; */
+  border-radius: 10%;
+  outline: none;
+}
+
+.topBarSearchDiv {
+  line-height: 20%;
+  /* vertical-align: middle; */
+  margin-left: 8%;
+  border-radius: 10%;
+  border: #282c34;
+}
+
+.topBarSearchIcon {
+  vertical-align: middle;
+}
+
+.logoutButton {
+  right: -40%;
+}
+
 .topBar {
   padding: 2px;
   width: 5px;

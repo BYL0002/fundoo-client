@@ -11,50 +11,74 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { Typography, MenuItem, Menu } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider} from '@material-ui/core';
+
+
+const theme = createMuiTheme({
+    overrides: {
+        MuiDrawer: {
+            paperAnchorLeft: {
+                top: 64,
+                width: 280,
+                background: 'white'
+            }
+        }
+    },
+})
 
 class TemporaryDrawer extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         left: true,
-    //         anchorEl: null,
-    //     };
-    //     this.handleClick = this.handleClick.bind(this);
-    // }
-
-    // handleClick = event => {
-    //     this.setState({ anchorEl: event.currentTarget });
-    // };
 
     render() {
         const sideItems = (
             <div>
-                <MenuItem></MenuItem>
+                <MenuItem id = "SideBarMenuItemSpace">
+                    <img className = "sideBarImages" src={require('../assets/images/SideBarNoteImage.svg')} alt="note"/>
+                    <span className = "sideBarText" >Notes</span>
+                </MenuItem>
+                <MenuItem>
+                    <img className = "sideBarImages" src = {require('../assets/images/SideBarReminderImage.svg')} alt = "reminder" />
+                    <span className = "sideBarText" >Reminders</span>
+                </MenuItem>
+                <Divider/>
+                <MenuItem>
+                    <div style={{float:"left"}} className = "textAlignLeft" >LABELS</div>
+                </MenuItem>
+                <MenuItem>
+                    <img className = "sideBarImages" src = {require('../assets/images/SideBarLabelImage.svg')} alt = "label" />
+                    <span className = "sideBarText" >Edit Labels</span>
+                </MenuItem>
+                <Divider />
+                <MenuItem>
+                    <img className = "sideBarImages" src = {require('../assets/images/SideBarArchiveImage.svg')} alt = "archive" />
+                    <span className = "sideBarText" >Archive</span>
+                </MenuItem>
+                <MenuItem>
+                    <img className = "sideBarImages" src = {require('../assets/images/SideBarTrashImage.svg')} alt = "trash" />
+                    <span className = "sideBarText" >Trash</span>
+                </MenuItem>
+                <MenuItem>
+                    <span className = "sideBarTextBottom" >Notes</span>
+                    <span className = "sideBarTextBottom" >Privacy</span>
+                </MenuItem>
             </div>
         );
-        console.log("sidebar",this.props.stateOpen)
+        console.log("sidebar", this.props.stateOpen)
         return (
             <div>
-                {/* <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button> */}
-                <Drawer
-                variant="persistent"
-                 open={this.props.stateOpen}
-                 width={250} >
-                    {/* <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={this.toggleDrawer('left', false)}
-                        onKeyDown={this.toggleDrawer('left', false)}
-                    > */}
-                    <MenuItem>abcd</MenuItem>
-                    {/* </div> */}
-                </Drawer>
+                <MuiThemeProvider theme={theme} >
+                    <Drawer
+                        variant="persistent"
+                        open={this.props.stateOpen}
+                    >
+                        {sideItems}
+                    </Drawer>
+                </MuiThemeProvider>
             </div>
-        );
-    }
-}
-
-/**
- * @exports TemporaryDrawer class component
- */
-export default TemporaryDrawer;
+                );
+            }
+        }
+        
+        /**
+         * @exports TemporaryDrawer class component
+         */
+        export default TemporaryDrawer;
