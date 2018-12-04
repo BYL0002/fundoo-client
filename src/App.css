@@ -82,7 +82,6 @@ div.Form {
 #setPasswordSubmitButton {
   margin-top: 10%;
   width: 80%;
-  margin-bottom: 2%;
 }
 
 .linkLeftAlign {
@@ -101,18 +100,16 @@ div.Form {
 }
 
 .sideBarImages {
-  margin-left: 5%;
-  margin-right: 10%;
   float: left;
-  padding: 2%;
+  padding: 10%;
   display: flex;
 }
 
 .sideBarText {
+  margin-right: 5%;
   padding: 2%;
   float: left;
   display: flex;
-  
 }
 
 .textAlignLeft {
@@ -140,17 +137,35 @@ div.Form {
 .topBarSearchDiv {
   line-height: 20%;
   /* vertical-align: middle; */
-  margin-left: 8%;
-  border-radius: 10%;
-  border: #282c34;
+  width: 50%;
+  height: 30px;
+  padding: 8px;
+  margin-left: 6%;
+  border-radius: 8px;
+  box-shadow: 1px 1px 10px #888888;
+  border: 1px solid white;
+  margin-right: 20%;
 }
 
 .topBarSearchIcon {
   vertical-align: middle;
+  float: left;
+  line-height: 20%;
+  margin-right: 4%;
+}
+
+.topBarSearchBar {
+  float: left;
+  vertical-align: middle;
+  line-height: 20%;
+}
+
+.topBarAccountIcon {
+  margin-left: 800%;
 }
 
 .logoutButton {
-  right: -40%;
+  right: -2%;
 }
 
 .topBar {

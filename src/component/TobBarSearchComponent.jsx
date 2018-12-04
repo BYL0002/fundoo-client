@@ -7,12 +7,9 @@ class TopBarSearchComponent extends React.Component {
     render() {
         return (
             <div className="topBarSearchDiv" >
-                <div >
-                    <SearchIcon className="topBarSearchIcon" />
-                    <InputBase placeholder="Search" />
-                </div>
+                <SearchIcon className="topBarSearchIcon" />
+                <InputBase className = "topBarSearchBar" placeholder="Search" />
             </div>
-
         )
     }
 }
