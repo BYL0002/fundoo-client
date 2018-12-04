@@ -16,7 +16,7 @@ const sendRequest = (request) => {
         })
             .then(response => {
                 if (response.data.status) {
-                    return response.data.status;
+                    return response.data;
                 }
                 else {
                     console.log('Registration Failed');
@@ -63,7 +63,6 @@ function loginService(request) {
     if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
 
         if (/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password)) {
-            localStorage.setItem("userLogged",request.data.email);
              return sendRequest(request);
         }
     }

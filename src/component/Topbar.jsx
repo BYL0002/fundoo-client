@@ -5,8 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Button } from '@material-ui/core';
-import userService from '../service/UserService';
 import Sidebar from './Sidebar';
 import TopBarSearchComponent from './TobBarSearchComponent';
 import AccountIconTopBar from './AccountIconTopBar';
@@ -44,16 +42,7 @@ class TopbarComponent extends React.Component {
 
 
   // { <TextFieldPassword name = "password1" get = {this.get.bind(this)} /> }
-  handleLogout = () => {
-    userService.logoutService()
-      .then(res => {
-        if (res) {
-          this.setState({
-            responseGot: true
-          });
-        }
-      })
-  }
+  
 
   handleSideBar() {
     this.setState({
@@ -77,7 +66,6 @@ class TopbarComponent extends React.Component {
               </Typography>
               <TopBarSearchComponent />
               <AccountIconTopBar />
-              <Button className="logoutButton" onClick={this.handleLogout.bind(this)}>Logout</Button>
             </Toolbar>
           </AppBar>
         </MuiThemeProvider>

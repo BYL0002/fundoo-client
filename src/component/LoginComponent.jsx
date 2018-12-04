@@ -83,10 +83,10 @@ class LoginComponent extends React.Component {
                 loginService(request)
                     .then(res => {
                         if (res) {
-                            console.log('dsfsdfdgfdg');
-                            console.log(res);
-                            localStorage.setItem("userLogToken",res.token);
 
+                            localStorage.setItem("userLogToken",res.token);
+                            localStorage.setItem('userLogName', res.message.name);
+                            localStorage.setItem("userLogged",res.message.email_id);
                             this.setState({
                                 responseGot : true
                             });

@@ -144,7 +144,7 @@ div.Form {
   border-radius: 8px;
   box-shadow: 1px 1px 10px #888888;
   border: 1px solid white;
-  margin-right: 20%;
+  margin-right: 30%;
 }
 
 .topBarSearchIcon {
@@ -165,7 +165,41 @@ div.Form {
 }
 
 .logoutButton {
-  right: -2%;
+  /* right: -2%; */
+  margin-top: 12%;
+  margin-left: 68%;
+  padding: 0%;
+}
+
+#accountIconTopBar {
+  width: 35px;
+  height: 35px;
+}
+
+#popupTopBar {
+  margin-top: 2%;
+  margin-right: -10px;
+  width: 340px;
+  height : 160px;
+}
+
+#accountIconPopperTopBar {
+  width: 80px;
+  height: 80px;
+  margin-top: 10%;
+  float: left;
+}
+
+.userNameTopBarPopper {
+  margin-top: 15%;
+  float: right;
+  margin-right: 7%;
+}
+
+.emailIdTopBarPopper {
+  float: right;
+  margin-right: -12%;
+  margin-top: 25%;
 }
 
 .topBar {
