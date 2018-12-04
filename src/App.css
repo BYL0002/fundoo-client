@@ -202,9 +202,12 @@ div.Form {
   margin-top: 25%;
 }
 
-.topBar {
-  padding: 2px;
-  width: 5px;
+#notesDisplay {
+  background-color: #61dafb;
+  margin-left: 300px;
+  margin-top: 100px;
+  width: 200%;
+  height: 200%;
 }
 
 .Links {
