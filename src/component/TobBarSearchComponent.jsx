@@ -8,10 +8,8 @@ class TopBarSearchComponent extends React.Component {
     render() {
         return (
             <div className="topBarSearchDiv" >
-                <MuiThemeProvider theme = {SearchTabTopBarTheme} >
-                    <SearchIcon className="topBarSearchIcon" />
-                    <InputBase id="topBarSearchBar" placeholder="Search" />
-                </MuiThemeProvider>
+                <span className="searchIconTopBar"> <SearchIcon/></span>
+                <span > <InputBase className = "topBarSearchBar" placeholder="Search" /></span>
             </div>
         )
     }

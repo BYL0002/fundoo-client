@@ -25,7 +25,7 @@ export const SearchTabTopBarTheme = createMuiTheme ({
         },
         MuiInputBase:{
             input:{
-                width:400,
+                width:440,
                 marginLeft:20,
                 lineHeight:2,
                 padding:0,
