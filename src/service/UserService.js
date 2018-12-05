@@ -16,10 +16,12 @@ const sendRequest = (request) => {
         })
             .then(response => {
                 if (response.data.status) {
+                    console.log('res on axios', response.data);
+                    
                     return response.data;
                 }
                 else {
-                    console.log('Registration Failed');
+                    console.log('Something Failed');
                 }
             }).catch(error => {
                 console.log('error occured, try later');
@@ -65,10 +67,12 @@ function loginService(request) {
         if (/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password)) {
              return sendRequest(request);
         }
+        else
+        return null;
     }
     else {
         console.log('service something left');
-        return false;
+        return null;
     }
 }
 

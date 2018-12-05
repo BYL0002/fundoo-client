@@ -21,8 +21,6 @@ const theme = createMuiTheme({
   },
 })
 
-// .MuiToolbar-regular-39
-
 class TopbarComponent extends React.Component {
   constructor() {
     super();
@@ -32,17 +30,6 @@ class TopbarComponent extends React.Component {
       TopHeader: ""
     };
   }
-
-  getHeaderValue(valueReceived) {
-    this.setState({
-      TopHeader: valueReceived
-    });
-    console.log('var1 on screen : ---- ', this.state.TopHeader);
-  }
-
-
-  // { <TextFieldPassword name = "password1" get = {this.get.bind(this)} /> }
-  
 
   handleSideBar() {
     this.setState({
@@ -54,16 +41,13 @@ class TopbarComponent extends React.Component {
     return (
       <div>
         <MuiThemeProvider theme={theme}>
-          <AppBar position="fixed" color = 'white' style = {{padding : "2px"}} >
+          <AppBar position="fixed" color = 'white' style = {{padding : "1px"}} >
             <Toolbar>
               <IconButton color="inherit" aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
               </IconButton>
               <Sidebar stateOpen={this.state.sidebarOpenStatus} />
-                Fundoo Notes
-              <Typography variant="h6" noWrap color="inherit"  >
-                {this.state.TopHeader}
-              </Typography>
+              Fundoo Notes
               <TopBarSearchComponent />
               <AccountIconTopBar />
             </Toolbar>

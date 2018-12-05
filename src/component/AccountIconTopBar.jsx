@@ -64,7 +64,6 @@ class AccountIconTopBar extends React.Component {
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper>
-                                {/* <Typography >The content of the Popper.</Typography> */}
                                 <div id = "popupTopBar" >
                                     <div>
                                         <div>

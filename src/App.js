@@ -37,7 +37,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div>
         <Favicon url = {require('../src/assets/images/note-circle.ico')} />
         <Router>
           <div>
