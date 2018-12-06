@@ -12,7 +12,14 @@ import CloseIcon from '@material-ui/icons/Close';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
-// import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { TextFieldsBeforeDashboardTheme } from './ThemesComponent';
+
+const theme = TextFieldsBeforeDashboardTheme;
+console.log('theme');
+console.log(theme);
+
+
 // import App from '../App.js';
 // const snackBarTheme = createMuiTheme(snackBar);
 
@@ -119,12 +126,12 @@ class LoginComponent extends React.Component {
         if (this.state.responseGot) return (<Redirect to="/dashboard" />)
 
         return (
-            // <MuiThemeProvider theme={nTheme} >
+            <MuiThemeProvider theme = { theme } >
             <div className="Form">
                 <div className="formHeader">
                     Log in<span className="beforeDashboardTitle" >Fundoo Notes</span>
                 </div>
-                <div className="inputTextBoxes">
+                <div>
                     <TextField className="textFields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
                 </div>
                 <div>
@@ -141,15 +148,15 @@ class LoginComponent extends React.Component {
                         }}
                     />
                 </div>
-                <div>
-                    <a className="forgotPasswordLinkLoginPage" href="/forgotpassword">Forgot <b>Password</b></a>
+                <div className = "forgotPasswordLinkLocationLoginPage" >
+                    <a className="links" href="/forgotpassword">Forgot <b>Password</b></a>
                 </div>
 
                 <div>
-                    <Button id="loginButton" onClick={this.loginUser} variant='extendedFab' color="primary" >Login</Button></div>
+                    <Button onClick={this.loginUser} variant='extendedFab' color="primary" >Login</Button></div>
                 <div>
-                    <span className="textStyle" >Don't have account? </span>
-                    <a className="registerLinkLoginPage" href="/register"> <b>Register</b> </a>
+                    <span className="CenterTextStyle" >Don't have account? </span>
+                    <a className="links" href="/register"> <b>Register</b> </a>
                 </div>
                 <Snackbar
                     anchorOrigin={{
@@ -173,7 +180,7 @@ class LoginComponent extends React.Component {
                 {/* child component displaying entered value */}
                 {/* <Display name = {this.state.password} /> */}
             </div>
-            // </MuiThemeProvider>
+            </MuiThemeProvider>
         )
     }
 }

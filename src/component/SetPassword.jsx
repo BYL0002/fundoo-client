@@ -6,12 +6,16 @@
  * @module component
  */
 import React from 'react';
-import {TextField, IconButton, InputAdornment, Button} from '@material-ui/core';
+import { TextField, IconButton, InputAdornment, Button, MuiThemeProvider } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import UserService from '../service/UserService';
 // import SnackBarComponent from './SnackBarComponent';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { TextFieldsBeforeDashboardTheme } from './ThemesComponent';
+const theme = TextFieldsBeforeDashboardTheme;
+
+
 /**
  * @description SetPassword class component for login
  */
@@ -20,12 +24,12 @@ class SetPassword extends React.Component {
         super(props);
         let token = this.props.match.params.token;
         this.state = {
-            password1 : '',
-            password2 : '',
-            showpassword : false,
-            token : token,
-            snackbarStatus : false,
-            responseGot : false
+            password1: '',
+            password2: '',
+            showpassword: false,
+            token: token,
+            snackbarStatus: false,
+            responseGot: false
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -36,8 +40,8 @@ class SetPassword extends React.Component {
      * @description method to set value of state variables
      */
     setValue = (event) => {
-        this.setState ({
-            [event.target.name] : event.target.value
+        this.setState({
+            [event.target.name]: event.target.value
         })
     }
 
@@ -45,14 +49,13 @@ class SetPassword extends React.Component {
      * @description method to set value of password to display or not
      */
     handleShowPassword() {
-        this.setState ({
-            showpassword : !this.state.showpassword
+        this.setState({
+            showpassword: !this.state.showpassword
         })
     }
 
     registerUser() {
-        if (this.state.token !== "" && this.state.password1 !== "" && this.state.password2 !== "")
-        {
+        if (this.state.token !== "" && this.state.password1 !== "" && this.state.password2 !== "") {
             // //for API
             // let request = {
             //     thread : "/register" ,
@@ -61,76 +64,80 @@ class SetPassword extends React.Component {
             //         password1 : this.state.password1,
             //         password2 : this.state.password2
             // } }
-            
+
             //for Event Emitter
             let request = {
-                thread : "/registerEventEmitter" ,
-                data : {    
-                    token : this.state.token,
-                    password1 : this.state.password1,
-                    password2 : this.state.password2
-            } }
-            
+                thread: "/registerEventEmitter",
+                data: {
+                    token: this.state.token,
+                    password1: this.state.password1,
+                    password2: this.state.password2
+                }
+            }
+
 
             UserService.registerService(request)
-            .then(res => {
-                if (res) {
-                    this.setState({
-                        responseGot: true
-                    })
-                }
-                else {
-                    this.setState({
-                        snackOpen: true,
-                        snackMessage: "Error Occured"
-                    })
-                }
-            })
+                .then(res => {
+                    if (res) {
+                        this.setState({
+                            responseGot: true
+                        })
+                    }
+                    else {
+                        this.setState({
+                            snackOpen: true,
+                            snackMessage: "Error Occured"
+                        })
+                    }
+                })
         }
-        else
-        {
+        else {
             console.log();
-            
+
             this.setState({
-                snackbarStatus : true
+                snackbarStatus: true
             })
         }
-        
+
     }
 
     render() {
-        if(this.state.responseGot) return <Redirect to="/" />
+        if (this.state.responseGot) return <Redirect to="/" />
         return (
-            <div className = "Form">
-            <div className = "formHeader">
-            Set Password<span className = "beforeDashboardTitle" >Fundoo Notes</span> 
-            </div>
-                <TextField className = "textFields" label = "Password" type = {this.state.showpassword ? 'text' : 'password'} 
-                    value = {this.state.password1} onChange = {this.setValue} name = "password1"
-                    InputProps = {{
-                        endAdornment : (
-                            <InputAdornment position="end">
-                                <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
-                                {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                    )}}
-                />
-                <TextField className = "textFields" label = "Confirm Password" type = {this.state.showpassword ? 'text' : 'password'} 
-                    value = {this.state.password2} onChange = {this.setValue} name = "password2"
-                    InputProps = {{
-                        endAdornment : (
-                            <InputAdornment position="end">
-                                <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
-                                {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                    )}}
-                />
-                {/* <SnackBarComponent /> */}
-            <div>
-                <Button id = "setPasswordSubmitButton" onClick = {this.registerUser} variant = "extendedFab" color = "primary" >Submit</Button>
-            </div>
+            <div className="Form">
+                <MuiThemeProvider theme={theme}>
+                    <div className="formHeader">
+                        Set Password<span className="beforeDashboardTitle" >Fundoo Notes</span>
+                    </div>
+                    <TextField label="Password" type={this.state.showpassword ? 'text' : 'password'}
+                        value={this.state.password1} onChange={this.setValue} name="password1"
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
+                                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                    <TextField label="Confirm Password" type={this.state.showpassword ? 'text' : 'password'}
+                        value={this.state.password2} onChange={this.setValue} name="password2"
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
+                                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                    {/* <SnackBarComponent /> */}
+                    <div>
+                        <Button onClick={this.registerUser} variant="extendedFab" color="primary" >Submit</Button>
+                    </div>
+                </MuiThemeProvider>
             </div>
         )
     }
