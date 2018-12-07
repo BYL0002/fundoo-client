@@ -12,9 +12,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import UserService from '../service/UserService';
 // import SnackBarComponent from './SnackBarComponent';
 import { Redirect } from 'react-router-dom';
-import { TextFieldsBeforeDashboardTheme } from './ThemesComponent';
-const theme = TextFieldsBeforeDashboardTheme;
-
 
 /**
  * @description SetPassword class component for login
@@ -105,7 +102,6 @@ class SetPassword extends React.Component {
         if (this.state.responseGot) return <Redirect to="/" />
         return (
             <div className="Form">
-                <MuiThemeProvider theme={theme}>
                     <div className="formHeader">
                         Set Password<span className="beforeDashboardTitle" >Fundoo Notes</span>
                     </div>
@@ -120,6 +116,7 @@ class SetPassword extends React.Component {
                                 </InputAdornment>
                             )
                         }}
+                        className = "passwordTextFieldSetPasswordPage"
                     />
                     <TextField label="Confirm Password" type={this.state.showpassword ? 'text' : 'password'}
                         value={this.state.password2} onChange={this.setValue} name="password2"
@@ -132,12 +129,11 @@ class SetPassword extends React.Component {
                                 </InputAdornment>
                             )
                         }}
+                        className = "confirmPasswordTextFieldSetPasswordPage"
                     />
-                    {/* <SnackBarComponent /> */}
                     <div>
-                        <Button onClick={this.registerUser} variant="extendedFab" color="primary" >Submit</Button>
+                        <Button onClick={this.registerUser} variant="extendedFab" color="primary" className = "setPasswordButtonSetPasswordPage" >Submit</Button>
                     </div>
-                </MuiThemeProvider>
             </div>
         )
     }

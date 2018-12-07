@@ -75,12 +75,14 @@ class Register extends React.Component {
             Register<span className = "beforeDashboardTitle" >Fundoo Notes</span> 
             </div>
             <div>
-                <TextField label = "Name" name = "name" onChange = {this.setValue} value = {this.state.name} ></TextField>
                 <div>
-                    <TextField label = "Email" name = "email" onChange = {this.setValue} value = {this.state.email} ></TextField>
+                    <TextField label = "Name" name = "name" onChange = {this.setValue} value = {this.state.name} className = "nameTextFieldRegisterPage" ></TextField>
                 </div>
                 <div>
-                    <Button onClick = {this.handleclick.bind(this)} variant = "extendedFab" color="primary" >Submit</Button>
+                    <TextField label = "Email" name = "email" onChange = {this.setValue} value = {this.state.email} className = "emailTextFieldRegisterPage" ></TextField>
+                </div>
+                <div>
+                    <Button onClick = {this.handleclick.bind(this)} variant = "extendedFab" color="primary" className = "registerButtonRegisterPage" >Submit</Button>
                 </div>
                 <div>
                 <span className = "CenterTextStyle" >Have an account? </span><a className = "links" href="/"> <b>Login</b> </a>

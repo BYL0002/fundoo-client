@@ -12,20 +12,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { TextFieldsBeforeDashboardTheme } from './ThemesComponent';
-
-const theme = TextFieldsBeforeDashboardTheme;
-console.log('theme');
-console.log(theme);
-
-
-// import App from '../App.js';
-// const snackBarTheme = createMuiTheme(snackBar);
-
-// function Display(props) {
-//     return <h2>Hello {props.name} </h2>
-// }
 
 /**
  * @description LoginComponent class component for login
@@ -126,16 +112,15 @@ class LoginComponent extends React.Component {
         if (this.state.responseGot) return (<Redirect to="/dashboard" />)
 
         return (
-            <MuiThemeProvider theme = { theme } >
             <div className="Form">
                 <div className="formHeader">
                     Log in<span className="beforeDashboardTitle" >Fundoo Notes</span>
                 </div>
-                <div>
-                    <TextField className="textFields" label={this.props.name} name="email" onChange={this.setValue} required></TextField>
+                <div  >
+                    <TextField  label={this.props.name} name="email" onChange={this.setValue} required className="emailTextFieldLoginPage"></TextField>
                 </div>
-                <div>
-                    <TextField className="textFields" label="Password" type={this.state.showpassword ? 'text' : 'password'} required
+                <div className="passwordTextFieldLoginPage" >
+                    <TextField  label="Password" type={this.state.showpassword ? 'text' : 'password'} required
                         value={this.state.password} onChange={this.setValue} name="password"
                         InputProps={{
                             endAdornment: (
@@ -152,8 +137,8 @@ class LoginComponent extends React.Component {
                     <a className="links" href="/forgotpassword">Forgot <b>Password</b></a>
                 </div>
 
-                <div>
-                    <Button onClick={this.loginUser} variant='extendedFab' color="primary" >Login</Button></div>
+                <div >
+                    <Button fullWidth onClick={this.loginUser} variant='extendedFab' color="primary"  className = "LoginSubmitButtons" >Login</Button></div>
                 <div>
                     <span className="CenterTextStyle" >Don't have account? </span>
                     <a className="links" href="/register"> <b>Register</b> </a>
@@ -177,10 +162,7 @@ class LoginComponent extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                {/* child component displaying entered value */}
-                {/* <Display name = {this.state.password} /> */}
             </div>
-            </MuiThemeProvider>
         )
     }
 }
