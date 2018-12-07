@@ -649,6 +649,37 @@ div .sideBar {
   margin-top : 10px;
   margin-left : 15px;
   width : 20px;
+  vertical-align: top;
+}
+
+.reminderPopperNoteAddCard {
+  width : 270px;
+  height : 280px;
+  margin-top : 6px;
+  margin-left : 250px;
+}
+
+.reminderTodayLabel {
+  font-size : 15px;
+  margin-right : 100px;
+}
+
+.reminderTomorrowLabel {
+  font-size : 15px;
+  margin-right : 110px;
+}
+
+.reminderWeekLabel {
+  font-size : 15px;
+  margin-right : 65px;
+}
+
+.reminderLocationLabel {
+  margin-left : 20px;
+}
+
+.reminderTimeLabel {
+  margin-left : 20px;
 }
 
 .closeNoteAddCardButton {
