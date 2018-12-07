@@ -5,10 +5,12 @@
  * @version 1.1
  */
 import React from 'react';
-import { TextField, Button, IconButton, Snackbar} from '@material-ui/core';
+import { TextField, Button, IconButton, Snackbar, MuiThemeProvider } from '@material-ui/core';
 import userService from '../service/UserService';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import CloseIcon from '@material-ui/icons/Close';
+import { TextFieldsBeforeDashboardTheme } from './ThemesComponent';
+const theme = TextFieldsBeforeDashboardTheme;
 
 class ForgotPassword extends React.Component {
     constructor(props) {
@@ -31,7 +33,7 @@ class ForgotPassword extends React.Component {
 
     handleclick() {
         if (this.state.email !== "") {
-            
+
             // //for API
             // let request = {
             //     thread: "/forgotpassword",
@@ -67,43 +69,45 @@ class ForgotPassword extends React.Component {
     }
 
     render() {
-        if(this.state.responseGot) return <Redirect to = "/" />
+        if (this.state.responseGot) return <Redirect to="/" />
         return (
             <div className="Form" >
-                <div className="formHeader">
-                Forgot Password<span className = "beforeDashboardTitle" >Fundoo Notes</span>
-                </div>
+                <MuiThemeProvider theme={ theme } >
+                    <div className="formHeader">
+                        Forgot Password<span className="beforeDashboardTitle" >Fundoo Notes</span>
+                    </div>
 
-                <div className="inputTextBoxes">
-                </div>
-                <div>
-                    <TextField className="textFields" label="Email" name="email" onChange={this.setValue} value={this.state.stateVariable} > </TextField>
-                <div>
-                    <Button id="submitPasswordButton" onClick={this.handleclick.bind(this)} variant="extendedFab" color="primary" >Submit</Button>
-                </div>
-                <div>
-                    <span className = "textStyle" >Remember old Password? </span><a className = "registerLinkLoginPage" href="/"> <b>Login</b> </a>
-                </div>
-                </div>
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.snackOpen}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    color="primary "
-                    message={<span id="message-id">{this.state.snackMessage}</span>}
-                    action={[
-                        <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
-                            <CloseIcon />
-                        </IconButton>,
-                    ]}
-                />
+                    <div>
+                    </div>
+                    <div>
+                        <TextField label="Email" name="email" onChange={this.setValue} value={this.state.stateVariable} > </TextField>
+                        <div>
+                            <Button onClick={this.handleclick.bind(this)} variant="extendedFab" color="primary" >Submit</Button>
+                        </div>
+                        <div>
+                            <span className="CenterTextStyle" >Remember old Password? </span><a className="links" href="/"> <b>Login</b> </a>
+                        </div>
+                    </div>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.snackOpen}
+                        autoHideDuration={6000}
+                        onClose={this.handleSnackClose}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        color="primary "
+                        message={<span id="message-id">{this.state.snackMessage}</span>}
+                        action={[
+                            <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
+                                <CloseIcon />
+                            </IconButton>,
+                        ]}
+                    />
+                </MuiThemeProvider>
             </div>
         )
     }

@@ -1,8 +1,11 @@
 import React from 'react';
 // import TextFieldComponent from '../component/TextfieldComponent';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, MuiThemeProvider } from '@material-ui/core';
 import {registerUserVerify} from '../service/UserService';
 import {Redirect} from 'react-router-dom';
+import { TextFieldsBeforeDashboardTheme } from './ThemesComponent';
+
+const theme = TextFieldsBeforeDashboardTheme;
 
 class Register extends React.Component {
     constructor(props) {
@@ -66,23 +69,24 @@ class Register extends React.Component {
     render() {
         if(this.state.responseGot) return <Redirect to = "/" />
         return (
-            
             <div className = "Form" >
+            <MuiThemeProvider theme = {theme} >
             <div className = "formHeader">
             Register<span className = "beforeDashboardTitle" >Fundoo Notes</span> 
             </div>
-            <div className="inputTextBoxes">
-                <TextField className="textFields" label = "Name" name = "name" onChange = {this.setValue} value = {this.state.name} ></TextField>
+            <div>
+                <TextField label = "Name" name = "name" onChange = {this.setValue} value = {this.state.name} ></TextField>
                 <div>
-                    <TextField className="textFields" label = "Email" name = "email" onChange = {this.setValue} value = {this.state.email} ></TextField>
+                    <TextField label = "Email" name = "email" onChange = {this.setValue} value = {this.state.email} ></TextField>
                 </div>
                 <div>
-                    <Button id = "registerButton" onClick = {this.handleclick.bind(this)} variant = "extendedFab" color="primary" >Submit</Button>
+                    <Button onClick = {this.handleclick.bind(this)} variant = "extendedFab" color="primary" >Submit</Button>
                 </div>
                 <div>
-                <span className = "textStyle" >have an account? </span><a className = "registerLinkLoginPage" href="/"> <b>Login</b> </a>
+                <span className = "CenterTextStyle" >Have an account? </span><a className = "links" href="/"> <b>Login</b> </a>
                 </div>
             </div>
+            </MuiThemeProvider>
             </div>
         )        
     }

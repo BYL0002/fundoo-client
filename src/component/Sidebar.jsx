@@ -9,7 +9,7 @@ const theme = createMuiTheme({
     overrides: {
         MuiDrawer: {
             paperAnchorLeft: {
-                top: 68,
+                top: 66,
                 width: 280,
                 background: 'white',
             }

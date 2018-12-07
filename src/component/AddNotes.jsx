@@ -1,23 +1,22 @@
 import React from 'react';
 import { Input, Card, CardContent, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import {NoteAdditionCard} from './ThemesComponent';
 
-/**
- * @description mui Theme creation
- */
-const theme = createMuiTheme({
-    overrides :{
-        MuiCardContent :{
-            root : {
-                paddingTop:12,
-            },
-        },
-        MuiInput : {
-            root :{
-                width:230,
-            }
-        }
+const theme = NoteAdditionCard;
+
+class NoteDetails extends React.Component {
+    render() {
+        return (
+            <div>
+                <Card className = "noteDetailsCard">
+                    <CardContent>
+                        <Input placeholder="Title" />
+                    </CardContent>
+                </Card>
+            </div>
+        )
     }
-})
+}
 
 /**
  * @description AddNotes class component
@@ -25,11 +24,11 @@ const theme = createMuiTheme({
 class AddNotes extends React.Component {
     render(){
         return (
-            <div className = "noteTakeCard" >
+            <div>
             <MuiThemeProvider theme ={theme}>
-                <Card >
+                <Card className = "noteTakeCard" >
                     <CardContent>
-                        <Input placeholder = 'Take a note' />
+                        <Input placeholder = 'Take a note' onClick = {<NoteDetails />} />
                     </CardContent>
                 </Card>
                 </MuiThemeProvider>

@@ -11,10 +11,7 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <Topbar />
-                <div className = 'notesDisplay' >
-                <AddNotes />    
-                </div>
-                {/* <AddNotes /> */}
+                <AddNotes />
             </div>
         )
     }
