@@ -119,8 +119,8 @@ class LoginComponent extends React.Component {
                 <div  >
                     <TextField  label={this.props.name} name="email" onChange={this.setValue} required className="emailTextFieldLoginPage"></TextField>
                 </div>
-                <div className="passwordTextFieldLoginPage" >
-                    <TextField  label="Password" type={this.state.showpassword ? 'text' : 'password'} required
+                <div >
+                    <TextField  className="passwordTextFieldLoginPage"  label="Password" type={this.state.showpassword ? 'text' : 'password'} required
                         value={this.state.password} onChange={this.setValue} name="password"
                         InputProps={{
                             endAdornment: (
