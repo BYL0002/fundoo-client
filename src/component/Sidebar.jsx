@@ -13,25 +13,8 @@ const theme = createMuiTheme({
                 width: 280,
                 background: 'white',
             }
-        },
-        MuiMenuItem: {
-            root: {
-                marginTop: 8,
-                marginBottom: 8,
-                borderBottomRightRadius: 30,
-                borderTopRightRadius: 30,
-            },
-            selected: {
-                backgroundColor: 'yellow',
-                selected: true,
-            },
-            gutters : {
-                paddingLeft : 1,
-                
-            }
-        }
-    },
-})
+        }}
+    })
 
 class TemporaryDrawer extends React.Component {
 
@@ -65,7 +48,7 @@ class TemporaryDrawer extends React.Component {
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={this.getHeaderValue} name="Archive" >
-                    <img className="sideBarImages" src={require('../assets/images/SideBarArchiveImage.svg')} alt="archive" />
+                    <img className="sideBarImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
                     <span className="sideBarText" >Archive</span>
                 </MenuItem>
                 <MenuItem onClick={this.getHeaderValue} name="Trash" >

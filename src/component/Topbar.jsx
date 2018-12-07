@@ -40,7 +40,7 @@ class TopbarComponent extends React.Component {
     return (
       <div>
         <MuiThemeProvider theme={theme}>
-          <AppBar position="fixed" color = 'white' style = {{padding : "1px"}} >
+          <AppBar position="fixed"  style = {{padding : "1px"}} >
             <Toolbar>
               <IconButton color="inherit" aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
