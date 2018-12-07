@@ -5,7 +5,7 @@
  * @version 1.1
  */
 import React from 'react';
-import { TextField, Button, IconButton, Snackbar, MuiThemeProvider } from '@material-ui/core';
+import { TextField, Button, IconButton, Snackbar } from '@material-ui/core';
 import userService from '../service/UserService';
 import { Redirect } from 'react-router-dom';
 import CloseIcon from '@material-ui/icons/Close';

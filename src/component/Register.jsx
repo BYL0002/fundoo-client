@@ -1,11 +1,8 @@
 import React from 'react';
 // import TextFieldComponent from '../component/TextfieldComponent';
-import { TextField, Button, MuiThemeProvider } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import {registerUserVerify} from '../service/UserService';
 import {Redirect} from 'react-router-dom';
-import { TextFieldsBeforeDashboardTheme } from './ThemesComponent';
-
-const theme = TextFieldsBeforeDashboardTheme;
 
 class Register extends React.Component {
     constructor(props) {
@@ -70,7 +67,6 @@ class Register extends React.Component {
         if(this.state.responseGot) return <Redirect to = "/" />
         return (
             <div className = "Form" >
-            <MuiThemeProvider theme = {theme} >
             <div className = "formHeader">
             Register<span className = "beforeDashboardTitle" >Fundoo Notes</span> 
             </div>
@@ -88,7 +84,6 @@ class Register extends React.Component {
                 <span className = "CenterTextStyle" >Have an account? </span><a className = "links" href="/"> <b>Login</b> </a>
                 </div>
             </div>
-            </MuiThemeProvider>
             </div>
         )        
     }
