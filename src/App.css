@@ -698,7 +698,12 @@ div .sideBar {
   border-bottom: 1px solid black;
 }
 
-
+.colorSelectionPopperNoteAddCard {
+  width : 120px;
+  margin-left : 110px;
+  height : 110px;
+  margin-top : 6px;
+}
 
 /* ---------------------------------------------------------------------- */
 .App {

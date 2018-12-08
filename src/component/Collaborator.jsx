@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import { Card, InputBase, Button, MenuItem } from '@material-ui/core';
-import ReminderPopper from './ReminderPopper';
+
 
 /**
  * @description AddNotes class component

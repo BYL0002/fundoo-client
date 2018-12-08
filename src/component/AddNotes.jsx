@@ -7,7 +7,7 @@
 import React from 'react';
 import { Card, InputBase, Button, MenuItem } from '@material-ui/core';
 import ReminderPopper from './ReminderPopper';
-import Collaborator from './Collaborator';
+import ColorSection from './ColorSection';
 
 /**
  * @description AddNotes class component
@@ -19,6 +19,8 @@ class AddNotes extends React.Component {
             isToggleAddCard: false,
             isAddNoteCardStatus : true
         }
+        this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
+        this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
     }
 
     handleAddNoteCardToggleStatus(event) {
@@ -27,7 +29,7 @@ class AddNotes extends React.Component {
         })
     }
 
-    handleAddNoteCardDisplay(status) {
+    handleAddNoteCardDisplay(event) {
         this.setState({
             isAddNoteCardStatus : !this.state.isAddNoteCardStatus
         })
@@ -48,9 +50,8 @@ class AddNotes extends React.Component {
                             </div>
                             <div>
                                 <ReminderPopper />
-                                <Collaborator collaboratorCardStatus = {this.handleAddNoteCardDisplay.bind(this)} />
-                                {/* <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" /> */}
-                                <img className="noteAddFeatureImages" src={require('../assets/images/color.svg')} alt="color" />
+                                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick = {this.handleAddNoteCardDisplay} />
+                                <ColorSection />
                                 <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
                                 <img className="noteAddFeatureImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
                                 <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
@@ -60,7 +61,7 @@ class AddNotes extends React.Component {
                         </div>
                     ) : (
                             <div>
-                                <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus.bind(this)} />
+                                <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
                             </div>
                         )
                     }
@@ -73,14 +74,13 @@ class AddNotes extends React.Component {
                                 <span  >Collaborators</span>
                             </div>
                             <div>
-                                <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardDisplay.bind(this)} >Close</Button>
+                                <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardDisplay} >Close</Button>
                             </div>
                         </div>
                     </Card>
                     </div>
                 )
             }
-
             </div>
         )
     }
