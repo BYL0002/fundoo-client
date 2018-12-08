@@ -5,9 +5,10 @@
  * @version 1.2
  */
 import React from 'react';
-import { Card, InputBase, Button, MenuItem } from '@material-ui/core';
+import { Card, InputBase, Button } from '@material-ui/core';
 import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
+import NotesDisplay from './NotesDisplay';
 
 /**
  * @description AddNotes class component
@@ -81,6 +82,7 @@ class AddNotes extends React.Component {
                     </div>
                 )
             }
+            <NotesDisplay />
             </div>
         )
     }

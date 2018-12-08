@@ -5,7 +5,7 @@
  * @version 1.1
  */
 import React from 'react';
-import { Card, InputBase, Button, MenuItem } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';

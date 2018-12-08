@@ -5,7 +5,7 @@
  * @version 1.0
  */
 import React from 'react'
-import { Popper, Paper, MenuItem, IconButton } from '@material-ui/core';
+import { Popper, Paper, IconButton } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 
 /**
@@ -48,6 +48,9 @@ export default class ColorSelection extends React.Component {
 
     render() {
 
+        /**
+         * @description Array of object of color and its details
+         */
         const colorPaletteClassName = [
             {
                 colorClass: "colorPaletteWhite",
@@ -110,11 +113,6 @@ export default class ColorSelection extends React.Component {
                 colorName: "Green"
             }
         ]
-
-        // key={option}
-        // disabled={index === 0}
-        // selected={index === this.state.selectedIndex}
-        // onClick={event => this.handleMenuItemClick(event, index)}
 
         return (
             <span>
