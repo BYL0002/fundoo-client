@@ -17,9 +17,11 @@ export default class ColorSelection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showColorPopper: false
+            showColorPopper: false,
+            colorSelected: ""
         }
         this.handleShowColorPopper = this.handleShowColorPopper.bind(this);
+        this.handleColorClick = this.handleColorClick.bind(this);
     }
 
 
@@ -32,22 +34,87 @@ export default class ColorSelection extends React.Component {
         }));
     }
 
+
+    handleColorClick = (event, colorCodeSelected) => {
+        this.setState({
+            colorSelected: colorCodeSelected,
+        });
+
+        console.log('color selected');
+        console.log(this.state.colorSelected);
+        
+        
+    };
+
     render() {
 
         const colorPaletteClassName = [
-            "colorPaletteSilver",
-            "colorPaletteRed",
-            "colorPaletteCrimson",
-            "colorPaletteLime",
-            "colorPaletteTeal",
-            "colorPaletteOrange",
-            "colorPaletteTurquoise",
-            "colorPaletteChocklate",
-            "colorPaletteThistle",
-            "colorPaletteDarkSalmon",
-            "colorPaletteYellowGreen",
-            "colorPalettePlum"
+            {
+                colorClass: "colorPaletteWhite",
+                colorCode: "rgb(255, 255, 255)",
+                colorName: "White"
+            },
+            {
+                colorClass: "colorPaletteRed",
+                colorCode: "rgb(255, 0, 0)",
+                colorName: "Red"
+            },
+            {
+                colorClass: "colorPalettePurple",
+                colorCode: "rgb(128, 0, 128)",
+                colorName: "Purple"
+            },
+            {
+                colorClass: "colorPalettePink",
+                colorCode: "rgb(255, 192, 203)",
+                colorName: "Pink"
+            },
+            {
+                colorClass: "colorPaletteTeal",
+                colorCode: "rgb(0, 128, 128)",
+                colorName: "Teal"
+            },
+            {
+                colorClass: "colorPaletteOrange",
+                colorCode: "rgb(255, 165, 0)",
+                colorName: "Orange"
+            },
+            {
+                colorClass: "colorPaletteDarkBlue",
+                colorCode: "rgb(0, 0, 139)",
+                colorName: "Dark Blue"
+            },
+            {
+                colorClass: "colorPaletteGray",
+                colorCode: "rgb(128, 128, 128)",
+                colorName: "Gray"
+            },
+            {
+                colorClass: "colorPaletteBlue",
+                colorCode: "rgb(0, 0, 255)",
+                colorName: "Blue"
+            },
+            {
+                colorClass: "colorPaletteBrown",
+                colorCode: "rgb(165, 42, 42)",
+                colorName: "Brown"
+            },
+            {
+                colorClass: "colorPaletteYellow",
+                colorCode: "rgb(255, 255, 0)",
+                colorName: "Yellow"
+            },
+            {
+                colorClass: "colorPaletteGreen",
+                colorCode: "rgb(0, 128, 0)",
+                colorName: "Green"
+            }
         ]
+
+        // key={option}
+        // disabled={index === 0}
+        // selected={index === this.state.selectedIndex}
+        // onClick={event => this.handleMenuItemClick(event, index)}
 
         return (
             <span>
@@ -56,13 +123,12 @@ export default class ColorSelection extends React.Component {
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper className="colorSelectionPopperNoteAddCard"  >
                                 <div >
-                                    {/* <IconButton className="colorPaletteSilver" ></IconButton>
-                                    <IconButton className="colorPaletteRed" ></IconButton>
-                                    <IconButton className="colorPaletteCrimson" ></IconButton>
-                                    <IconButton className="colorPaletteLime" ></IconButton>
-                                    <IconButton className="colorPaletteOrange" ></IconButton> */}
-                                    { colorPaletteClassName.map((option, index) => (
-                                        <IconButton className={option} ></IconButton>
+                                    {colorPaletteClassName.map((option, index) => (
+                                        <IconButton className={option.colorClass}
+                                            title={option.colorName}
+                                            // onSelect = {index === }
+                                            onClick = { event => this.handleColorClick(event, option.colorCode)}
+                                        ></IconButton>
                                     ))}
                                 </div>
                             </Paper>
