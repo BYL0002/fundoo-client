@@ -73,25 +73,36 @@ class LoginComponent extends React.Component {
                     }
                 }
 
-                loginService(request)
-                    .then(res => {
-                        if (res) {
-                            console.log('res on login component',res);
-                            
-                            localStorage.setItem("userLogToken", res.token);
-                            localStorage.setItem('userLogName', res.message.name);
-                            localStorage.setItem("userLogged", res.message.email_id);
-                            this.setState({
-                                responseGot: true
-                            });
-                        }
-                        else {
-                            this.setState({
-                                snackOpen: true,
-                                snackMessage: "Error Occured, Try Later!"
-                            })
-                        }
+                this.setState({
+                    responseGot : loginService(request)
+                })
+
+                if(this.state.responseGot === false ) {
+                    this.setState({
+                        snackOpen : true,
+                        snackMessage : 'Error Occured, Try Later'
                     })
+                }
+
+                // loginService(request)
+                //     .then(res => {
+                //         if (res) {
+                //             console.log('res on login component',res);
+                            
+                //             localStorage.setItem("userLogToken", res.token);
+                //             localStorage.setItem('userLogName', res.message.name);
+                //             localStorage.setItem("userLogged", res.message.email_id);
+                //             this.setState({
+                //                 responseGot: true
+                //             });
+                //         }
+                //         else {
+                //             this.setState({
+                //                 snackOpen: true,
+                //                 snackMessage: "Error Occured, Try Later!"
+                //             })
+                //         }
+                //     })
             }
             else {
                 this.setState({

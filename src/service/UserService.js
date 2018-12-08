@@ -65,14 +65,31 @@ function loginService(request) {
     if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
 
         if (/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password)) {
-             return sendRequest(request);
+             return sendRequest(request)
+                    .then(res => {
+                        if (res) {
+                            console.log('res on login',res);
+                            
+                            localStorage.setItem("userLogToken", res.token);
+                            console.log('user log token', localStorage.getItem("userLogToken"));
+                            localStorage.setItem('userLogName', res.message.name);
+                            console.log('user log name', localStorage.getItem("userLogName"));
+                            localStorage.setItem("userLogged", res.message.email_id);
+                            console.log('user log email id', localStorage.getItem("userLogged"));
+                            
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
+                    })
         }
         else
-        return null;
+        return false;
     }
     else {
         console.log('service something left');
-        return null;
+        return false;
     }
 }
 

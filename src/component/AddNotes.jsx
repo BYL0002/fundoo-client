@@ -1,3 +1,9 @@
+/**
+ * @description AddNotes Card component
+ * @author Yash
+ * @since 7/12/18
+ * @version 1.2
+ */
 import React from 'react';
 import { Card, InputBase, Button, MenuItem } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';

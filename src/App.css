@@ -239,8 +239,8 @@ body{
   div.Form {
     align-self: center;
     position: fixed;
-    top: 160px;
-    left : 250px;
+    top: 180px;
+    left : 280px;
     width: 500px;
     height: 450px;
     background-color: white;
@@ -377,21 +377,21 @@ body{
   div.Form {
     align-self: center;
     position: fixed;
-    top: 150px;
-    left : 320px;
-    width: 770px;
-    height: 620px;
+    top: 120px;
+    left : 340px;
+    width: 500px;
+    height: 380px;
     background-color: white;
   }
 
   .formHeader {
-    margin-bottom: 80px;
-    font-size: 38px;
+    margin-bottom: 30px;
+    font-size: 18px;
     float: left;
-    width : 730px;
-    height : 80px;
+    width : 470px;
+    height : 20px;
     border: 1px;
-    padding: 21px;
+    padding: 15px;
     text-align: left;
     bottom: 250px;
     background-color: lightgray;
@@ -402,118 +402,118 @@ body{
   }
 
   div .emailTextFieldLoginPage {
-    margin-left: 90px;
-    width : 600px;
-    margin-bottom: 20px;
+    margin-left: 60px;
+    width : 350px;
+    margin-bottom: 10px;
     font-size: 20px;
   }
   div .emailTextFieldLoginPage div {
-    font-size: 27px;
+    font-size: 21px;
   }
 
   div .passwordTextFieldLoginPage {
-    margin-left: 90px;
-    width : 600px;
-    margin-bottom: 20px;
+    margin-left: 60px;
+    width : 350px;
+    margin-bottom: 10px;
   }
   div .passwordTextFieldLoginPage div {
-    font-size: 27px;
+    font-size: 21px;
   }
 
   div .emailTextFieldForgotPasswordPage {
-    margin-left: 90px;
-    width : 600px;
-    margin-bottom: 20px;
+    margin-left: 60px;
+    width : 350px;
+    margin-bottom: 10px;
   }
   div .emailTextFieldForgotPasswordPage div {
-    font-size: 27px;
+    font-size: 21px;
   }
 
   div .nameTextFieldRegisterPage {
-    margin-left: 90px;
-    width : 600px;
-    margin-bottom: 20px;
+    margin-left: 60px;
+    width : 350px;
+    margin-bottom: 10px;
   }
   div .nameTextFieldRegisterPage div {
-    font-size: 27px;
+    font-size: 21px;
   }
 
   div .emailTextFieldRegisterPage {
-    margin-left: 90px;
-    width : 600px;
-    margin-bottom: 20px;
+    margin-left: 60px;
+    width : 350px;
+    margin-bottom: 10px;
   }
   div .emailTextFieldRegisterPage div {
-    font-size: 27px;
+    font-size: 21px;
   }
 
   div .passwordTextFieldSetPasswordPage {
-    margin-left: 90px;
-    width : 600px;
-    margin-bottom: 20px;
+    margin-left: 60px;
+    width : 350px;
+    margin-bottom: 10px;
   }
   div .passwordTextFieldSetPasswordPage div {
-    font-size: 27px;
+    font-size: 21px;
   }
 
   div .confirmPasswordTextFieldSetPasswordPage {
-    margin-left: 90px;
-    width : 600px;
-    margin-bottom: 20px;
+    margin-left: 60px;
+    width : 350px;
+    margin-bottom: 10px;
   }
   div .confirmPasswordTextFieldSetPasswordPage div {
-    font-size: 27px;
+    font-size: 21px;
   }
 
   .forgotPasswordLinkLocationLoginPage {
-    margin-left: 560px;
+    margin-left: 280px;
   }
 
   .CenterTextStyle {
-    font-size: 19px;
-    margin-left: 250px;
+    font-size: 11px;
+    margin-left: 150px;
   }
 
   .links {
     text-decoration: none;
     color: blue;
-    font-size: 21px;
+    font-size: 15px;
   }
 
   div .LoginSubmitButtons {
-    margin-left: 170px;
-    width : 450px;
+    margin-left: 110px;
+    width : 250px;
     margin-top : 30px; 
-    margin-bottom: 30px;
-    height: 60px;
-    font-size : 30px;
+    margin-bottom: 20px;
+    height: 40px;
+    font-size : 21px;
   }
 
   div .submitButtonForgotPasswordPage {
-    margin-left: 170px;
-    width : 450px;
+    margin-left: 110px;
+    width : 250px;
     margin-top : 30px; 
-    margin-bottom : 30px;
-    height : 60px;
-    font-size : 20px;
+    margin-bottom : 20px;
+    height : 40px;
+    font-size : 21px;
   }
 
   div .registerButtonRegisterPage {
-    margin-left: 170px;
-    width : 450px;
+    margin-left: 110px;
+    width : 250px;
     margin-top : 30px; 
-    margin-bottom : 30px;
-    height : 60px;
-    font-size : 20px;
+    margin-bottom : 20px;
+    height : 40px;
+    font-size : 21px;
   }
 
   div .setPasswordButtonSetPasswordPage {
-    margin-left: 170px;
-    width : 450px;
+    margin-left: 110px;
+    width : 250px;
     margin-top : 30px; 
-    margin-bottom : 30px;
-    height : 60px;
-    font-size : 20px;
+    margin-bottom : 20px;
+    height : 40px;
+    font-size : 21px;
   }
 }
 
