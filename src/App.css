@@ -686,6 +686,20 @@ div .sideBar {
   float: right;
 }
 
+
+.CollaboratorHeading {
+  font-size : 30px;
+  margin-top : 10px;
+  margin-left : 10px;
+  margin-bottom : 20px;
+  margin-right : 10px;
+  padding : 7px;
+  height : 40px;
+  border-bottom: 1px solid black;
+}
+
+
+
 /* ---------------------------------------------------------------------- */
 .App {
   text-align: center;
