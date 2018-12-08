@@ -5,7 +5,7 @@
  * @version 1.1
  */
 import React from 'react';
-import { Card } from '@material-ui/core';
+import { Card, Grid, Paper } from '@material-ui/core';
 
 export default class NotesDisplay extends React.Component 
 {
@@ -25,6 +25,44 @@ export default class NotesDisplay extends React.Component
     render() {
         return (
             <div className = "NotesDisplayDiv" >
+            {this.state.layoutDefault === "grid" ? (
+                <div>
+                <Grid>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card><Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                    <Card className = "notesGridClass" >
+                        <span>asfsdfsdgdfg</span>
+                    </Card>
+                </Grid>
+                <Grid>
+                    <Paper />
+                </Grid>
+                </div>
+            ):(
                 <span>
                     <Card>
                         <div>
@@ -32,6 +70,8 @@ export default class NotesDisplay extends React.Component
                         </div>
                     </Card>
                 </span>
+            )}
+                
             </div>
         )
     }
