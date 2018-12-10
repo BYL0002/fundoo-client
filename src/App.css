@@ -519,10 +519,14 @@ body{
 
 /* ----------------------------------------------------- */
 
-
 div .sideBar {
   width : 500px;
   top : 100px;
+}
+
+div .sideBarMenuItems {
+  border-top-right-radius : 60px;
+  border-bottom-right-radius : 60px;
 }
 
 .sideBarImages {
@@ -571,7 +575,7 @@ div .sideBar {
   border-radius: 8px;
   box-shadow: 1px 1px 10px #888888;
   border: 1px solid black;
-  margin-right: 250px;
+  margin-right: 120px;
   display: flex;
 }
 
@@ -584,8 +588,15 @@ div .sideBar {
   width: 400px;
 }
 
+.cssClassNotesOnView {
+  margin-right : 120px; 
+  vertical-align : middle;
+  line-height : 25px;
+  margin-top : 2px;
+}
+
 .topBarAccountIcon {
-  margin-left: 800px;
+  /* margin-left: 800px; */
 }
 
 .logoutButton {
@@ -807,9 +818,6 @@ div .colorPaletteBrown {
   width : 20px;
   height : 20px;
 }
-
-
-
 
 div .colorPaletteWhite:hover {
   background-color : rgb(255, 255, 255);

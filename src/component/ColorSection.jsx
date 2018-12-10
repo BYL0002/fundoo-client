@@ -12,13 +12,12 @@ import Fade from '@material-ui/core/Fade';
  * @description Class Component to get color selection process done
  * @exports exporting class component
  */
-export default class ColorSelection extends React.Component {
+export default class ColorSection extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             showColorPopper: false,
-            colorSelected: ""
         }
         this.handleShowColorPopper = this.handleShowColorPopper.bind(this);
         this.handleColorClick = this.handleColorClick.bind(this);
@@ -35,15 +34,8 @@ export default class ColorSelection extends React.Component {
     }
 
 
-    handleColorClick = (event, colorCodeSelected) => {
-        this.setState({
-            colorSelected: colorCodeSelected,
-        });
-
-        console.log('color selected');
-        console.log(this.state.colorSelected);
-        
-        
+    handleColorClick = (colorCodeSelected) => {
+        this.props.getColor(colorCodeSelected);
     };
 
     render() {
@@ -124,8 +116,7 @@ export default class ColorSelection extends React.Component {
                                     {colorPaletteClassName.map((option, index) => (
                                         <IconButton className={option.colorClass}
                                             title={option.colorName}
-                                            // onSelect = {index === }
-                                            onClick = { event => this.handleColorClick(event, option.colorCode)}
+                                            onClick={() => this.handleColorClick(option.colorCode)}
                                         ></IconButton>
                                     ))}
                                 </div>

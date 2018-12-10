@@ -9,6 +9,8 @@ import TopBarSearchComponent from './TobBarSearchComponent';
 import AccountIconTopBar from './AccountIconTopBar';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
+let cssClassOnView;
+
 const theme = createMuiTheme({
   overrides: {
     MuiToolbar: {
@@ -26,7 +28,8 @@ class TopbarComponent extends React.Component {
     this.state = {
       sidebarOpenStatus: false,
       responseGot: false,
-      TopHeader: ""
+      TopHeader: "",
+      isView : true
     };
   }
 
@@ -37,12 +40,26 @@ class TopbarComponent extends React.Component {
     
     this.props.getTopBarStatus(!this.state.sidebarOpenStatus);
   }
+
+  handleNotesView() {
+    this.setState({
+      isView : !this.state.isView
+    })
+
+    // if(this.state.isView) {
+    //   cssClassOnView = "gridViewImageButtonTopBar";
+    // }
+    // else {
+    //   cssClassOnView = "listViewImageButtonTopBar";
+    // }
+  }
+
   render() {
     if (this.state.responseGot) return <Redirect to="/" />
     return (
       <div>
         <MuiThemeProvider theme={theme}>
-          <AppBar position="fixed"  style = {{padding : "1px"}} >
+          <AppBar position="fixed"  style = {{padding : "1px"}} color = "white" >
             <Toolbar>
               <IconButton color="inherit" aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
@@ -50,6 +67,12 @@ class TopbarComponent extends React.Component {
               <Sidebar stateOpen={this.state.sidebarOpenStatus} />
               Fundoo Notes
               <TopBarSearchComponent />
+              {this.state.isView ? (
+                <img src = {require("../assets/images/gridNotes.svg") } alt = "listView" className = "cssClassNotesOnView" onClick = {this.handleNotesView.bind(this)} />
+              ) : (
+                <img src = {require("../assets/images/listNotes.svg") } alt = "listView" className = "cssClassNotesOnView" onClick = {this.handleNotesView.bind(this)} />
+              )}
+              
               <AccountIconTopBar />
             </Toolbar>
           </AppBar>

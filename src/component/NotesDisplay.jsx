@@ -23,22 +23,30 @@ export default class NotesDisplay extends React.Component
     }
 
     render() {
+        const Notes = [
+            {
+                title : "asdsfsdf",
+                notes : "csdfcdfgvdfgdf"
+            },
+            {
+                title : "asfsdfdgfdghfdh",
+                note : "asdsafsf232jnh b"
+            },
+            {
+                title : "40asdnvnoc",
+                note : "5245445njnsdcnjksdnjk"
+            }
+
+        ]
         return (
             <div className = "NotesDisplayDiv" >
             {this.state.layoutDefault === "grid" ? (
                 <div>
-                <Grid>
-                    <Paper style={{textAlign:"center", padding:"2px"}} >asddfvfv</Paper>
-                    <Paper>asddfvfv</Paper>
-                    <Paper>asddfvfv</Paper>
-                    <Paper>asddfvfv</Paper>
-                    <Paper>asddfvfv</Paper>
-                    <Paper>asddfvfv</Paper>
-                    <Paper>asddfvfv</Paper>
-                </Grid>
-                <Grid>
-                    <Paper />
-                </Grid>
+                    <Card>
+                        <div>
+                            asfsdfdgfdghfdh
+                        </div>
+                    </Card>
                 </div>
             ):(
                 <span>

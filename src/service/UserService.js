@@ -100,6 +100,8 @@ function logoutService() {
 
     let loggedUser = localStorage.getItem("userLogged");
     console.log('service client user logged in ', loggedUser);
+    
+    localStorage.clear();
 
     let request = {
         thread: "/logout",
