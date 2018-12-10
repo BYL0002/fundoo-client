@@ -18,9 +18,10 @@ class AddNotes extends React.Component {
         super(props)
 
         this.state = {
-            isToggleAddCard: false,
-            isAddNoteCardStatus: true,
-            colorSelect: ""
+            isToggleAddCard : false,
+            isAddNoteCardStatus : true,
+            colorSelect : "",
+            isPin : 
         }
         this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
         this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
@@ -61,7 +62,11 @@ class AddNotes extends React.Component {
                         {this.state.isToggleAddCard ? (
                             <div className="completeNoteTakeCard" >
                                 <div>
+                                    {
+
+                                    }
                                     <InputBase className="inputNoteTake" placeholder="Title" />
+                                    <img src = {require('../assets/images/pinNote.svg')} alt ="pin note" className = "pinNoteImage" />
                                 </div>
                                 <div>
                                     <InputBase className="inputNoteTake" placeholder='Take a note' />

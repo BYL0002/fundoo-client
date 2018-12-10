@@ -9,8 +9,6 @@ import TopBarSearchComponent from './TobBarSearchComponent';
 import AccountIconTopBar from './AccountIconTopBar';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
-let cssClassOnView;
-
 const theme = createMuiTheme({
   overrides: {
     MuiToolbar: {
@@ -45,13 +43,6 @@ class TopbarComponent extends React.Component {
     this.setState({
       isView : !this.state.isView
     })
-
-    // if(this.state.isView) {
-    //   cssClassOnView = "gridViewImageButtonTopBar";
-    // }
-    // else {
-    //   cssClassOnView = "listViewImageButtonTopBar";
-    // }
   }
 
   render() {
