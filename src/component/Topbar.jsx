@@ -33,7 +33,9 @@ class TopbarComponent extends React.Component {
   handleSideBar() {
     this.setState({
       sidebarOpenStatus: !this.state.sidebarOpenStatus
-    })
+    });
+    
+    this.props.getTopBarStatus(!this.state.sidebarOpenStatus);
   }
   render() {
     if (this.state.responseGot) return <Redirect to="/" />

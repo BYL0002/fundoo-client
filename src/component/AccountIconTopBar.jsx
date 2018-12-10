@@ -1,6 +1,6 @@
 import React from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { IconButton, createMuiTheme, MuiThemeProvider, Button } from '@material-ui/core';
+import { IconButton, createMuiTheme, MuiThemeProvider, Button, Avatar } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
@@ -19,6 +19,9 @@ const theme = createMuiTheme({
     }
 }) 
 
+localStorage.setItem("userLogImage","");
+const imageUrl = localStorage.getItem("userLogImage");
+
 class AccountIconTopBar extends React.Component {
     constructor(props) {
         super(props);
@@ -28,7 +31,8 @@ class AccountIconTopBar extends React.Component {
             placement: null,
             responseGot : false,
             userLogInEmailId : localStorage.getItem("userLogged"),
-            userLogInName : localStorage.getItem("userLogName")
+            userLogInName : localStorage.getItem("userLogName"),
+            // userLogImage : imageUrl
         };
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
     }
@@ -66,7 +70,12 @@ class AccountIconTopBar extends React.Component {
                                 <div id = "popupTopBar" >
                                     <div>
                                         <div>
-                                            <AccountCircle id = "accountIconPopperTopBar" />
+                                            {imageUrl === "" ? (
+                                                <Avatar id = "accountIconPopperTopBar" >{this.state.userLogInName[0] }</Avatar>
+                                            ) : (
+                                                // <AccountCircle id = "accountIconPopperTopBar" />
+                                                <img src = {require( {imageUrl} ) } alt="userImage" />
+                                            )}
                                         </div>
                                         <div  >
                                             <span className = 'userNameTopBarPopper' >{this.state.userLogInName} </span>

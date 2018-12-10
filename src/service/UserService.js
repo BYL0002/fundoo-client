@@ -10,14 +10,14 @@ const axios = require('axios');
 const sendRequest = (request) => {
     try {
         console.log('req from service', request.data);
-        
-       return axios.post(request.thread, {
+
+        return axios.post(request.thread, {
             data: request.data
         })
             .then(response => {
                 if (response.data.status) {
                     console.log('res on axios', response.data);
-                    
+
                     return response.data;
                 }
                 else {
@@ -61,35 +61,35 @@ function registerService(request) {
  * @param {String} email
  * @param {String} password 
  */
-function loginService(request) {
+function loginService(request, callback) {
     if (/^[a-z](\.?[a-z0-9]){2,}@gmail\.com$/g.test(request.data.email)) {
 
         if (/^[a-zA-Z][\w!]{5,9}$/g.test(request.data.password)) {
-             return sendRequest(request)
-                    .then(res => {
-                        if (res) {
-                            console.log('res on login',res);
-                            
-                            localStorage.setItem("userLogToken", res.token);
-                            // console.log('user log token', localStorage.getItem("userLogToken"));
-                            localStorage.setItem('userLogName', res.message.name);
-                            // console.log('user log name', localStorage.getItem("userLogName"));
-                            localStorage.setItem("userLogged", res.message.email_id);
-                            // console.log('user log email id', localStorage.getItem("userLogged"));
-                            
-                            return true;
-                        }
-                        else {
-                            return false;
-                        }
-                    })
+            sendRequest(request)
+                .then(res => {
+                    if (res) {
+                        console.log('res on login', res);
+
+                        localStorage.setItem("userLogToken", res.token);
+                        console.log('user log token', localStorage.getItem("userLogToken"));
+                        localStorage.setItem('userLogName', res.message.name);
+                        console.log('user log name', localStorage.getItem("userLogName"));
+                        localStorage.setItem("userLogged", res.message.email_id);
+                        console.log('user log email id', localStorage.getItem("userLogged"));
+
+                        return callback(null, true);
+                    }
+                    else {
+                        return callback(false);
+                    }
+                })
         }
         else
-        return false;
+            return callback(null);
     }
     else {
         console.log('service something left');
-        return false;
+        return callback(null);
     }
 }
 
@@ -117,4 +117,4 @@ function forgotService(request) {
     }
 }
 
-module.exports = { registerService, loginService, logoutService, forgotService, registerUserVerify};
+module.exports = { registerService, loginService, logoutService, forgotService, registerUserVerify };

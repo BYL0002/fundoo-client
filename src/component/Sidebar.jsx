@@ -4,7 +4,6 @@ import Divider from '@material-ui/core/Divider';
 import { MenuItem } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
-
 const theme = createMuiTheme({
     overrides: {
         MuiDrawer: {
@@ -16,10 +15,11 @@ const theme = createMuiTheme({
         }}
     })
 
-class TemporaryDrawer extends React.Component {
+class Sidebar extends React.Component {
 
     constructor(props) {
-        super([props]);
+        super(props);
+
         this.state = {
             TabSelected: ""
         }
@@ -27,7 +27,8 @@ class TemporaryDrawer extends React.Component {
     }
 
     render() {
-
+        console.log("in render props", this.props);
+        
         const sideItems = (
             <div>
                 <MenuItem >
@@ -78,6 +79,6 @@ class TemporaryDrawer extends React.Component {
 }
 
 /**
- * @exports TemporaryDrawer class component
+ * @exports Sidebar class component
  */
-export default TemporaryDrawer;
+export default Sidebar;

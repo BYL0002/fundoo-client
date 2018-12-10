@@ -28,35 +28,13 @@ export default class NotesDisplay extends React.Component
             {this.state.layoutDefault === "grid" ? (
                 <div>
                 <Grid>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card><Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
-                    <Card className = "notesGridClass" >
-                        <span>asfsdfsdgdfg</span>
-                    </Card>
+                    <Paper style={{textAlign:"center", padding:"2px"}} >asddfvfv</Paper>
+                    <Paper>asddfvfv</Paper>
+                    <Paper>asddfvfv</Paper>
+                    <Paper>asddfvfv</Paper>
+                    <Paper>asddfvfv</Paper>
+                    <Paper>asddfvfv</Paper>
+                    <Paper>asddfvfv</Paper>
                 </Grid>
                 <Grid>
                     <Paper />

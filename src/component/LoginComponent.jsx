@@ -12,6 +12,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
+// import CustomizedSnackbars from './SnackBarTheme';
 
 /**
  * @description LoginComponent class component for login
@@ -26,7 +27,8 @@ class LoginComponent extends React.Component {
             redirectToReferrer: false,
             responseGot: false,
             snackOpen: false,
-            snackMessage: ""
+            snackMessage: "",
+            snackBarVariant : ""
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -72,37 +74,22 @@ class LoginComponent extends React.Component {
                         password: this.state.password
                     }
                 }
-
-                this.setState({
-                    responseGot : loginService(request)
+                loginService(request, (err, data) => {
+                    if(err === false)
+                    {
+                        this.setState({
+                            responseGot : data,
+                            snackOpen : true,
+                            snackMessage : 'Error Occured, Try Later'
+                        })
+                    }
+                    else
+                    {
+                        this.setState({
+                            responseGot : data
+                        })
+                    }
                 })
-
-                if(this.state.responseGot === false ) {
-                    this.setState({
-                        snackOpen : true,
-                        snackMessage : 'Error Occured, Try Later'
-                    })
-                }
-
-                // loginService(request)
-                //     .then(res => {
-                //         if (res) {
-                //             console.log('res on login component',res);
-                            
-                //             localStorage.setItem("userLogToken", res.token);
-                //             localStorage.setItem('userLogName', res.message.name);
-                //             localStorage.setItem("userLogged", res.message.email_id);
-                //             this.setState({
-                //                 responseGot: true
-                //             });
-                //         }
-                //         else {
-                //             this.setState({
-                //                 snackOpen: true,
-                //                 snackMessage: "Error Occured, Try Later!"
-                //             })
-                //         }
-                //     })
             }
             else {
                 this.setState({
@@ -165,8 +152,15 @@ class LoginComponent extends React.Component {
                     ContentProps={{
                         'aria-describedby': 'message-id',
                     }}
-                    color="primary "
+                    color="primary"
+                    variant = "success"
                     message={<span id="message-id">{this.state.snackMessage}</span>}
+                    
+
+
+
+
+
                     action={[
                         <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
                             <CloseIcon />

@@ -18,7 +18,7 @@ class AddNotes extends React.Component {
         super(props);
         this.state = {
             isToggleAddCard: false,
-            isAddNoteCardStatus : true
+            isAddNoteCardStatus: true
         }
         this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
         this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
@@ -32,57 +32,108 @@ class AddNotes extends React.Component {
 
     handleAddNoteCardDisplay(event) {
         this.setState({
-            isAddNoteCardStatus : !this.state.isAddNoteCardStatus
+            isAddNoteCardStatus: !this.state.isAddNoteCardStatus
         })
     }
 
     render() {
         return (
             <div>
-                {this.state.isAddNoteCardStatus ? (
-                    <Card className="noteTakeCard" >
-                    {this.state.isToggleAddCard ? (
-                        <div className="completeNoteTakeCard" >
-                            <div>
-                                <InputBase className="inputNoteTake" placeholder="Title" />
-                            </div>
-                            <div>
-                                <InputBase className="inputNoteTake" placeholder='Take a note' />
-                            </div>
-                            <div>
-                                <ReminderPopper />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick = {this.handleAddNoteCardDisplay} />
-                                <ColorSection />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" />
-                                <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardToggleStatus.bind(this)} >Close</Button>
-                            </div>
-                        </div>
-                    ) : (
-                            <div>
-                                <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
-                            </div>
-                        )
-                    }
-                </Card>
-                ): (
+                {this.props.drawerStatus ? (
                     <div>
-                    <Card className="noteTakeCard" >
-                        <div className="completeNoteTakeCard" >
-                            <div className="CollaboratorHeading" >
-                                <span  >Collaborators</span>
-                            </div>
-                            <div>
-                                <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardDisplay} >Close</Button>
-                            </div>
-                        </div>
-                    </Card>
+                        {this.state.isAddNoteCardStatus ? (
+                            <Card className = "noteTakeCardAfterDrawerOpen" >
+                                {this.state.isToggleAddCard ? (
+                                    <div className="completeNoteTakeCard" >
+                                        <div>
+                                            <InputBase className="inputNoteTake" placeholder="Title" />
+                                        </div>
+                                        <div>
+                                            <InputBase className="inputNoteTake" placeholder='Take a note' />
+                                        </div>
+                                        <div>
+                                            <ReminderPopper />
+                                            <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
+                                            <ColorSection />
+                                            <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                            <img className="noteAddFeatureImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
+                                            <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
+                                            <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" />
+                                            <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardToggleStatus.bind(this)} >Close</Button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                        <div>
+                                            <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
+                                        </div>
+                                    )
+                                }
+                            </Card>
+                        ) : (
+                                <div>
+                                    <Card className="noteTakeCard" >
+                                        <div className="completeNoteTakeCard" >
+                                            <div className="CollaboratorHeading" >
+                                                <span  >Collaborators</span>
+                                            </div>
+                                            <div>
+                                                <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardDisplay} >Close</Button>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </div>
+                            )
+                        }
+                        <NotesDisplay />
                     </div>
-                )
-            }
-            <NotesDisplay />
+                ) : (
+                        <div>
+                            {this.state.isAddNoteCardStatus ? (
+                                <Card className = "noteTakeCard" >
+                                    {this.state.isToggleAddCard ? (
+                                        <div className="completeNoteTakeCard" >
+                                            <div>
+                                                <InputBase className="inputNoteTake" placeholder="Title" />
+                                            </div>
+                                            <div>
+                                                <InputBase className="inputNoteTake" placeholder='Take a note' />
+                                            </div>
+                                            <div>
+                                                <ReminderPopper />
+                                                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
+                                                <ColorSection />
+                                                <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                                <img className="noteAddFeatureImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
+                                                <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
+                                                <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" />
+                                                <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardToggleStatus.bind(this)} >Close</Button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                            <div>
+                                                <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
+                                            </div>
+                                        )
+                                    }
+                                </Card>
+                            ) : (
+                                    <div>
+                                        <Card className="noteTakeCard" >
+                                            <div className="completeNoteTakeCard" >
+                                                <div className="CollaboratorHeading" >
+                                                    <span  >Collaborators</span>
+                                                </div>
+                                                <div>
+                                                    <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardDisplay} >Close</Button>
+                                                </div>
+                                            </div>
+                                        </Card>
+                                    </div>
+                                )
+                            }
+                            <NotesDisplay />
+                        </div>
+                    )}
             </div>
         )
     }
