@@ -10,6 +10,7 @@ import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import NotesDisplay from './NotesDisplay';
 import PinNote from './PinNote';
+import ArchiveNote from './ArchiveNote';
 import NoteService from '../service/NoteService';
 
 /**
@@ -74,9 +75,20 @@ class AddNotes extends React.Component {
     }
     
     getArchive = (archiveSet) => {
+        console.log(archiveSet);
+        console.log('before ', this.state.archiveChoosen);
+        
         this.setState({
             archiveChoosen : archiveSet
         })
+
+        console.log('after ', this.state.archiveChoosen);
+        if(!this.state.archiveChoosen)
+        {
+            console.log('archive in if ', this.state.archiveChoosen);
+            
+            this.handleAddNoteCardToggleStatus();
+        }
     }
     
     getTrash = (trashSet) => {
@@ -85,7 +97,7 @@ class AddNotes extends React.Component {
         })
     }
 
-    handleAddNoteCardToggleStatus(event) {
+    handleAddNoteCardToggleStatus() {
         this.setState({
             isToggleAddCard: !this.state.isToggleAddCard,
             colorSelect : "rgb(255, 255, 255)",
@@ -148,7 +160,7 @@ class AddNotes extends React.Component {
                                     <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
                                     <ColorSection getColor = {this.getBackGroundColor} />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                    <img className="noteAddFeatureImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
+                                    <ArchiveNote getArchive = {this.getArchive} />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" />
                                     <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardToggleStatus.bind(this)} >Close</Button>
