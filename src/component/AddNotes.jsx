@@ -70,7 +70,7 @@ class AddNotes extends React.Component {
     getPin = (pinSet) => {
         this.setState({
             pinChoosen : pinSet
-        })
+        })        
     }
     
     getArchive = (archiveSet) => {
@@ -88,9 +88,13 @@ class AddNotes extends React.Component {
     handleAddNoteCardToggleStatus(event) {
         this.setState({
             isToggleAddCard: !this.state.isToggleAddCard,
-            colorSelect : "rgb(255, 255, 255)"
+            colorSelect : "rgb(255, 255, 255)",
+            pinChoosen : false,
+            archiveChoosen : false,
+            trashChoosen : false,
+            reminderChoosen : ""
         });
-
+        
         let request = {
             title : this.state.noteTitle,
             description : this.state.noteDescription,
@@ -102,7 +106,8 @@ class AddNotes extends React.Component {
             pin : this.state.pinChoosen,
             trash : false
         }
-
+        console.log('reques on component', request);
+        
         NoteService.NotesAddition(request);
     }
 
@@ -172,7 +177,7 @@ class AddNotes extends React.Component {
                         </div>
                     )
                 }
-                <NotesDisplay />
+                <NotesDisplay notesView = {this.props.notesView} sidebarStatus = {this.props.drawerStatus} />
             </div>
         )
     }

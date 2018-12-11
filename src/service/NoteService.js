@@ -9,7 +9,7 @@ const axios = require('axios');
 
 const sendRequest = (request) => {
     try {
-        console.log('req from service', request.data);
+        // console.log('req from service', request.data);
 
         return axios.post(request.thread, {
             data: request.data
@@ -24,7 +24,7 @@ const sendRequest = (request) => {
                     console.log('Something Failed');
                 }
             }).catch(error => {
-                console.log('error occured, try later');
+                // console.log('error occured, try later');
             })
     }
     catch (err) {
@@ -33,8 +33,8 @@ const sendRequest = (request) => {
 }
 
 function NotesAddition(request) {
-    console.log('request came on services');
-    console.log(request);    
+    // console.log('request came on services');
+    // console.log(request);    
     
     return sendRequest(request);
 }

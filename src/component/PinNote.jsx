@@ -16,7 +16,7 @@ export default class PinNote extends React.Component {
     {
         super(props);
         this.state = {
-            isPin : false
+            isPin : true
         }
     }
 

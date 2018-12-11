@@ -9,7 +9,8 @@ class Dashboard extends React.Component {
     {
         super();
         this.state = {
-            drawerStatus : ""
+            drawerStatus : "",
+            noteViewStatus : true
         }
         this.handleDrawerStatus = this.handleDrawerStatus.bind(this);
     }
@@ -21,6 +22,12 @@ class Dashboard extends React.Component {
         })   
     }
     
+    handleNotesView = (status) => {
+        this.setState({
+            noteViewStatus : status
+        })
+    }
+
     render() {
         if (localStorage.getItem('userLogToken') === null) {
             return <Redirect to="/" />
@@ -28,8 +35,8 @@ class Dashboard extends React.Component {
 
         return (
             <div>
-                <Topbar getTopBarStatus = {this.handleDrawerStatus} />
-                <AddNotes drawerStatus = {this.state.drawerStatus} />
+                <Topbar getTopBarStatus = {this.handleDrawerStatus} notesView = {this.handleNotesView} />
+                <AddNotes drawerStatus = {this.state.drawerStatus} notesView = {this.state.noteViewStatus} />
             </div>
         )
     }

@@ -612,14 +612,14 @@ div .sideBarMenuItems {
 }
 
 .noteTakeCard {
-  margin-left: 500px;
+  margin-left: 470px;
   margin-top: 130px;
   max-width : 500px;
   height: auto;
 }
 
 .noteTakeCardAfterDrawerOpen {
-  margin-left : 570px;
+  margin-left : 540px;
   margin-top: 130px;
   max-width : 500px;
   height: auto;
@@ -861,22 +861,54 @@ div .colorPaletteBrown:hover {
   background-color : rgb(165, 42, 42);
 }
 
-.NotesDisplayDiv {
-  max-width : 800px ;
-  margin-left : 350px;
+.NotesDisplayDivSidebarClose {
+  max-width : 750px ;
+  margin-left : 340px;
   background-color : #61dafb;
   margin-top : 40px;
   display: flex;
 }
 
-div .notesGridClass {
+.NotesDisplayDivSidebarOpen {
+  max-width : 750px ;
+  margin-left : 400px;
+  background-color : #61dafb;
+  margin-top : 40px;
+  display : flex;
+}
+
+.notesGridDisplayDiv {
+  display : flex;
+  flex-direction : row;
+  max-width : 700px;
+  flex-wrap : wrap;
+  margin : 20px;
+}
+
+.notesListDisplayDiv {
+  display : flex;
+  flex-direction : column;
+  max-width : 500px;
+  flex-wrap : nowrap;
+  margin : 10px;
+}
+
+div .notesGridDisplayCard {
   display: flex;
-  justify-content: space-evenly;
-  width : 50px;
-  height : 50px;
-  margin-left : 30px;
-  margin-right : 30px;
-  margin-bottom : 30px;
+  /* justify-content: flex-start; */
+  flex-wrap : wrap;
+  min-width : 200px;
+  min-height : 120px;
+  margin : 10px;
+}
+
+div .notesListDisplayCard {
+  display: flex;
+  /* justify-content: space-evenly; */
+  flex-wrap : nowrap;
+  min-width : 400px;
+  min-height : 100px;
+  margin-left : 60px;
   margin-top : 30px;
 }
 

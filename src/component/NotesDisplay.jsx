@@ -11,7 +11,7 @@ export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            layoutDefault: "grid"
+            layoutDefault: "list"
         }
         this.handleLayoutDisplay = this.handleLayoutDisplay.bind(this);
     }
@@ -21,6 +21,15 @@ export default class NotesDisplay extends React.Component {
     }
 
     render() {
+        let NotesDisplayDivClass;
+        if(this.props.sidebarStatus)
+        {
+            NotesDisplayDivClass = "NotesDisplayDivSidebarOpen";
+        }
+        else
+        {
+            NotesDisplayDivClass = "NotesDisplayDivSidebarClose";
+        }
         const Notes = [
             {
                 title: "asdsfsdf",
@@ -33,25 +42,31 @@ export default class NotesDisplay extends React.Component {
             {
                 title: "40asdnvnoc",
                 note: "5245445njnsdcnjksdnjk"
+            },
+            {
+                title: "40asdnvnoc",
+                note: "5245445njnsdcnjksdnjk"
+            },
+            {
+                title: "40asdnvnoc",
+                note: "5245445njnsdcnjksdnjk"
             }
 
         ]
         return (
-            <div className="NotesDisplayDiv" >
-                {this.state.layoutDefault === "grid" ? (
-                    <div>
+            <div className = {NotesDisplayDivClass} >
+                {this.props.notesView ? (
+                    <div className = "notesGridDisplayDiv" >
                         {Notes.map( (option, index) => (
-                            <Card className = "notesGridClass" >{option.title}</Card>
+                            <Card className = "notesGridDisplayCard" >{option.title}</Card>
                         ) )}
                     </div>
                 ) : (
-                        <span>
-                            <Card className = "notesGridClass" >
-                                <div>
-                                    <div style={{ fontSize: '30px' }} >Note</div>
-                                </div>
-                            </Card>
-                        </span>
+                        <div className = "notesListDisplayDiv" >
+                            {Notes.map( (option, index) => (
+                            <Card className = "notesListDisplayCard" >{option.title}</Card>
+                        ) )}
+                        </div>
                     )}
 
             </div>

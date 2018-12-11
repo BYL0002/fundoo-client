@@ -42,7 +42,8 @@ class TopbarComponent extends React.Component {
   handleNotesView() {
     this.setState({
       isView: !this.state.isView
-    })
+    });
+    this.props.notesView(!this.state.isView);
   }
 
   componentDidMount() {
