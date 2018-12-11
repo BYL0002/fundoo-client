@@ -10,6 +10,7 @@ import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import NotesDisplay from './NotesDisplay';
 import PinNote from './PinNote';
+import NoteService from '../service/NoteService';
 
 /**
  * @description AddNotes class component
@@ -21,30 +22,88 @@ class AddNotes extends React.Component {
         this.state = {
             isToggleAddCard : false,
             isAddNoteCardStatus : true,
+            collaboratorChoosen : "",
             colorSelect : "",
+            reminderChoosen : "",
+            noteTitle : "",
+            noteDescription : "",
+            imageAdded : "",
+            archiveChoosen : false,
+            pinChoosen : false,
+            trashChoosen : false
         }
         this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
         this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
-        this.handleBackGroundColor = this.handleBackGroundColor.bind(this);
+        this.getBackGroundColor = this.getBackGroundColor.bind(this);
     }
 
-    handleAddNoteCardToggleStatus(event) {
-        this.setState({
-            isToggleAddCard: !this.state.isToggleAddCard
-        })
-    }
-
-    handleAddNoteCardDisplay(event) {
+    handleAddNoteCardDisplay() {
         this.setState({
             isAddNoteCardStatus: !this.state.isAddNoteCardStatus
         })
     }
 
-    handleBackGroundColor(colorSelected) {
+    handleInputValue = (event) => {
+        this.setState({
+            [event.target.name] : event.target.value
+        })
+    }
+
+    getInputValue = (event) => {
+        this.setState({
+            [event.target.name] : event.target.value
+        })
+    }
+
+    getBackGroundColor(colorSelected) {
         this.setState({
             colorSelect: colorSelected
+        }) 
+    }
+
+    getReminder = (reminderSet) => {
+        this.setState({
+            reminderChoosen : reminderSet
         })
-        
+    }
+
+    getPin = (pinSet) => {
+        this.setState({
+            pinChoosen : pinSet
+        })
+    }
+    
+    getArchive = (archiveSet) => {
+        this.setState({
+            archiveChoosen : archiveSet
+        })
+    }
+    
+    getTrash = (trashSet) => {
+        this.setState({
+            trashChoosen : trashSet
+        })
+    }
+
+    handleAddNoteCardToggleStatus(event) {
+        this.setState({
+            isToggleAddCard: !this.state.isToggleAddCard,
+            colorSelect : "rgb(255, 255, 255)"
+        });
+
+        let request = {
+            title : this.state.noteTitle,
+            description : this.state.noteDescription,
+            collaborator : this.state.collaboratorChoosen,
+            reminder : this.state.reminderChoosen,
+            color : this.state.colorSelect,
+            imageAdded : this.state.imageAdded,
+            archive : this.state.archiveChoosen,
+            pin : this.state.pinChoosen,
+            trash : false
+        }
+
+        NoteService.NotesAddition(request);
     }
 
     render() {
@@ -62,16 +121,16 @@ class AddNotes extends React.Component {
                         {this.state.isToggleAddCard ? (
                             <div className="completeNoteTakeCard" >
                                 <div>
-                                    <InputBase className="inputNoteTake" placeholder="Title" />
+                                    <InputBase className="inputNoteTake" placeholder="Title" multiline name = "noteTitle" onChange = {this.handleInputValue} />
                                     <PinNote />
                                 </div>
                                 <div>
-                                    <InputBase className="inputNoteTake" placeholder='Take a note' />
+                                    <InputBase className="inputNoteTake" placeholder='Take a note' multiline name = "noteDescription" onChange = {this.handleInputValue} />
                                 </div>
                                 <div>
-                                    <ReminderPopper />
+                                    <ReminderPopper getReminderChooseOption = {this.getReminder} />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                    <ColorSection getColor={this.handleBackGroundColor} />
+                                    <ColorSection getColor={this.getBackGroundColor} />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />

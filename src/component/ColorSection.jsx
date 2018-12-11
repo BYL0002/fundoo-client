@@ -17,7 +17,8 @@ export default class ColorSection extends React.Component {
     constructor() {
         super();
         this.state = {
-            showColorPopper: false,
+            showColorPopper : false,
+            defaultColor : "rgb(255, 255, 255)"
         }
         this.handleShowColorPopper = this.handleShowColorPopper.bind(this);
         this.handleColorClick = this.handleColorClick.bind(this);
@@ -35,7 +36,16 @@ export default class ColorSection extends React.Component {
 
 
     handleColorClick = (colorCodeSelected) => {
-        this.props.getColor(colorCodeSelected);
+        console.log("props", this.props);
+        
+        if(colorCodeSelected === "")
+        {
+            this.props.getColor(this.state.defaultColor);
+        }
+        else
+        {
+            this.props.getColor(colorCodeSelected);
+        }
     };
 
     render() {

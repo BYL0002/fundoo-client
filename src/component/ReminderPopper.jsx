@@ -34,6 +34,11 @@ export default class ReminderPopper extends React.Component {
         }));
     }
 
+    setReminderOption = (event) => {
+        let reminderSetValue = event.target.id;
+        this.props.getReminderChooseOption(reminderSetValue);
+    }
+
     render() {
         return (
             <span>
@@ -43,22 +48,22 @@ export default class ReminderPopper extends React.Component {
                             <Paper className="reminderPopperNoteAddCard"  >
                                 <div >
                                     <MenuItem disabled >Reminder : </MenuItem>
-                                    <MenuItem>
-                                        <span className="reminderTodayLabel" >Later Today : </span>8:00 PM
+                                    <MenuItem >
+                                        <span className="reminderTodayLabel" onClick = {this.setReminderOption} id = {new Date()} >Later Today : </span>8:00 PM
                                     </MenuItem>
                                     <MenuItem>
-                                        <span className="reminderTomorrowLabel" >Tomorrow : </span>8:00 AM
+                                        <span className="reminderTomorrowLabel" onClick = {this.setReminderOption} id = {new Date()} >Tomorrow : </span>8:00 AM
                                     </MenuItem>
                                     <MenuItem>
-                                        <span className="reminderWeekLabel" >Next Week : </span>Mon, 8:00 AM
+                                        <span className="reminderWeekLabel" onClick = {this.setReminderOption} id = {new Date()} >Next Week : </span>Mon, 8:00 AM
                                     </MenuItem>
                                     <MenuItem>
                                         <img src={require('../assets/images/clocktime.svg')} alt="clock" />
-                                        <span className="reminderTimeLabel" >Pick date & time : </span>
+                                        <span className="reminderTimeLabel" onClick = {this.setReminderOption} id = {new Date()} >Pick date & time : </span>
                                     </MenuItem>
                                     <MenuItem>
                                         <img src={require('../assets/images/locationOn.svg')} alt="location" />
-                                        <span className="reminderLocationLabel" >Later Todat : </span>
+                                        <span className="reminderLocationLabel" >Pick place : </span>
                                     </MenuItem>
                                 </div>
                             </Paper>
