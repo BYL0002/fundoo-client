@@ -122,15 +122,26 @@ class AddNotes extends React.Component {
                             <div className="completeNoteTakeCard" >
                                 <div>
                                     <InputBase className="inputNoteTake" placeholder="Title" multiline name = "noteTitle" onChange = {this.handleInputValue} />
-                                    <PinNote />
+                                    <PinNote getPin = {this.getPin} />
                                 </div>
                                 <div>
                                     <InputBase className="inputNoteTake" placeholder='Take a note' multiline name = "noteDescription" onChange = {this.handleInputValue} />
                                 </div>
+                                {this.state.reminderChoosen === "" ? (
+                                    <div>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <span> 
+                                            <img className = "reminderClock" src = {require('../assets/images/clocktime.svg')} alt = "reminderClock" />
+                                            {this.state.reminderChoosen}
+                                        </span>
+                                    </div>
+                                )}
                                 <div>
                                     <ReminderPopper getReminderChooseOption = {this.getReminder} />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                    <ColorSection getColor={this.getBackGroundColor} />
+                                    <ColorSection getColor = {this.getBackGroundColor} />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />

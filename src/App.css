@@ -632,6 +632,10 @@ div .sideBarMenuItems {
   margin-bottom: 5px;
 }
 
+.inputNoteTake div {
+  font-size : 18px;
+}
+
 .pinNoteImage {
   vertical-align : middle;
   line-height : 10px;
@@ -676,8 +680,18 @@ div .sideBarMenuItems {
   margin-left : 20px;
 }
 
+.reminderClock {
+  line-height : 10px;
+  vertical-align : middle;
+  margin-bottom : 5px;
+  margin-left : 5px;
+  margin-right : 5px;
+  width : 20px;
+  height : 20px;
+}
+
 .reminderTimeLabel {
-  margin-left : 20px;
+  margin-left : 10px;
 }
 
 .closeNoteAddCardButton {
@@ -864,4 +878,16 @@ div .notesGridClass {
   margin-right : 30px;
   margin-bottom : 30px;
   margin-top : 30px;
+}
+
+.datePickerDiv {
+  width : 170px;
+  margin-top : 40px;
+  margin-left : 85px;
+}
+
+.dateTimePicker {
+  font-size : 18px;
+  height : 40px;
+  width : 170px;
 }

@@ -18,7 +18,7 @@ export default class MoreOptions extends React.Component {
     render(){
         return (
             <div>
-                <
+                
             </div>
         )
     }

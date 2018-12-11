@@ -24,6 +24,7 @@ export default class PinNote extends React.Component {
         this.setState({
             isPin : !this.state.isPin
         })
+        this.props.getPin(this.state.isPin);
     }
 
     render(){
