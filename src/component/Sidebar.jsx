@@ -25,7 +25,7 @@ class Sidebar extends React.Component {
         }
 
     }
-
+    
     render() {
         
         const sideItems = (
@@ -40,7 +40,7 @@ class Sidebar extends React.Component {
                 </MenuItem>
                 <Divider />
                 <MenuItem disabled>
-                    <div style={{ float: "left" }} className="textAlignLeft" >LABELS</div>
+                    <div style={{ float: "left" }} >LABELS</div>
                 </MenuItem>
                 <MenuItem className = "sideBarMenuItems" onClick={this.getHeaderValue} name="Edit Labels" >
                     <img className="sideBarImages" src={require('../assets/images/SideBarLabelImage.svg')} alt="label" />

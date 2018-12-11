@@ -519,11 +519,6 @@ body{
 
 /* ----------------------------------------------------- */
 
-div .sideBar {
-  width : 500px;
-  top : 100px;
-}
-
 div .sideBarMenuItems {
   border-top-right-radius : 60px;
   border-bottom-right-radius : 60px;
@@ -543,12 +538,6 @@ div .sideBarMenuItems {
   display: flex;
 }
 
-.textAlignLeft {
-  float: left;
-  margin-bottom: 2%;
-  padding: 2%;
-}
-
 .sideBarTextBottom {
   margin-top : 2%;
   align-self: center;
@@ -556,18 +545,8 @@ div .sideBarMenuItems {
   font-size: 65%;
 }
 
-#SideBarMenuItemSpace {
-  margin-bottom: 10%;
-  color: #61dafb;
-  /* margin-top: 20%;
-  height: 20%; */
-  border-radius: 10%;
-  outline: none;
-}
-
 .topBarSearchDiv {
   line-height: 20%;
-  /* vertical-align: middle; */
   width: 500px;
   height: 30px;
   padding: 8px;
@@ -593,17 +572,6 @@ div .sideBarMenuItems {
   vertical-align : middle;
   line-height : 25px;
   margin-top : 2px;
-}
-
-.topBarAccountIcon {
-  /* margin-left: 800px; */
-}
-
-.logoutButton {
-  /* right: -2%; */
-  margin-top: 12%;
-  margin-left: 68%;
-  padding: 0%;
 }
 
 #accountIconTopBar {
@@ -635,6 +603,12 @@ div .sideBarMenuItems {
   float: right;
   margin-right: -12%;
   margin-top: 25%;
+}
+
+.logoutButton {
+  margin-top: 12%;
+  margin-left: 68%;
+  padding: 0%;
 }
 
 .noteTakeCard {
@@ -874,16 +848,16 @@ div .colorPaletteBrown:hover {
 }
 
 .NotesDisplayDiv {
-  display: flex;
-  justify-content: space-evenly;
   max-width : 800px ;
   margin-left : 350px;
   background-color : #61dafb;
   margin-top : 40px;
-  height : auto;
+  display: flex;
 }
 
-.notesGridClass {
+div .notesGridClass {
+  display: flex;
+  justify-content: space-evenly;
   width : 50px;
   height : 50px;
   margin-left : 30px;

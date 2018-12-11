@@ -41,12 +41,12 @@ export default class NotesDisplay extends React.Component {
                 {this.state.layoutDefault === "grid" ? (
                     <div>
                         {Notes.map( (option, index) => (
-                            <Card>{option.title}</Card>
+                            <Card className = "notesGridClass" >{option.title}</Card>
                         ) )}
                     </div>
                 ) : (
                         <span>
-                            <Card>
+                            <Card className = "notesGridClass" >
                                 <div>
                                     <div style={{ fontSize: '30px' }} >Note</div>
                                 </div>

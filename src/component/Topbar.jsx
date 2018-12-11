@@ -27,7 +27,7 @@ class TopbarComponent extends React.Component {
       sidebarOpenStatus: false,
       responseGot: false,
       TopHeader: "",
-      isView : true
+      isView: true
     };
   }
 
@@ -35,14 +35,28 @@ class TopbarComponent extends React.Component {
     this.setState({
       sidebarOpenStatus: !this.state.sidebarOpenStatus
     });
-    
+
     this.props.getTopBarStatus(!this.state.sidebarOpenStatus);
   }
 
   handleNotesView() {
     this.setState({
-      isView : !this.state.isView
+      isView: !this.state.isView
     })
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
+  }
+
+  resize() {
+    let currentScreenWidth = (window.innerWidth <= 760);
+    // if (currentScreenWidth !== this.state.hideNav) {
+      this.setState({
+        sidebarOpenStatus : false
+      });
+    // }
   }
 
   render() {
@@ -50,7 +64,7 @@ class TopbarComponent extends React.Component {
     return (
       <div>
         <MuiThemeProvider theme={theme}>
-          <AppBar position="fixed"  style = {{padding : "1px"}} color = "white" >
+          <AppBar position="fixed" style={{ padding: "1px" }} color="white" >
             <Toolbar>
               <IconButton color="inherit" aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
@@ -59,11 +73,11 @@ class TopbarComponent extends React.Component {
               Fundoo Notes
               <TopBarSearchComponent />
               {this.state.isView ? (
-                <img src = {require("../assets/images/gridNotes.svg") } alt = "listView" className = "cssClassNotesOnView" onClick = {this.handleNotesView.bind(this)} />
+                <img src={require("../assets/images/gridNotes.svg")} alt="listView" className="cssClassNotesOnView" onClick={this.handleNotesView.bind(this)} />
               ) : (
-                <img src = {require("../assets/images/listNotes.svg") } alt = "listView" className = "cssClassNotesOnView" onClick = {this.handleNotesView.bind(this)} />
-              )}
-              
+                  <img src={require("../assets/images/listNotes.svg")} alt="listView" className="cssClassNotesOnView" onClick={this.handleNotesView.bind(this)} />
+                )}
+
               <AccountIconTopBar />
             </Toolbar>
           </AppBar>

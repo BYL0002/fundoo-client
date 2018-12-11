@@ -9,6 +9,7 @@ import { Card, InputBase, Button } from '@material-ui/core';
 import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import NotesDisplay from './NotesDisplay';
+import PinNote from './PinNote';
 
 /**
  * @description AddNotes class component
@@ -21,7 +22,6 @@ class AddNotes extends React.Component {
             isToggleAddCard : false,
             isAddNoteCardStatus : true,
             colorSelect : "",
-            isPin : 
         }
         this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
         this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
@@ -62,11 +62,8 @@ class AddNotes extends React.Component {
                         {this.state.isToggleAddCard ? (
                             <div className="completeNoteTakeCard" >
                                 <div>
-                                    {
-
-                                    }
                                     <InputBase className="inputNoteTake" placeholder="Title" />
-                                    <img src = {require('../assets/images/pinNote.svg')} alt ="pin note" className = "pinNoteImage" />
+                                    <PinNote />
                                 </div>
                                 <div>
                                     <InputBase className="inputNoteTake" placeholder='Take a note' />
