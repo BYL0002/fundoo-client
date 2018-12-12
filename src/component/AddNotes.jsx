@@ -22,19 +22,19 @@ class AddNotes extends React.Component {
         super(props)
 
         this.state = {
-            isToggleAddCard : false,
-            isAddNoteCardStatus : true,
-            collaboratorChoosen : "",
-            colorSelect : "",
-            reminderChoosen : "",
-            noteTitle : "",
-            noteDescription : "",
-            imageAdded : "",
-            archiveChoosen : false,
-            pinChoosen : false,
-            trashChoosen : false,
-            snackbarStatus : false,
-            snackbarMessage : "Note Archived!"
+            isToggleAddCard: false,
+            isAddNoteCardStatus: true,
+            collaboratorChoosen: "",
+            colorSelect: "",
+            reminderChoosen: "",
+            noteTitle: "",
+            noteDescription: "",
+            imageAdded: "",
+            archiveChoosen: false,
+            pinChoosen: false,
+            trashChoosen: false,
+            snackbarStatus: false,
+            snackbarMessage: "Note Archived!"
         }
         this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
         this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
@@ -49,90 +49,94 @@ class AddNotes extends React.Component {
 
     handleInputValue = (event) => {
         this.setState({
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
     getInputValue = (event) => {
         this.setState({
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
     getBackGroundColor(colorSelected) {
         this.setState({
             colorSelect: colorSelected
-        }) 
+        })
     }
 
     getReminder = (reminderSet) => {
         this.setState({
-            reminderChoosen : reminderSet
+            reminderChoosen: reminderSet
         })
     }
 
     getPin = (pinSet) => {
         this.setState({
-            pinChoosen : pinSet
+            pinChoosen: pinSet
         })
     }
-    
+
     getTrash = (trashSet) => {
         this.setState({
-            trashChoosen : trashSet
+            trashChoosen: trashSet
         });
     }
 
-    handleSnackClose = ( reason) => {
+    handleSnackClose = (reason) => {
         if (reason === 'clickaway') {
             return;
         }
 
-        this.setState({ snackbarStatus : false });
+        this.setState({ snackbarStatus: false });
     };
 
     getArchive = (archiveSet) => {
 
-        if(archiveSet)
-        {
-            this.setState({archiveChoosen : archiveSet, snackbarStatus : true},this.handleAddNoteRequest);
+        if (archiveSet) {
+            this.setState({ archiveChoosen: archiveSet, snackbarStatus: true }, this.handleAddNoteRequest);
         }
     }
 
     handleAddNoteCardToggleStatus() {
         this.setState({
-            isToggleAddCard : !this.state.isToggleAddCard
+            isToggleAddCard: !this.state.isToggleAddCard
         })
     }
 
-    handleAddNoteRequest(){
-        
+    handleAddNoteRequest() {
+
         this.setState({
             isToggleAddCard: !this.state.isToggleAddCard,
-            colorSelect : "rgb(255, 255, 255)",
-            pinChoosen : false,
-            archiveChoosen : false,
-            trashChoosen : false,
-            reminderChoosen : ""
+            colorSelect: "rgb(255, 255, 255)",
+            pinChoosen: false,
+            archiveChoosen: false,
+            trashChoosen: false,
+            reminderChoosen: "",
+            noteTitle: "",
+            noteDescription: "",
+            imageAdded: "",
         });
 
         let userLogin = localStorage.getItem("userLogged");
-        
+
         let request = {
-            thread : "/noteAddition",
-            sender : userLogin,
-            title : this.state.noteTitle,
-            description : this.state.noteDescription,
-            collaborator : this.state.collaboratorChoosen,
-            reminder : this.state.reminderChoosen,
-            color : this.state.colorSelect,
-            imageAdded : this.state.imageAdded,
-            archive : this.state.archiveChoosen,
-            pin : this.state.pinChoosen,
-            trash : false
+            thread: "/noteAddition",
+            data: {
+                sender: userLogin,
+                title: this.state.noteTitle,
+                description: this.state.noteDescription,
+                collaborator: this.state.collaboratorChoosen,
+                reminder: this.state.reminderChoosen,
+                color: this.state.colorSelect,
+                imageAdded: this.state.imageAdded,
+                archive: this.state.archiveChoosen,
+                pin: this.state.pinChoosen,
+                trash: false
+            }
         }
         // console.log('reques on component', request);
-        
+
         NoteService.NotesAddition(request);
     }
 
@@ -147,44 +151,44 @@ class AddNotes extends React.Component {
             <div >
                 {this.state.isAddNoteCardStatus ? (
                     <Card className={classCard} >
-                    <div style = {{backgroundColor : this.state.colorSelect}} >
-                        {this.state.isToggleAddCard ? (
-                            <div className="completeNoteTakeCard" >
-                                <div>
-                                    <InputBase className="inputNoteTake" placeholder="Title" multiline name = "noteTitle" onChange = {this.handleInputValue} />
-                                    <PinNote getPin = {this.getPin} />
-                                </div>
-                                <div>
-                                    <InputBase className="inputNoteTake" placeholder='Take a note' multiline name = "noteDescription" onChange = {this.handleInputValue} />
-                                </div>
-                                {this.state.reminderChoosen === "" ? (
+                        <div style={{ backgroundColor: this.state.colorSelect }} >
+                            {this.state.isToggleAddCard ? (
+                                <div className="completeNoteTakeCard" >
                                     <div>
+                                        <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
+                                        <PinNote getPin={this.getPin} />
                                     </div>
-                                ) : (
                                     <div>
-                                        <span> 
-                                            <img className = "reminderClock" src = {require('../assets/images/clocktime.svg')} alt = "reminderClock" />
-                                            {this.state.reminderChoosen}
-                                        </span>
+                                        <InputBase className="inputNoteTake" placeholder='Take a note' multiline name="noteDescription" onChange={this.handleInputValue} />
                                     </div>
-                                )}
-                                <div>
-                                    <ReminderPopper getReminderChooseOption = {this.getReminder} />
-                                    <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                    <ColorSection getColor = {this.getBackGroundColor} />
-                                    <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                    <ArchiveNote getArchive = {this.getArchive} />
-                                    <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
-                                    <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" />
-                                    <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                    {this.state.reminderChoosen === "" ? (
+                                        <div>
+                                        </div>
+                                    ) : (
+                                            <div>
+                                                <span>
+                                                    <img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />
+                                                    {this.state.reminderChoosen}
+                                                </span>
+                                            </div>
+                                        )}
+                                    <div>
+                                        <ReminderPopper getReminderChooseOption={this.getReminder} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
+                                        <ColorSection getColor={this.getBackGroundColor} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                        <ArchiveNote getArchive={this.getArchive} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" />
+                                        <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                                <div>
-                                    <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
-                                </div>
-                            )
-                        }
+                            ) : (
+                                    <div>
+                                        <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
+                                    </div>
+                                )
+                            }
                         </div>
                     </Card>
                 ) : (
@@ -214,9 +218,9 @@ class AddNotes extends React.Component {
                         'aria-describedby': 'message-id',
                     }}
                     color="primary"
-                    variant = "success"
+                    variant="success"
                     message={<span id="message-id">{this.state.snackbarMessage}</span>}
-                    
+
 
 
 
@@ -228,7 +232,7 @@ class AddNotes extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                <NotesDisplay notesView = {this.props.notesView} sidebarStatus = {this.props.drawerStatus} />
+                <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} />
             </div>
         )
     }

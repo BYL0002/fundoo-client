@@ -12,7 +12,7 @@ const sendRequest = (request) => {
         
         let token = localStorage.getItem('userLogToken');
         return axios.post(request.thread, {
-            data: request,
+            data: request.data,
             header: {
                 token: token
             }
