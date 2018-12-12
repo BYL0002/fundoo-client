@@ -71,11 +71,11 @@ function loginService(request, callback) {
                         console.log('res on login', res);
 
                         localStorage.setItem("userLogToken", res.token);
-                        console.log('user log token', localStorage.getItem("userLogToken"));
+                        // console.log('user log token', localStorage.getItem("userLogToken"));
                         localStorage.setItem('userLogName', res.message.name);
-                        console.log('user log name', localStorage.getItem("userLogName"));
+                        // console.log('user log name', localStorage.getItem("userLogName"));
                         localStorage.setItem("userLogged", res.message.email_id);
-                        console.log('user log email id', localStorage.getItem("userLogged"));
+                        // console.log('user log email id', localStorage.getItem("userLogged"));
 
                         return callback(null, true);
                     }
