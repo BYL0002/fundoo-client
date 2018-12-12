@@ -52,7 +52,7 @@ class TopbarComponent extends React.Component {
   }
 
   resize() {
-    let currentScreenWidth = (window.innerWidth <= 760);
+    // let currentScreenWidth = (window.innerWidth <= 760);
     // if (currentScreenWidth !== this.state.hideNav) {
       this.setState({
         sidebarOpenStatus : false

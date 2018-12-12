@@ -9,10 +9,13 @@ const axios = require('axios');
 
 const sendRequest = (request) => {
     try {
-        // console.log('req from service', request.data);
-
+        
+        let token = localStorage.getItem('userLogToken');
         return axios.post(request.thread, {
-            data: request.data
+            data: request,
+            header: {
+                token: token
+            }
         })
             .then(response => {
                 if (response.data.status) {
@@ -33,10 +36,12 @@ const sendRequest = (request) => {
 }
 
 function NotesAddition(request) {
-    // console.log('request came on services');
-    // console.log(request);    
-    
-    return sendRequest(request);
+
+    return sendRequest(request)
+    .then ( res => {
+        console.log('res', res);
+        
+    })
 }
 
 /**

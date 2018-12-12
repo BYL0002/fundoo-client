@@ -13,10 +13,6 @@ const isArchive = false;
  * @exports Class to render
  */
 export default class ArchiveNote extends React.Component {
-    constructor(props)
-    {
-        super(props);
-    }
 
     handleArchive = () => {
         this.props.getArchive(!isArchive);

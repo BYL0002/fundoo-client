@@ -74,7 +74,7 @@ class AddNotes extends React.Component {
     getPin = (pinSet) => {
         this.setState({
             pinChoosen : pinSet
-        })        
+        })
     }
     
     getTrash = (trashSet) => {
@@ -115,8 +115,12 @@ class AddNotes extends React.Component {
             trashChoosen : false,
             reminderChoosen : ""
         });
+
+        let userLogin = localStorage.getItem("userLogged");
         
         let request = {
+            thread : "/noteAddition",
+            sender : userLogin,
             title : this.state.noteTitle,
             description : this.state.noteDescription,
             collaborator : this.state.collaboratorChoosen,
@@ -127,7 +131,7 @@ class AddNotes extends React.Component {
             pin : this.state.pinChoosen,
             trash : false
         }
-        console.log('reques on component', request);
+        // console.log('reques on component', request);
         
         NoteService.NotesAddition(request);
     }
