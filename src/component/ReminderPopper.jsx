@@ -11,6 +11,13 @@ import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import DateTimePicker from './DateTimePicker';
 
+
+let date = new Date().getDate() + "/" + new Date().getDay() + "/" + new Date().getFullYear();
+let time = "8:00 PM";
+let stringToday = "Today" + time;
+let stringTomorrow = "Tomorrow" + time;
+let stringNextWeek = "Next Week" + time;
+
 /**
  * @description component to display popper for reminder in notes addition
  * @exports Class Component
@@ -19,10 +26,11 @@ export default class ReminderPopper extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            anchorEl : null,
-            open : false,
-            placement : null,
-            dateTimePicker : false
+            anchorEl: null,
+            open: false,
+            placement: null,
+            datePick: "",
+            timePick: ""
         }
         this.handleReminderOtion = this.handleReminderOtion.bind(this);
     }
@@ -37,15 +45,31 @@ export default class ReminderPopper extends React.Component {
     }
 
     setReminderOption = (event) => {
-        let reminderSetValue = event.target.id;
-        this.setState({
-            open : !this.state.open,
-            dateTimePicker : !this.state.dateTimePicker
-        })
-        console.log("id : - ", event.target.id);
-        console.log("name :- ", event.target.value);
-        
-        this.props.getReminderChooseOption(reminderSetValue);
+        let reminderChoosen = event.target.id;
+        let reminderSetObject;
+        if (reminderChoosen === '1') {
+            this.setState({
+                open: !this.state.open,
+            })
+
+            this.props.getReminderChooseOption(stringToday);
+        }
+        else if (reminderChoosen === '2') {
+
+            this.setState({
+                open: !this.state.open,
+            })
+
+            this.props.getReminderChooseOption(stringTomorrow);
+        }
+        else {
+
+            this.setState({
+                open: !this.state.open,
+            })
+            this.props.getReminderChooseOption(stringNextWeek);
+        }
+
     }
 
     render() {
@@ -57,14 +81,14 @@ export default class ReminderPopper extends React.Component {
                             <Paper className="reminderPopperNoteAddCard"  >
                                 <div >
                                     <MenuItem disabled >Reminder : </MenuItem>
-                                    <MenuItem value = "10" >
-                                        <span className="reminderTodayLabel" onClick = {this.setReminderOption} id = {new Date()} >Later Today : </span>8:00 PM
+                                    <MenuItem>
+                                        <span className="reminderTodayLabel" onClick={this.setReminderOption} id={1} >Later Today : </span>8:00 PM
                                     </MenuItem>
                                     <MenuItem>
-                                        <span className="reminderTomorrowLabel" onClick = {this.setReminderOption} id = {new Date()} >Tomorrow : </span>8:00 AM
+                                        <span className="reminderTomorrowLabel" onClick={this.setReminderOption} id={2} >Tomorrow : </span>8:00 AM
                                     </MenuItem>
                                     <MenuItem>
-                                        <span className="reminderWeekLabel" onClick = {this.setReminderOption} id = {new Date()} >Next Week : </span>Mon, 8:00 AM
+                                        <span className="reminderWeekLabel" onClick={this.setReminderOption} id={3} >Next Week : </span>Mon, 8:00 AM
                                     </MenuItem>
                                     <MenuItem>
                                         <DateTimePicker />

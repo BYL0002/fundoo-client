@@ -18,7 +18,6 @@ const date = new Date();
 export default class DateTimePicker extends React.Component {
     constructor(props) {
         super(props);
-        console.log("props", this.props);
 
         this.state = {
             anchorEl: null,
