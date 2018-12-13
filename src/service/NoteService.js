@@ -9,14 +9,20 @@ const axios = require('axios');
 
 const sendRequest = (request) => {
     try {
-   
-        let token = localStorage.getItem('userLogToken');
-        return axios.post(request.thread, {
-            data: request.data,
-            header: {
-                token: token
-            }
-        })
+        let tokenForSendNote = localStorage.getItem('userLogToken');
+
+        let headers = {
+            'token': '' + tokenForSendNote
+        }
+
+        return axios.post(request.thread,
+            headers,
+            {
+                data: request.data,
+                'headers': {
+                    'token': '' + tokenForSendNote
+                }
+            })
             .then(response => {
                 if (response.data.status) {
                     console.log('res on axios', response.data);
@@ -37,13 +43,17 @@ const sendRequest = (request) => {
 
 const getRequest = (request) => {
     try {
-   
-        let token = localStorage.getItem('userLogToken');
-        return axios.get(request.thread, {
-            header: {
-                token: token
+
+        let tokenToGetNote = localStorage.getItem('userLogToken');
+        console.log('request.thread', request.thread, tokenToGetNote);
+
+        let config = {
+            'headers': {
+                'token': '' + tokenToGetNote
             }
-        })
+        };
+
+        return axios.get(request.thread, config)
             .then(response => {
                 if (response.data.status) {
                     console.log('res on axios', response.data);
@@ -65,21 +75,24 @@ const getRequest = (request) => {
 function NotesAddition(request) {
 
     return sendRequest(request)
-    .then ( res => {
-        console.log('res on function', res);
-    })
+        .then(res => {
+            console.log('res on function', res);
+        })
 }
 
-function NoteDisplay(request, callback) {
+function NoteDisplay(callback) {
+    let request = {
+        thread: "/noteDisplay"
+    }
     return getRequest(request)
-    .then (res => {
-        console.log('res on function', res);
-        return callback(null, res);
-    }).catch(err => {
-        console.log('err in then in function', err);
-        
-        return callback(err);
-    })
+        .then(res => {
+            console.log('res on function', res);
+            return callback(null, res);
+        }).catch(err => {
+            console.log('err in then in function', err);
+
+            // return callback(err);
+        })
 }
 
 /**
