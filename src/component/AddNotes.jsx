@@ -147,7 +147,6 @@ class AddNotes extends React.Component {
             classCard = "noteTakeCardAfterDrawerOpen";
         else
             classCard = "noteTakeCard";
-
         return (
             <div >
                 {this.state.isAddNoteCardStatus ? (

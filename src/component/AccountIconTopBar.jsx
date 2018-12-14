@@ -1,6 +1,6 @@
 import React from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { IconButton, createMuiTheme, MuiThemeProvider, Button, Avatar } from '@material-ui/core';
+import { IconButton, createMuiTheme, MuiThemeProvider, Button, Avatar, ClickAwayListener } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
@@ -37,6 +37,11 @@ class AccountIconTopBar extends React.Component {
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
     }
 
+    handlePopperCloseOnOutsideClick = () => {
+        this.setState({
+            open : false
+        })
+    }
 
     handleProfileMenuOpen = placement => event => {
         const { currentTarget } = event;
@@ -94,6 +99,7 @@ class AccountIconTopBar extends React.Component {
                     )}
                 </Popper>
 
+                <ClickAwayListener onClickAway = {this.handlePopperCloseOnOutsideClick} >
                 <IconButton
                     aria-haspopup="true"
                     onClick={this.handleProfileMenuOpen('bottom')}
@@ -102,6 +108,7 @@ class AccountIconTopBar extends React.Component {
                 >
                     <AccountCircle id = "accountIconTopBar"  />
                 </IconButton>
+                </ClickAwayListener>
             </div>
             </MuiThemeProvider>
         )

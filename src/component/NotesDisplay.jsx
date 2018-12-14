@@ -17,24 +17,14 @@ export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hoverShowFeatures: false,
             layoutDefault: "list",
             messageDisplay: []
         }
     }
 
-    onMouseEnterHandler = () => {
-        this.setState({
-            hoverShowFeatures: true
-        });
-        console.log('enter');
-    }
+    handleCardSelected = (value) => {
+        console.log('key of card : - ',value);
 
-    onMouseLeaveHandler = () => {
-        this.setState({
-            hoverShowFeatures: false
-        });
-        console.log('leave');
     }
 
     componentDidMount() {
@@ -82,22 +72,14 @@ export default class NotesDisplay extends React.Component {
             <div className={NotesDisplayDivClass} >
                 {this.props.notesView ? (
                     <div className="notesGridDisplayDiv" >
-                        {this.state.messageDisplay.map((option, index) => (
-                            <Card className="notesGridDisplayCard"
-                                onMouseEnter={this.onMouseEnterHandler}
-                                onMouseLeave={this.onMouseLeaveHandler} 
-                                >{option.title}
-                                <div>
-                                    {this.state.hoverShowFeatures ? (
-                                        <div>
-                                            {AllFeatureComponent}
-                                            </div>
-                                    ) : (
-                                        <div>
-                                            </div>
-                                    )}
-                                </div>
-                            </Card>
+                        {this.state.messageDisplay.map((option) => (
+                            <div >
+                                <Card className="notesGridDisplayCard" key = {option.title} onClick = {()=>this.handleCardSelected(option.title)} >
+                                    {option.title}
+                                   
+                                    {AllFeatureComponent}
+                                </Card>
+                            </div>
                         ))}
                     </div>
                 ) : (
