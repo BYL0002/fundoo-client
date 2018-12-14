@@ -661,6 +661,13 @@ div .sideBarMenuItems {
   margin-left : 250px;
 }
 
+.reminderPopperNoteAddCard:hover {
+  width : 270px;
+  height : 280px;
+  margin-top : 6px;
+  margin-left : 250px;
+}
+
 .reminderTodayLabel {
   font-size : 15px;
   margin-right : 100px;

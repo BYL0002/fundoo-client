@@ -58,7 +58,7 @@ const getRequest = (request) => {
                 if (response.data.status) {
                     console.log('res on axios', response.data);
 
-                    return response.data;
+                    return response.data.message;
                 }
                 else {
                     console.log('Something Failed');
@@ -80,18 +80,15 @@ function NotesAddition(request) {
         })
 }
 
-function NoteDisplay(callback) {
-    let request = {
-        thread: "/noteDisplay"
-    }
-    return getRequest(request)
+function NoteDisplay(request, callback) {
+
+    getRequest(request)
         .then(res => {
             console.log('res on function', res);
             return callback(null, res);
         }).catch(err => {
             console.log('err in then in function', err);
-
-            // return callback(err);
+            return callback(err);
         })
 }
 

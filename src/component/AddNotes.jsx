@@ -141,21 +141,6 @@ class AddNotes extends React.Component {
         NoteService.NotesAddition(request);
     }
 
-    componentDidMount(){
-        let request = {
-            thread : "noteDisplay"
-        }
-        NoteService.NoteDisplay(request, (err, data) => {
-            if(err)
-            {
-                console.log('err on component on res', err);
-            }
-            else
-            {
-                console.log('res on component on res', data);                
-            }
-        });
-    }
     render() {
         let classCard;
         if (this.props.drawerStatus)

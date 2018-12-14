@@ -6,66 +6,105 @@
  */
 import React from 'react';
 import { Card } from '@material-ui/core';
+import NoteService from '../service/NoteService';
+import ReminderPopper from './ReminderPopper';
+import ColorSection from './ColorSection';
+import ArchiveNote from './ArchiveNote';
+
+let Notes;
 
 export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            layoutDefault: "list"
+            hoverShowFeatures: false,
+            layoutDefault: "list",
+            messageDisplay: []
         }
-        this.handleLayoutDisplay = this.handleLayoutDisplay.bind(this);
     }
 
-    handleLayoutDisplay(event) {
+    onMouseEnterHandler = () => {
+        this.setState({
+            hoverShowFeatures: true
+        });
+        console.log('enter');
+    }
 
+    onMouseLeaveHandler = () => {
+        this.setState({
+            hoverShowFeatures: false
+        });
+        console.log('leave');
+    }
+
+    componentDidMount() {
+        let request = {
+            thread: "/noteDisplay"
+        }
+
+        var self = this;
+
+        NoteService.NoteDisplay(request, (err, data) => {
+
+            if (data !== null && data !== undefined) {
+                self.setState({
+                    messageDisplay: data
+                })
+            }
+            else {
+                self.setState({
+                    message_display: []
+                })
+            }
+        });
     }
 
     render() {
         let NotesDisplayDivClass;
-        if(this.props.sidebarStatus)
-        {
+        if (this.props.sidebarStatus) {
             NotesDisplayDivClass = "NotesDisplayDivSidebarOpen";
         }
-        else
-        {
+        else {
             NotesDisplayDivClass = "NotesDisplayDivSidebarClose";
         }
-        const Notes = [
-            {
-                title: "asdsfsdf",
-                notes: "csdfcdfgvdfgdf"
-            },
-            {
-                title: "asfsdfdgfdghfdh",
-                note: "asdsafsf232jnh b"
-            },
-            {
-                title: "40asdnvnoc",
-                note: "5245445njnsdcnjksdnjk"
-            },
-            {
-                title: "40asdnvnoc",
-                note: "5245445njnsdcnjksdnjk"
-            },
-            {
-                title: "40asdnvnoc",
-                note: "5245445njnsdcnjksdnjk"
-            }
 
-        ]
+        let AllFeatureComponent = (
+            <div>
+                <ReminderPopper />
+                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
+                <ColorSection />
+                <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                <ArchiveNote />
+            </div>
+        );
+
         return (
-            <div className = {NotesDisplayDivClass} >
+            <div className={NotesDisplayDivClass} >
                 {this.props.notesView ? (
-                    <div className = "notesGridDisplayDiv" >
-                        {Notes.map( (option, index) => (
-                            <Card className = "notesGridDisplayCard" >{option.title}</Card>
-                        ) )}
+                    <div className="notesGridDisplayDiv" >
+                        {this.state.messageDisplay.map((option, index) => (
+                            <Card className="notesGridDisplayCard"
+                                onMouseEnter={this.onMouseEnterHandler}
+                                onMouseLeave={this.onMouseLeaveHandler} 
+                                >{option.title}
+                                <div>
+                                    {this.state.hoverShowFeatures ? (
+                                        <div>
+                                            {AllFeatureComponent}
+                                            </div>
+                                    ) : (
+                                        <div>
+                                            </div>
+                                    )}
+                                </div>
+                            </Card>
+                        ))}
                     </div>
                 ) : (
-                        <div className = "notesListDisplayDiv" >
-                            {Notes.map( (option, index) => (
-                            <Card className = "notesListDisplayCard" >{option.title}</Card>
-                        ) )}
+                        <div className="notesListDisplayDiv" >
+                            {this.state.messageDisplay.map((option, index) => (
+                                <Card className="notesListDisplayCard" >{option.title}</Card>
+                            ))}
                         </div>
                     )}
 

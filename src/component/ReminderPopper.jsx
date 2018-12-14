@@ -5,7 +5,7 @@
  * @version 1.1
  */
 import React from 'react';
-import { MenuItem } from '@material-ui/core';
+import { MenuItem, ClickAwayListener } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
@@ -75,6 +75,7 @@ export default class ReminderPopper extends React.Component {
     render() {
         return (
             <span>
+                <ClickAwayListener onClickAway = {this.handleReminderOtion} >
                 <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
@@ -102,6 +103,7 @@ export default class ReminderPopper extends React.Component {
                         </Fade>
                     )}
                 </Popper>
+                </ClickAwayListener>
                 <img onClick={this.handleReminderOtion('bottom')} className="noteAddFeatureImages" src={require('../assets/images/reminder.svg')} alt="reminder" />
             </span>
         )
