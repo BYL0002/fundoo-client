@@ -58,7 +58,7 @@ export default class ReminderPopper extends React.Component {
                 open: !this.state.open,
             })
 
-            this.props.getReminderChooseOption(stringToday);
+            this.props.getReminderChooseOption(Date.now());
         }
         else if (reminderChoosen === '2') {
 
@@ -66,14 +66,14 @@ export default class ReminderPopper extends React.Component {
                 open: !this.state.open,
             })
 
-            this.props.getReminderChooseOption(stringTomorrow);
+            this.props.getReminderChooseOption(Date.now());
         }
         else {
 
             this.setState({
                 open: !this.state.open,
             })
-            this.props.getReminderChooseOption(stringNextWeek);
+            this.props.getReminderChooseOption(Date.now());
         }
 
     }

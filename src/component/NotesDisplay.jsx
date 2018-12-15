@@ -10,32 +10,56 @@ import NoteService from '../service/NoteService';
 import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
+import MoreOptions from './MoreOptions';
 
 let Notes;
-
+let notesLayout;
 export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+
+
+            isToggleAddCard: false,
+            isAddNoteCardStatus: true,
+            collaboratorChoosen: "",
+            colorSelect: "",
             reminderChoosen: "",
-            layoutDefault: "list",
+            noteTitle: "",
+            noteDescription: "",
+            imageAdded: "",
+            archiveChoosen: false,
+            pinChoosen: false,
+            trashChoosen: false,
+            snackbarStatus: false,
+            snackbarMessage: "Note Archived!",
+
+
+
+
+
+            dialogStatus: false,
+            reminderChoosen: "",
+            layoutDefault: "",
             messageDisplay: []
         }
     }
 
+    handleNoteEditingDialog = () => {
+        this.setState({
+            dialogStatus: !this.state.dialogStatus
+        });
+    }
+
     handleCardSelected = (noteSelected) => {
-        console.log('note selected ------------', noteSelected);
-        noteSelected.reminder = this.state.reminderChoosen;
-        console.log('note of reminder set card : ------- ',noteSelected);
-        console.log('reminder set on note -------', noteSelected.reminder);
-        
+
     }
 
 
     getReminder = (reminderSet) => {
         this.setState({
             reminderChoosen: reminderSet
-        })
+        });
     }
 
     componentDidMount() {
@@ -58,6 +82,8 @@ export default class NotesDisplay extends React.Component {
                 })
             }
         });
+
+        // setInterval(1000);
     }
 
     render() {
@@ -69,6 +95,15 @@ export default class NotesDisplay extends React.Component {
             NotesDisplayDivClass = "NotesDisplayDivSidebarClose";
         }
 
+        if(this.props.notesView)
+        {
+            notesLayout = "grid";
+        }
+        else
+        {
+            notesLayout = "list";
+        }
+
         let AllFeatureComponent = (
             <div>
                 <ReminderPopper getReminderChooseOption={this.getReminder} />
@@ -76,39 +111,53 @@ export default class NotesDisplay extends React.Component {
                 <ColorSection />
                 <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
                 <ArchiveNote />
+                <MoreOptions />
             </div>
         );
 
+            // console.log('props to show cards display-----', this.props.notesView);
+            
+
         return (
             <div className={NotesDisplayDivClass} >
-                {this.props.notesView ? (
+                {notesLayout === "grid" ? (
                     <div className="notesGridDisplayDiv" >
-                        {this.state.messageDisplay.map((option,indexx) => (
-                            <div >
-                                <Card key={indexx} className="notesGridDisplayCard" onClick = {()=>this.handleCardSelected(option)} >
+                        {this.state.messageDisplay.map((option, index) => (
+                            <Card key={index} className="notesGridDisplayCard" onClick={() => this.handleCardSelected(option)} >
+                                
+                                <div style={{ backgroundColor: option.color }} >
                                     <div>
                                         {option.title}
                                     </div>
                                     <div>
                                         {option.reminder}
-                                        {/* {this.state.reminderChoosen} */}
                                     </div>
                                     <div>
                                         {AllFeatureComponent}
                                     </div>
-                                    
-                                   
-                                    
-                                </Card>
-                            </div>
+                                </div>
+
+
+                            </Card>
                         ))}
                     </div>
                 ) : (
                         <div className="notesListDisplayDiv" >
                             {this.state.messageDisplay.map((option, index) => (
                                 <Card className="notesListDisplayCard" >
-                                {option.title}
-                                {AllFeatureComponent}
+
+                                    <div style={{ backgroundColor: option.color }} >
+                                        <div>
+                                            {option.title}
+                                        </div>
+                                        <div>
+                                            {option.reminder}
+                                        </div>
+                                        <div>
+                                            {AllFeatureComponent}
+                                        </div>
+                                    </div>
+                                    
                                 </Card>
                             ))}
                         </div>
