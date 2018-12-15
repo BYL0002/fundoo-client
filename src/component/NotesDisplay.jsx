@@ -12,16 +12,11 @@ import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
 
-let Notes;
 let notesLayout;
 export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
-
-            isToggleAddCard: false,
-            isAddNoteCardStatus: true,
             collaboratorChoosen: "",
             colorSelect: "",
             reminderChoosen: "",
@@ -33,11 +28,6 @@ export default class NotesDisplay extends React.Component {
             trashChoosen: false,
             snackbarStatus: false,
             snackbarMessage: "Note Archived!",
-
-
-
-
-
             dialogStatus: false,
             reminderChoosen: "",
             layoutDefault: "",
