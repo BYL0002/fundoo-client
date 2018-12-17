@@ -59,7 +59,7 @@ class AddNotes extends React.Component {
         })
     }
 
-    getBackGroundColor(colorSelected) {
+    getBackGroundColor = (colorSelected) => {
         this.setState({
             colorSelect: colorSelected
         })
@@ -175,7 +175,7 @@ class AddNotes extends React.Component {
                                     <div>
                                         <ReminderPopper getReminderChooseOption={this.getReminder} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                        <ColorSection getColor={this.getBackGroundColor} />
+                                        <ColorSection getColor={this.getBackGroundColor} initialColorValue = {this.colorSelect} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
                                         <ArchiveNote getArchive={this.getArchive} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />

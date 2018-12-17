@@ -730,6 +730,7 @@ div .colorPaletteWhite {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteRed {
@@ -738,6 +739,7 @@ div .colorPaletteRed {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteGreen {
@@ -746,6 +748,7 @@ div .colorPaletteGreen {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteBlue {
@@ -754,6 +757,7 @@ div .colorPaletteBlue {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteOrange {
@@ -762,6 +766,7 @@ div .colorPaletteOrange {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteTeal {
@@ -770,6 +775,7 @@ div .colorPaletteTeal {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteYellow {
@@ -778,6 +784,7 @@ div .colorPaletteYellow {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPalettePink {
@@ -786,6 +793,7 @@ div .colorPalettePink {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteDarkBlue {
@@ -794,6 +802,7 @@ div .colorPaletteDarkBlue {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPalettePurple {
@@ -802,6 +811,7 @@ div .colorPalettePurple {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteGray {
@@ -810,6 +820,7 @@ div .colorPaletteGray {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteBrown {
@@ -818,60 +829,73 @@ div .colorPaletteBrown {
   margin-left : 10px;
   width : 20px;
   height : 20px;
+  border: 1px solid darkgrey;
 }
 
 div .colorPaletteWhite:hover {
+  border: 1px solid black;
   background-color : rgb(255, 255, 255);
 }
 
 div .colorPaletteRed:hover {
+  border: 1px solid black;
   background-color : rgb(255, 0, 0);
 }
 
 div .colorPaletteGreen:hover {
+  border: 1px solid black;
   background-color : rgb(0, 128, 0);
 }
 
 div .colorPaletteBlue:hover {
+  border: 1px solid black;
   background-color : rgb(0, 0, 255);
 }
 
 div .colorPaletteOrange:hover {
+  border: 1px solid black;
   background-color : rgb(255, 165, 0);
 }
 
 div .colorPaletteTeal:hover {
+  border: 1px solid black;
   background-color : rgb(0, 128, 128);
 }
 
 div .colorPaletteYellow:hover {
+  border: 1px solid black;
   background-color : rgb(255, 255, 0);
 }
 
 div .colorPalettePink:hover {
+  border: 1px solid black;
   background-color : rgb(255, 192, 203);
 }
 
 div .colorPaletteDarkBlue:hover {
+  border: 1px solid black;
   background-color : rgb(0, 0, 139);
 }
 
 div .colorPalettePurple:hover {
+  border: 1px solid black;
   background-color : rgb(128, 0, 128);
 }
 
 div .colorPaletteGray:hover {
+  border: 1px solid black;
   background-color : rgb(128, 128, 128);
 }
 
 div .colorPaletteBrown:hover {
+  border: 1px solid black;
   background-color : rgb(165, 42, 42);
 }
 
 .NotesDisplayDivSidebarClose {
   max-width : 750px ;
   margin-left : 340px;
-  background-color : #61dafb;
+  /* background-color : #61dafb; */
   margin-top : 40px;
   display: flex;
 }
@@ -879,7 +903,7 @@ div .colorPaletteBrown:hover {
 .NotesDisplayDivSidebarOpen {
   max-width : 750px ;
   margin-left : 400px;
-  background-color : #61dafb;
+  /* background-color : #61dafb; */
   margin-top : 40px;
   display : flex;
 }

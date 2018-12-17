@@ -15,6 +15,9 @@ const theme = createMuiTheme({
       paperAnchorLeft: {
         top: 64,
         width: 280,
+      },
+      root : {
+        backgroundColor : 'white',
       }
     }
   },
@@ -65,13 +68,13 @@ class TopbarComponent extends React.Component {
     return (
       <div>
         <MuiThemeProvider theme={theme}>
-          <AppBar position="fixed" style={{ padding: "1px" }} color="white" >
+          <AppBar position="fixed" style={{ padding: "1px" }} >
             <Toolbar>
-              <IconButton color="inherit" aria-label="Open drawer" >
+              <IconButton style = {{color:"black"}} aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
               </IconButton>
               <Sidebar stateOpen={this.state.sidebarOpenStatus} />
-              Fundoo Notes
+              <div style = {{color : "black"}} >Fundoo Notes</div>
               <TopBarSearchComponent />
               {this.state.isView ? (
                 <img src={require("../assets/images/gridNotes.svg")} alt="listView" className="cssClassNotesOnView" onClick={this.handleNotesView.bind(this)} />

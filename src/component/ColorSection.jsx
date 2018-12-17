@@ -4,8 +4,9 @@
  * @since 8/12/18
  * @version 1.0
  */
+
 import React from 'react'
-import { Popper, Paper, IconButton } from '@material-ui/core';
+import { Popper, Paper, IconButton, ClickAwayListener } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 
 /**
@@ -20,8 +21,7 @@ export default class ColorSection extends React.Component {
             anchorEl: null,
             open: false,
             placement: null,
-            // showColorPopper : false,
-            defaultColor : "rgb(255, 255, 255)"
+            defaultColor: "rgb(255, 255, 255)"
         }
         this.handleShowColorPopper = this.handleShowColorPopper.bind(this);
         this.handleColorClick = this.handleColorClick.bind(this);
@@ -37,20 +37,24 @@ export default class ColorSection extends React.Component {
         }));
     }
 
+    handleColorPopperOnOutsideClick = () => {
+        this.setState({
+            open : false
+        })
+    }
+
 
     handleColorClick = (colorCodeSelected) => {
 
-        this.setState ({
-            open : !this.state.open
+        this.setState({
+            open: false
         })
-        
-        if(colorCodeSelected === "")
-        {
-            this.props.getColor(this.state.defaultColor);
+
+        if (colorCodeSelected === "") {
+            this.props.getColor(this.state.defaultColor,this.props.option);
         }
-        else
-        {
-            this.props.getColor(colorCodeSelected);
+        else {
+            this.props.getColor(colorCodeSelected, this.props.option);
         }
     };
 
@@ -131,6 +135,7 @@ export default class ColorSection extends React.Component {
                                 <div >
                                     {colorPaletteClassName.map((option, index) => (
                                         <IconButton className={option.colorClass}
+                                        key = {index}
                                             title={option.colorName}
                                             onClick={() => this.handleColorClick(option.colorCode)}
                                         ></IconButton>
@@ -140,7 +145,9 @@ export default class ColorSection extends React.Component {
                         </Fade>
                     )}
                 </Popper>
-                <img onClick={this.handleShowColorPopper('bottom')} className="noteAddFeatureImages" src={require('../assets/images/color.svg')} alt="color" />
+                <ClickAwayListener onClickAway={this.handleColorPopperOnOutsideClick} >
+                    <img onClick={this.handleShowColorPopper('bottom')} className="noteAddFeatureImages" src={require('../assets/images/color.svg')} alt="color" />
+                </ClickAwayListener>
             </span>
         )
     }

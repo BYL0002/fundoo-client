@@ -19,8 +19,8 @@ const theme = createMuiTheme({
     }
 }) 
 
-localStorage.setItem("userLogImage","");
-const imageUrl = localStorage.getItem("userLogImage");
+// localStorage.setItem("userLogImage","");
+// const imageUrl = localStorage.getItem("userLogImage");
 
 class AccountIconTopBar extends React.Component {
     constructor(props) {
@@ -75,12 +75,13 @@ class AccountIconTopBar extends React.Component {
                                 <div id = "popupTopBar" >
                                     <div>
                                         <div>
-                                            {imageUrl === "" ? (
+                                            {/* {imageUrl === "" ? (
                                                 <Avatar id = "accountIconPopperTopBar" >{this.state.userLogInName[0] }</Avatar>
                                             ) : (
                                                 // <AccountCircle id = "accountIconPopperTopBar" />
                                                 <img src = {require( {imageUrl} ) } alt="userImage" />
-                                            )}
+                                            )} */}
+                                            <Avatar id = "accountIconPopperTopBar" >{this.state.userLogInName[0] }</Avatar>
                                         </div>
                                         <div  >
                                             <span className = 'userNameTopBarPopper' >{this.state.userLogInName} </span>
@@ -103,10 +104,10 @@ class AccountIconTopBar extends React.Component {
                 <IconButton
                     aria-haspopup="true"
                     onClick={this.handleProfileMenuOpen('bottom')}
-                    color="inherit"
+                    style = {{color:"black"}}
 
                 >
-                    <AccountCircle id = "accountIconTopBar"  />
+                    <AccountCircle  id = "accountIconTopBar"  />
                 </IconButton>
                 </ClickAwayListener>
             </div>

@@ -12,12 +12,6 @@ import Paper from '@material-ui/core/Paper';
 import DateTimePicker from './DateTimePicker';
 
 
-let date = new Date().getDate() + "/" + new Date().getDay() + "/" + new Date().getFullYear();
-let time = "8:00 PM";
-let stringToday = "Today" + time;
-let stringTomorrow = "Tomorrow" + time;
-let stringNextWeek = "Next Week" + time;
-
 /**
  * @description component to display popper for reminder in notes addition
  * @exports Class Component
@@ -52,27 +46,30 @@ export default class ReminderPopper extends React.Component {
 
     setReminderOption = (event) => {
         let reminderChoosen = event.target.id;
-        let reminderSetObject;
         if (reminderChoosen === '1') {
             this.setState({
-                open: !this.state.open,
+                open: false,
             })
-
+            console.log('1');
+            
             this.props.getReminderChooseOption(Date.now());
         }
         else if (reminderChoosen === '2') {
 
             this.setState({
-                open: !this.state.open,
+                open: false,
             })
-
+            console.log('2');
+            
             this.props.getReminderChooseOption(Date.now());
         }
         else {
 
-            this.setState({
-                open: !this.state.open,
-            })
+            // this.setState({
+            //     open: false,
+            // })
+            console.log('3');
+            
             this.props.getReminderChooseOption(Date.now());
         }
 
@@ -110,10 +107,10 @@ export default class ReminderPopper extends React.Component {
                     )}
                 </Popper>
                 
-                <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick}>
+                {/* <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick}> */}
                     <img onClick={this.handleReminderOtion('bottom')} className="noteAddFeatureImages" 
                     src={require('../assets/images/reminder.svg')} alt="reminder" />
-                </ClickAwayListener>
+                {/* </ClickAwayListener> */}
             </span>
         )
     }

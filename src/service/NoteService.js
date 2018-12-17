@@ -45,7 +45,7 @@ const getRequest = (request) => {
     try {
 
         let tokenToGetNote = localStorage.getItem('userLogToken');
-        console.log('request.thread', request.thread, tokenToGetNote);
+        // console.log('request.thread', request.thread, tokenToGetNote);
 
         let config = {
             'headers': {
@@ -84,7 +84,7 @@ function NoteDisplay(request, callback) {
 
     getRequest(request)
         .then(res => {
-            console.log('res on function', res);
+            // console.log('res on function', res);
             return callback(null, res);
         }).catch(err => {
             console.log('err in then in function', err);
