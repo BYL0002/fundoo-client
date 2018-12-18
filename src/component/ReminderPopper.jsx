@@ -10,7 +10,7 @@ import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import DateTimePicker from './DateTimePicker';
-
+import moment from 'moment';
 
 /**
  * @description component to display popper for reminder in notes addition
@@ -52,7 +52,8 @@ export default class ReminderPopper extends React.Component {
             })
             console.log('1');
             
-            this.props.getReminderChooseOption(Date.now());
+            let reminderValueSet = moment().format('dddd Do MMMM 8:00 a ')
+            this.props.getReminderChooseOption(reminderValueSet);
         }
         else if (reminderChoosen === '2') {
 
