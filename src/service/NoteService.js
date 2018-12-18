@@ -114,7 +114,7 @@ const sendUpdateRequest = (request) => {
             })
             .then(response => {
                 if (response.data.status) {
-                    console.log('res on axios', response.data);
+                    console.log('res of updation on axios', response.data);
 
                     return response.data;
                 }
@@ -132,8 +132,8 @@ const sendUpdateRequest = (request) => {
 
 function NotesUpdation(request) {
 
-    console.log('request on sservice ------', request);
-
+    console.log('request on service ------', request);
+    console.log('request on service ------', request.thread);
 
     return sendUpdateRequest(request)
         .then(res => {

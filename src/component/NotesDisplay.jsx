@@ -13,7 +13,7 @@ import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
 
-const NoteServiceClassObject = NoteService.NoteServiceClass();
+// const NoteServiceClassObject = NoteService.NoteServiceClass();
 
 let notesLayout;
 export default class NotesDisplay extends React.Component {
@@ -27,33 +27,27 @@ export default class NotesDisplay extends React.Component {
     getBackGroundColor = (colorSelected, note) => {
         let newNotesArray = this.state.notesDisplay;
 
-        console.log('note selected color -------', note.color);
-        console.log('note selected id -------', note._id);
-        console.log('note selected color afterchange -------', note.color = colorSelected);
-        console.log('color selected -------', colorSelected);
-
         let request = {
-            thread : "/updateNote",
-            data : {
-                note : note
+            thread: "/updateNote",
+            data: {
+                note: {
+                    _id: note._id,
+                    color: colorSelected
+                }
             }
         }
+        NoteService.NotesUpdation(request);
+        // NoteServiceClassObject.NotesUpdation(request);
 
-        NoteServiceClassObject.NotesUpdation(request);
-
-
-
-        for(let i = 0; i<newNotesArray.length; i++)
-        {
-            if(note._id === newNotesArray[i]._id){
+        for (let i = 0; i < newNotesArray.length; i++) {
+            if (note._id === newNotesArray[i]._id) {
                 newNotesArray[i].color = colorSelected
-                
-                console.log('running status -----------', newNotesArray[i].color );
-                
+
+                // console.log('running status -----------', newNotesArray[i].color);
 
                 this.setState({
-                    notesDisplay:newNotesArray
-                })        
+                    notesDisplay: newNotesArray
+                })
             }
         }
     }
@@ -71,9 +65,9 @@ export default class NotesDisplay extends React.Component {
     //     {
     //         if(noteSelected._id === newNotesArray[i]._id){
     //             newNotesArray[i].color = noteSelected.color
-                
+
     //             console.log('running status -----------', newNotesArray[i].color );
-                
+
 
     //             this.setState({
     //                 notesDisplay:newNotesArray
@@ -148,7 +142,7 @@ export default class NotesDisplay extends React.Component {
                                     <div>
                                         <ReminderPopper getReminderChooseOption={this.getReminder} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
-                                        <ColorSection getColor={this.getBackGroundColor} option = {option} />
+                                        <ColorSection getColor={this.getBackGroundColor} option={option} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
                                         <ArchiveNote />
                                         <MoreOptions />
