@@ -2,8 +2,9 @@
  * @description Component to display Notes
  * @author Yash
  * @since 8/12/18
- * @version 1.1
+ * @version 1.12
  */
+
 import React from 'react';
 import { Card } from '@material-ui/core';
 import NoteService from '../service/NoteService';
@@ -11,6 +12,8 @@ import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
+
+const NoteServiceClassObject = NoteService.NoteServiceClass();
 
 let notesLayout;
 export default class NotesDisplay extends React.Component {
@@ -23,7 +26,23 @@ export default class NotesDisplay extends React.Component {
 
     getBackGroundColor = (colorSelected, note) => {
         let newNotesArray = this.state.notesDisplay;
+
+        console.log('note selected color -------', note.color);
+        console.log('note selected id -------', note._id);
+        console.log('note selected color afterchange -------', note.color = colorSelected);
         console.log('color selected -------', colorSelected);
+
+        let request = {
+            thread : "/updateNote",
+            data : {
+                note : note
+            }
+        }
+
+        NoteServiceClassObject.NotesUpdation(request);
+
+
+
         for(let i = 0; i<newNotesArray.length; i++)
         {
             if(note._id === newNotesArray[i]._id){

@@ -41,6 +41,7 @@ const sendRequest = (request) => {
     }
 }
 
+
 const getRequest = (request) => {
     try {
 
@@ -72,6 +73,7 @@ const getRequest = (request) => {
     }
 }
 
+
 function NotesAddition(request) {
 
     return sendRequest(request)
@@ -79,6 +81,7 @@ function NotesAddition(request) {
             console.log('res on function', res);
         })
 }
+
 
 function NoteDisplay(request, callback) {
 
@@ -92,7 +95,103 @@ function NoteDisplay(request, callback) {
         })
 }
 
+
+const sendUpdateRequest = (request) => {
+    try {
+        let tokenForSendNote = localStorage.getItem('userLogToken');
+
+        let headers = {
+            'token': '' + tokenForSendNote
+        }
+
+        return axios.post(request.thread,
+            headers,
+            {
+                data: request.data,
+                'headers': {
+                    'token': '' + tokenForSendNote
+                }
+            })
+            .then(response => {
+                if (response.data.status) {
+                    console.log('res on axios', response.data);
+
+                    return response.data;
+                }
+                else {
+                    console.log('Something Failed');
+                }
+            }).catch(error => {
+                console.log('error occured, try later');
+            })
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+function NotesUpdation(request) {
+
+    console.log('request on sservice ------', request);
+
+
+    return sendUpdateRequest(request)
+        .then(res => {
+            console.log('res on function', res);
+        })
+}
+
+
+
+// class NoteServiceClass {
+
+//     sendUpdateRequest(request) {
+//         try {
+//             let tokenForSendNote = localStorage.getItem('userLogToken');
+
+//             let headers = {
+//                 'token': '' + tokenForSendNote
+//             }
+
+//             return axios.post(request.thread,
+//                 headers,
+//                 {
+//                     data: request.data,
+//                     'headers': {
+//                         'token': '' + tokenForSendNote
+//                     }
+//                 })
+//                 .then(response => {
+//                     if (response.data.status) {
+//                         console.log('res on axios', response.data);
+
+//                         return response.data;
+//                     }
+//                     else {
+//                         console.log('Something Failed');
+//                     }
+//                 }).catch(error => {
+//                     console.log('error occured, try later');
+//                 })
+//         }
+//         catch (err) {
+//             console.log(err);
+//         }
+//     }
+
+//     NotesUpdation (request) {
+
+//         console.log('request on sservice ------', request);
+
+
+//         return this.sendUpdateRequest(request)
+//             .then(res => {
+//                 console.log('res on function', res);
+//             })
+//     }
+// }
+
 /**
  * @exports Function to get request from components
  */
-module.exports = { NotesAddition, NoteDisplay };
+module.exports = { NotesAddition, NoteDisplay, NotesUpdation };
