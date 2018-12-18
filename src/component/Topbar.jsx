@@ -18,6 +18,12 @@ const theme = createMuiTheme({
       },
       root : {
         backgroundColor : 'white',
+        boxShadow: 0
+      }
+    },
+    MuiAppBar:{
+      colorPrimary : {
+        backgroundColor : 'white'
       }
     }
   },

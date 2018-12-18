@@ -12,6 +12,9 @@ import Paper from '@material-ui/core/Paper';
 import DateTimePicker from './DateTimePicker';
 import moment from 'moment';
 
+
+let reminderValueSet;
+
 /**
  * @description component to display popper for reminder in notes addition
  * @exports Class Component
@@ -19,6 +22,7 @@ import moment from 'moment';
 export default class ReminderPopper extends React.Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             anchorEl: null,
             open: false,
@@ -52,8 +56,8 @@ export default class ReminderPopper extends React.Component {
             })
             console.log('1');
             
-            let reminderValueSet = moment().format('dddd Do MMMM 8:00 a ')
-            this.props.getReminderChooseOption(reminderValueSet);
+            reminderValueSet = moment().format('dddd Do MMMM 8:00 a ');
+            this.props.getReminderChooseOption(reminderValueSet, this.props.noteSelected);
         }
         else if (reminderChoosen === '2') {
 
@@ -62,7 +66,8 @@ export default class ReminderPopper extends React.Component {
             })
             console.log('2');
             
-            this.props.getReminderChooseOption(Date.now());
+            reminderValueSet = moment().format('dddd Do MMMM 8:00 a ');
+            this.props.getReminderChooseOption( reminderValueSet , this.props.noteSelected);
         }
         else {
 
@@ -71,7 +76,8 @@ export default class ReminderPopper extends React.Component {
             // })
             console.log('3');
             
-            this.props.getReminderChooseOption(Date.now());
+            reminderValueSet = moment().format('dddd Do MMMM 8:00 a ');
+            this.props.getReminderChooseOption( reminderValueSet , this.props.noteSelected);
         }
 
     }

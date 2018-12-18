@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Card } from '@material-ui/core';
+import { Card, Chip, Avatar } from '@material-ui/core';
 import NoteService from '../service/NoteService';
 import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
@@ -79,9 +79,7 @@ export default class NotesDisplay extends React.Component {
     // }
 
     getReminder = (reminderSet) => {
-        this.setState({
-            reminderChoosen: reminderSet
-        });
+        return reminderSet;
     }
 
     componentDidMount() {
@@ -130,17 +128,23 @@ export default class NotesDisplay extends React.Component {
                             <Card key={index} className="notesGridDisplayCard" >
 
                                 <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
-                                    <div>
+                                    <div className="noteCardDisplayTitle" >
                                         {option.title}
                                     </div>
-                                    <div>
+                                    <div className="noteCardDisplayDescription" >
                                         {option.description}
                                     </div>
-                                    <div>
-                                        {option.reminder}
+                                    <div >
+                                        <Chip
+                                            icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                            label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
+                                            onDelete
+                                            variant="outlined"
+                                            className="chipOnCardReminder"
+                                        />
                                     </div>
                                     <div>
-                                        <ReminderPopper getReminderChooseOption={this.getReminder} />
+                                        <ReminderPopper getReminder = {this.getReminder} noteSelected = {option} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
                                         <ColorSection getColor={this.getBackGroundColor} option={option} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
@@ -158,9 +162,12 @@ export default class NotesDisplay extends React.Component {
                             {this.state.notesDisplay.map((option, index) => (
                                 <Card className="notesListDisplayCard" >
 
-                                    <div style={{ backgroundColor: option.color }} >
-                                        <div>
+                                    <div style={{ backgroundColor: option.color, width: '100%' }} >
+                                        <div className="noteCardDisplayTitle" >
                                             {option.title}
+                                        </div>
+                                        <div className="noteCardDisplayDescription" >
+                                            {option.description}
                                         </div>
                                         <div>
                                             {option.reminder}

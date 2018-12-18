@@ -71,12 +71,12 @@ export default class ColorSection extends React.Component {
             },
             {
                 colorClass: "colorPaletteRed",
-                colorCode: "rgb(255, 0, 0)",
+                colorCode: "rgb(242, 139, 130)",
                 colorName: "Red"
             },
             {
                 colorClass: "colorPalettePurple",
-                colorCode: "rgb(128, 0, 128)",
+                colorCode: "rgb(215, 174, 251)",
                 colorName: "Purple"
             },
             {
@@ -86,17 +86,17 @@ export default class ColorSection extends React.Component {
             },
             {
                 colorClass: "colorPaletteTeal",
-                colorCode: "rgb(0, 128, 128)",
+                colorCode: "rgb(167, 255, 235)",
                 colorName: "Teal"
             },
             {
                 colorClass: "colorPaletteOrange",
-                colorCode: "rgb(255, 165, 0)",
+                colorCode: "rgb(251, 188, 4)",
                 colorName: "Orange"
             },
             {
                 colorClass: "colorPaletteDarkBlue",
-                colorCode: "rgb(0, 0, 139)",
+                colorCode: "rgb(174, 203, 250)",
                 colorName: "Dark Blue"
             },
             {
@@ -106,12 +106,12 @@ export default class ColorSection extends React.Component {
             },
             {
                 colorClass: "colorPaletteBlue",
-                colorCode: "rgb(0, 0, 255)",
+                colorCode: "rgb(203, 240, 248)",
                 colorName: "Blue"
             },
             {
                 colorClass: "colorPaletteBrown",
-                colorCode: "rgb(165, 42, 42)",
+                colorCode: "rgb(230, 201, 168)",
                 colorName: "Brown"
             },
             {
@@ -121,7 +121,7 @@ export default class ColorSection extends React.Component {
             },
             {
                 colorClass: "colorPaletteGreen",
-                colorCode: "rgb(0, 128, 0)",
+                colorCode: "rgb(204, 255, 144)",
                 colorName: "Green"
             }
         ]
