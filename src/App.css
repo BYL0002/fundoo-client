@@ -547,14 +547,14 @@ div .sideBarMenuItems {
 
 .topBarSearchDiv {
   line-height: 20%;
-  width: 500px;
+  width: 700px;
   height: 30px;
   padding: 8px;
   margin-left: 70px;
   border-radius: 8px;
   box-shadow: 1px 1px 10px #888888;
   border: 1px solid black;
-  margin-right: 120px;
+  margin-right: 50px;
   display: flex;
 }
 
@@ -564,11 +564,11 @@ div .sideBarMenuItems {
 }
 
 .topBarSearchBar {
-  width: 400px;
+  width: 650px;
 }
 
 .cssClassNotesOnView {
-  margin-right : 120px; 
+  margin-right : 150px;
   vertical-align : middle;
   line-height : 25px;
   margin-top : 2px;
