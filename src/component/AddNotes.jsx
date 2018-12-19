@@ -60,7 +60,7 @@ class AddNotes extends React.Component {
         })
     }
 
-    getBackGroundColor = (colorSelected) => {
+    getBackGroundColor = (colorSelected, note) => {
         this.setState({
             colorSelect: colorSelected
         })

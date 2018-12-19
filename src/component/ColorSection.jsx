@@ -51,7 +51,7 @@ export default class ColorSection extends React.Component {
         })
 
         if (colorCodeSelected === "") {
-            this.props.getColor(this.state.defaultColor,this.props.option);
+            this.props.getColor(this.state.defaultColor, this.props.option);
         }
         else {
             this.props.getColor(colorCodeSelected, this.props.option);

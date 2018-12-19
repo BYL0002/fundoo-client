@@ -993,3 +993,20 @@ div .chipOnCardReminder {
   margin-top: 15px;
   height: 25px;
 }
+
+.pinnedNoteDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.pinnedNoteTitle {
+  margin: 15px;
+}
+
+.OtherNoteShowDiv {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MenuItem } from '@material-ui/core';
-// import { ClickAwayListener } from '@material-ui/core;'
+import { ClickAwayListener } from '@material-ui/core';
 import { Popper, Paper } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 
@@ -45,10 +45,10 @@ export default class MoreOptions extends React.Component {
                         </Fade>
                     )}
                 </Popper>
-                {/* <ClickAwayListener onClickAway={this.handlePopperOption}>
+                <ClickAwayListener onClickAway={this.handlePopperOption}>
                     <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
                      src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
-                </ClickAwayListener> */}
+                </ClickAwayListener>
             </span>
         )
     }
