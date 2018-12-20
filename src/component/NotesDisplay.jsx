@@ -61,7 +61,8 @@ export default class NotesDisplay extends React.Component {
 
     getReminder = (reminderSet, note) => {
         let newNotesArray = this.state.notesDisplay;
-
+        console.log('reminder set', reminderSet);
+        
         let request = {
             thread: "/updateNoteReminder",
             data: {
@@ -87,7 +88,8 @@ export default class NotesDisplay extends React.Component {
 
     getPin = (pinSet, note) => {
         let newNotesArray = this.state.notesDisplay;
-
+        console.log('pin set---', pinSet);
+        
         let request = {
             thread: "/updateNoteReminder",
             data: {

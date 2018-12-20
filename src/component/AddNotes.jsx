@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { Card, InputBase, Button, Snackbar, IconButton } from '@material-ui/core';
+// import { ClickAwayListener } from '@material-ui/core'
 import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import NotesDisplay from './NotesDisplay';
@@ -67,6 +68,8 @@ class AddNotes extends React.Component {
     }
 
     getReminder = (reminderSet, note) => {
+        console.log('ch',reminderSet);
+        
         this.setState({
             reminderChoosen: reminderSet
         })
@@ -124,17 +127,17 @@ class AddNotes extends React.Component {
         let request = {
             thread: "/noteAddition",
             data: {
-                sender : userLogin,
-                user_id : "",
-                title : this.state.noteTitle,
-                description : this.state.noteDescription,
-                collaborator : this.state.collaboratorChoosen,
-                reminder : this.state.reminderChoosen,
-                color : this.state.colorSelect,
-                imageAdded : this.state.imageAdded,
-                archive : this.state.archiveChoosen,
-                pin : this.state.pinChoosen,
-                trash : false
+                sender: userLogin,
+                user_id: "",
+                title: this.state.noteTitle,
+                description: this.state.noteDescription,
+                collaborator: this.state.collaboratorChoosen,
+                reminder: this.state.reminderChoosen,
+                color: this.state.colorSelect,
+                imageAdded: this.state.imageAdded,
+                archive: this.state.archiveChoosen,
+                pin: this.state.pinChoosen,
+                trash: false
             }
         }
         // console.log('reques on component', request);
@@ -150,48 +153,51 @@ class AddNotes extends React.Component {
             classCard = "noteTakeCard";
         return (
             <div >
+
                 {this.state.isAddNoteCardStatus ? (
-                    <Card className={classCard} >
-                        <div style={{ backgroundColor: this.state.colorSelect }} >
-                            {this.state.isToggleAddCard ? (
-                                <div className="completeNoteTakeCard" >
-                                    <div>
-                                        <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
-                                        <PinNote getPin={this.getPin} getNotePin = {false}/>
-                                    </div>
-                                    <div>
-                                        <InputBase className="inputNoteTake" placeholder='Take a note' multiline name="noteDescription" onChange={this.handleInputValue} />
-                                    </div>
-                                    {this.state.reminderChoosen === "" ? (
+                    // <ClickAwayListener onClickAway={this.handleAddNoteCardToggleStatus}>
+                        <Card className={classCard} >
+                            <div style={{ backgroundColor: this.state.colorSelect }} >
+                                {this.state.isToggleAddCard ? (
+                                    <div className="completeNoteTakeCard" >
                                         <div>
+                                            <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
+                                            <PinNote getPin={this.getPin} getNotePin={false} />
                                         </div>
-                                    ) : (
+                                        <div>
+                                            <InputBase className="inputNoteTake" placeholder='Take a note' multiline name="noteDescription" onChange={this.handleInputValue} />
+                                        </div>
+                                        {this.state.reminderChoosen === "" ? (
                                             <div>
-                                                <span>
-                                                    <img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />
-                                                    {this.state.reminderChoosen}
-                                                </span>
                                             </div>
-                                        )}
-                                    <div>
-                                        <ReminderPopper getReminderChooseOption={this.getReminder} />
-                                        <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                        <ColorSection getColor={this.getBackGroundColor} initialColorValue = {this.colorSelect} />
-                                        <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                        <ArchiveNote getArchive={this.getArchive} />
-                                        {/* <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
+                                        ) : (
+                                                <div>
+                                                    <span>
+                                                        <img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />
+                                                        {this.state.reminderChoosen}
+                                                    </span>
+                                                </div>
+                                            )}
+                                        <div>
+                                            <ReminderPopper getReminderChooseOption={this.getReminder} />
+                                            <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
+                                            <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
+                                            <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                            <ArchiveNote getArchive={this.getArchive} />
+                                            {/* <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" /> */}
-                                        <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                            <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                        </div>
                                     </div>
-                                </div>
-                            ) : (
-                                    <div>
-                                        <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
-                                    </div>
-                                )
-                            }
-                        </div>
-                    </Card>
+                                ) : (
+                                        <div>
+                                            <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
+                                        </div>
+                                    )
+                                }
+                            </div>
+                        </Card>
+                    // </ClickAwayListener>
                 ) : (
                         <div>
                             <Card className="noteTakeCard" >

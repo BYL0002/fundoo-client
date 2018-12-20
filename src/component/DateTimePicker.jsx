@@ -39,18 +39,19 @@ export default class DateTimePicker extends React.Component {
         }));
     }
 
-    handleDateSelection = (date) => {
+    handleDateSelection = (event) => {
         this.setState({
-            dateSelected : date
+            dateSelected : event.target.value
         })
-        console.log('selected date ', this.state.dateSelected);
+        console.log('selected date ',event.target.value );
     }
+// props.getDateTimePicked
 
     handleTimeSelection = (time) => {
         this.setState({
             timeSelected : time
         })
-        console.log('selected date ', this.state.timeSelected);
+        // console.log('selected date ', this.state.timeSelected);
     }
 
     render() {
@@ -61,10 +62,10 @@ export default class DateTimePicker extends React.Component {
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper className="datePickerDiv" >
                                 <div >
-                                    <Input className = "dateTimePicker" type = "time" />
+                                    <Input className = "dateTimePicker" type = "time" onChange = {this.handleDateSelection} />
                                 </div>
                                 <div>
-                                    <Input type = "date" />
+                                    <Input type = "date" onChange = {this.handleTimeSelection} />
                                 </div>
                             </Paper>
                         </Fade>

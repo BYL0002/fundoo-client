@@ -5,7 +5,8 @@
  * @version 1.1
  */
 import React from 'react';
-import { MenuItem, ClickAwayListener } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
+// import { ClickAwayListener } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
@@ -49,6 +50,14 @@ export default class ReminderPopper extends React.Component {
         })
     }
 
+    getDateTimePicked = (dateTimePick) => {
+        console.log(dateTimePick);
+
+        // reminderValueSet = dateTimePick;
+        // this.props.getReminderChooseOption(reminderValueSet, this.props.noteSelected);
+        
+    }
+
     setReminderOption = (event) => {
         let reminderChoosen = event.target.id;
         if (reminderChoosen === '1') {
@@ -57,8 +66,8 @@ export default class ReminderPopper extends React.Component {
             })
             console.log('1');
             
-            reminderValueSet = moment(moment.now()).format('ddd Do MMM 8:00'+'pm');
-            this.props.getReminderChooseOption(reminderValueSet, this.props.noteSelected);
+            reminderValueSet = moment(moment.now()).format('ddd Do MMM 8:00 ');
+            this.props.getReminderChooseOption(reminderValueSet+'pm', this.props.noteSelected);
         }
         else if (reminderChoosen === '2') {
 
@@ -96,9 +105,9 @@ export default class ReminderPopper extends React.Component {
                 default : break;
             }
             
-            reminderValueSet = moment().format(dayStringValue+' '+date+' MMM 8:00 '+'am');
+            reminderValueSet = moment().format(dayStringValue+' '+date+' MMM 8:00 ');
             
-            this.props.getReminderChooseOption( reminderValueSet , this.props.noteSelected);
+            this.props.getReminderChooseOption( reminderValueSet+'am' , this.props.noteSelected);
         }
         else {
 
@@ -109,7 +118,7 @@ export default class ReminderPopper extends React.Component {
             
             date = dateObject.getDate()+7;
 
-            reminderValueSet = moment().format('dddd Do MMMM 8:00 '+'am');
+            reminderValueSet = moment().format('dddd Do MMMM 8:00 ');
             this.props.getReminderChooseOption( reminderValueSet , this.props.noteSelected);
         }
 
@@ -125,17 +134,17 @@ export default class ReminderPopper extends React.Component {
                             <Paper className="reminderPopperNoteAddCard"  >
                                 <div >
                                     <MenuItem disabled >Reminder : </MenuItem>
-                                    <MenuItem>
-                                        <span className="reminderTodayLabel" onClick={this.setReminderOption} id={1} >Later Today : </span>8:00 PM
+                                    <MenuItem onClick={this.setReminderOption} id={1} >
+                                        <span className="reminderTodayLabel" >Later Today : </span>8:00 PM
+                                    </MenuItem>
+                                    <MenuItem onClick={this.setReminderOption} id={2} >
+                                        <span className="reminderTomorrowLabel" >Tomorrow : </span>8:00 AM
+                                    </MenuItem>
+                                    <MenuItem onClick={this.setReminderOption} id={3} >
+                                        <span className="reminderWeekLabel" >Next Week : </span>Mon, 8:00 AM
                                     </MenuItem>
                                     <MenuItem>
-                                        <span className="reminderTomorrowLabel" onClick={this.setReminderOption} id={2} >Tomorrow : </span>8:00 AM
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <span className="reminderWeekLabel" onClick={this.setReminderOption} id={3} >Next Week : </span>Mon, 8:00 AM
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <DateTimePicker />
+                                        <DateTimePicker getDateTimePicked={this.getDateTimePicked} />
                                     </MenuItem>
                                     <MenuItem>
                                         <img src={require('../assets/images/locationOn.svg')} alt="location" />
@@ -147,10 +156,10 @@ export default class ReminderPopper extends React.Component {
                     )}
                 </Popper>
                 
-                <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick}>
+                {/* <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick}> */}
                     <img onClick={this.handleReminderOtion('bottom')} className="noteAddFeatureImages" 
                     src={require('../assets/images/reminder.svg')} alt="reminder" />
-                </ClickAwayListener>
+                {/* </ClickAwayListener> */}
             </span>
         )
     }
