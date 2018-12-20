@@ -14,9 +14,9 @@ export default class MoreOptions extends React.Component {
         }
     }
 
-    handlePopperOption = () => {
+    handlePopperOptionOnOutsideClick = () => {
         this.setState({
-            open : !this.state.open
+            open : false
         })
     }
 
@@ -28,6 +28,8 @@ export default class MoreOptions extends React.Component {
             placement,
         }));
     }
+
+
 
     render() {
 
@@ -45,7 +47,7 @@ export default class MoreOptions extends React.Component {
                         </Fade>
                     )}
                 </Popper>
-                <ClickAwayListener onClickAway={this.handlePopperOption}>
+                <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}>
                     <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
                      src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
                 </ClickAwayListener>

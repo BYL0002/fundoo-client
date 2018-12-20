@@ -5,9 +5,13 @@ import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import userService from '../service/UserService';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const theme = createMuiTheme({
+
+    typography: {
+        useNextVariants: true,
+    },
     overrides: {
         MuiButton: {
             root: {
@@ -15,9 +19,9 @@ const theme = createMuiTheme({
                 marginLeft: '175px',
                 padding: 0,
             }
-        }
+        },
     }
-}) 
+})
 
 // localStorage.setItem("userLogImage","");
 // const imageUrl = localStorage.getItem("userLogImage");
@@ -29,9 +33,9 @@ class AccountIconTopBar extends React.Component {
             anchorEl: null,
             open: false,
             placement: null,
-            responseGot : false,
-            userLogInEmailId : localStorage.getItem("userLogged"),
-            userLogInName : localStorage.getItem("userLogName"),
+            responseGot: false,
+            userLogInEmailId: localStorage.getItem("userLogged"),
+            userLogInName: localStorage.getItem("userLogName"),
             // userLogImage : imageUrl
         };
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
@@ -39,7 +43,7 @@ class AccountIconTopBar extends React.Component {
 
     handlePopperCloseOnOutsideClick = () => {
         this.setState({
-            open : false
+            open: false
         })
     }
 
@@ -54,63 +58,63 @@ class AccountIconTopBar extends React.Component {
 
     handleLogout = () => {
         userService.logoutService()
-          .then(res => {
-            if (res) {
-              this.setState({
-                responseGot: true
-              });
-            }
-          })
-      }
+            .then(res => {
+                if (res) {
+                    this.setState({
+                        responseGot: true
+                    });
+                }
+            })
+    }
 
     render() {
-        if(this.state.responseGot) return <Redirect to = '/' />
+        if (this.state.responseGot) return <Redirect to='/' />
         return (
-            <MuiThemeProvider theme = {theme} >
-            <div>
-                <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
-                    {({ TransitionProps }) => (
-                        <Fade {...TransitionProps} timeout={350}>
-                            <Paper>
-                                <div id = "popupTopBar" >
-                                    <div>
+            <MuiThemeProvider theme={theme} >
+                <div>
+                    <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
+                        {({ TransitionProps }) => (
+                            <Fade {...TransitionProps} timeout={350}>
+                                <Paper>
+                                    <div id="popupTopBar" >
                                         <div>
-                                            {/* {imageUrl === "" ? (
+                                            <div>
+                                                {/* {imageUrl === "" ? (
                                                 <Avatar id = "accountIconPopperTopBar" >{this.state.userLogInName[0] }</Avatar>
                                             ) : (
                                                 // <AccountCircle id = "accountIconPopperTopBar" />
                                                 <img src = {require( {imageUrl} ) } alt="userImage" />
                                             )} */}
-                                            <Avatar id = "accountIconPopperTopBar" >{this.state.userLogInName[0] }</Avatar>
+                                                <Avatar id="accountIconPopperTopBar" >{this.state.userLogInName[0]}</Avatar>
+                                            </div>
+                                            <div  >
+                                                <span className='userNameTopBarPopper' >{this.state.userLogInName} </span>
+                                            </div>
+                                            <div>
+                                                <span className='emailIdTopBarPopper'>{this.state.userLogInEmailId}</span>
+                                            </div>
+                                            <div>
+                                                <Button className="logoutButton" onClick={this.handleLogout.bind(this)}>Logout</Button>
+                                            </div>
+
                                         </div>
-                                        <div  >
-                                            <span className = 'userNameTopBarPopper' >{this.state.userLogInName} </span>
-                                        </div>
-                                        <div>
-                                            <span className = 'emailIdTopBarPopper'>{this.state.userLogInEmailId}</span>
-                                        </div>
-                                        <div>
-                                        <Button className="logoutButton" onClick={this.handleLogout.bind(this)}>Logout</Button>
-                                        </div>
-                                        
                                     </div>
-                                </div>
-                            </Paper>
-                        </Fade>
-                    )}
-                </Popper>
+                                </Paper>
+                            </Fade>
+                        )}
+                    </Popper>
 
-                <ClickAwayListener onClickAway = {this.handlePopperCloseOnOutsideClick} >
-                <IconButton
-                    aria-haspopup="true"
-                    onClick={this.handleProfileMenuOpen('bottom')}
-                    style = {{color:"black"}}
+                    <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick} >
+                        <IconButton
+                            aria-haspopup="true"
+                            onClick={this.handleProfileMenuOpen('bottom')}
+                            style={{ color: "black" }}
 
-                >
-                    <AccountCircle  id = "accountIconTopBar"  />
-                </IconButton>
-                </ClickAwayListener>
-            </div>
+                        >
+                            <AccountCircle id="accountIconTopBar" />
+                        </IconButton>
+                    </ClickAwayListener>
+                </div>
             </MuiThemeProvider>
         )
     }

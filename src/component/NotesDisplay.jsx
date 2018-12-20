@@ -12,6 +12,7 @@ import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
+import PinNote from './PinNote';
 // import NoteServiceClass from '../service/NoteServiceClass';
 const NoteServiceClass = require('../service/NoteServiceClass');
 
@@ -28,7 +29,8 @@ export default class NotesDisplay extends React.Component {
 
     getBackGroundColor = (colorSelected, note) => {
         let newNotesArray = this.state.notesDisplay;
-
+        console.log('note selected ---------', note);
+        
         let request = {
             thread: "/updateNoteColor",
             data: {
@@ -61,7 +63,7 @@ export default class NotesDisplay extends React.Component {
         let newNotesArray = this.state.notesDisplay;
 
         let request = {
-            thread: "/updateNoteColor",
+            thread: "/updateNoteReminder",
             data: {
                 note: {
                     _id: note._id,
@@ -75,6 +77,32 @@ export default class NotesDisplay extends React.Component {
         for (let i = 0; i < newNotesArray.length; i++) {
             if (note._id === newNotesArray[i]._id) {
                 newNotesArray[i].reminder = reminderSet
+
+                this.setState({
+                    notesDisplay: newNotesArray
+                })
+            }
+        }
+    }
+
+    getPin = (pinSet, note) => {
+        let newNotesArray = this.state.notesDisplay;
+
+        let request = {
+            thread: "/updateNoteReminder",
+            data: {
+                note: {
+                    _id: note._id,
+                    pin : pinSet
+                }
+            }
+        }
+
+        NoteServiceClassObject.NotesUpdation(request);
+
+        for (let i = 0; i < newNotesArray.length; i++) {
+            if (note._id === newNotesArray[i]._id) {
+                newNotesArray[i].pin = pinSet
 
                 this.setState({
                     notesDisplay: newNotesArray
@@ -141,8 +169,9 @@ export default class NotesDisplay extends React.Component {
                                         <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
                                             <div className="noteCardDisplayTitle" >
                                                 {option.title}
-                                                <img src={require('../assets/images/unPinNote.svg')} alt="pin note"
-                                                    className="pinNoteImage" onClick={this.handlePinning} />
+                                                <PinNote noteSelected={option} getPin={this.getPin} getNotePin = {option.pin} />
+                                                {/* <img src={require('../assets/images/unPinNote.svg')} alt="pin note"
+                                                    className="pinNoteImage" onClick={this.handlePinning} /> */}
 
                                             </div>
                                             <div className="noteCardDisplayDescription" >
@@ -165,9 +194,9 @@ export default class NotesDisplay extends React.Component {
                                                 )}
 
                                             <div>
-                                                <ReminderPopper getReminder={this.getReminder} noteSelected={option} />
+                                                <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
                                                 <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
-                                                <ColorSection getColor={this.getBackGroundColor} option={option} />
+                                                <ColorSection getColor={this.getBackGroundColor} noteSelected={option} />
                                                 <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
                                                 <ArchiveNote />
                                                 <MoreOptions />
@@ -183,8 +212,9 @@ export default class NotesDisplay extends React.Component {
                                             <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
                                                 <div className="noteCardDisplayTitle" >
                                                     {option.title}
-                                                    <img src={require('../assets/images/pinNote.svg')} alt="pin note"
-                                                        className="pinNoteImage" onClick={this.handlePinning} />
+                                                    <PinNote noteSelected={option} getPin={this.getPin} getNotePin = {option.pin} />
+                                                    {/* <img src={require('../assets/images/pinNote.svg')} alt="pin note"
+                                                        className="pinNoteImage" onClick={this.handlePinning} /> */}
 
                                                 </div>
                                                 <div className="noteCardDisplayDescription" >
@@ -205,7 +235,7 @@ export default class NotesDisplay extends React.Component {
                                                         </div>
                                                     )}
                                                 <div>
-                                                    <ReminderPopper getReminder={this.getReminder} noteSelected={option} />
+                                                    <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
                                                     <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
                                                     <ColorSection getColor={this.getBackGroundColor} option={option} />
                                                     <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />

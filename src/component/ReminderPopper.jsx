@@ -14,6 +14,7 @@ import moment from 'moment';
 
 
 let reminderValueSet;
+let date, dayIntegerValue, dayStringValue, month, time, dateObject = new Date();
 
 /**
  * @description component to display popper for reminder in notes addition
@@ -56,7 +57,7 @@ export default class ReminderPopper extends React.Component {
             })
             console.log('1');
             
-            reminderValueSet = moment().format('dddd Do MMMM 8:00 a ');
+            reminderValueSet = moment(moment.now()).format('ddd Do MMM 8:00'+'pm');
             this.props.getReminderChooseOption(reminderValueSet, this.props.noteSelected);
         }
         else if (reminderChoosen === '2') {
@@ -65,8 +66,38 @@ export default class ReminderPopper extends React.Component {
                 open: false,
             })
             console.log('2');
+
+            date = dateObject.getDate()+1;
+            dayIntegerValue = dateObject.getDay()+1;
+
+            switch(dayIntegerValue)
+            {
+                case 1: dayStringValue = "Sun";
+                break;
+
+                case 2: dayStringValue = "Mon";
+                break;
+
+                case 3: dayStringValue = "Tue";
+                break;
+
+                case 4: dayStringValue = "Wed";
+                break;
+
+                case 5: dayStringValue = "Thr";
+                break;
+
+                case 6: dayStringValue = "Fri";
+                break;
+
+                case 7: dayStringValue = "Sat";
+                break;
+
+                default : break;
+            }
             
-            reminderValueSet = moment().format('dddd Do MMMM 8:00 a ');
+            reminderValueSet = moment().format(dayStringValue+' '+date+' MMM 8:00 '+'am');
+            
             this.props.getReminderChooseOption( reminderValueSet , this.props.noteSelected);
         }
         else {
@@ -76,7 +107,9 @@ export default class ReminderPopper extends React.Component {
             // })
             console.log('3');
             
-            reminderValueSet = moment().format('dddd Do MMMM 8:00 a ');
+            date = dateObject.getDate()+7;
+
+            reminderValueSet = moment().format('dddd Do MMMM 8:00 '+'am');
             this.props.getReminderChooseOption( reminderValueSet , this.props.noteSelected);
         }
 
@@ -114,10 +147,10 @@ export default class ReminderPopper extends React.Component {
                     )}
                 </Popper>
                 
-                {/* <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick}> */}
+                <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick}>
                     <img onClick={this.handleReminderOtion('bottom')} className="noteAddFeatureImages" 
                     src={require('../assets/images/reminder.svg')} alt="reminder" />
-                {/* </ClickAwayListener> */}
+                </ClickAwayListener>
             </span>
         )
     }

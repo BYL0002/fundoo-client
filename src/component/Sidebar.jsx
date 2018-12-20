@@ -5,6 +5,10 @@ import { MenuItem } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 const theme = createMuiTheme({
+
+    typography: {
+        useNextVariants: true,
+    },
     overrides: {
         MuiDrawer: {
             paperAnchorLeft: {
@@ -12,8 +16,9 @@ const theme = createMuiTheme({
                 width: 280,
                 background: 'white',
             }
-        }}
-    })
+        },
+    },
+})
 
 class Sidebar extends React.Component {
 
@@ -25,16 +30,16 @@ class Sidebar extends React.Component {
         }
 
     }
-    
+
     render() {
-        
+
         const sideItems = (
             <div>
-                <MenuItem className = "sideBarMenuItems" >
+                <MenuItem className="sideBarMenuItems" >
                     <img className="sideBarImages" src={require('../assets/images/SideBarNoteImage.svg')} alt="note" />
                     <span className="sideBarText" >Notes</span>
                 </MenuItem>
-                <MenuItem onClick={this.getHeaderValue} name="Reminder" className = "sideBarMenuItems" >
+                <MenuItem onClick={this.getHeaderValue} name="Reminder" className="sideBarMenuItems" >
                     <img className="sideBarImages" src={require('../assets/images/SideBarReminderImage.svg')} alt="reminder" />
                     <span className="sideBarText" >Reminders</span>
                 </MenuItem>
@@ -42,20 +47,20 @@ class Sidebar extends React.Component {
                 <MenuItem disabled>
                     <div style={{ float: "left" }} >LABELS</div>
                 </MenuItem>
-                <MenuItem className = "sideBarMenuItems" onClick={this.getHeaderValue} name="Edit Labels" >
+                <MenuItem className="sideBarMenuItems" onClick={this.getHeaderValue} name="Edit Labels" >
                     <img className="sideBarImages" src={require('../assets/images/SideBarLabelImage.svg')} alt="label" />
                     <span className="sideBarText" >Edit Labels</span>
                 </MenuItem>
                 <Divider />
-                <MenuItem className = "sideBarMenuItems" onClick={this.getHeaderValue} name="Archive" >
+                <MenuItem className="sideBarMenuItems" onClick={this.getHeaderValue} name="Archive" >
                     <img className="sideBarImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
                     <span className="sideBarText" >Archive</span>
                 </MenuItem>
-                <MenuItem className = "sideBarMenuItems" onClick={this.getHeaderValue} name="Trash" >
+                <MenuItem className="sideBarMenuItems" onClick={this.getHeaderValue} name="Trash" >
                     <img className="sideBarImages" src={require('../assets/images/SideBarTrashImage.svg')} alt="trash" />
                     <span className="sideBarText" >Trash</span>
                 </MenuItem>
-                <MenuItem className = "sideBarMenuItems" >
+                <MenuItem className="sideBarMenuItems" >
                     <span className="sideBarTextBottom" >Notes</span>
                     <span className="sideBarTextBottom" >Privacy</span>
                 </MenuItem>

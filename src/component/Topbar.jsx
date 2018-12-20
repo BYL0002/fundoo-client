@@ -10,20 +10,24 @@ import AccountIconTopBar from './AccountIconTopBar';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 const theme = createMuiTheme({
+
+  typography: {
+    useNextVariants: true,
+  },
   overrides: {
     MuiToolbar: {
-      paperAnchorLeft: {
-        top: 64,
-        width: 280,
-      },
-      root : {
-        backgroundColor : 'white',
+      // paperAnchorLeft: {
+      //   top: 64,
+      //   width: 280,
+      // },
+      root: {
+        backgroundColor: 'white',
         boxShadow: 0
       }
     },
-    MuiAppBar:{
-      colorPrimary : {
-        backgroundColor : 'white'
+    MuiAppBar: {
+      colorPrimary: {
+        backgroundColor: 'white'
       }
     }
   },
@@ -63,9 +67,9 @@ class TopbarComponent extends React.Component {
   resize() {
     // let currentScreenWidth = (window.innerWidth <= 760);
     // if (currentScreenWidth !== this.state.hideNav) {
-      this.setState({
-        sidebarOpenStatus : false
-      });
+    this.setState({
+      sidebarOpenStatus: false
+    });
     // }
   }
 
@@ -76,11 +80,11 @@ class TopbarComponent extends React.Component {
         <MuiThemeProvider theme={theme}>
           <AppBar position="fixed" style={{ padding: "1px" }} >
             <Toolbar>
-              <IconButton style = {{color:"black"}} aria-label="Open drawer" >
+              <IconButton style={{ color: "black" }} aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
               </IconButton>
               <Sidebar stateOpen={this.state.sidebarOpenStatus} />
-              <div style = {{color : "black"}} >Fundoo Notes</div>
+              <div style={{ color: "black" }} >Fundoo Notes</div>
               <TopBarSearchComponent />
               {this.state.isView ? (
                 <img src={require("../assets/images/gridNotes.svg")} alt="listView" className="cssClassNotesOnView" onClick={this.handleNotesView.bind(this)} />

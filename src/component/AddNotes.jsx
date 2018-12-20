@@ -66,19 +66,19 @@ class AddNotes extends React.Component {
         })
     }
 
-    getReminder = (reminderSet) => {
+    getReminder = (reminderSet, note) => {
         this.setState({
             reminderChoosen: reminderSet
         })
     }
 
-    getPin = (pinSet) => {
+    getPin = (pinSet, note) => {
         this.setState({
             pinChoosen: pinSet
         })
     }
 
-    getTrash = (trashSet) => {
+    getTrash = (trashSet, note) => {
         this.setState({
             trashChoosen: trashSet
         });
@@ -157,7 +157,7 @@ class AddNotes extends React.Component {
                                 <div className="completeNoteTakeCard" >
                                     <div>
                                         <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
-                                        <PinNote getPin={this.getPin} />
+                                        <PinNote getPin={this.getPin} getNotePin = {false}/>
                                     </div>
                                     <div>
                                         <InputBase className="inputNoteTake" placeholder='Take a note' multiline name="noteDescription" onChange={this.handleInputValue} />

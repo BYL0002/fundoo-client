@@ -26,7 +26,7 @@ export class NoteServiceClass {
                 })
                 .then(response => {
                     if (response.data.status) {
-                        console.log('res on axios', response.data);
+                        // console.log('res on axios', response.data);
 
                         return response.data;
                     }
@@ -41,14 +41,15 @@ export class NoteServiceClass {
             console.log(err);
         }
     }
-    // class
+    
     NotesUpdation(request) {
 
-        console.log('request on sservice ------', request);
+        // console.log('request on service ------', request);
 
         return this.sendUpdateRequest(request)
             .then(res => {
                 console.log('res on function', res);
             })
     }
+
 }
