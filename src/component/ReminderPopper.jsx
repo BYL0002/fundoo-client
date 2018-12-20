@@ -15,7 +15,6 @@ import moment from 'moment';
 
 
 let reminderValueSet;
-let date, dayIntegerValue, dayStringValue, month, time, dateObject = new Date();
 
 /**
  * @description component to display popper for reminder in notes addition
@@ -67,7 +66,7 @@ export default class ReminderPopper extends React.Component {
             console.log('1');
             
             reminderValueSet = moment(moment.now()).format('ddd Do MMM 8:00 ');
-            this.props.getReminderChooseOption(reminderValueSet+'pm', this.props.noteSelected);
+            this.props.getReminderChooseOption(reminderValueSet+'PM', this.props.noteSelected);
         }
         else if (reminderChoosen === '2') {
 
@@ -76,50 +75,23 @@ export default class ReminderPopper extends React.Component {
             })
             console.log('2');
 
-            date = dateObject.getDate()+1;
-            dayIntegerValue = dateObject.getDay()+1;
-
-            switch(dayIntegerValue)
-            {
-                case 1: dayStringValue = "Sun";
-                break;
-
-                case 2: dayStringValue = "Mon";
-                break;
-
-                case 3: dayStringValue = "Tue";
-                break;
-
-                case 4: dayStringValue = "Wed";
-                break;
-
-                case 5: dayStringValue = "Thr";
-                break;
-
-                case 6: dayStringValue = "Fri";
-                break;
-
-                case 7: dayStringValue = "Sat";
-                break;
-
-                default : break;
-            }
+            reminderValueSet = moment().add(1, 'days').format('ddd Do MMM 8:00 ');
             
-            reminderValueSet = moment().format(dayStringValue+' '+date+' MMM 8:00 ');
-            
-            this.props.getReminderChooseOption( reminderValueSet+'am' , this.props.noteSelected);
+            this.props.getReminderChooseOption( reminderValueSet+'AM' , this.props.noteSelected);
         }
         else {
 
-            // this.setState({
-            //     open: false,
-            // })
+            this.setState({
+                open: false,
+            })
+            let dayNumber = (new Date().getDay());
+            console.log('dayNumber', dayNumber);
+            
+            let day = 8-dayNumber;
             console.log('3');
             
-            date = dateObject.getDate()+7;
-
-            reminderValueSet = moment().format('dddd Do MMMM 8:00 ');
-            this.props.getReminderChooseOption( reminderValueSet , this.props.noteSelected);
+            reminderValueSet = moment().add(day, 'days').format('dddd Do MMMM 8:00 ');
+            this.props.getReminderChooseOption( reminderValueSet+'AM' , this.props.noteSelected);
         }
 
     }
