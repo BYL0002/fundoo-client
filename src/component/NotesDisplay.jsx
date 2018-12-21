@@ -23,7 +23,9 @@ export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notesDisplay: []
+            notesDisplay: [],
+            snackbarStatus: false,
+            snackbarMessage: "Reminder!"
         }
     }
 
@@ -278,6 +280,27 @@ export default class NotesDisplay extends React.Component {
                         </div>
 
                     ))}
+
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.snackbarStatus}
+                        autoHideDuration={6000}
+                        onClose={this.handleSnackClose}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        color="primary"
+                        variant="success"
+                        message={<span id="message-id">{this.state.snackbarMessage}</span>}
+                        action={[
+                            <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
+                                <CloseIcon />
+                            </IconButton>,
+                        ]}
+                    />
 
                 </div>
 

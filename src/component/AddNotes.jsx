@@ -240,12 +240,6 @@ class AddNotes extends React.Component {
                     color="primary"
                     variant="success"
                     message={<span id="message-id">{this.state.snackbarMessage}</span>}
-
-
-
-
-
-
                     action={[
                         <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
                             <CloseIcon />
