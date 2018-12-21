@@ -7,6 +7,8 @@
 
  import React from 'react';
 
+ let pinDefault;
+
 /**
  * @description Class Component
  * @exports Class to render
@@ -15,16 +17,23 @@ export default class PinNote extends React.Component {
     constructor(props)
     {
         super(props);
+        console.log('pin value set-----', this.props.getNotePin);
         this.state = {
             isPin : this.props.getNotePin
         }
+        pinDefault = this.props.getNotePin;
     }
 
     handlePinning = () => {
         this.setState({
             isPin : !this.state.isPin
         })
-        this.props.getPin(this.state.isPin, this.props.noteSelected);
+
+        pinDefault = !pinDefault;
+        console.log('pin set on pin component----', pinDefault);
+        
+
+        this.props.getPin(pinDefault, this.props.noteSelected);
     }
 
     render(){

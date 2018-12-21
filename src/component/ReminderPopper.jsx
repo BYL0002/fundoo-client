@@ -50,10 +50,10 @@ export default class ReminderPopper extends React.Component {
     }
 
     getDateTimePicked = (dateTimePick) => {
-        console.log(dateTimePick);
+        console.log('reminder popper date time selected -----',dateTimePick);
 
-        // reminderValueSet = dateTimePick;
-        // this.props.getReminderChooseOption(reminderValueSet, this.props.noteSelected);
+        reminderValueSet = moment(dateTimePick).format('ddd Do MMM h:mm a');;
+        this.props.getReminderChooseOption(reminderValueSet, this.props.noteSelected);
         
     }
 
@@ -90,7 +90,7 @@ export default class ReminderPopper extends React.Component {
             let day = 8-dayNumber;
             console.log('3');
             
-            reminderValueSet = moment().add(day, 'days').format('dddd Do MMMM 8:00 ');
+            reminderValueSet = moment().add(day, 'days').format('ddd Do MMM 8:00 ');
             this.props.getReminderChooseOption( reminderValueSet+'AM' , this.props.noteSelected);
         }
 

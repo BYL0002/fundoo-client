@@ -30,7 +30,7 @@ export default class NotesDisplay extends React.Component {
     getBackGroundColor = (colorSelected, note) => {
         let newNotesArray = this.state.notesDisplay;
         console.log('note selected ---------', note);
-        
+
         let request = {
             thread: "/updateNoteColor",
             data: {
@@ -40,7 +40,7 @@ export default class NotesDisplay extends React.Component {
                 }
             }
         }
-        
+
         /**
          * @description This is for generic Updation
          */
@@ -62,13 +62,13 @@ export default class NotesDisplay extends React.Component {
     getReminder = (reminderSet, note) => {
         let newNotesArray = this.state.notesDisplay;
         console.log('reminder set', reminderSet);
-        
+
         let request = {
             thread: "/updateNoteReminder",
             data: {
                 note: {
                     _id: note._id,
-                    reminder : reminderSet
+                    reminder: reminderSet
                 }
             }
         }
@@ -86,16 +86,42 @@ export default class NotesDisplay extends React.Component {
         }
     }
 
-    getPin = (pinSet, note) => {
+    getReminderRemoved = (note) => {
         let newNotesArray = this.state.notesDisplay;
-        console.log('pin set---', pinSet);
-        
+
         let request = {
             thread: "/updateNoteReminder",
             data: {
                 note: {
                     _id: note._id,
-                    pin : pinSet
+                    reminder: ""
+                }
+            }
+        }
+
+        NoteServiceClassObject.NotesUpdation(request);
+
+        for (let i = 0; i < newNotesArray.length; i++) {
+            if (note._id === newNotesArray[i]._id) {
+                newNotesArray[i].reminder = ""
+
+                this.setState({
+                    notesDisplay: newNotesArray
+                })
+            }
+        }
+    }
+
+    getPin = (pinSet, note) => {
+        let newNotesArray = this.state.notesDisplay;
+        console.log('pin set---', pinSet);
+
+        let request = {
+            thread: "/updateNoteReminder",
+            data: {
+                note: {
+                    _id: note._id,
+                    pin: pinSet
                 }
             }
         }
@@ -171,7 +197,7 @@ export default class NotesDisplay extends React.Component {
                                         <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
                                             <div className="noteCardDisplayTitle" >
                                                 {option.title}
-                                                <PinNote noteSelected={option} getPin={this.getPin} getNotePin = {option.pin} />
+                                                <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
                                                 {/* <img src={require('../assets/images/unPinNote.svg')} alt="pin note"
                                                     className="pinNoteImage" onClick={this.handlePinning} /> */}
 
@@ -188,7 +214,7 @@ export default class NotesDisplay extends React.Component {
                                                         <Chip
                                                             icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
                                                             label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
-                                                            // onDelete={true}
+                                                            onDelete={() => this.getReminderRemoved(option)}
                                                             variant="outlined"
                                                             className="chipOnCardReminder"
                                                         />
@@ -214,7 +240,7 @@ export default class NotesDisplay extends React.Component {
                                             <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
                                                 <div className="noteCardDisplayTitle" >
                                                     {option.title}
-                                                    <PinNote noteSelected={option} getPin={this.getPin} getNotePin = {option.pin} />
+                                                    <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
                                                     {/* <img src={require('../assets/images/pinNote.svg')} alt="pin note"
                                                         className="pinNoteImage" onClick={this.handlePinning} /> */}
 
@@ -230,7 +256,7 @@ export default class NotesDisplay extends React.Component {
                                                             <Chip
                                                                 icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
                                                                 label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
-                                                                // onDelete
+                                                                onDelete={() => this.getReminderRemoved(option)}
                                                                 variant="outlined"
                                                                 className="chipOnCardReminder"
                                                             />

@@ -8,8 +8,15 @@
 import React from 'react';
 import { Popper, Paper, Input } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
+import moment from 'moment';
 
 const date = new Date();
+let defaultDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+var defaultDateFormat = moment(defaultDate).format('YYYY-MM-DD');
+
+let defaultTime = date.getHours() + ':' + date.getMinutes();
+console.log('defaultTime----', defaultTime);
+
 
 /**
  * @description Class Component
@@ -23,8 +30,8 @@ export default class DateTimePicker extends React.Component {
             anchorEl: null,
             open: false,
             placement: null,
-            dateSelected: date,
-            timeSelected: date.getHours() + ":" + date.getMinutes(),
+            dateSelected: defaultDateFormat,
+            timeSelected: defaultTime,
         }
     }
 
@@ -39,19 +46,26 @@ export default class DateTimePicker extends React.Component {
         }));
     }
 
+    handleDateTimeSelection = (event) => {
+
+        // console.log('selected date ',event.target.value );
+        this.props.getDateTimePicked(event.target.value);
+    }
+
     handleDateSelection = (event) => {
         this.setState({
-            dateSelected : event.target.value
+            dateSelected: event.target.value
         })
-        console.log('selected date ',event.target.value );
+        // console.log('selected date ', this.state.dateSelected);
+        // console.log('selected date event ', event.target.value);
+        this.props.getDateTimePicked(event.target.value+defaultTime);
     }
-// props.getDateTimePicked
 
-    handleTimeSelection = (time) => {
+    handleTimeSelection = (event) => {
         this.setState({
-            timeSelected : time
+            timeSelected: event.target.value
         })
-        // console.log('selected date ', this.state.timeSelected);
+        console.log('selected time ', this.state.timeSelected);
     }
 
     render() {
@@ -61,18 +75,21 @@ export default class DateTimePicker extends React.Component {
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper className="datePickerDiv" >
-                                <div >
-                                    <Input className = "dateTimePicker" type = "time" onChange = {this.handleDateSelection} />
+                                {/* <div >
+                                    <Input className = "dateTimePicker" name = "dt" type = "datetime-local" onChange = {this.handleDateTimeSelection} />
+                                </div> */}
+                                <div>
+                                    <input defaultValue={defaultDateFormat} type="date" onChange={this.handleDateSelection} />
                                 </div>
                                 <div>
-                                    <Input type = "date" onChange = {this.handleTimeSelection} />
+                                    <input defaultValue={defaultTime} type="time" onChange={this.handleTimeSelection} />
                                 </div>
                             </Paper>
                         </Fade>
                     )}
                 </Popper>
                 <span onClick={this.handleShowDateTimePickerPopper("right")} >
-                    <img className = "reminderClock" src={require('../assets/images/clocktime.svg')} alt="clock" />
+                    <img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="clock" />
                     <span className="reminderTimeLabel" id={new Date()} >Pick date & time : </span>
                 </span>
             </div>

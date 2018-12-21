@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Card, InputBase, Button, Snackbar, IconButton } from '@material-ui/core';
+import { Card, InputBase, Button, Snackbar, IconButton, Chip } from '@material-ui/core';
 // import { ClickAwayListener } from '@material-ui/core'
 import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
@@ -72,6 +72,12 @@ class AddNotes extends React.Component {
         
         this.setState({
             reminderChoosen: reminderSet
+        })
+    }
+
+    getReminderRemoved = () => {
+        this.setState({
+            reminderChoosen : ""
         })
     }
 
@@ -172,10 +178,17 @@ class AddNotes extends React.Component {
                                             </div>
                                         ) : (
                                                 <div>
-                                                    <span>
+                                                    <Chip
+                                                                icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                                                label={<span className="reminderShowOnCardText" >  {this.state.reminderChoosen} </span>}
+                                                                onDelete={this.getReminderRemoved}
+                                                                variant="outlined"
+                                                                className="chipOnCardReminder"
+                                                            />
+                                                    {/* <span>
                                                         <img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />
                                                         {this.state.reminderChoosen}
-                                                    </span>
+                                                    </span> */}
                                                 </div>
                                             )}
                                         <div>
