@@ -11,7 +11,6 @@ import { Card, InputBase, Button, Snackbar, IconButton, Chip } from '@material-u
 import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import NotesDisplay from './NotesDisplay';
-import PinNote from './PinNote';
 import ArchiveNote from './ArchiveNote';
 import NoteService from '../service/NoteService';
 import CloseIcon from '@material-ui/icons/Close';
@@ -68,8 +67,8 @@ class AddNotes extends React.Component {
     }
 
     getReminder = (reminderSet, note) => {
-        console.log('ch',reminderSet);
-        
+        console.log('ch', reminderSet);
+
         this.setState({
             reminderChoosen: reminderSet
         })
@@ -77,13 +76,14 @@ class AddNotes extends React.Component {
 
     getReminderRemoved = () => {
         this.setState({
-            reminderChoosen : ""
+            reminderChoosen: ""
         })
     }
 
-    getPin = (pinSet, note) => {
+    getPin = () => {
+
         this.setState({
-            pinChoosen: pinSet
+            pinChoosen: !this.state.pinChoosen
         })
     }
 
@@ -162,54 +162,60 @@ class AddNotes extends React.Component {
 
                 {this.state.isAddNoteCardStatus ? (
                     // <ClickAwayListener onClickAway={this.handleAddNoteCardToggleStatus}>
-                        <Card className={classCard} >
-                            <div style={{ backgroundColor: this.state.colorSelect }} >
-                                {this.state.isToggleAddCard ? (
-                                    <div className="completeNoteTakeCard" >
-                                        <div>
-                                            <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
-                                            <PinNote getPin={this.getPin} getNotePin={false} />
-                                        </div>
-                                        <div>
-                                            <InputBase className="inputNoteTake" placeholder='Take a note' multiline name="noteDescription" onChange={this.handleInputValue} />
-                                        </div>
-                                        {this.state.reminderChoosen === "" ? (
-                                            <div>
-                                            </div>
+                    <Card className={classCard} >
+                        <div style={{ backgroundColor: this.state.colorSelect }} >
+                            {this.state.isToggleAddCard ? (
+                                <div className="completeNoteTakeCard" >
+                                    <div>
+                                        <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
+
+                                        {this.state.pinChoosen ? (
+                                            <img src={require('../assets/images/unPinNote.svg')} alt="pin note" className="pinNoteImage" onClick={this.getPin} />
                                         ) : (
-                                                <div>
-                                                    <Chip
-                                                                icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                                                label={<span className="reminderShowOnCardText" >  {this.state.reminderChoosen} </span>}
-                                                                onDelete={this.getReminderRemoved}
-                                                                variant="outlined"
-                                                                className="chipOnCardReminder"
-                                                            />
-                                                    {/* <span>
+                                                <img src={require('../assets/images/pinNote.svg')} alt="pin note" className="pinNoteImage" onClick={this.getPin} />
+                                            )}
+
+                                    </div>
+                                    <div>
+                                        <InputBase className="inputNoteTake" placeholder='Take a note' multiline name="noteDescription" onChange={this.handleInputValue} />
+                                    </div>
+                                    {this.state.reminderChoosen === "" ? (
+                                        <div>
+                                        </div>
+                                    ) : (
+                                            <div>
+                                                <Chip
+                                                    icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                                    label={<span className="reminderShowOnCardText" >  {this.state.reminderChoosen} </span>}
+                                                    onDelete={this.getReminderRemoved}
+                                                    variant="outlined"
+                                                    className="chipOnCardReminder"
+                                                />
+                                                {/* <span>
                                                         <img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />
                                                         {this.state.reminderChoosen}
                                                     </span> */}
-                                                </div>
-                                            )}
-                                        <div>
-                                            <ReminderPopper getReminderChooseOption={this.getReminder} />
-                                            <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                            <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
-                                            <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                            <ArchiveNote getArchive={this.getArchive} />
-                                            {/* <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
+                                            </div>
+                                        )}
+                                    <div>
+                                        <ReminderPopper getReminderChooseOption={this.getReminder} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
+                                        <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                        <ArchiveNote getArchive={this.getArchive} />
+                                        {/* <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" /> */}
-                                            <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
-                                        </div>
+                                        <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
                                     </div>
-                                ) : (
-                                        <div>
-                                            <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
-                                        </div>
-                                    )
-                                }
-                            </div>
-                        </Card>
+                                </div>
+                            ) : (
+                                    <div>
+                                        <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
+                                    </div>
+                                )
+                            }
+                        </div>
+                    </Card>
                     // </ClickAwayListener>
                 ) : (
                         <div>

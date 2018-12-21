@@ -6,13 +6,14 @@
  */
 
 import React from 'react';
-import { Card, Chip } from '@material-ui/core';
+import { Card, Chip, Snackbar, IconButton } from '@material-ui/core';
 import NoteService from '../service/NoteService';
 import ReminderPopper from './ReminderPopper';
 import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
 import PinNote from './PinNote';
+import CloseIcon from '@material-ui/icons/Close';
 // import NoteServiceClass from '../service/NoteServiceClass';
 const NoteServiceClass = require('../service/NoteServiceClass');
 
@@ -159,7 +160,7 @@ export default class NotesDisplay extends React.Component {
             }
             else {
                 self.setState({
-                    message_display: []
+                    notesDisplay: []
                 })
             }
         });
