@@ -114,7 +114,6 @@ export default class NotesDisplay extends React.Component {
 
     getPin = (pinSet, note) => {
         let newNotesArray = this.state.notesDisplay;
-        console.log('pin set---', pinSet);
 
         let request = {
             thread: "/updateNoteReminder",
@@ -141,7 +140,10 @@ export default class NotesDisplay extends React.Component {
 
     componentDidMount() {
         let request = {
-            thread: "/noteDisplay"
+            thread: "/noteDisplay",
+            // data : {
+            //     sender : localStorage.getItem("userLogged")
+            // }
         }
 
         var self = this;
@@ -198,9 +200,6 @@ export default class NotesDisplay extends React.Component {
                                             <div className="noteCardDisplayTitle" >
                                                 {option.title}
                                                 <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
-                                                {/* <img src={require('../assets/images/unPinNote.svg')} alt="pin note"
-                                                    className="pinNoteImage" onClick={this.handlePinning} /> */}
-
                                             </div>
                                             <div className="noteCardDisplayDescription" >
                                                 {option.description}
@@ -241,9 +240,6 @@ export default class NotesDisplay extends React.Component {
                                                 <div className="noteCardDisplayTitle" >
                                                     {option.title}
                                                     <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
-                                                    {/* <img src={require('../assets/images/pinNote.svg')} alt="pin note"
-                                                        className="pinNoteImage" onClick={this.handlePinning} /> */}
-
                                                 </div>
                                                 <div className="noteCardDisplayDescription" >
                                                     {option.description}

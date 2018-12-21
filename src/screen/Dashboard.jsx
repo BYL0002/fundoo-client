@@ -34,6 +34,8 @@ class Dashboard extends React.Component {
         }
 
         return (
+                    // eslint-disable-next-line
+
             <div>
                 <Topbar getTopBarStatus = {this.handleDrawerStatus} notesView = {this.handleNotesView} />
                 <AddNotes drawerStatus = {this.state.drawerStatus} notesView = {this.state.noteViewStatus} />

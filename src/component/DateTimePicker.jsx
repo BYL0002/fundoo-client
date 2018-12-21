@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Popper, Paper, Input } from '@material-ui/core';
+import { Popper, Paper } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import moment from 'moment';
 
@@ -58,7 +58,7 @@ export default class DateTimePicker extends React.Component {
         })
         // console.log('selected date ', this.state.dateSelected);
         // console.log('selected date event ', event.target.value);
-        this.props.getDateTimePicked(event.target.value+defaultTime);
+        this.props.getDateTimePicked(event.target.value+' '+this.state.timeSelected);
     }
 
     handleTimeSelection = (event) => {
@@ -66,9 +66,11 @@ export default class DateTimePicker extends React.Component {
             timeSelected: event.target.value
         })
         console.log('selected time ', this.state.timeSelected);
+        this.props.getDateTimePicked(this.state.dateSelected+' '+event.target.value);
     }
 
     render() {
+        // eslint-disable-next-line
         return (
             <div>
                 <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
@@ -78,6 +80,7 @@ export default class DateTimePicker extends React.Component {
                                 {/* <div >
                                     <Input className = "dateTimePicker" name = "dt" type = "datetime-local" onChange = {this.handleDateTimeSelection} />
                                 </div> */}
+                                
                                 <div>
                                     <input defaultValue={defaultDateFormat} type="date" onChange={this.handleDateSelection} />
                                 </div>
