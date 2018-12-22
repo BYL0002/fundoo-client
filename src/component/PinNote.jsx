@@ -29,6 +29,9 @@ export default class PinNote extends React.Component {
     }
 
     handlePinning = () => {
+        this.setState({
+            isPin : !this.state.isPin
+        })
         this.props.getPin(!this.props.getNotePin, this.props.noteSelected);
     }
 

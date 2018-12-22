@@ -14,6 +14,7 @@ import NotesDisplay from './NotesDisplay';
 import ArchiveNote from './ArchiveNote';
 import NoteService from '../service/NoteService';
 import CloseIcon from '@material-ui/icons/Close';
+import PinNote from './PinNote';
 
 /**
  * @description AddNotes class component
@@ -80,10 +81,11 @@ class AddNotes extends React.Component {
         })
     }
 
-    getPin = () => {
+    getPin = (pinSet, note) => {
 
         this.setState({
-            pinChoosen: !this.state.pinChoosen
+            // pinChoosen: !this.state.pinChoosen
+            pinChoosen: pinSet
         })
     }
 
@@ -150,7 +152,7 @@ class AddNotes extends React.Component {
 
         NoteService.NotesAddition(request);
     }
-
+ 
     render() {
         let classCard;
         if (this.props.drawerStatus)
@@ -168,12 +170,12 @@ class AddNotes extends React.Component {
                                 <div className="completeNoteTakeCard" >
                                     <div>
                                         <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
-
-                                        {this.state.pinChoosen ? (
+                                        <PinNote noteSelected={'option'} getPin={this.getPin} getNotePin={false} />
+                                        {/* {this.state.pinChoosen ? (
                                             <img src={require('../assets/images/unPinNote.svg')} alt="pin note" className="pinNoteImage" onClick={this.getPin} />
                                         ) : (
                                                 <img src={require('../assets/images/pinNote.svg')} alt="pin note" className="pinNoteImage" onClick={this.getPin} />
-                                            )}
+                                            )} */}
 
                                     </div>
                                     <div>
@@ -191,10 +193,6 @@ class AddNotes extends React.Component {
                                                     variant="outlined"
                                                     className="chipOnCardReminder"
                                                 />
-                                                {/* <span>
-                                                        <img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />
-                                                        {this.state.reminderChoosen}
-                                                    </span> */}
                                             </div>
                                         )}
                                     <div>
