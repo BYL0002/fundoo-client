@@ -142,11 +142,13 @@ export default class NotesDisplay extends React.Component {
     }
 
     componentDidMount() {
+        console.log('localStorage.getItem("userLogged")------', localStorage.getItem("userLoggedId"));
+        
         let request = {
             thread: "/noteDisplay",
-            // data : {
-            //     sender : localStorage.getItem("userLogged")
-            // }
+            data : {
+                userId : localStorage.getItem("userLoggedId")
+            }
         }
 
         var self = this;

@@ -15,7 +15,7 @@ let defaultDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.
 var defaultDateFormat = moment(defaultDate).format('YYYY-MM-DD');
 
 let defaultTime = date.getHours() + ':' + date.getMinutes();
-console.log('defaultTime----', defaultTime);
+// console.log('defaultTime----', defaultTime);
 
 
 /**
@@ -36,7 +36,7 @@ export default class DateTimePicker extends React.Component {
     }
 
     handleShowDateTimePickerPopper = placement => event => {
-        console.log('popper open :- ', this.state.open);
+        // console.log('popper open :- ', this.state.open);
 
         const { currentTarget } = event;
         this.setState(state => ({
@@ -65,7 +65,7 @@ export default class DateTimePicker extends React.Component {
         this.setState({
             timeSelected: event.target.value
         })
-        console.log('selected time ', this.state.timeSelected);
+        // console.log('selected time ', this.state.timeSelected);
         this.props.getDateTimePicked(this.state.dateSelected+' '+event.target.value);
     }
 

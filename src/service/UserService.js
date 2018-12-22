@@ -16,7 +16,7 @@ const sendRequest = (request) => {
         })
             .then(response => {
                 if (response.data.status) {
-                    console.log('res on axios', response.data);
+                    // console.log('res on axios', response.data);
 
                     return response.data;
                 }
@@ -68,7 +68,7 @@ function loginService(request, callback) {
             sendRequest(request)
                 .then(res => {
                     if (res) {
-                        console.log('res on login', res);
+                        // console.log('res on login', res);
 
                         localStorage.setItem("userLogToken", res.token);
                         // console.log('user log token', localStorage.getItem("userLogToken"));
@@ -76,6 +76,10 @@ function loginService(request, callback) {
                         // console.log('user log name', localStorage.getItem("userLogName"));
                         localStorage.setItem("userLogged", res.message.email_id);
                         // console.log('user log email id', localStorage.getItem("userLogged"));
+
+                        localStorage.setItem("userLoggedId", res.message._id);
+                        // console.log('id in res', localStorage.getItem("userLoggedId"));
+                        
 
                         return callback(null, true);
                     }

@@ -1,0 +1,262 @@
+// /**
+//  * @description AddNotes Card component
+//  * @author Yash
+//  * @since 7/12/18
+//  * @version 1.2
+//  */
+
+// import React from 'react';
+// import { Card, InputBase, Button, Snackbar, IconButton, Chip } from '@material-ui/core';
+// // import { ClickAwayListener } from '@material-ui/core'
+// import ReminderPopper from './ReminderPopper';
+// import ColorSection from './ColorSection';
+// import NotesDisplay from './NotesDisplay';
+// import ArchiveNote from './ArchiveNote';
+// import NoteService from '../service/NoteService';
+// import CloseIcon from '@material-ui/icons/Close';
+// import PinNote from './PinNote';
+
+// /**
+//  * @description AddNotes class component
+//  */
+// class AddNotes extends React.Component {
+//     constructor(props) {
+//         super(props)
+
+//         this.state = {
+//             isToggleAddCard: false,
+//             isAddNoteCardStatus: true,
+//             collaboratorChoosen: "",
+//             colorSelect: "",
+//             reminderChoosen: "",
+//             noteTitle: "",
+//             noteDescription: "",
+//             imageAdded: "",
+//             archiveChoosen: false,
+//             pinChoosen: false,
+//             trashChoosen: false,
+//             snackbarStatus: false,
+//             snackbarMessage: "Note Archived!"
+//         }
+//         this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
+//         this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
+//         this.getBackGroundColor = this.getBackGroundColor.bind(this);
+//     }
+
+//     handleAddNoteCardDisplay() {
+//         this.setState({
+//             isAddNoteCardStatus: !this.state.isAddNoteCardStatus
+//         })
+//     }
+
+//     handleInputValue = (event) => {
+//         this.setState({
+//             [event.target.name]: event.target.value
+//         })
+//     }
+
+//     getInputValue = (event) => {
+//         this.setState({
+//             [event.target.name]: event.target.value
+//         })
+//     }
+
+//     getBackGroundColor = (colorSelected, note) => {
+//         this.setState({
+//             colorSelect: colorSelected
+//         })
+//     }
+
+//     getReminder = (reminderSet, note) => {
+//         console.log('ch', reminderSet);
+
+//         this.setState({
+//             reminderChoosen: reminderSet
+//         })
+//     }
+
+//     getReminderRemoved = () => {
+//         this.setState({
+//             reminderChoosen: ""
+//         })
+//     }
+
+//     getPin = (pinSet, note) => {
+
+//         this.setState({
+//             // pinChoosen: !this.state.pinChoosen
+//             pinChoosen: pinSet
+//         })
+//     }
+
+//     getTrash = (trashSet, note) => {
+//         this.setState({
+//             trashChoosen: trashSet
+//         });
+//     }
+
+//     handleSnackClose = (reason) => {
+//         if (reason === 'clickaway') {
+//             return;
+//         }
+
+//         this.setState({ snackbarStatus: false });
+//     };
+
+//     getArchive = (archiveSet) => {
+
+//         if (archiveSet) {
+//             this.setState({ archiveChoosen: archiveSet, snackbarStatus: true }, this.handleAddNoteRequest);
+//         }
+//     }
+
+//     handleAddNoteCardToggleStatus() {
+//         this.setState({
+//             isToggleAddCard: !this.state.isToggleAddCard
+//         })
+//     }
+
+//     handleAddNoteRequest() {
+
+//         this.setState({
+//             isToggleAddCard: !this.state.isToggleAddCard,
+//             colorSelect: "rgb(255, 255, 255)",
+//             pinChoosen: false,
+//             archiveChoosen: false,
+//             trashChoosen: false,
+//             reminderChoosen: "",
+//             noteTitle: "",
+//             noteDescription: "",
+//             imageAdded: "",
+//         });
+
+//         let userLogin = localStorage.getItem("userLogged");
+
+//         let request = {
+//             thread: "/noteAddition",
+//             data: {
+//                 sender: userLogin,
+//                 user_id: "",
+//                 title: this.state.noteTitle,
+//                 description: this.state.noteDescription,
+//                 collaborator: this.state.collaboratorChoosen,
+//                 reminder: this.state.reminderChoosen,
+//                 color: this.state.colorSelect,
+//                 imageAdded: this.state.imageAdded,
+//                 archive: this.state.archiveChoosen,
+//                 pin: this.state.pinChoosen,
+//                 trash: false
+//             }
+//         }
+//         // console.log('reques on component', request);
+
+//         NoteService.NotesAddition(request);
+//     }
+ 
+//     render() {
+//         let classCard;
+//         if (this.props.drawerStatus)
+//             classCard = "noteTakeCardAfterDrawerOpen";
+//         else
+//             classCard = "noteTakeCard";
+//         return (
+//             <div >
+
+//                 {this.state.isAddNoteCardStatus ? (
+//                     // <ClickAwayListener onClickAway={this.handleAddNoteCardToggleStatus}>
+//                     <Card className={classCard} >
+//                         <div style={{ backgroundColor: this.state.colorSelect }} >
+//                             {this.state.isToggleAddCard ? (
+//                                 <div className="completeNoteTakeCard" >
+//                                     <div>
+//                                         <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
+//                                         <PinNote noteSelected={'option'} getPin={this.getPin} getNotePin={false} />
+//                                         {/* {this.state.pinChoosen ? (
+//                                             <img src={require('../assets/images/unPinNote.svg')} alt="pin note" className="pinNoteImage" onClick={this.getPin} />
+//                                         ) : (
+//                                                 <img src={require('../assets/images/pinNote.svg')} alt="pin note" className="pinNoteImage" onClick={this.getPin} />
+//                                             )} */}
+
+//                                     </div>
+//                                     <div>
+//                                         <InputBase className="inputNoteTake" placeholder='Take a note' multiline name="noteDescription" onChange={this.handleInputValue} />
+//                                     </div>
+//                                     {this.state.reminderChoosen === "" ? (
+//                                         <div>
+//                                         </div>
+//                                     ) : (
+//                                             <div>
+//                                                 <Chip
+//                                                     icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+//                                                     label={<span className="reminderShowOnCardText" >  {this.state.reminderChoosen} </span>}
+//                                                     onDelete={this.getReminderRemoved}
+//                                                     variant="outlined"
+//                                                     className="chipOnCardReminder"
+//                                                 />
+//                                             </div>
+//                                         )}
+//                                     <div>
+//                                         <ReminderPopper getReminderChooseOption={this.getReminder} />
+//                                         <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
+//                                         <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
+//                                         <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+//                                         <ArchiveNote getArchive={this.getArchive} />
+//                                         {/* <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
+//                                         <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" /> */}
+//                                         <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+//                                     </div>
+//                                 </div>
+//                             ) : (
+//                                     <div>
+//                                         <InputBase className="inputNoteTake" placeholder="Take a note .." onClick={this.handleAddNoteCardToggleStatus} />
+//                                     </div>
+//                                 )
+//                             }
+//                         </div>
+//                     </Card>
+//                     // </ClickAwayListener>
+//                 ) : (
+//                         <div>
+//                             <Card className="noteTakeCard" >
+//                                 <div className="completeNoteTakeCard" >
+//                                     <div className="CollaboratorHeading" >
+//                                         <span  >Collaborators</span>
+//                                     </div>
+//                                     <div>
+//                                         <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardDisplay} >Close</Button>
+//                                     </div>
+//                                 </div>
+//                             </Card>
+//                         </div>
+//                     )
+//                 }
+//                 <Snackbar
+//                     anchorOrigin={{
+//                         vertical: 'bottom',
+//                         horizontal: 'left',
+//                     }}
+//                     open={this.state.snackbarStatus}
+//                     autoHideDuration={6000}
+//                     onClose={this.handleSnackClose}
+//                     ContentProps={{
+//                         'aria-describedby': 'message-id',
+//                     }}
+//                     color="primary"
+//                     variant="success"
+//                     message={<span id="message-id">{this.state.snackbarMessage}</span>}
+//                     action={[
+//                         <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
+//                             <CloseIcon />
+//                         </IconButton>,
+//                     ]}
+//                 />
+//                 <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} />
+//             </div>
+//         )
+//     }
+// }
+
+// /**
+//  * @exports AddNotes class component
+//  */
+// export default AddNotes;

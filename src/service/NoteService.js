@@ -51,10 +51,13 @@ const getRequest = (request) => {
         let config = {
             'headers': {
                 'token': '' + tokenToGetNote
+            },
+            params : {
+                'userId': request.userId
             }
         };
 
-        return axios.get(request.thread, config)
+        return axios.get(request.thread, config )
             .then(response => {
                 if (response.data.status) {
                     // console.log('res on axios', response.data);

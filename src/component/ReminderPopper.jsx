@@ -81,7 +81,7 @@ export default class ReminderPopper extends React.Component {
             
             this.props.getReminderChooseOption( reminderValueSet+'AM' , this.props.noteSelected);
         }
-        else {
+        else if( reminderChoosen === '3') {
 
             this.setState({
                 open: false,

@@ -136,7 +136,7 @@ class AddNotes extends React.Component {
             thread: "/noteAddition",
             data: {
                 sender: userLogin,
-                user_id: "",
+                userId: "",
                 title: this.state.noteTitle,
                 description: this.state.noteDescription,
                 collaborator: this.state.collaboratorChoosen,
