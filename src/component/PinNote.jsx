@@ -13,6 +13,21 @@
  */
 export default class PinNote extends React.Component {
 
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            isPin : false
+        }
+    }
+
+    componentDidMount()
+    {
+        this.setState({
+            isPin : this.props.getNotePin
+        })
+    }
+
     handlePinning = () => {
         this.props.getPin(!this.props.getNotePin, this.props.noteSelected);
     }
@@ -20,7 +35,7 @@ export default class PinNote extends React.Component {
     render(){
         return (
             <span>
-                { this.props.getNotePin  ? (
+                { this.state.isPin ? (
                     <img src = {require('../assets/images/unPinNote.svg')} alt ="pin note" className = "pinNoteImage" onClick = {this.handlePinning} />
                 ) : (
                     <img src = {require('../assets/images/pinNote.svg')} alt ="pin note" className = "pinNoteImage" onClick = {this.handlePinning} />
