@@ -14,12 +14,12 @@ import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
 import PinNote from './PinNote';
 import CloseIcon from '@material-ui/icons/Close';
+import AddNotes from './AddNotes';
 // import NoteServiceClass from '../service/NoteServiceClass';
 const NoteServiceClass = require('../service/NoteServiceClass');
 
 const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 
-let notesLayoutDiv, notesLayoutClass;
 export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
@@ -141,15 +141,25 @@ export default class NotesDisplay extends React.Component {
         }
     }
 
+    getNewNote = (newNote) => {
+        let newNotesArray = this.state.notesDisplay;
+        newNotesArray.push(newNote);
+        this.setState({
+            notesDisplay: newNotesArray
+        })
+    }
+
     componentDidMount() {
-        console.log('localStorage.getItem("userLogged")------', localStorage.getItem("userLoggedId"));
-        
+        // console.log('localStorage.getItem("userLogged")------', localStorage.getItem("userLoggedId"));
+
         let request = {
             thread: "/noteDisplay",
-            data : {
-                userId : localStorage.getItem("userLoggedId")
+            data: {
+                userId: localStorage.getItem("userLoggedId")
             }
         }
+
+
 
         var self = this;
 
@@ -166,30 +176,17 @@ export default class NotesDisplay extends React.Component {
                 })
             }
         });
+
     }
 
     render() {
-        let NotesDisplayDivClass;
-        if (this.props.sidebarStatus) {
-            NotesDisplayDivClass = "NotesDisplayDivSidebarOpen";
-        }
-        else {
-            NotesDisplayDivClass = "NotesDisplayDivSidebarClose";
-        }
-
-        if (this.props.notesView) {
-            notesLayoutDiv = "notesGridDisplayDiv";
-            notesLayoutClass = "notesGridDisplayCard";
-        }
-        else {
-            notesLayoutDiv = "notesListDisplayDiv";
-            notesLayoutClass = "notesListDisplayCard";
-        }
-
         return (
-            <div className={NotesDisplayDivClass} >
 
-                <div className={notesLayoutDiv} >
+            <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
+
+
+
+                <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
 
                     {/* <span className="pinnedNoteTitle" >Pinned Notes</span> */}
 
@@ -197,88 +194,98 @@ export default class NotesDisplay extends React.Component {
 
                         <div key={index} >
 
-                            {option.pin ? (
-                                <div className="pinnedNoteDiv" >
-                                    <Card className={notesLayoutClass} >
-
-                                        <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
-                                            <div className="noteCardDisplayTitle" >
-                                                {option.title}
-                                                <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
-                                            </div>
-                                            <div className="noteCardDisplayDescription" >
-                                                {option.description}
-                                            </div>
-
-                                            {option.reminder === "" ? (
-                                                <div>
-                                                </div>
-                                            ) : (
-                                                    <div >
-                                                        <Chip
-                                                            icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                                            label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
-                                                            onDelete={() => this.getReminderRemoved(option)}
-                                                            variant="outlined"
-                                                            className="chipOnCardReminder"
-                                                        />
-                                                    </div>
-                                                )}
-
-                                            <div>
-                                                <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
-                                                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
-                                                <ColorSection getColor={this.getBackGroundColor} noteSelected={option} />
-                                                <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                                <ArchiveNote />
-                                                <MoreOptions />
-                                            </div>
-                                        </div>
-
-                                    </Card>
+                            {option.trash ? (
+                                <div>
                                 </div>
                             ) : (
-                                    <div className="OtherNoteShowDiv" >
-                                        <Card className={notesLayoutClass} >
+                                    <div>
 
-                                            <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
-                                                <div className="noteCardDisplayTitle" >
-                                                    {option.title}
-                                                    <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
-                                                </div>
-                                                <div className="noteCardDisplayDescription" >
-                                                    {option.description}
-                                                </div>
-                                                {option.reminder === "" ? (
-                                                    <div>
-                                                    </div>
-                                                ) : (
-                                                        <div >
-                                                            <Chip
-                                                                icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                                                label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
-                                                                onDelete={() => this.getReminderRemoved(option)}
-                                                                variant="outlined"
-                                                                className="chipOnCardReminder"
-                                                            />
+                                        {option.pin ? (
+                                            <div className="pinnedNoteDiv" >
+                                                <Card className={this.props.notesView ? "notesGridDisplayCard" : "notesListDisplayCard"} >
+
+                                                    <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
+                                                        <div className="noteCardDisplayTitle" >
+                                                            {option.title}
+                                                            <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
                                                         </div>
-                                                    )}
-                                                <div>
-                                                    <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
-                                                    <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
-                                                    <ColorSection getColor={this.getBackGroundColor} option={option} />
-                                                    <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                                    <ArchiveNote />
-                                                    <MoreOptions />
-                                                </div>
+                                                        <div className="noteCardDisplayDescription" >
+                                                            {option.description}
+                                                        </div>
+
+                                                        {option.reminder === "" ? (
+                                                            <div>
+                                                            </div>
+                                                        ) : (
+                                                                <div >
+                                                                    <Chip
+                                                                        icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                                                        label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
+                                                                        onDelete={() => this.getReminderRemoved(option)}
+                                                                        variant="outlined"
+                                                                        className="chipOnCardReminder"
+                                                                    />
+                                                                </div>
+                                                            )}
+
+                                                        <div>
+                                                            <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
+                                                            <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
+                                                            <ColorSection getColor={this.getBackGroundColor} noteSelected={option} />
+                                                            <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                                            <ArchiveNote />
+                                                            <MoreOptions />
+                                                        </div>
+                                                    </div>
+
+                                                </Card>
                                             </div>
+                                        ) : (
+                                                <div className="OtherNoteShowDiv" >
+                                                    <Card className={this.props.notesView ? "notesGridDisplayCard" : "notesListDisplayCard"} >
+
+                                                        <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
+                                                            <div className="noteCardDisplayTitle" >
+                                                                {option.title}
+                                                                <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
+                                                            </div>
+                                                            <div className="noteCardDisplayDescription" >
+                                                                {option.description}
+                                                            </div>
+                                                            {option.reminder === "" ? (
+                                                                <div>
+                                                                </div>
+                                                            ) : (
+                                                                    <div >
+                                                                        <Chip
+                                                                            icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                                                            label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
+                                                                            onDelete={() => this.getReminderRemoved(option)}
+                                                                            variant="outlined"
+                                                                            className="chipOnCardReminder"
+                                                                        />
+                                                                    </div>
+                                                                )}
+                                                            <div>
+                                                                <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
+                                                                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
+                                                                <ColorSection getColor={this.getBackGroundColor} option={option} />
+                                                                <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                                                <ArchiveNote />
+                                                                <MoreOptions />
+                                                            </div>
+                                                        </div>
 
 
-                                        </Card>
+                                                    </Card>
+
+                                                </div>
+
+                                            )}
 
                                     </div>
-
                                 )}
+
 
                         </div>
 

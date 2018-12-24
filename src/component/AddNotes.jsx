@@ -16,6 +16,8 @@ import NoteService from '../service/NoteService';
 import CloseIcon from '@material-ui/icons/Close';
 import PinNote from './PinNote';
 
+var newNote;
+
 /**
  * @description AddNotes class component
  */
@@ -150,7 +152,12 @@ class AddNotes extends React.Component {
         }
         // console.log('reques on component', request);
 
-        NoteService.NotesAddition(request);
+        NoteService.NotesAddition(request, (err, data) => {
+            if(data !== null || data !== undefined)
+            {
+                newNote = data;
+            }
+        });
     }
  
     render() {
@@ -250,7 +257,7 @@ class AddNotes extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} />
+                {/* <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={newNote} /> */}
             </div>
         )
     }

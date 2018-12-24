@@ -27,7 +27,7 @@ const sendRequest = (request) => {
                 if (response.data.status) {
                     console.log('res on axios', response.data);
 
-                    return response.data;
+                    return response.data.message;
                 }
                 else {
                     console.log('Something Failed');
@@ -51,9 +51,6 @@ const getRequest = (request) => {
         let config = {
             'headers': {
                 'token': '' + tokenToGetNote
-            },
-            params : {
-                'userId': request.userId
             }
         };
 
@@ -77,11 +74,12 @@ const getRequest = (request) => {
 }
 
 
-function NotesAddition(request) {
+function NotesAddition(request, callback) {
 
     return sendRequest(request)
         .then(res => {
-            console.log('res on function', res);
+            // console.log('res on function', res);
+            return callback(res);
         })
 }
 

@@ -48,7 +48,7 @@ export class NoteServiceClass {
 
         return this.sendUpdateRequest(request)
             .then(res => {
-                console.log('res on function', res);
+                // console.log('res on function', res);
             })
     }
 

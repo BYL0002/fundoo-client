@@ -73,6 +73,10 @@ class TopbarComponent extends React.Component {
     // }
   }
 
+  refreshPage = () => {
+    window.location.reload();
+  }
+
   render() {
     if (this.state.responseGot) return <Redirect to="/" />
     return (
@@ -84,8 +88,11 @@ class TopbarComponent extends React.Component {
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
               </IconButton>
               <Sidebar stateOpen={this.state.sidebarOpenStatus} />
-              <div style={{ color: "black" }} >Fundoo Notes</div>
+              <div style={{ color: "black" }} >FundooNotes</div>
               <TopBarSearchComponent />
+
+              <img src={require("../assets/images/refresh.svg")} alt="Refresh" className="refreshButtonOnTop" onClick={this.refreshPage} />
+
               {this.state.isView ? (
                 <img src={require("../assets/images/gridNotes.svg")} alt="listView" className="cssClassNotesOnView" onClick={this.handleNotesView.bind(this)} />
               ) : (

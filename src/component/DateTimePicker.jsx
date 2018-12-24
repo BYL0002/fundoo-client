@@ -8,11 +8,13 @@
 import React from 'react';
 import { Popper, Paper } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
-import moment from 'moment';
+// import moment from 'moment';
 
 const date = new Date();
-let defaultDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
-var defaultDateFormat = moment(defaultDate).format('YYYY-MM-DD');
+let defaultDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+
+// var defaultDateFormat = moment(defaultDate).format('YYYY-MM-DD');
+var defaultDateFormat = defaultDate
 
 let defaultTime = date.getHours() + ':' + date.getMinutes();
 // console.log('defaultTime----', defaultTime);
