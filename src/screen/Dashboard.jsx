@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Topbar from '../component/Topbar';
 import AddNotes from '../component/AddNotes';
+import NotesDisplay from '../component/NotesDisplay';
 
 class Dashboard extends React.Component {
 
@@ -39,6 +40,7 @@ class Dashboard extends React.Component {
             <div>
                 <Topbar getTopBarStatus = {this.handleDrawerStatus} notesView = {this.handleNotesView} />
                 <AddNotes drawerStatus = {this.state.drawerStatus} notesView = {this.state.noteViewStatus} />
+                <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={newNote} />
             </div>
         )
     }

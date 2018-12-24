@@ -257,7 +257,7 @@ class AddNotes extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                {/* <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={newNote} /> */}
+                <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={newNote} />
             </div>
         )
     }

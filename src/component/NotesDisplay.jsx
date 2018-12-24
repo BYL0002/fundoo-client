@@ -141,9 +141,9 @@ export default class NotesDisplay extends React.Component {
         }
     }
 
-    getNewNote = (newNote) => {
+    getNewNote = () => {
         let newNotesArray = this.state.notesDisplay;
-        newNotesArray.push(newNote);
+        newNotesArray.push(this.props.getNewNote);
         this.setState({
             notesDisplay: newNotesArray
         })
