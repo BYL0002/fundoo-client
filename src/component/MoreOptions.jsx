@@ -29,7 +29,11 @@ export default class MoreOptions extends React.Component {
         }));
     }
 
-
+    getNoteDelete = () => {
+        
+        this.props.getTrash(!this.props.noteSelected.trash, this.props.noteSelected);
+        
+    }
 
     render() {
 
@@ -40,8 +44,8 @@ export default class MoreOptions extends React.Component {
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper className="colorSelectionPopperNoteAddCard"  >
                                 <div >
-                                    <MenuItem>Delete</MenuItem>
-                                    <MenuItem>Add Label</MenuItem>
+                                    <MenuItem onClick={this.getNoteEitherDeleteOrArchive} >Delete</MenuItem>
+                                    <MenuItem onClick={this.getNoteEitherDeleteOrArchive} >Add Label</MenuItem>
                                 </div>
                             </Paper>
                         </Fade>

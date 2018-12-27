@@ -54,7 +54,7 @@ export default class ReminderPopper extends React.Component {
             open : false
         })
 
-        reminderValueSet = moment(dateTimePick).format('ddd Do MMM h:mm a');;
+        reminderValueSet = moment(dateTimePick).format('ddd Do MMM h:mm a');
         this.props.getReminderChooseOption(reminderValueSet, this.props.noteSelected);
         
     }

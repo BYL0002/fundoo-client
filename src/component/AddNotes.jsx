@@ -16,7 +16,6 @@ import NoteService from '../service/NoteService';
 import CloseIcon from '@material-ui/icons/Close';
 import PinNote from './PinNote';
 
-var newNote;
 
 /**
  * @description AddNotes class component
@@ -43,6 +42,7 @@ class AddNotes extends React.Component {
         this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
         this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
         this.getBackGroundColor = this.getBackGroundColor.bind(this);
+        this.notedisp = React.createRef();
     }
 
     handleAddNoteCardDisplay() {
@@ -70,7 +70,6 @@ class AddNotes extends React.Component {
     }
 
     getReminder = (reminderSet, note) => {
-        console.log('ch', reminderSet);
 
         this.setState({
             reminderChoosen: reminderSet
@@ -105,7 +104,7 @@ class AddNotes extends React.Component {
         this.setState({ snackbarStatus: false });
     };
 
-    getArchive = (archiveSet) => {
+    getArchive = (archiveSet, note) => {
 
         if (archiveSet) {
             this.setState({ archiveChoosen: archiveSet, snackbarStatus: true }, this.handleAddNoteRequest);
@@ -153,9 +152,10 @@ class AddNotes extends React.Component {
         // console.log('reques on component', request);
 
         NoteService.NotesAddition(request, (err, data) => {
+            
             if(data !== null || data !== undefined)
             {
-                newNote = data;
+                this.notedisp.current.addNewNote(data);
             }
         });
     }
@@ -257,7 +257,7 @@ class AddNotes extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={newNote} />
+                <NotesDisplay ref = {this.notedisp} notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} />
             </div>
         )
     }

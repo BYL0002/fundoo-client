@@ -7,7 +7,6 @@
 
 import React from 'react';
 
-const isArchive = false;
 /**
  * @description Class Component
  * @exports Class to render
@@ -15,7 +14,11 @@ const isArchive = false;
 export default class ArchiveNote extends React.Component {
 
     handleArchive = () => {
-        this.props.getArchive(!isArchive);
+
+        console.log('props---archive', this.props.noteSelected.archive);
+        
+        
+        this.props.getArchive(!this.props.noteSelected.archive, this.props.noteSelected);
     }
 
     render(){

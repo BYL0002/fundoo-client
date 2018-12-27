@@ -14,7 +14,6 @@ import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
 import PinNote from './PinNote';
 import CloseIcon from '@material-ui/icons/Close';
-import AddNotes from './AddNotes';
 // import NoteServiceClass from '../service/NoteServiceClass';
 const NoteServiceClass = require('../service/NoteServiceClass');
 
@@ -25,6 +24,7 @@ export default class NotesDisplay extends React.Component {
         super(props);
         this.state = {
             notesDisplay: [],
+            newNote : this.props.getNewNote,
             snackbarStatus: false,
             snackbarMessage: "Reminder!"
         }
@@ -141,9 +141,61 @@ export default class NotesDisplay extends React.Component {
         }
     }
 
-    getNewNote = () => {
+    getTrash = (trashSet, note) => {
         let newNotesArray = this.state.notesDisplay;
-        newNotesArray.push(this.props.getNewNote);
+
+        let request = {
+            thread: "/updateNoteReminder",
+            data: {
+                note: {
+                    _id: note._id,
+                    trash: trashSet
+                }
+            }
+        }
+
+        NoteServiceClassObject.NotesUpdation(request);
+
+        for (let i = 0; i < newNotesArray.length; i++) {
+            if (note._id === newNotesArray[i]._id) {
+                newNotesArray[i].trash = trashSet
+
+                this.setState({
+                    notesDisplay: newNotesArray
+                })
+            }
+        }
+    }
+
+    getArchive = (archiveSet, note) => {
+        let newNotesArray = this.state.notesDisplay;
+
+        let request = {
+            thread: "/updateNoteReminder",
+            data: {
+                note: {
+                    _id: note._id,
+                    archive: archiveSet
+                }
+            }
+        }
+
+        NoteServiceClassObject.NotesUpdation(request);
+
+        for (let i = 0; i < newNotesArray.length; i++) {
+            if (note._id === newNotesArray[i]._id) {
+                newNotesArray[i].archive = archiveSet
+
+                this.setState({
+                    notesDisplay: newNotesArray
+                })
+            }
+        }
+    }
+
+    addNewNote = (note) => {
+        let newNotesArray = this.state.notesDisplay;
+        newNotesArray.push(note);
         this.setState({
             notesDisplay: newNotesArray
         })
@@ -158,8 +210,6 @@ export default class NotesDisplay extends React.Component {
                 userId: localStorage.getItem("userLoggedId")
             }
         }
-
-
 
         var self = this;
 
@@ -183,8 +233,6 @@ export default class NotesDisplay extends React.Component {
         return (
 
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
-
-
 
                 <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
 
@@ -233,8 +281,8 @@ export default class NotesDisplay extends React.Component {
                                                             <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
                                                             <ColorSection getColor={this.getBackGroundColor} noteSelected={option} />
                                                             <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                                            <ArchiveNote />
-                                                            <MoreOptions />
+                                                            <ArchiveNote noteSelected={option} getArchive={this.getArchive} />
+                                                            <MoreOptions noteSelected={option} getTrash={this.getTrash} />
                                                         </div>
                                                     </div>
 
@@ -271,8 +319,8 @@ export default class NotesDisplay extends React.Component {
                                                                 <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
                                                                 <ColorSection getColor={this.getBackGroundColor} option={option} />
                                                                 <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                                                <ArchiveNote />
-                                                                <MoreOptions />
+                                                                <ArchiveNote noteSelected={option} getArchive={this.getArchive} />
+                                                                <MoreOptions noteSelected={option} getTrash={this.getTrash} />
                                                             </div>
                                                         </div>
 

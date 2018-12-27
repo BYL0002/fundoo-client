@@ -1,12 +1,13 @@
 import React from 'react';
 import { InputBase } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 
 class TopBarSearchComponent extends React.Component {
     render() {
         return (
             <div className="topBarSearchDiv" >
-                <span className="searchIconTopBar"> <SearchIcon/></span>
+                {/* <span className="searchIconTopBar"> <SearchIcon/></span> */}
+                <img className="searchIconTopBar" src={require("../assets/images/searchIcon.svg") } alt="searchIcon" />
                 <span > <InputBase className = "topBarSearchBar" placeholder="Search" /></span>
             </div>
         )

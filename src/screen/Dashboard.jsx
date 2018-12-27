@@ -2,16 +2,14 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Topbar from '../component/Topbar';
 import AddNotes from '../component/AddNotes';
-import NotesDisplay from '../component/NotesDisplay';
 
 class Dashboard extends React.Component {
 
-    constructor() 
-    {
+    constructor() {
         super();
         this.state = {
-            drawerStatus : "",
-            noteViewStatus : true
+            drawerStatus: "",
+            noteViewStatus: true
         }
         this.handleDrawerStatus = this.handleDrawerStatus.bind(this);
     }
@@ -19,13 +17,13 @@ class Dashboard extends React.Component {
 
     handleDrawerStatus = (status) => {
         this.setState({
-            drawerStatus : status
-        })   
+            drawerStatus: status
+        })
     }
-    
+
     handleNotesView = (status) => {
         this.setState({
-            noteViewStatus : status
+            noteViewStatus: status
         })
     }
 
@@ -35,12 +33,11 @@ class Dashboard extends React.Component {
         }
 
         return (
-                    // eslint-disable-next-line
+            // eslint-disable-next-line
 
             <div>
-                <Topbar getTopBarStatus = {this.handleDrawerStatus} notesView = {this.handleNotesView} />
-                <AddNotes drawerStatus = {this.state.drawerStatus} notesView = {this.state.noteViewStatus} />
-                <NotesDisplay notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={newNote} />
+                <Topbar getTopBarStatus={this.handleDrawerStatus} notesView={this.handleNotesView} />
+                <AddNotes drawerStatus={this.state.drawerStatus} notesView={this.state.noteViewStatus} />
             </div>
         )
     }
