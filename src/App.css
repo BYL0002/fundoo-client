@@ -558,6 +558,10 @@
     display: flex;
   }
 
+  .topBarSearchBar::selection {
+    background-color: aqua;
+  }
+
   .searchIconTopBar {
     line-height: 24px;
     margin-top: 3px;
