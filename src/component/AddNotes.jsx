@@ -15,7 +15,7 @@ import ArchiveNote from './ArchiveNote';
 import NoteService from '../service/NoteService';
 import CloseIcon from '@material-ui/icons/Close';
 import PinNote from './PinNote';
-
+import UploadImage from './UploadImage';
 
 /**
  * @description AddNotes class component
@@ -206,7 +206,8 @@ class AddNotes extends React.Component {
                                         <ReminderPopper getReminderChooseOption={this.getReminder} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
                                         <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
-                                        <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                        <UploadImage />
+                                        {/* <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" /> */}
                                         <ArchiveNote getArchive={this.getArchive} />
                                         {/* <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" /> */}

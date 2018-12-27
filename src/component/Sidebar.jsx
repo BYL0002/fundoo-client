@@ -31,11 +31,17 @@ class Sidebar extends React.Component {
 
     }
 
+
+    sideBarOptionSelected = (event) => {
+        console.log(event.target.id);
+        
+    }
+
     render() {
 
         const sideItems = (
             <div>
-                <MenuItem className="sideBarMenuItems" >
+                <MenuItem className="sideBarMenuItems" id={1} onClick={this.sideBarOptionSelected} >
                     <img className="sideBarImages" src={require('../assets/images/SideBarNoteImage.svg')} alt="note" />
                     <span className="sideBarText" >Notes</span>
                 </MenuItem>
