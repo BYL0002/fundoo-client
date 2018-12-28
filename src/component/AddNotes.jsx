@@ -258,7 +258,7 @@ class AddNotes extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                <NotesDisplay ref = {this.notedisp} notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} />
+                <NotesDisplay ref = {this.notedisp} getSidebarTabSelected={this.props.getSidebarTabSelected} notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} />
             </div>
         )
     }

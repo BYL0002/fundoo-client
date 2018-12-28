@@ -101,7 +101,7 @@ export default class ColorSection extends React.Component {
             },
             {
                 colorClass: "colorPaletteGray",
-                colorCode: "rgb(128, 128, 128)",
+                colorCode: "rgb(232, 234, 237)",
                 colorName: "Gray"
             },
             {

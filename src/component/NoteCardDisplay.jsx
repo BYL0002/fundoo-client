@@ -14,14 +14,10 @@ import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
 import PinNote from './PinNote';
 import CloseIcon from '@material-ui/icons/Close';
-import NoteCardDisplay from './NoteCardDisplay';
-
-// import NoteServiceClass from '../service/NoteServiceClass';
 const NoteServiceClass = require('../service/NoteServiceClass');
-
 const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 
-export default class NotesDisplay extends React.Component {
+export default class NoteCardDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -182,6 +178,8 @@ export default class NotesDisplay extends React.Component {
             }
         }
 
+        this.props.getUpdate(request);
+
         NoteServiceClassObject.NotesUpdation(request);
 
         for (let i = 0; i < newNotesArray.length; i++) {
@@ -193,10 +191,6 @@ export default class NotesDisplay extends React.Component {
                 })
             }
         }
-    }
-
-    getUpdate = (request) => {
-        NoteServiceClassObject.NotesUpdation(request);
     }
 
     addNewNote = (note) => {
@@ -236,11 +230,14 @@ export default class NotesDisplay extends React.Component {
     }
 
     render() {
-
-        let pinnedNotes = () => {
-            for (let i = 0; i < this.state.notesDisplay.length; i++) {
-                if (option.trash === false && option.archive === false && option.pin === true) {
-                    <NoteCardDisplay noteSelected={option} getUpdate={this.getUpdate} />
+        let isPinnedCounter = 0, pinnedNotesArray = [];
+        for (let i = 0; i < this.state.notesDisplay.length; i++) {
+            isPinnedCounter++;
+            if (this.state.notesDisplay.trash === false) {
+                if (this.state.notesDisplay.archive === false) {
+                    if (this.state.notesDisplay.pin === true) {
+                        pinnedNotesArray.push(this.state.notesDisplay);
+                    }
                 }
             }
         }
@@ -250,68 +247,77 @@ export default class NotesDisplay extends React.Component {
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
 
                 <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
-                    <Card className={this.props.notesView ? "notesGridDisplayCard" : "notesListDisplayCard"} >
 
-                        <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
-                            <div className="noteCardDisplayTitleDiv" >
-                                <div className="noteCardDisplayTitle" > {option.title}</div>
-                                <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
+                    {/* <span className="pinnedNoteTitle" >Pinned Notes</span> */}
 
-                            </div>
-                            <div className="noteCardDisplayDescription" >
-                                {option.description}
-                            </div>
+                    {this.props.noteSelected.map((option, index) => (
 
-                            {option.reminder === "" ? (
-                                <div>
-                                </div>
-                            ) : (
-                                    <div >
-                                        <Chip
-                                            icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                            label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
-                                            onDelete={() => this.getReminderRemoved(option)}
-                                            variant="outlined"
-                                            className="chipOnCardReminder"
-                                        />
+                        <div key={index} >
+                            <Card className={this.props.notesView ? "notesGridDisplayCard" : "notesListDisplayCard"} >
+
+                                <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
+                                    <div className="noteCardDisplayTitleDiv" >
+                                        <div className="noteCardDisplayTitle" > {option.title}</div>
+                                        <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
+
                                     </div>
-                                )}
+                                    <div className="noteCardDisplayDescription" >
+                                        {option.description}
+                                    </div>
 
-                            <div>
-                                <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
-                                <ColorSection getColor={this.getBackGroundColor} noteSelected={option} />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                <ArchiveNote noteSelected={option} getArchive={this.getArchive} />
-                                <MoreOptions noteSelected={option} getTrash={this.getTrash} />
-                            </div>
+                                    {option.reminder === "" ? (
+                                        <div>
+                                        </div>
+                                    ) : (
+                                            <div >
+                                                <Chip
+                                                    icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                                    label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
+                                                    onDelete={() => this.getReminderRemoved(option)}
+                                                    variant="outlined"
+                                                    className="chipOnCardReminder"
+                                                />
+                                            </div>
+                                        )}
+
+                                    <div>
+                                        <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
+                                        <ColorSection getColor={this.getBackGroundColor} noteSelected={option} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                        <ArchiveNote noteSelected={option} getArchive={this.getArchive} />
+                                        <MoreOptions noteSelected={option} getTrash={this.getTrash} />
+                                    </div>
+                                </div>
+
+                            </Card>
                         </div>
 
-                    </Card>
+
+                    ))}
+
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.snackbarStatus}
+                        autoHideDuration={6000}
+                        onClose={this.handleSnackClose}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        color="primary"
+                        variant="success"
+                        message={<span id="message-id">{this.state.snackbarMessage}</span>}
+                        action={[
+                            <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
+                                <CloseIcon />
+                            </IconButton>,
+                        ]}
+                    />
+
                 </div>
-
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.snackbarStatus}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    color="primary"
-                    variant="success"
-                    message={<span id="message-id">{this.state.snackbarMessage}</span>}
-                    action={[
-                        <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
-                            <CloseIcon />
-                        </IconButton>,
-                    ]}
-                />
-
-            </div >
 
             </div >
         )

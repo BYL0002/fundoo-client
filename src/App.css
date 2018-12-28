@@ -724,6 +724,7 @@ div .sideBarMenuItems {
   margin-left : 19px;
   width : 18px;
   position: static;
+  opacity: 0.7;
   /* vertical-align: top; */
 }
 
@@ -739,6 +740,10 @@ div .sideBarMenuItems {
   height : 280px;
   margin-top : 6px;
   margin-left : 250px;
+}
+
+.reminderPopperNoteAddCard:hover .noteAddFeatureImages {
+  visibility: visible;
 }
 
 .reminderTodayLabel {
@@ -1002,7 +1007,7 @@ div .notesGridDisplayCard {
   min-width : 300px;
   min-height : 120px;
   margin : 10px;
-  border-radius: 15px;
+  border-radius: 9px;
 }
 
 .notesGridDisplayCard .noteAddFeatureImages {
@@ -1014,7 +1019,7 @@ div .notesGridDisplayCard {
 }
 
 .notesGridDisplayCard:hover {
-  box-shadow: 1px 1px 15px #888888;
+  box-shadow: 1px 1px 10px ;
 }
 
 div .notesListDisplayCard {
@@ -1024,7 +1029,7 @@ div .notesListDisplayCard {
   min-width : 500px;
   min-height : 100px;
   margin: 25px;
-  border-radius: 15px;
+  border-radius: 9px;
 }
 
 .notesListDisplayCard .noteAddFeatureImages {
@@ -1036,7 +1041,7 @@ div .notesListDisplayCard {
 }
 
 .notesListDisplayCard:hover {
-  box-shadow: 1px 1px 15px #888888;
+  box-shadow: 1px 1px 10px;
 }
 
 .datePickerDiv {
@@ -1051,10 +1056,15 @@ div .notesListDisplayCard {
   width : 200px;
 }
 
-.noteCardDisplayTitle {
+.noteCardDisplayTitleDiv {
+  display: flex;
   font-size: 21px;
   margin-left: 5px;
-  padding: 2px;
+  padding: 3px;
+}
+
+.noteCardDisplayTitle {
+  width: 100%;
 }
 
 .noteCardDisplayDescription {
