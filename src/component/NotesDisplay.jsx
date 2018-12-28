@@ -6,19 +6,9 @@
  */
 
 import React from 'react';
-import { Card, Chip, Snackbar, IconButton } from '@material-ui/core';
 import NoteService from '../service/NoteService';
-import ReminderPopper from './ReminderPopper';
-import ColorSection from './ColorSection';
-import ArchiveNote from './ArchiveNote';
-import MoreOptions from './MoreOptions';
-import PinNote from './PinNote';
-import CloseIcon from '@material-ui/icons/Close';
 import NoteCardDisplay from './NoteCardDisplay';
-
-// import NoteServiceClass from '../service/NoteServiceClass';
 const NoteServiceClass = require('../service/NoteServiceClass');
-
 const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 
 export default class NotesDisplay extends React.Component {
@@ -32,172 +22,168 @@ export default class NotesDisplay extends React.Component {
         }
     }
 
-    getBackGroundColor = (colorSelected, note) => {
-        let newNotesArray = this.state.notesDisplay;
-        console.log('note selected ---------', note);
+    // getBackGroundColor = (colorSelected, note) => {
+    //     let newNotesArray = this.state.notesDisplay;
+    //     console.log('note selected ---------', note);
 
-        let request = {
-            thread: "/updateNoteColor",
-            data: {
-                note: {
-                    _id: note._id,
-                    color: colorSelected
-                }
-            }
-        }
+    //     let request = {
+    //         thread: "/updateNoteColor",
+    //         data: {
+    //             note: {
+    //                 _id: note._id,
+    //                 color: colorSelected
+    //             }
+    //         }
+    //     }
 
-        /**
-         * @description This is for generic Updation
-         */
-        // NoteService.NotesUpdation(request);
+    //     /**
+    //      * @description This is for generic Updation
+    //      */
+    //     // NoteService.NotesUpdation(request);
 
-        NoteServiceClassObject.NotesUpdation(request);
+    //     NoteServiceClassObject.NotesUpdation(request);
 
-        for (let i = 0; i < newNotesArray.length; i++) {
-            if (note._id === newNotesArray[i]._id) {
-                newNotesArray[i].color = colorSelected
+    //     for (let i = 0; i < newNotesArray.length; i++) {
+    //         if (note._id === newNotesArray[i]._id) {
+    //             newNotesArray[i].color = colorSelected
 
-                this.setState({
-                    notesDisplay: newNotesArray
-                })
-            }
-        }
-    }
+    //             this.setState({
+    //                 notesDisplay: newNotesArray
+    //             })
+    //         }
+    //     }
+    // }
 
-    getReminder = (reminderSet, note) => {
-        let newNotesArray = this.state.notesDisplay;
-        console.log('reminder set', reminderSet);
+    // getReminder = (reminderSet, note) => {
+    //     let newNotesArray = this.state.notesDisplay;
+    //     console.log('reminder set', reminderSet);
 
-        let request = {
-            thread: "/updateNoteReminder",
-            data: {
-                note: {
-                    _id: note._id,
-                    reminder: reminderSet
-                }
-            }
-        }
+    //     let request = {
+    //         thread: "/updateNoteReminder",
+    //         data: {
+    //             note: {
+    //                 _id: note._id,
+    //                 reminder: reminderSet
+    //             }
+    //         }
+    //     }
 
-        NoteServiceClassObject.NotesUpdation(request);
+    //     NoteServiceClassObject.NotesUpdation(request);
 
-        for (let i = 0; i < newNotesArray.length; i++) {
-            if (note._id === newNotesArray[i]._id) {
-                newNotesArray[i].reminder = reminderSet
+    //     for (let i = 0; i < newNotesArray.length; i++) {
+    //         if (note._id === newNotesArray[i]._id) {
+    //             newNotesArray[i].reminder = reminderSet
 
-                this.setState({
-                    notesDisplay: newNotesArray
-                })
-            }
-        }
-    }
+    //             this.setState({
+    //                 notesDisplay: newNotesArray
+    //             })
+    //         }
+    //     }
+    // }
 
-    getReminderRemoved = (note) => {
-        let newNotesArray = this.state.notesDisplay;
+    // getReminderRemoved = (note) => {
+    //     let newNotesArray = this.state.notesDisplay;
 
-        let request = {
-            thread: "/updateNoteReminder",
-            data: {
-                note: {
-                    _id: note._id,
-                    reminder: ""
-                }
-            }
-        }
+    //     let request = {
+    //         thread: "/updateNoteReminder",
+    //         data: {
+    //             note: {
+    //                 _id: note._id,
+    //                 reminder: ""
+    //             }
+    //         }
+    //     }
 
-        NoteServiceClassObject.NotesUpdation(request);
+    //     NoteServiceClassObject.NotesUpdation(request);
 
-        for (let i = 0; i < newNotesArray.length; i++) {
-            if (note._id === newNotesArray[i]._id) {
-                newNotesArray[i].reminder = ""
+    //     for (let i = 0; i < newNotesArray.length; i++) {
+    //         if (note._id === newNotesArray[i]._id) {
+    //             newNotesArray[i].reminder = ""
 
-                this.setState({
-                    notesDisplay: newNotesArray
-                })
-            }
-        }
-    }
+    //             this.setState({
+    //                 notesDisplay: newNotesArray
+    //             })
+    //         }
+    //     }
+    // }
 
-    getPin = (pinSet, note) => {
-        let newNotesArray = this.state.notesDisplay;
+    // getPin = (pinSet, note) => {
+    //     let newNotesArray = this.state.notesDisplay;
 
-        let request = {
-            thread: "/updateNoteReminder",
-            data: {
-                note: {
-                    _id: note._id,
-                    pin: pinSet
-                }
-            }
-        }
+    //     let request = {
+    //         thread: "/updateNoteReminder",
+    //         data: {
+    //             note: {
+    //                 _id: note._id,
+    //                 pin: pinSet
+    //             }
+    //         }
+    //     }
 
-        NoteServiceClassObject.NotesUpdation(request);
+    //     NoteServiceClassObject.NotesUpdation(request);
 
-        for (let i = 0; i < newNotesArray.length; i++) {
-            if (note._id === newNotesArray[i]._id) {
-                newNotesArray[i].pin = pinSet
+    //     for (let i = 0; i < newNotesArray.length; i++) {
+    //         if (note._id === newNotesArray[i]._id) {
+    //             newNotesArray[i].pin = pinSet
 
-                this.setState({
-                    notesDisplay: newNotesArray
-                })
-            }
-        }
-    }
+    //             this.setState({
+    //                 notesDisplay: newNotesArray
+    //             })
+    //         }
+    //     }
+    // }
 
-    getTrash = (trashSet, note) => {
-        let newNotesArray = this.state.notesDisplay;
+    // getTrash = (trashSet, note) => {
+    //     let newNotesArray = this.state.notesDisplay;
 
-        let request = {
-            thread: "/updateNoteReminder",
-            data: {
-                note: {
-                    _id: note._id,
-                    trash: trashSet
-                }
-            }
-        }
+    //     let request = {
+    //         thread: "/updateNoteReminder",
+    //         data: {
+    //             note: {
+    //                 _id: note._id,
+    //                 trash: trashSet
+    //             }
+    //         }
+    //     }
 
-        NoteServiceClassObject.NotesUpdation(request);
+    //     NoteServiceClassObject.NotesUpdation(request);
 
-        for (let i = 0; i < newNotesArray.length; i++) {
-            if (note._id === newNotesArray[i]._id) {
-                newNotesArray[i].trash = trashSet
+    //     for (let i = 0; i < newNotesArray.length; i++) {
+    //         if (note._id === newNotesArray[i]._id) {
+    //             newNotesArray[i].trash = trashSet
 
-                this.setState({
-                    notesDisplay: newNotesArray
-                })
-            }
-        }
-    }
+    //             this.setState({
+    //                 notesDisplay: newNotesArray
+    //             })
+    //         }
+    //     }
+    // }
 
-    getArchive = (archiveSet, note) => {
-        let newNotesArray = this.state.notesDisplay;
+    // getArchive = (archiveSet, note) => {
+    //     let newNotesArray = this.state.notesDisplay;
 
-        let request = {
-            thread: "/updateNoteReminder",
-            data: {
-                note: {
-                    _id: note._id,
-                    archive: archiveSet
-                }
-            }
-        }
+    //     let request = {
+    //         thread: "/updateNoteReminder",
+    //         data: {
+    //             note: {
+    //                 _id: note._id,
+    //                 archive: archiveSet
+    //             }
+    //         }
+    //     }
 
-        NoteServiceClassObject.NotesUpdation(request);
+    //     NoteServiceClassObject.NotesUpdation(request);
 
-        for (let i = 0; i < newNotesArray.length; i++) {
-            if (note._id === newNotesArray[i]._id) {
-                newNotesArray[i].archive = archiveSet
+    //     for (let i = 0; i < newNotesArray.length; i++) {
+    //         if (note._id === newNotesArray[i]._id) {
+    //             newNotesArray[i].archive = archiveSet
 
-                this.setState({
-                    notesDisplay: newNotesArray
-                })
-            }
-        }
-    }
-
-    getUpdate = (request) => {
-        NoteServiceClassObject.NotesUpdation(request);
-    }
+    //             this.setState({
+    //                 notesDisplay: newNotesArray
+    //             })
+    //         }
+    //     }
+    // }
 
     addNewNote = (note) => {
         let newNotesArray = this.state.notesDisplay;
@@ -235,85 +221,55 @@ export default class NotesDisplay extends React.Component {
 
     }
 
+
+    getUpdate = (request) => {
+        NoteServiceClassObject.NotesUpdation(request);
+    }
+
     render() {
 
-        let pinnedNotes = () => {
-            for (let i = 0; i < this.state.notesDisplay.length; i++) {
-                if (option.trash === false && option.archive === false && option.pin === true) {
-                    <NoteCardDisplay noteSelected={option} getUpdate={this.getUpdate} />
-                }
+        let pinnedNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === false && note.archive === false && note.pin === true) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
             }
-        }
+        });
+
+        let unPinnedNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === false && note.archive === false && note.pin === false) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+            }
+        });
 
         return (
 
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
 
                 <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
-                    <Card className={this.props.notesView ? "notesGridDisplayCard" : "notesListDisplayCard"} >
 
-                        <div style={{ backgroundColor: option.color, width: "-webkit-fill-available" }} >
-                            <div className="noteCardDisplayTitleDiv" >
-                                <div className="noteCardDisplayTitle" > {option.title}</div>
-                                <PinNote noteSelected={option} getPin={this.getPin} getNotePin={option.pin} />
+                    <div>
+                        {(() => {
+                            switch (this.props.sideBarSelected) {
+                                case 'Notes':
+                                    return (
+                                        <div>
+                                            {pinnedNotes}
+                                            {unPinnedNotes}
+                                        </div>
+                                    );
+                                case 'Reminders':
+                                    return (
+                                        <div>
+                                            {pinnedNotes}
+                                        </div>
+                                    );
+                                default:
+                                    return null;
+                            }
+                        })()}
+                    </div>
 
-                            </div>
-                            <div className="noteCardDisplayDescription" >
-                                {option.description}
-                            </div>
-
-                            {option.reminder === "" ? (
-                                <div>
-                                </div>
-                            ) : (
-                                    <div >
-                                        <Chip
-                                            icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                            label={<span className="reminderShowOnCardText" >  {option.reminder} </span>}
-                                            onDelete={() => this.getReminderRemoved(option)}
-                                            variant="outlined"
-                                            className="chipOnCardReminder"
-                                        />
-                                    </div>
-                                )}
-
-                            <div>
-                                <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={option} />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
-                                <ColorSection getColor={this.getBackGroundColor} noteSelected={option} />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                                <ArchiveNote noteSelected={option} getArchive={this.getArchive} />
-                                <MoreOptions noteSelected={option} getTrash={this.getTrash} />
-                            </div>
-                        </div>
-
-                    </Card>
                 </div>
-
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.snackbarStatus}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    color="primary"
-                    variant="success"
-                    message={<span id="message-id">{this.state.snackbarMessage}</span>}
-                    action={[
-                        <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
-                            <CloseIcon />
-                        </IconButton>,
-                    ]}
-                />
-
-            </div >
-
-            </div >
+            </div>
         )
     }
 }

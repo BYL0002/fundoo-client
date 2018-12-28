@@ -10,7 +10,8 @@ class Dashboard extends React.Component {
         this.state = {
             drawerStatus: "",
             noteViewStatus: true,
-            sidebarTabSelected: ""
+            sidebarTabSelected: "",
+            sideBarSelected:""
         }
         this.handleDrawerStatus = this.handleDrawerStatus.bind(this);
     }
@@ -34,6 +35,12 @@ class Dashboard extends React.Component {
         })
     }
 
+    sideBarSelected = (sideBarSelected) => {
+        this.setState({
+            sideBarSelected:sideBarSelected
+        })
+    }
+
     render() {
         if (localStorage.getItem('userLogToken') === null) {
             return <Redirect to="/" />
@@ -43,8 +50,8 @@ class Dashboard extends React.Component {
             // eslint-disable-next-line
 
             <div>
-                <Topbar getTopBarStatus={this.handleDrawerStatus} notesView={this.handleNotesView} />
-                <AddNotes drawerStatus={this.state.drawerStatus} notesView={this.state.noteViewStatus} getSidebarTabSelected={this.getSidebarTabSelected} />
+                <Topbar getTopBarStatus={this.handleDrawerStatus} notesView={this.handleNotesView} sideBarSelected={this.sideBarSelected} />
+                <AddNotes drawerStatus={this.state.drawerStatus} notesView={this.state.noteViewStatus} getSidebarTabSelected={this.getSidebarTabSelected} sideBarSelected={this.state.sideBarSelected} />
             </div>
         )
     }

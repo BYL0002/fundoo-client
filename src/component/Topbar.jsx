@@ -40,7 +40,7 @@ class TopbarComponent extends React.Component {
       sidebarOpenStatus: false,
       responseGot: false,
       TopHeader: "",
-      isView: true
+      isView: true,
     };
   }
 
@@ -57,6 +57,10 @@ class TopbarComponent extends React.Component {
       isView: !this.state.isView
     });
     this.props.notesView(!this.state.isView);
+  }
+
+  sideBarSelected = (sideBarSelected) => {
+    this.props.sideBarSelected(sideBarSelected);
   }
 
   componentDidMount() {
@@ -87,7 +91,7 @@ class TopbarComponent extends React.Component {
               <IconButton style={{ color: "black" }} aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
               </IconButton>
-              <Sidebar stateOpen={this.state.sidebarOpenStatus} />
+              <Sidebar stateOpen={this.state.sidebarOpenStatus} sideBarSelected={this.sideBarSelected} />
               <div style={{ color: "black" }} >FundooNotes</div>
               <TopBarSearchComponent />
 
