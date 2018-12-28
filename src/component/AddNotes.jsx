@@ -208,7 +208,7 @@ class AddNotes extends React.Component {
                                         <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
                                         <UploadImage />
                                         {/* <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" /> */}
-                                        <ArchiveNote getArchive={this.getArchive} />
+                                        <ArchiveNote getArchive={this.getArchive} getNoteArchive={false} noteSelected={'option'} />
                                         {/* <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" /> */}
                                         <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>

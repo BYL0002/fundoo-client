@@ -14,9 +14,7 @@ import React from 'react';
 export default class ArchiveNote extends React.Component {
 
     handleArchive = () => {
-
-        console.log('props---archive', this.props.noteSelected.archive);
-        this.props.getArchive(!this.props.noteSelected.archive, this.props.noteSelected);
+        this.props.getArchive(!this.props.getNoteArchive, this.props.noteSelected);
     }
 
     render(){

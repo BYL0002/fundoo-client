@@ -6,9 +6,9 @@
  */
 
 import React from 'react';
-import FileBase64 from 'react-file-base64';
+// import FileBase64 from 'react-file-base64';
 
-var files = [];
+// var files = [];
 
 /**
  * @description Class Component

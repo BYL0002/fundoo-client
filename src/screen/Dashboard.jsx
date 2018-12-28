@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
             drawerStatus: "",
             noteViewStatus: true,
             sidebarTabSelected: "",
-            sideBarSelected:""
+            sideBarSelected:"Notes"
         }
         this.handleDrawerStatus = this.handleDrawerStatus.bind(this);
     }

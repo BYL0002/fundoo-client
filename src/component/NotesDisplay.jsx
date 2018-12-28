@@ -22,168 +22,6 @@ export default class NotesDisplay extends React.Component {
         }
     }
 
-    // getBackGroundColor = (colorSelected, note) => {
-    //     let newNotesArray = this.state.notesDisplay;
-    //     console.log('note selected ---------', note);
-
-    //     let request = {
-    //         thread: "/updateNoteColor",
-    //         data: {
-    //             note: {
-    //                 _id: note._id,
-    //                 color: colorSelected
-    //             }
-    //         }
-    //     }
-
-    //     /**
-    //      * @description This is for generic Updation
-    //      */
-    //     // NoteService.NotesUpdation(request);
-
-    //     NoteServiceClassObject.NotesUpdation(request);
-
-    //     for (let i = 0; i < newNotesArray.length; i++) {
-    //         if (note._id === newNotesArray[i]._id) {
-    //             newNotesArray[i].color = colorSelected
-
-    //             this.setState({
-    //                 notesDisplay: newNotesArray
-    //             })
-    //         }
-    //     }
-    // }
-
-    // getReminder = (reminderSet, note) => {
-    //     let newNotesArray = this.state.notesDisplay;
-    //     console.log('reminder set', reminderSet);
-
-    //     let request = {
-    //         thread: "/updateNoteReminder",
-    //         data: {
-    //             note: {
-    //                 _id: note._id,
-    //                 reminder: reminderSet
-    //             }
-    //         }
-    //     }
-
-    //     NoteServiceClassObject.NotesUpdation(request);
-
-    //     for (let i = 0; i < newNotesArray.length; i++) {
-    //         if (note._id === newNotesArray[i]._id) {
-    //             newNotesArray[i].reminder = reminderSet
-
-    //             this.setState({
-    //                 notesDisplay: newNotesArray
-    //             })
-    //         }
-    //     }
-    // }
-
-    // getReminderRemoved = (note) => {
-    //     let newNotesArray = this.state.notesDisplay;
-
-    //     let request = {
-    //         thread: "/updateNoteReminder",
-    //         data: {
-    //             note: {
-    //                 _id: note._id,
-    //                 reminder: ""
-    //             }
-    //         }
-    //     }
-
-    //     NoteServiceClassObject.NotesUpdation(request);
-
-    //     for (let i = 0; i < newNotesArray.length; i++) {
-    //         if (note._id === newNotesArray[i]._id) {
-    //             newNotesArray[i].reminder = ""
-
-    //             this.setState({
-    //                 notesDisplay: newNotesArray
-    //             })
-    //         }
-    //     }
-    // }
-
-    // getPin = (pinSet, note) => {
-    //     let newNotesArray = this.state.notesDisplay;
-
-    //     let request = {
-    //         thread: "/updateNoteReminder",
-    //         data: {
-    //             note: {
-    //                 _id: note._id,
-    //                 pin: pinSet
-    //             }
-    //         }
-    //     }
-
-    //     NoteServiceClassObject.NotesUpdation(request);
-
-    //     for (let i = 0; i < newNotesArray.length; i++) {
-    //         if (note._id === newNotesArray[i]._id) {
-    //             newNotesArray[i].pin = pinSet
-
-    //             this.setState({
-    //                 notesDisplay: newNotesArray
-    //             })
-    //         }
-    //     }
-    // }
-
-    // getTrash = (trashSet, note) => {
-    //     let newNotesArray = this.state.notesDisplay;
-
-    //     let request = {
-    //         thread: "/updateNoteReminder",
-    //         data: {
-    //             note: {
-    //                 _id: note._id,
-    //                 trash: trashSet
-    //             }
-    //         }
-    //     }
-
-    //     NoteServiceClassObject.NotesUpdation(request);
-
-    //     for (let i = 0; i < newNotesArray.length; i++) {
-    //         if (note._id === newNotesArray[i]._id) {
-    //             newNotesArray[i].trash = trashSet
-
-    //             this.setState({
-    //                 notesDisplay: newNotesArray
-    //             })
-    //         }
-    //     }
-    // }
-
-    // getArchive = (archiveSet, note) => {
-    //     let newNotesArray = this.state.notesDisplay;
-
-    //     let request = {
-    //         thread: "/updateNoteReminder",
-    //         data: {
-    //             note: {
-    //                 _id: note._id,
-    //                 archive: archiveSet
-    //             }
-    //         }
-    //     }
-
-    //     NoteServiceClassObject.NotesUpdation(request);
-
-    //     for (let i = 0; i < newNotesArray.length; i++) {
-    //         if (note._id === newNotesArray[i]._id) {
-    //             newNotesArray[i].archive = archiveSet
-
-    //             this.setState({
-    //                 notesDisplay: newNotesArray
-    //             })
-    //         }
-    //     }
-    // }
 
     addNewNote = (note) => {
         let newNotesArray = this.state.notesDisplay;
@@ -194,7 +32,6 @@ export default class NotesDisplay extends React.Component {
     }
 
     componentDidMount() {
-        // console.log('localStorage.getItem("userLogged")------', localStorage.getItem("userLoggedId"));
 
         let request = {
             thread: "/noteDisplay",
@@ -221,54 +58,136 @@ export default class NotesDisplay extends React.Component {
 
     }
 
+    getUpdate = (request, note) => {
 
-    getUpdate = (request) => {
+        let newNotesArray = this.state.notesDisplay;
+
+        for (let i = 0; i < newNotesArray.length; i++) {
+            if (newNotesArray[i]._id === note._id) {
+                newNotesArray[i] = note
+            }
+        }
+
+        this.setState({
+            notesDisplay: newNotesArray
+        })
+
         NoteServiceClassObject.NotesUpdation(request);
+
     }
 
     render() {
+        let CheckPinnedNotesBoolean = (this.state.notesDisplay.map((note, index) => {
+            let count = 0;
+            if (note.pin === true) {
+                return count++;
+            }
+            return count;
+        }));
+        console.log(CheckPinnedNotesBoolean);
+        
 
-        let pinnedNotes = this.state.notesDisplay.map((note, index) => {
+        let pinnedNotes = (this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === true) {
                 return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
             }
-        });
+            return null;
+        }));
 
         let unPinnedNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === false) {
                 return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
             }
+            return null;
+        });
+
+        let reminderPinnedNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === false && note.archive === false && note.reminder !== "" && note.pin === true) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+            }
+            return null;
+        });
+
+        let reminderUnpinnedNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === false && note.archive === false && note.reminder !== "" && note.pin === false) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+            }
+            return null;
+        });
+
+        let archivePinnedNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === false && note.archive === true && note.pin === true) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+            }
+            return null;
+        });
+
+        let archiveUnpinnedNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === false && note.archive === true && note.pin === false) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+            }
+            return null;
+        });
+
+        let trashNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === true) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+            }
+            return null;
         });
 
         return (
 
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
 
-                <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
+                <div>
+                    {(() => {
+                        switch (this.props.sideBarSelected) {
+                            case 'Notes':
+                                return (
+                                    <div>
+                                        {CheckPinnedNotesBoolean.length > 0 ? (
+                                            <div>
+                                                <span>Pinned</span>
+                                                {pinnedNotes}
+                                                <span>Others</span>
+                                            </div>
+                                        ) : (
+                                                <div>
+                                                </div>
+                                            )}
 
-                    <div>
-                        {(() => {
-                            switch (this.props.sideBarSelected) {
-                                case 'Notes':
-                                    return (
                                         <div>
-                                            {pinnedNotes}
                                             {unPinnedNotes}
                                         </div>
-                                    );
-                                case 'Reminders':
-                                    return (
-                                        <div>
-                                            {pinnedNotes}
-                                        </div>
-                                    );
-                                default:
-                                    return null;
-                            }
-                        })()}
-                    </div>
-
+                                    </div>
+                                );
+                            case 'Reminders':
+                                return (
+                                    <div>
+                                        {reminderPinnedNotes}
+                                        {reminderUnpinnedNotes}
+                                    </div>
+                                );
+                            case 'Archive':
+                                return (
+                                    <div>
+                                        {archivePinnedNotes}
+                                        {archiveUnpinnedNotes}
+                                    </div>
+                                );
+                            case 'Trash':
+                                return (
+                                    <div>
+                                        {trashNotes}
+                                    </div>
+                                )
+                            default:
+                                return null;
+                        }
+                    })()}
                 </div>
+
             </div>
         )
     }

@@ -12,8 +12,6 @@ import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
 import PinNote from './PinNote';
-const NoteServiceClass = require('../service/NoteServiceClass');
-const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 
 export default class NoteCardDisplay extends React.Component {
     constructor(props) {
@@ -24,8 +22,6 @@ export default class NoteCardDisplay extends React.Component {
     }
 
     getBackGroundColor = (colorSelected, note) => {
-        let newNotesArray = note;
-        console.log('note selected ---------', note);
 
         let request = {
             thread: "/updateNoteColor",
@@ -43,7 +39,7 @@ export default class NoteCardDisplay extends React.Component {
             note : noteTemp
         })
 
-        this.props.getUpdate(request);
+        this.props.getUpdate(request, this.state.note);
     }
 
     getReminder = (reminderSet, note) => {
@@ -63,7 +59,7 @@ export default class NoteCardDisplay extends React.Component {
             note : noteTemp
         })
 
-        this.props.getUpdate(request);
+        this.props.getUpdate(request, this.state.note);
     }
 
     getReminderRemoved = (note) => {
@@ -84,12 +80,12 @@ export default class NoteCardDisplay extends React.Component {
             note : noteTemp
         })
 
-        this.props.getUpdate(request);
+        this.props.getUpdate(request, this.state.note);
     }
 
     getPin = (pinSet, note) => {
         let request = {
-            thread: "/updateNoteReminder",
+            thread: "/updateNotePin",
             data: {
                 note: {
                     _id: note._id,
@@ -104,14 +100,14 @@ export default class NoteCardDisplay extends React.Component {
             note : noteTemp
         })
 
-        this.props.getUpdate(request);
+        this.props.getUpdate(request, this.state.note);
 
     }
 
     getTrash = (trashSet, note) => {
 
         let request = {
-            thread: "/updateNoteReminder",
+            thread: "/updateNoteTrash",
             data: {
                 note: {
                     _id: note._id,
@@ -126,7 +122,7 @@ export default class NoteCardDisplay extends React.Component {
             note : noteTemp
         })
 
-        this.props.getUpdate(request);
+        this.props.getUpdate(request, this.state.note);
 
     }
 
@@ -148,7 +144,7 @@ export default class NoteCardDisplay extends React.Component {
             note : noteTemp
         })
 
-        this.props.getUpdate(request);
+        this.props.getUpdate(request, this.state.note);
 
     }
 
@@ -156,7 +152,8 @@ export default class NoteCardDisplay extends React.Component {
 
         return (
 
-            < div >
+            <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
+
                 <Card className={this.props.notesView ? "notesGridDisplayCard" : "notesListDisplayCard"} >
 
                     <div style={{ backgroundColor: this.state.note.color, width: "-webkit-fill-available" }} >
@@ -189,7 +186,7 @@ export default class NoteCardDisplay extends React.Component {
                             <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
                             <ColorSection getColor={this.getBackGroundColor} noteSelected={this.state.note} />
                             <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                            <ArchiveNote noteSelected={this.state.note} getArchive={this.getArchive} />
+                            <ArchiveNote noteSelected={this.state.note} getArchive={this.getArchive} getNoteArchive={this.state.note.archive} />
                             <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash} />
                         </div>
                     </div>
