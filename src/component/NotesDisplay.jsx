@@ -76,62 +76,69 @@ export default class NotesDisplay extends React.Component {
 
     }
 
+    getNoteDeleted = (request, note) => {
+        
+        let newNotesArray = this.state.notesDisplay;
+
+        for (let i = 0; i < newNotesArray.length; i++) {
+            if (newNotesArray[i]._id === note._id) {
+                newNotesArray.splice(i,i+1);
+            }
+        }
+
+        this.setState({
+            notesDisplay: newNotesArray
+        })
+
+        NoteServiceClassObject.NotesUpdation(request);
+
+    }
+
     render() {
-        let CheckPinnedNotesBoolean = (this.state.notesDisplay.map((note, index) => {
-            let count = 0;
+        let count = 0;
+        this.state.notesDisplay.map((note, index) => {
             if (note.pin === true) {
                 return count++;
             }
             return count;
-        }));
-        console.log(CheckPinnedNotesBoolean);
-        
+        });        
 
         let pinnedNotes = (this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === true) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
+                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         }));
 
         let unPinnedNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === false) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
+                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         });
 
-        let reminderPinnedNotes = this.state.notesDisplay.map((note, index) => {
-            if (note.trash === false && note.archive === false && note.reminder !== "" && note.pin === true) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+        let reminderNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === false && note.archive === false && note.reminder !== "") {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
+                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         });
 
-        let reminderUnpinnedNotes = this.state.notesDisplay.map((note, index) => {
-            if (note.trash === false && note.archive === false && note.reminder !== "" && note.pin === false) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
-            }
-            return null;
-        });
-
-        let archivePinnedNotes = this.state.notesDisplay.map((note, index) => {
-            if (note.trash === false && note.archive === true && note.pin === true) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
-            }
-            return null;
-        });
-
-        let archiveUnpinnedNotes = this.state.notesDisplay.map((note, index) => {
-            if (note.trash === false && note.archive === true && note.pin === false) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+        let archiveNotes = this.state.notesDisplay.map((note, index) => {
+            if (note.trash === false && note.archive === true ) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
+                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         });
 
         let trashNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === true) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} notesView={this.props.notesView} />
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
+                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         });
@@ -146,7 +153,7 @@ export default class NotesDisplay extends React.Component {
                             case 'Notes':
                                 return (
                                     <div>
-                                        {CheckPinnedNotesBoolean.length > 0 ? (
+                                        {count > 0 ? (
                                             <div>
                                                 <span>Pinned</span>
                                                 {pinnedNotes}
@@ -165,15 +172,13 @@ export default class NotesDisplay extends React.Component {
                             case 'Reminders':
                                 return (
                                     <div>
-                                        {reminderPinnedNotes}
-                                        {reminderUnpinnedNotes}
+                                        {reminderNotes}
                                     </div>
                                 );
                             case 'Archive':
                                 return (
                                     <div>
-                                        {archivePinnedNotes}
-                                        {archiveUnpinnedNotes}
+                                        {archiveNotes}
                                     </div>
                                 );
                             case 'Trash':

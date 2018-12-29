@@ -16,7 +16,7 @@ export default class MoreOptions extends React.Component {
 
     handlePopperOptionOnOutsideClick = () => {
         this.setState({
-            open : false
+            open: false
         })
     }
 
@@ -33,6 +33,10 @@ export default class MoreOptions extends React.Component {
         this.props.getTrash(!this.props.noteSelected.trash, this.props.noteSelected);
     }
 
+    getNoteDeletedCompletely = () => {        
+        this.props.getNoteDeleted(this.props.noteSelected);
+    }
+
     render() {
 
         return (
@@ -42,8 +46,21 @@ export default class MoreOptions extends React.Component {
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper className="colorSelectionPopperNoteAddCard"  >
                                 <div >
-                                    <MenuItem onClick={this.getNoteDelete} >Delete</MenuItem>
-                                    <MenuItem onClick={this.getNoteEitherDeleteOrArchive} >Add Label</MenuItem>
+                                    {this.props.sideBarSelected === "Trash" ? (
+                                        <div>
+                                            <MenuItem onClick={this.getNoteDelete} >Restore</MenuItem>
+                                            <MenuItem onClick={this.getNoteDeletedCompletely} >Delete</MenuItem>
+                                        </div>
+
+                                    ) : (
+                                            <div>
+                                                <MenuItem onClick={this.getNoteDelete} >Delete</MenuItem>
+                                                <MenuItem onClick={this.getNoteEitherDeleteOrArchive} >Add Label</MenuItem>
+                                            </div>
+
+                                        )}
+
+
                                 </div>
                             </Paper>
                         </Fade>
@@ -51,7 +68,7 @@ export default class MoreOptions extends React.Component {
                 </Popper>
                 <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}>
                     <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
-                     src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
+                        src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
                 </ClickAwayListener>
             </span>
         )

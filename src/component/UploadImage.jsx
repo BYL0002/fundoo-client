@@ -22,7 +22,7 @@ export default class UploadImage extends React.Component {
     }
 
     getImage = (event) => {
-        console.log('event.target.value',event.target.value);        
+        console.log('event.target.value',event.target.files[0]);
 
     }
 

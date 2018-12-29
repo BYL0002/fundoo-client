@@ -32,7 +32,6 @@ class Sidebar extends React.Component {
     }
 
     sideBarOptionSelected = (event) => {
-        // console.log(event.target.textContent);
         this.props.sideBarSelected(event.target.textContent);
         
     }

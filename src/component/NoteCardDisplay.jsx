@@ -148,6 +148,20 @@ export default class NoteCardDisplay extends React.Component {
 
     }
 
+    getNoteDeleted = (note) => {
+        
+        let request = {
+            thread: "/deleteNote",
+            data: {
+                note: {
+                    _id: note._id
+                }
+            }
+        }
+
+        this.props.getNoteDeleted(request, this.state.note);
+    }
+
     render() {
 
         return (
@@ -187,7 +201,7 @@ export default class NoteCardDisplay extends React.Component {
                             <ColorSection getColor={this.getBackGroundColor} noteSelected={this.state.note} />
                             <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
                             <ArchiveNote noteSelected={this.state.note} getArchive={this.getArchive} getNoteArchive={this.state.note.archive} />
-                            <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash} />
+                            <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash} getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
                         </div>
                     </div>
 

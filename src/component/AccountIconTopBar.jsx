@@ -105,14 +105,7 @@ class AccountIconTopBar extends React.Component {
                     </Popper>
 
                     <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick} >
-                        <IconButton
-                            aria-haspopup="true"
-                            onClick={this.handleProfileMenuOpen('bottom')}
-                            style={{ color: "black" }}
-
-                        >
-                            <AccountCircle id="accountIconTopBar" />
-                        </IconButton>
+                    <Avatar onClick={this.handleProfileMenuOpen('bottom')} >{this.state.userLogInName[0]} </Avatar>
                     </ClickAwayListener>
                 </div>
             </MuiThemeProvider>
