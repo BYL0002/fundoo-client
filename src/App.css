@@ -550,11 +550,11 @@
     line-height: 20%;
     width: 720px;
     height: 30px;
-    padding: 8px;
-    margin-left: 70px;
+    padding: 4px;
+    margin-left: 20px;
     border-radius: 8px;
     box-shadow: 1px 1px 10px #888888;
-    margin-right: 30px;
+    margin-right: 20px;
     display: flex;
   }
 
@@ -565,6 +565,7 @@
   .searchIconTopBar {
     line-height: 24px;
     margin-top: 3px;
+    opacity: 0.5;
   }
 
   .topBarSearchBar {
@@ -581,6 +582,13 @@
 }
 
 /* ----------------------------------------------------- */
+
+.topBarNoteImage {
+  padding: 2px;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+}
 
 div .sideBarMenuItems {
   border-top-right-radius : 60px;
@@ -800,8 +808,7 @@ div .sideBarMenuItems {
   margin-top : 6px;
 }
 
-div .colorPaletteWhite {
-  background-color : rgb(255, 255, 255);
+div .colorPalette {
   margin-top : 10px;
   margin-left : 10px;
   width : 20px;
@@ -809,163 +816,8 @@ div .colorPaletteWhite {
   border: 1px solid darkgrey;
 }
 
-div .colorPaletteRed {
-  background-color : rgb(242, 139, 130);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteGreen {
-  background-color : rgb(204, 255, 144);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteBlue {
-  background-color : rgb(203, 240, 248);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteOrange {
-  background-color : rgb(251, 188, 4);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteTeal {
-  background-color : rgb(167, 255, 235);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteYellow {
-  background-color : rgb(255, 255, 0);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPalettePink {
-  background-color : rgb(253, 207, 232);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteDarkBlue {
-  background-color : rgb(174, 203, 250);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPalettePurple {
-  background-color : rgb(215, 174, 251);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteGray {
-  background-color : rgb(232, 234, 237);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteBrown {
-  background-color : rgb(230, 201, 168);
-  margin-top : 10px;
-  margin-left : 10px;
-  width : 20px;
-  height : 20px;
-  border: 1px solid darkgrey;
-}
-
-div .colorPaletteWhite:hover {
+div .colorPalette:hover {
   border: 1px solid black;
-  background-color : rgb(255, 255, 255);
-}
-
-div .colorPaletteRed:hover {
-  border: 1px solid black;
-  background-color : rgb(242, 139, 130);
-}
-
-div .colorPaletteGreen:hover {
-  border: 1px solid black;
-  background-color : rgb(204, 255, 144);
-}
-
-div .colorPaletteBlue:hover {
-  border: 1px solid black;
-  background-color : rgb(203, 240, 248);
-}
-
-div .colorPaletteOrange:hover {
-  border: 1px solid black;
-  background-color : rgb(251, 188, 4);
-}
-
-div .colorPaletteTeal:hover {
-  border: 1px solid black;
-  background-color : rgb(167, 255, 235);
-}
-
-div .colorPaletteYellow:hover {
-  border: 1px solid black;
-  background-color : rgb(255, 255, 0);
-}
-
-div .colorPalettePink:hover {
-  border: 1px solid black;
-  background-color : rgb(253, 207, 232);
-}
-
-div .colorPaletteDarkBlue:hover {
-  border: 1px solid black;
-  background-color : rgb(174, 203, 250);
-}
-
-div .colorPalettePurple:hover {
-  border: 1px solid black;
-  background-color : rgb(215, 174, 251);
-}
-
-div .colorPaletteGray:hover {
-  border: 1px solid black;
-  background-color : rgb(232, 234, 237);
-}
-
-div .colorPaletteBrown:hover {
-  border: 1px solid black;
-  background-color : rgb(230, 201, 168);
 }
 
 .NotesDisplayDivSidebarClose {

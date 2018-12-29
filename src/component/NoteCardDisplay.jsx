@@ -36,7 +36,7 @@ export default class NoteCardDisplay extends React.Component {
         let noteTemp = this.state.note;
         noteTemp.color = colorSelected;
         this.setState({
-            note : noteTemp
+            note: noteTemp
         })
 
         this.props.getUpdate(request, this.state.note);
@@ -56,7 +56,7 @@ export default class NoteCardDisplay extends React.Component {
         let noteTemp = this.state.note;
         noteTemp.reminder = reminderSet;
         this.setState({
-            note : noteTemp
+            note: noteTemp
         })
 
         this.props.getUpdate(request, this.state.note);
@@ -77,7 +77,7 @@ export default class NoteCardDisplay extends React.Component {
         let noteTemp = this.state.note;
         noteTemp.reminder = "";
         this.setState({
-            note : noteTemp
+            note: noteTemp
         })
 
         this.props.getUpdate(request, this.state.note);
@@ -97,7 +97,7 @@ export default class NoteCardDisplay extends React.Component {
         let noteTemp = this.state.note;
         noteTemp.pin = pinSet;
         this.setState({
-            note : noteTemp
+            note: noteTemp
         })
 
         this.props.getUpdate(request, this.state.note);
@@ -119,7 +119,7 @@ export default class NoteCardDisplay extends React.Component {
         let noteTemp = this.state.note;
         noteTemp.trash = trashSet;
         this.setState({
-            note : noteTemp
+            note: noteTemp
         })
 
         this.props.getUpdate(request, this.state.note);
@@ -141,7 +141,7 @@ export default class NoteCardDisplay extends React.Component {
         let noteTemp = this.state.note;
         noteTemp.archive = archiveSet;
         this.setState({
-            note : noteTemp
+            note: noteTemp
         })
 
         this.props.getUpdate(request, this.state.note);
@@ -149,7 +149,7 @@ export default class NoteCardDisplay extends React.Component {
     }
 
     getNoteDeleted = (note) => {
-        
+
         let request = {
             thread: "/deleteNote",
             data: {
@@ -196,12 +196,23 @@ export default class NoteCardDisplay extends React.Component {
                             )}
 
                         <div>
-                            <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={this.state.note} />
-                            <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
-                            <ColorSection getColor={this.getBackGroundColor} noteSelected={this.state.note} />
-                            <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
-                            <ArchiveNote noteSelected={this.state.note} getArchive={this.getArchive} getNoteArchive={this.state.note.archive} />
-                            <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash} getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
+                            {this.props.sideBarSelected === "Trash" ? (
+                                <div>
+                                    <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash}
+                                        getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
+                                </div>
+                            ) : (
+                                    <div>
+                                        <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={this.state.note} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
+                                        <ColorSection getColor={this.getBackGroundColor} noteSelected={this.state.note} />
+                                        <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                        <ArchiveNote noteSelected={this.state.note} getArchive={this.getArchive} getNoteArchive={this.state.note.archive} />
+                                        <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash}
+                                            getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
+                                    </div>
+                                )}
+
                         </div>
                     </div>
 

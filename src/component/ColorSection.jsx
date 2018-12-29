@@ -43,7 +43,6 @@ export default class ColorSection extends React.Component {
         })
     }
 
-
     handleColorClick = (colorCodeSelected) => {
 
         this.setState({
@@ -65,62 +64,62 @@ export default class ColorSection extends React.Component {
          */
         const colorPaletteClassName = [
             {
-                colorClass: "colorPaletteWhite",
+                colorClass: "colorPalette",
                 colorCode: "rgb(255, 255, 255)",
                 colorName: "White"
             },
             {
-                colorClass: "colorPaletteRed",
+                colorClass: "colorPalette",
                 colorCode: "rgb(242, 139, 130)",
                 colorName: "Red"
             },
             {
-                colorClass: "colorPalettePurple",
+                colorClass: "colorPalette",
                 colorCode: "rgb(215, 174, 251)",
                 colorName: "Purple"
             },
             {
-                colorClass: "colorPalettePink",
+                colorClass: "colorPalette",
                 colorCode: "rgb(255, 192, 203)",
                 colorName: "Pink"
             },
             {
-                colorClass: "colorPaletteTeal",
+                colorClass: "colorPalette",
                 colorCode: "rgb(167, 255, 235)",
                 colorName: "Teal"
             },
             {
-                colorClass: "colorPaletteOrange",
+                colorClass: "colorPalette",
                 colorCode: "rgb(251, 188, 4)",
                 colorName: "Orange"
             },
             {
-                colorClass: "colorPaletteDarkBlue",
+                colorClass: "colorPalette",
                 colorCode: "rgb(174, 203, 250)",
                 colorName: "Dark Blue"
             },
             {
-                colorClass: "colorPaletteGray",
+                colorClass: "colorPalette",
                 colorCode: "rgb(232, 234, 237)",
                 colorName: "Gray"
             },
             {
-                colorClass: "colorPaletteBlue",
+                colorClass: "colorPalette",
                 colorCode: "rgb(203, 240, 248)",
                 colorName: "Blue"
             },
             {
-                colorClass: "colorPaletteBrown",
+                colorClass: "colorPalette",
                 colorCode: "rgb(230, 201, 168)",
                 colorName: "Brown"
             },
             {
-                colorClass: "colorPaletteYellow",
+                colorClass: "colorPalette",
                 colorCode: "rgb(255, 255, 0)",
                 colorName: "Yellow"
             },
             {
-                colorClass: "colorPaletteGreen",
+                colorClass: "colorPalette",
                 colorCode: "rgb(204, 255, 144)",
                 colorName: "Green"
             }
@@ -134,7 +133,7 @@ export default class ColorSection extends React.Component {
                             <Paper className="colorSelectionPopperNoteAddCard"  >
                                 <div >
                                     {colorPaletteClassName.map((option, index) => (
-                                        <IconButton className={option.colorClass}
+                                        <IconButton className={option.colorClass} style={{backgroundColor:option.colorCode}}
                                         key = {index}
                                             title={option.colorName}
                                             onClick={() => this.handleColorClick(option.colorCode)}
@@ -146,7 +145,10 @@ export default class ColorSection extends React.Component {
                     )}
                 </Popper>
                 <ClickAwayListener onClickAway={this.handleColorPopperOnOutsideClick} >
-                    <img onClick={this.handleShowColorPopper('bottom')} className="noteAddFeatureImages" src={require('../assets/images/color.svg')} alt="color" />
+                    <img onClick={this.handleShowColorPopper('bottom')} className="noteAddFeatureImages" 
+                    src={require('../assets/images/color.svg')} alt="color" 
+                    onMouseEnter={this.handleShowColorPopper('bottom')} 
+                    onMouseLeave={this.handleShowColorPopper('bottom')} />
                 </ClickAwayListener>
             </span>
         )

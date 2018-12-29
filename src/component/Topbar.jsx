@@ -41,6 +41,7 @@ class TopbarComponent extends React.Component {
       responseGot: false,
       TopHeader: "",
       isView: true,
+      sideBarSelected: "Notes"
     };
   }
 
@@ -60,6 +61,9 @@ class TopbarComponent extends React.Component {
   }
 
   sideBarSelected = (sideBarSelected) => {
+    this.setState({
+      sideBarSelected: sideBarSelected
+    })
     this.props.sideBarSelected(sideBarSelected);
   }
 
@@ -91,8 +95,16 @@ class TopbarComponent extends React.Component {
               <IconButton style={{ color: "black" }} aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
               </IconButton>
-              <Sidebar stateOpen={this.state.sidebarOpenStatus} sideBarSelected={this.sideBarSelected} />
-              <div style={{ color: "black" }} >FundooNotes</div>
+              <Sidebar stateOpen={this.state.sidebarOpenStatus} sideBarSelected={this.sideBarSelected} sideBarSelectedOnClick={this.state.sideBarSelected} />
+              {this.state.sideBarSelected === "Notes" ? (
+                <div>
+                  <img className="topBarNoteImage" src={require("../assets/images/noteImage.jpg")} alt="noteImage" />
+                  <span style={{ color: "black" }}> FundooNotes </span>
+                </div>
+              ) : (
+                  <div style={{ color: "black" }} >{this.state.sideBarSelected}</div>
+                )}
+
               <TopBarSearchComponent />
 
               <img src={require("../assets/images/refresh.svg")} alt="Refresh" className="refreshButtonOnTop" onClick={this.refreshPage} />

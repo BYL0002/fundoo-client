@@ -1,6 +1,5 @@
 import React from 'react';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import { IconButton, createMuiTheme, MuiThemeProvider, Button, Avatar, ClickAwayListener } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider, Button, Avatar, ClickAwayListener } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
@@ -22,9 +21,6 @@ const theme = createMuiTheme({
         },
     }
 })
-
-// localStorage.setItem("userLogImage","");
-// const imageUrl = localStorage.getItem("userLogImage");
 
 class AccountIconTopBar extends React.Component {
     constructor(props) {
