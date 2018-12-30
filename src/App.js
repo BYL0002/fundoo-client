@@ -39,6 +39,9 @@ class App extends Component {
   render() {
     return (
       <div>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj" 
+        content="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com" />
         <Favicon url = {require('../src/assets/images/note-circle.ico')} />
         <Router>
           <div>
