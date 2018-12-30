@@ -12,8 +12,20 @@ import CloseIcon from '@material-ui/icons/Close';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
-const config = require('../config/config'); 
+import SocialButton from './SocialLogin';
+const config = require('../config/config');
+// import SocialLogin from 'react-social-login';
+
 // import CustomizedSnackbars from './SnackBarTheme';
+
+const handleSocialLogin = (user) => {
+    console.log(user)
+}
+
+const handleSocialLoginFailure = (err) => {
+    console.error(err)
+}
+
 
 /**
  * @description LoginComponent class component for login
@@ -108,87 +120,6 @@ class LoginComponent extends React.Component {
         }
     }
 
-    componentDidMount(){
-        (function() {
-            var e = document.createElement("script");
-            e.type = "text/javascript";
-            e.async = true;
-            e.src = "https://apis.google.com/js/platform.js?onload=init";
-            var t = document.getElementsByTagName("script")[0];
-            t.parentNode.insertBefore(e, t)
-        })();    
-    }
-    
-    init() {
-        window.gapi.load('auth2', function() { console.log('init auth called');
-         });
-      }
-
-    //Triggering login for google
-    googleLogin = () => {
-        let response = null;
-        window.gapi.auth2.signIn({
-            callback: function(authResponse) {
-                this.googleSignInCallback( authResponse )
-            }.bind( this ),
-            clientid: config.google, //Google client Id
-            cookiepolicy: "single_host_origin",
-            requestvisibleactions: "http://schema.org/AddAction",
-            scope: "https://www.googleapis.com/auth/plus.login email"
-        });
-    }
-    
-    googleSignInCallback = (e) => {
-        console.log( e )
-        if (e["status"]["signed_in"]) {
-            window.gapi.client.load("plus", "v1", function() {
-                if (e["access_token"]) {
-                    this.getUserGoogleProfile( e["access_token"] )
-                } else if (e["error"]) {
-                    console.log('Import error', 'Error occured while importing data')
-                }
-            }.bind(this));
-        } else {
-            console.log('Oops... Error occured while importing data')
-        }
-    }
-
-    getUserGoogleProfile = accesstoken => {
-        var e = window.gapi.client.plus.people.get({
-            userId: "me"
-        });
-        e.execute(function(e) {
-            if (e.error) {
-                console.log(e.message);
-                console.log('Import error - Error occured while importing data')
-                return
-            
-            } else if (e.id) {
-                //Profile data
-                alert("Successfull login from google : "+ e.displayName )
-                console.log( e );
-                return;
-            }
-        }.bind(this));
-    }
-    
-    componentDidMount () {
-        const script = document.createElement("script");
-
-        script.src = "https://apis.google.com/js/platform.js";
-        script.async = true;
-
-        document.body.appendChild(script);
-    }
-
-    onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-
     render() {
         if (this.state.responseGot) return (<Redirect to="/dashboard" />)
 
@@ -222,16 +153,22 @@ class LoginComponent extends React.Component {
                 <div >
                     <Button fullWidth onClick={this.loginUser} variant='extendedFab'
                         color="primary" className="LoginSubmitButtons" >Login</Button></div>
-                        <div>
-                        <Button fullWidth variant='extendedFab'
-                        color="primary" className="LoginSubmitButtons" onClick={ this.googleLogin} >g-login</Button></div>
                 <div>
                     <span className="CenterTextStyle" >Don't have account? </span>
                     <a className="links" href="/register"> <b>Register</b> </a>
                 </div>
 
+                <SocialButton
+                    provider='facebook'
+                    appId='YOUR_APP_ID'
+                    onLoginSuccess={handleSocialLogin}
+                    onLoginFailure={handleSocialLoginFailure}
+                >
+                    Login with Gmail
+                </SocialButton>
+
                 <div className="g-signin2" data-onsuccess="onSignIn"></div>
-                
+
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',
