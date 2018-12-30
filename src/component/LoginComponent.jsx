@@ -28,7 +28,8 @@ class LoginComponent extends React.Component {
             responseGot: false,
             snackOpen: false,
             snackMessage: "",
-            snackBarVariant : ""
+            snackBarVariant : "",
+            text : ""
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -94,14 +95,16 @@ class LoginComponent extends React.Component {
             else {
                 this.setState({
                     snackOpen: true,
-                    snackMessage: "Password Empty"
+                    snackMessage: "Password Empty",
+                    text: "Password Empty"
                 });
             }
         }
         else {
             this.setState({
                 snackOpen: true,
-                snackMessage: "Email Empty"
+                snackMessage: "Email Empty",
+                text: "Email Empty"
             });
         }
     }
@@ -115,7 +118,8 @@ class LoginComponent extends React.Component {
                     Log in<span className="beforeDashboardTitle" >Fundoo Notes</span>
                 </div>
                 <div  >
-                    <TextField  label={this.props.name} name="email" onChange={this.setValue} required className="emailTextFieldLoginPage"></TextField>
+                    <TextField  label={this.props.name} name="email" onChange={this.setValue} required
+                     className="emailTextFieldLoginPage" helperText={this.state.text} ></TextField>
                 </div>
                 <div >
                     <TextField  className="passwordTextFieldLoginPage"  label="Password" type={this.state.showpassword ? 'text' : 'password'} required
@@ -136,7 +140,8 @@ class LoginComponent extends React.Component {
                 </div>
 
                 <div >
-                    <Button fullWidth onClick={this.loginUser} variant='extendedFab' color="primary"  className = "LoginSubmitButtons" >Login</Button></div>
+                    <Button fullWidth onClick={this.loginUser} variant='extendedFab'
+                     color="primary"  className = "LoginSubmitButtons" >Login</Button></div>
                 <div>
                     <span className="CenterTextStyle" >Don't have account? </span>
                     <a className="links" href="/register"> <b>Register</b> </a>

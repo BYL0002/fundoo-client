@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
             drawerStatus: "",
             noteViewStatus: true,
             sidebarTabSelected: "",
-            sideBarSelected:""
+            sideBarSelected:"Notes"
         }
         this.handleDrawerStatus = this.handleDrawerStatus.bind(this);
     }
@@ -50,7 +50,8 @@ class Dashboard extends React.Component {
             // eslint-disable-next-line
 
             <div>
-                <Topbar getTopBarStatus={this.handleDrawerStatus} notesView={this.handleNotesView} sideBarSelected={this.sideBarSelected} />
+                <Topbar getTopBarStatus={this.handleDrawerStatus} notesView={this.handleNotesView}
+                 sideBarSelected={this.sideBarSelected} />
                 <AddNotes drawerStatus={this.state.drawerStatus} notesView={this.state.noteViewStatus} getSidebarTabSelected={this.getSidebarTabSelected} sideBarSelected={this.state.sideBarSelected} />
             </div>
         )

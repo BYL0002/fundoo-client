@@ -16,7 +16,6 @@ const sendRequest = (request) => {
         })
             .then(response => {
                 if (response.data.status) {
-                    // console.log('res on axios', response.data);
 
                     return response.data;
                 }

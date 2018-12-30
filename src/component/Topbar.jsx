@@ -16,10 +16,6 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiToolbar: {
-      // paperAnchorLeft: {
-      //   top: 64,
-      //   width: 280,
-      // },
       root: {
         backgroundColor: 'white',
         boxShadow: 0
@@ -86,6 +82,7 @@ class TopbarComponent extends React.Component {
   }
 
   render() {
+    
     if (this.state.responseGot) return <Redirect to="/" />
     return (
       <div>
@@ -95,7 +92,8 @@ class TopbarComponent extends React.Component {
               <IconButton style={{ color: "black" }} aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
               </IconButton>
-              <Sidebar stateOpen={this.state.sidebarOpenStatus} sideBarSelected={this.sideBarSelected} sideBarSelectedOnClick={this.state.sideBarSelected} />
+              <Sidebar stateOpen={this.state.sidebarOpenStatus} sideBarSelected={this.sideBarSelected}
+               sideBarSelectedOnClick={this.state.sideBarSelected} />
               {this.state.sideBarSelected === "Notes" ? (
                 <div>
                   <img className="topBarNoteImage" src={require("../assets/images/noteImage.jpg")} alt="noteImage" />

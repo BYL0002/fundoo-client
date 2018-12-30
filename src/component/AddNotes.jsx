@@ -149,7 +149,6 @@ class AddNotes extends React.Component {
                 trash: false
             }
         }
-        // console.log('reques on component', request);
 
         NoteService.NotesAddition(request, (err, data) => {
             
@@ -178,12 +177,6 @@ class AddNotes extends React.Component {
                                     <div>
                                         <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
                                         <PinNote noteSelected={'option'} getPin={this.getPin} getNotePin={false} />
-                                        {/* {this.state.pinChoosen ? (
-                                            <img src={require('../assets/images/unPinNote.svg')} alt="pin note" className="pinNoteImage" onClick={this.getPin} />
-                                        ) : (
-                                                <img src={require('../assets/images/pinNote.svg')} alt="pin note" className="pinNoteImage" onClick={this.getPin} />
-                                            )} */}
-
                                     </div>
                                     <div>
                                         <InputBase className="inputNoteTake" placeholder='Take a note' multiline name="noteDescription" onChange={this.handleInputValue} />
@@ -207,10 +200,7 @@ class AddNotes extends React.Component {
                                         <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
                                         <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
                                         <UploadImage />
-                                        {/* <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" /> */}
                                         <ArchiveNote getArchive={this.getArchive} getNoteArchive={false} noteSelected={'option'} />
-                                        {/* <img className="noteAddFeatureImages" src={require('../assets/images/undo.svg')} alt="undo" />
-                                        <img className="noteAddFeatureImages" src={require('../assets/images/redo.svg')} alt="redo" /> */}
                                         <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
                                     </div>
                                 </div>
@@ -258,7 +248,9 @@ class AddNotes extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                <NotesDisplay ref = {this.notedisp} sideBarSelected={this.props.sideBarSelected} getSidebarTabSelected={this.props.getSidebarTabSelected} notesView={this.props.notesView} sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} />
+                <NotesDisplay ref = {this.notedisp} sideBarSelected={this.props.sideBarSelected}
+                 getSidebarTabSelected={this.props.getSidebarTabSelected} notesView={this.props.notesView}
+                  sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} />
             </div>
         )
     }
