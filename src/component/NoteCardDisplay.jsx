@@ -167,7 +167,7 @@ export default class NoteCardDisplay extends React.Component {
         
         this.setState({
             dialogDisplayStatus : !this.state.dialogDisplayStatus
-        },console.log('sdhgsjkgdjksh',this.state));
+        });
     }
 
     render() {
@@ -210,7 +210,7 @@ export default class NoteCardDisplay extends React.Component {
                                         getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
                                 </div>
                             ) : (
-                                    <div>
+                                    <div className='notesFeatureDiv' >
                                         <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={this.state.note} />
                                         <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
                                         <ColorSection getColor={this.getBackGroundColor} noteSelected={this.state.note} />

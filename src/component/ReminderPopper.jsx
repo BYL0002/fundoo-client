@@ -8,7 +8,7 @@ import React from 'react';
 import { MenuItem } from '@material-ui/core';
 // import { ClickAwayListener } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
-import Fade from '@material-ui/core/Fade';
+import Grow from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import DateTimePicker from './DateTimePicker';
 import moment from 'moment';
@@ -23,7 +23,7 @@ let reminderValueSet;
 export default class ReminderPopper extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             anchorEl: null,
             open: false,
@@ -51,12 +51,12 @@ export default class ReminderPopper extends React.Component {
 
     getDateTimePicked = (dateTimePick) => {
         this.setState({
-            open : false
+            open: false
         })
 
         reminderValueSet = moment(dateTimePick).format('ddd Do MMM h:mm a');
         this.props.getReminderChooseOption(reminderValueSet, this.props.noteSelected);
-        
+
     }
 
     setReminderOption = (event) => {
@@ -66,9 +66,9 @@ export default class ReminderPopper extends React.Component {
                 open: false,
             })
             console.log('1');
-            
+
             reminderValueSet = moment(moment.now()).format('ddd Do MMM 8:00 ');
-            this.props.getReminderChooseOption(reminderValueSet+'PM', this.props.noteSelected);
+            this.props.getReminderChooseOption(reminderValueSet + 'PM', this.props.noteSelected);
         }
         else if (reminderChoosen === '2') {
 
@@ -78,44 +78,55 @@ export default class ReminderPopper extends React.Component {
             console.log('2');
 
             reminderValueSet = moment().add(1, 'days').format('ddd Do MMM 8:00 ');
-            
-            this.props.getReminderChooseOption( reminderValueSet+'AM' , this.props.noteSelected);
+
+            this.props.getReminderChooseOption(reminderValueSet + 'AM', this.props.noteSelected);
         }
-        else if( reminderChoosen === '3') {
+        else if (reminderChoosen === '3') {
 
             this.setState({
                 open: false,
             })
             let dayNumber = (new Date().getDay());
             console.log('dayNumber', dayNumber);
-            
-            let day = 8-dayNumber;
+
+            let day = 8 - dayNumber;
             console.log('3');
-            
+
             reminderValueSet = moment().add(day, 'days').format('ddd Do MMM 8:00 ');
-            this.props.getReminderChooseOption( reminderValueSet+'AM' , this.props.noteSelected);
+            this.props.getReminderChooseOption(reminderValueSet + 'AM', this.props.noteSelected);
         }
 
     }
 
     render() {
         return (
-            <span>
+            <div>
+                <img onClick={this.handleReminderOtion('bottom')} className="noteAddFeatureImages"
+                    src={require('../assets/images/reminder.svg')} alt="reminder" 
+                    />
 
-                <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
-                    {({ TransitionProps }) => (
-                        <Fade {...TransitionProps} timeout={350}>
-                            <Paper className="reminderPopperNoteAddCard"  >
+                <Popper style={{ position: 'relative' }} className='reminderPopper' open={this.state.open} transition disablePortal
+                anchorEl={this.state.anchorEl}
+                >
+                    {({ TransitionProps, placement }) => (
+                        <Grow
+                            {...TransitionProps}
+                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                        >
+                            <Paper   >
                                 <div >
                                     <MenuItem disabled >Reminder : </MenuItem>
-                                    <MenuItem onClick={this.setReminderOption} id={1} >
-                                        <span className="reminderTodayLabel" >Later Today : </span>8:00 PM
+                                    <MenuItem className="reminderLabel" onClick={this.setReminderOption} id={1} >
+                                        <span >Later Today : </span>
+                                        <span>8:00 PM</span>
                                     </MenuItem>
-                                    <MenuItem onClick={this.setReminderOption} id={2} >
-                                        <span className="reminderTomorrowLabel" >Tomorrow : </span>8:00 AM
+                                    <MenuItem className="reminderLabel" onClick={this.setReminderOption} id={2} >
+                                        <span>Tomorrow : </span>
+                                        <span>8:00 AM</span>
                                     </MenuItem>
-                                    <MenuItem onClick={this.setReminderOption} id={3} >
-                                        <span className="reminderWeekLabel" >Next Week : </span>Mon, 8:00 AM
+                                    <MenuItem className="reminderLabel" onClick={this.setReminderOption} id={3} >
+                                        <span>Next Week : </span>
+                                        <span>Mon, 8:00 AM</span>
                                     </MenuItem>
                                     <MenuItem>
                                         <DateTimePicker getDateTimePicked={this.getDateTimePicked} />
@@ -126,15 +137,14 @@ export default class ReminderPopper extends React.Component {
                                     </MenuItem>
                                 </div>
                             </Paper>
-                        </Fade>
+                            </Grow>
                     )}
                 </Popper>
-                
+
                 {/* <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick}> */}
-                    <img onClick={this.handleReminderOtion('bottom')} className="noteAddFeatureImages" 
-                    src={require('../assets/images/reminder.svg')} alt="reminder" />
+
                 {/* </ClickAwayListener> */}
-            </span>
+            </div>
         )
     }
 }

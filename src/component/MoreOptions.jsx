@@ -40,7 +40,13 @@ export default class MoreOptions extends React.Component {
     render() {
 
         return (
-            <span>
+            <div>
+
+                <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}>
+                    <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
+                        src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
+                </ClickAwayListener>
+                
                 <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
@@ -66,11 +72,7 @@ export default class MoreOptions extends React.Component {
                         </Fade>
                     )}
                 </Popper>
-                <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}>
-                    <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
-                        src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
-                </ClickAwayListener>
-            </span>
+            </div>
         )
     }
 }

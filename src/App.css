@@ -727,46 +727,14 @@ div .sideBarMenuItems {
 }
 
 .noteAddFeatureImages {
-  margin-top : 11px;
-  margin-bottom : 10px;
-  margin-left : 19px;
-  width : 18px;
-  position: static;
+  /* margin: 8px; */
   opacity: 0.7;
-  /* vertical-align: top; */
 }
 
-.reminderPopperNoteAddCard {
-  width : 270px;
-  height : 280px;
-  margin-top : 6px;
-  margin-left : 250px;
-}
-
-.reminderPopperNoteAddCard:hover {
-  width : 270px;
-  height : 280px;
-  margin-top : 6px;
-  margin-left : 250px;
-}
-
-.reminderPopperNoteAddCard:hover .noteAddFeatureImages {
-  visibility: visible;
-}
-
-.reminderTodayLabel {
+div .reminderLabel {
+  display: flex;
+  justify-content: space-between;
   font-size : 15px;
-  margin-right : 100px;
-}
-
-.reminderTomorrowLabel {
-  font-size : 15px;
-  margin-right : 110px;
-}
-
-.reminderWeekLabel {
-  font-size : 15px;
-  margin-right : 65px;
 }
 
 .reminderLocationLabel {
@@ -792,10 +760,7 @@ div .sideBarMenuItems {
 
 .CollaboratorHeading {
   font-size : 30px;
-  margin-top : 10px;
-  margin-left : 10px;
-  margin-bottom : 20px;
-  margin-right : 10px;
+  margin: 12px;
   padding : 7px;
   height : 40px;
   border-bottom: 1px solid black;
@@ -959,6 +924,8 @@ div .dialogNoteEdit {
   margin: 2px;
   padding: -5px;
   height: 100px;
+  /* z-index: 1; */
+  /* position: fixed; */
 }
 
 .inputNoteEditDialog {
@@ -974,7 +941,18 @@ div .dialogNoteEdit {
   margin-top : 10px;
 }
 
-div .dialogEditNoteFeature {
-  display: flex;
+/* div .dialogEditNoteFeature {
+  display: block  ; 
   justify-content: space-between;
+} */
+
+.reminderPopper{
+  position: fixed;
+  z-index: 1;
+}
+
+.notesFeatureDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

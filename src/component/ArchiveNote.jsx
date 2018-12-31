@@ -19,9 +19,9 @@ export default class ArchiveNote extends React.Component {
 
     render(){
         return (
-            <span>
+            <div>
                 <img className="noteAddFeatureImages" src={require('../assets/images/archiveImage.svg')} alt="archive" onClick = {this.handleArchive} />
-            </span>
+            </div>
         )
     }
 }

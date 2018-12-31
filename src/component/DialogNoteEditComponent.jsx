@@ -12,7 +12,7 @@ import ColorSection from './ColorSection';
 import UploadImage from './UploadImage';
 import ArchiveNote from './ArchiveNote';
 import PinNote from './PinNote';
-import { Chip } from 'material-ui';
+// import { Chip } from 'material-ui';
 
 // import { ClickAwayListener } from '@material-ui/core'
 
@@ -79,7 +79,7 @@ class DialogNoteEditComponent extends React.Component {
                         <DialogContent className="dialogNoteEdit" >
 
                             <div> <Input className="inputNoteEditDialog" value={this.props.noteSelected.title} disableUnderline /> </div>
-                            <PinNote noteSelected={this.state.note} getPin={this.props.getPin} getNotePin={this.props.noteSelected.pin} />
+                            <PinNote noteSelected={this.props.noteSelected} getPin={this.props.getPin} getNotePin={this.props.noteSelected.pin} />
 
 
                             <Input className="inputNoteEditDialog" value={this.props.noteSelected.description} disableUnderline />
@@ -101,18 +101,19 @@ class DialogNoteEditComponent extends React.Component {
 
                         </DialogContent>
 
-
-
                         <DialogActions className="dialogEditNoteFeature" >
-                            <div >
-                                <ReminderPopper getReminderChooseOption={this.props.getReminder} />
-                                <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                <ColorSection getColor={this.props.getBackGroundColor} initialColorValue={this.colorSelect} />
-                                <UploadImage />
-                                <ArchiveNote getArchive={this.props.getArchive} getNoteArchive={false} noteSelected={'option'} />
+                            <div className='notesFeatureDiv'>
+                                <div className='icons' style={{ position: 'fixed' }} >
+                                    <ReminderPopper getReminderChooseOption={this.props.getReminder} />
+                                    <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')}
+                                     alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
+                                    <ColorSection getColor={this.props.getBackGroundColor} initialColorValue={this.colorSelect} />
+                                    <UploadImage />
+                                    <ArchiveNote getArchive={this.props.getArchive} getNoteArchive={false} noteSelected={'option'} />
 
+                                </div>
+                                <div><Button color="primary" className="closeNoteAddCardButton" onClick={this.props.getNoteEdited} >Close</Button></div>
                             </div>
-                            <Button color="primary" className="closeNoteAddCardButton" onClick={this.props.getNoteEdited} >Close</Button>
                         </DialogActions>
                     </div>
                 </Dialog>
