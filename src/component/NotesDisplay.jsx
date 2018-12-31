@@ -8,6 +8,7 @@
 import React from 'react';
 import NoteService from '../service/NoteService';
 import NoteCardDisplay from './NoteCardDisplay';
+
 const NoteServiceClass = require('../service/NoteServiceClass');
 const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 
@@ -18,7 +19,7 @@ export default class NotesDisplay extends React.Component {
             notesDisplay: [],
             newNote: this.props.getNewNote,
             snackbarStatus: false,
-            snackbarMessage: "Reminder!"
+            snackbarMessage: "Reminder!",
         }
     }
 

@@ -16,6 +16,7 @@
     "react-dom": "^16.6.3",
     "react-favicon": "0.0.14",
     "react-file-base64": "^1.0.3",
+    "react-google-login": "^4.0.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
@@ -26,8 +27,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "src": "https://apis.google.com/js/platform.js"
+    "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:8000/",
   "eslintConfig": {

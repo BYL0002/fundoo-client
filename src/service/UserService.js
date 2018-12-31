@@ -9,7 +9,7 @@ const axios = require('axios');
 
 const sendRequest = (request) => {
     try {
-        console.log('req from service', request.data);
+        // console.log('req from service', request.data);
 
         return axios.post(request.thread, {
             data: request.data

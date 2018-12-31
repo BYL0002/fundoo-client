@@ -12,12 +12,13 @@ import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import MoreOptions from './MoreOptions';
 import PinNote from './PinNote';
-
+import DialogNoteEditComponent from './DialogNoteEditComponent';
 export default class NoteCardDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             note: this.props.noteSelected,
+            dialogDisplayStatus: false
         }
     }
 
@@ -162,6 +163,13 @@ export default class NoteCardDisplay extends React.Component {
         this.props.getNoteDeleted(request, this.state.note);
     }
 
+    getNoteEdited = () => {
+        
+        this.setState({
+            dialogDisplayStatus : !this.state.dialogDisplayStatus
+        },console.log('sdhgsjkgdjksh',this.state));
+    }
+
     render() {
 
         return (
@@ -172,11 +180,11 @@ export default class NoteCardDisplay extends React.Component {
 
                     <div style={{ backgroundColor: this.state.note.color, width: "-webkit-fill-available" }} >
                         <div className="noteCardDisplayTitleDiv" >
-                            <div className="noteCardDisplayTitle" > {this.state.note.title}</div>
+                            <div className="noteCardDisplayTitle" onClick={this.getNoteEdited} > {this.state.note.title}</div>
                             <PinNote noteSelected={this.state.note} getPin={this.getPin} getNotePin={this.state.note.pin} />
 
                         </div>
-                        <div className="noteCardDisplayDescription" >
+                        <div className="noteCardDisplayDescription" onClick={this.getNoteEdited} >
                             {this.state.note.description}
                         </div>
 
@@ -215,7 +223,15 @@ export default class NoteCardDisplay extends React.Component {
 
                         </div>
                     </div>
-
+                    <DialogNoteEditComponent
+                    getNoteEdited={this.getNoteEdited}
+                    getBackGroundColor={this.getBackGroundColor}
+                    getReminder={this.getReminder}
+                    getReminderRemoved={this.getReminderRemoved}
+                    getPin={this.getPin}
+                    getTrash={this.getTrash}
+                    getArchive={this.getArchive}
+                     displayStatus={this.state.dialogDisplayStatus} noteSelected={this.state.note} />
                 </Card>
             </div>
         )

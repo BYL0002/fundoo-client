@@ -12,18 +12,19 @@ import CloseIcon from '@material-ui/icons/Close';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { loginService } from '../service/UserService';
-import SocialButton from './SocialLogin';
-const config = require('../config/config');
+import SocialButton from './SocialButton';
+import { GoogleLogin } from 'react-google-login';
+// const config = require('../config/config');
 // import SocialLogin from 'react-social-login';
 
 // import CustomizedSnackbars from './SnackBarTheme';
 
 const handleSocialLogin = (user) => {
-    console.log(user)
+    console.log('user', user)
 }
 
 const handleSocialLoginFailure = (err) => {
-    console.error(err)
+    console.error('err', err)
 }
 
 
@@ -42,7 +43,10 @@ class LoginComponent extends React.Component {
             snackOpen: false,
             snackMessage: "",
             snackBarVariant: "",
-            text: ""
+            text: "",
+            isAuthenticated: false,
+            user: null,
+            token: ''
         }
         this.setValue = this.setValue.bind(this);
         this.handleShowPassword = this.handleShowPassword.bind(this);
@@ -120,21 +124,63 @@ class LoginComponent extends React.Component {
         }
     }
 
+    logout = () => {
+        this.setState({ isAuthenticated: false, token: '', user: null })
+    };
+
+    googleResponse = (e) => {
+        console.log('google res',e);
+    };
+
+    onFailure = (error) => {
+        this.setState({
+            snackOpen: true,
+            snackMessage: 'social login error'+error
+        })
+    }
+
+
     render() {
+
+        let content = !!this.state.isAuthenticated ?
+            (
+                <div>
+                    <p>Authenticated</p>
+                    <div>
+                        {this.state.user.email}
+                    </div>
+                    <div>
+                        <button onClick={this.logout} className="button">
+                            Log out
+                        </button>
+                    </div>
+                </div>
+            ) :
+            (
+                <div>
+                    <GoogleLogin
+                        onClick={this.googleResponse}
+                        clientId="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com"
+                        buttonText="Login"
+                        onSuccess={this.googleResponse}
+                        onFailure={this.googleResponse}
+                    />
+                </div>
+            );
         if (this.state.responseGot) return (<Redirect to="/dashboard" />)
 
         return (
-            <div className="Form">
+            <div className="Form" >
                 <div className="formHeader">
                     Log in<span className="beforeDashboardTitle" >Fundoo Notes</span>
                 </div>
                 <div  >
-                    <TextField label={this.props.name} name="email" onChange={this.setValue} required
-                        className="emailTextFieldLoginPage" helperText={this.state.text} ></TextField>
+                    <TextField label={this.props.name} name="email" onChange={this.setValue} required autoFocus
+                        className="emailTextFieldLoginPage" helperText={ this.state.email === "" ? this.state.text : ""} ></TextField>
                 </div>
                 <div >
                     <TextField className="passwordTextFieldLoginPage" label="Password" type={this.state.showpassword ? 'text' : 'password'} required
-                        value={this.state.password} onChange={this.setValue} name="password"
+                        value={this.state.password} onChange={this.setValue} name="password" helperText={ this.state.password === "" ? this.state.text : ""}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
@@ -159,13 +205,15 @@ class LoginComponent extends React.Component {
                 </div>
 
                 <SocialButton
-                    provider='facebook'
-                    appId='YOUR_APP_ID'
+                    provider='google'
+                    appId='1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com'
                     onLoginSuccess={handleSocialLogin}
                     onLoginFailure={handleSocialLoginFailure}
                 >
                     Login with Gmail
                 </SocialButton>
+
+                {content}
 
                 <div className="g-signin2" data-onsuccess="onSignIn"></div>
 
