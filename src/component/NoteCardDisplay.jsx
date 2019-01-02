@@ -285,7 +285,7 @@ export default class NoteCardDisplay extends React.Component {
                                         getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
                                 </div>
                             ) : (
-                                    <div className='notesFeatureDiv' >
+                                    <div className='notenoteAddFeatureImagesDiv' >
                                         <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={this.state.note} />
                                         <Collaborator />
                                         <ColorSection getColor={this.getBackGroundColor} noteSelected={this.state.note} />

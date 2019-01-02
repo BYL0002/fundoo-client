@@ -18,24 +18,20 @@ import { Chip } from '@material-ui/core';
 // import { ClickAwayListener } from '@material-ui/core';
 
 const theme = createMuiTheme({
-
-    typography: {
-        useNextVariants: true,
-    },
-    overrides: {
-        MuiDialog: {
-            paperWidthSm: {
-                overflowY: "visible",
-                borderRadius:5
+    overrides:{
+        MuiDialog:{
+            paperWidthSm:{
+                borderRadius:8
             }
         },
-        MuiDialogContent: {
-            root: {
-                paddingTop: "0px"
+        MuiBackdrop:{
+            root:{
+                backgroundColor:'rgba(255, 255, 255,0.7)'
             }
         }
     }
 })
+//.MuiBackdrop-root-254
 
 /**
  * @description DialogNoteEditComponent class component
@@ -69,17 +65,18 @@ class DialogNoteEditComponent extends React.Component {
         return (
             <div >
                 <MuiThemeProvider theme={theme}>
-                    <Dialog
-                        // fullScreen={fullScreen}
-                        open={this.props.displayStatus}
-                        onClose={this.props.getNoteEdited}
-                        aria-labelledby="responsive-dialog-title"
-                    >
-                        <div style={{ backgroundColor: this.props.noteSelected.color }}>
+                <Dialog
+                    // fullScreen={fullScreen}
+                    open={this.props.displayStatus}
+                    onClose={this.props.getNoteEdited}
+                    aria-labelledby="responsive-dialog-title"
+                    // id="dialogBox"
+                >
+                    <div style={{ backgroundColor: this.props.noteSelected.color }} >
                             <DialogContent id="dialogNoteEdit" >
 
-                                <div style={{display:'flex'}} >
-                                    <Input className="inputNoteEditDialog" value={this.props.noteSelected.title}
+                                <div style={{ display: 'flex' }} >
+                                    <Input className="inputNoteTake" value={this.props.noteSelected.title}
                                         disableUnderline
                                         onChange={(event) => this.props.getTitleEdit(event, this.props.noteSelected)} />
 
@@ -89,7 +86,7 @@ class DialogNoteEditComponent extends React.Component {
 
                                 </div>
 
-                                <Input className="inputNoteEditDialog" value={this.props.noteSelected.description}
+                                <Input className="inputNoteTake" value={this.props.noteSelected.description}
                                     disableUnderline
                                     onChange={(event) => this.props.getDescriptionEdit(event, this.props.noteSelected)} />
 
@@ -110,22 +107,21 @@ class DialogNoteEditComponent extends React.Component {
 
                             </DialogContent>
 
-                            <DialogActions style={{ display: 'flex' }} >
+                            <DialogActions >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                                    <div className='icons' style={{ display: 'flex' }} >
+                                    <div className='notenoteAddFeatureImagesDiv' >
                                         <ReminderPopper getReminderChooseOption={this.props.getReminder} noteSelected={this.props.noteSelected} />
                                         <Collaborator />
                                         <ColorSection getColor={this.props.getBackGroundColor} initialColorValue={this.colorSelect} />
                                         <UploadImage />
                                         <ArchiveNote getArchive={this.props.getArchive} getNoteArchive={false} noteSelected={'option'} />
-
                                     </div>
 
-                                    <div><Button color="primary" className="closeNoteAddCardButton" onClick={this.props.getNoteEdited} >Close</Button></div>
+                                    <div><Button className="dialogCloseButton" color="primary" onClick={this.props.getNoteEdited} >Close</Button></div>
                                 </div>
                             </DialogActions>
-                        </div>
-                    </Dialog>
+                    </div>
+                </Dialog>
                 </MuiThemeProvider>
             </div>
         )

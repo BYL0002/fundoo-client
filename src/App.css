@@ -1,7 +1,8 @@
 
-/* body{
-  background-color: darkgray;
-} */
+body{
+  /* background-color: darkgray; */
+  /* cursor: none; */
+}
 
 @media only screen and (min-width: 320px) {
   
@@ -691,6 +692,7 @@ div .sideBarMenuItems {
 }
 
 .noteTakeCard {
+  transition: .50s;
   margin-left: 470px;
   margin-top: 130px;
   max-width : 500px;
@@ -702,13 +704,12 @@ div .sideBarMenuItems {
   margin-top: 130px;
   max-width : 500px;
   height: auto;
+  transition: .50s;
 }
 
 .inputNoteTake {
-  margin-top: 10px;
-  margin-left : 10px;
-  width : 450px;
-  margin-bottom: 5px;
+  margin: 10px;
+  width : 550px;
 }
 
 .inputNoteTake div {
@@ -722,12 +723,19 @@ div .sideBarMenuItems {
 }
 
 .completeNoteTakeCard {
-  width : 500px;
+  width : 600px;
   min-height: 130px;
 }
 
 .noteAddFeatureImages {
   opacity: 0.7;
+}
+
+.notenoteAddFeatureImagesDiv {
+  min-width: 260px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 div .reminderLabel {
@@ -787,10 +795,12 @@ div .colorPalette:hover {
   margin-left : 260px;
   margin-top : 40px;
   display: flex;
+  transition: 0.50s;
 }
 
 .NotesDisplayDivSidebarOpen {
   max-width : 970px ;
+  transition: 0.50s;
   margin-left : 310px;
   margin-top : 40px;
   display : flex;
@@ -911,9 +921,9 @@ div .chipOnCardReminder {
 #dialogNoteEdit {
   /* display: flex;
   flex-wrap: wrap; */
-  margin: 5px;
+  /* margin: 5px;
   padding: 0px;
-  height: 150px;
+  height: 150px; */
 }
 
 .inputNoteEditDialog {
@@ -936,12 +946,14 @@ div .chipOnCardReminder {
   z-index: 1;
 }
 
-.notesFeatureDiv {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
 #dialogNote {
   border-radius: 5px;
+}
+
+#dialogBox div {
+  border-radius: 30px;
+}
+
+.dialogCloseButton {
+  /* height: 20px; */
 }

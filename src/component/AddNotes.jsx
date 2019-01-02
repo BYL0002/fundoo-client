@@ -171,17 +171,12 @@ class AddNotes extends React.Component {
     }
 
     render() {
-        let classCard;
-        if (this.props.drawerStatus)
-            classCard = "noteTakeCardAfterDrawerOpen";
-        else
-            classCard = "noteTakeCard";
         return (
             <div >
 
                 {this.state.isAddNoteCardStatus ? (
                     // <ClickAwayListener onClickAway={this.handleAddNoteCardToggleStatus}>
-                    <Card className={classCard} >
+                    <Card className={this.props.drawerStatus ? "noteTakeCardAfterDrawerOpen" : "noteTakeCard"} >
                         <div style={{ backgroundColor: this.state.colorSelect }} >
                             {this.state.isToggleAddCard ? (
                                 <div className="completeNoteTakeCard" >
@@ -206,16 +201,19 @@ class AddNotes extends React.Component {
                                                 />
                                             </div>
                                         )}
-                                    <div >
-                                        <div className="notesFeatureDiv" >
+                                    <div style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}} >
+
+                                        <div className="notenoteAddFeatureImagesDiv" >
                                             <ReminderPopper getReminderChooseOption={this.getReminder} />
                                             <Collaborator collaboratorCardStatus={this.handleAddNoteCardDisplay} />
                                             <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
                                             <UploadImage getImage={this.getImage} />
                                             <ArchiveNote getArchive={this.getArchive} getNoteArchive={false} noteSelected={'option'} />
-                                            <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                            
                                         </div>
-                                        
+                                        <div>
+                                        <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                        </div>
                                     </div>
                                 </div>
                             ) : (
