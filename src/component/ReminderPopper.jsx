@@ -105,7 +105,7 @@ export default class ReminderPopper extends React.Component {
                     src={require('../assets/images/reminder.svg')} alt="reminder" 
                     />
 
-                <Popper style={{ position: 'relative' }} className='reminderPopper' open={this.state.open} transition disablePortal
+                <Popper className='reminderPopper' open={this.state.open} transition disablePortal
                 anchorEl={this.state.anchorEl}
                 >
                     {({ TransitionProps, placement }) => (

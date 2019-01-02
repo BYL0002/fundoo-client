@@ -786,17 +786,15 @@ div .colorPalette:hover {
 }
 
 .NotesDisplayDivSidebarClose {
-  max-width : 750px ;
-  margin-left : 340px;
-  /* background-color : #61dafb; */
+  max-width : 970px ;
+  margin-left : 260px;
   margin-top : 40px;
   display: flex;
 }
 
 .NotesDisplayDivSidebarOpen {
-  max-width : 750px ;
-  margin-left : 400px;
-  /* background-color : #61dafb; */
+  max-width : 970px ;
+  margin-left : 310px;
   margin-top : 40px;
   display : flex;
 }
@@ -804,17 +802,13 @@ div .colorPalette:hover {
 .notesGridDisplayDiv {
   display : flex;
   flex-direction : row;
-  max-width : 700px;
   flex-wrap : wrap;
-  margin : 20px;
 }
 
 .notesListDisplayDiv {
   display : flex;
   flex-direction : column;
-  max-width : 500px;
   flex-wrap : nowrap;
-  margin : 10px;
 }
 
 div .notesGridDisplayCard {
@@ -841,11 +835,10 @@ div .notesGridDisplayCard {
 
 div .notesListDisplayCard {
   display: flex;
-  /* justify-content: space-evenly; */
   flex-wrap : nowrap;
   min-width : 500px;
   min-height : 100px;
-  margin: 25px;
+  margin: 10px;
   border-radius: 9px;
 }
 
@@ -918,7 +911,7 @@ div .chipOnCardReminder {
   flex-wrap: wrap;
 }
 
-div .dialogNoteEdit {
+#dialogNoteEdit {
   display: flex;
   flex-wrap: wrap;
   margin: 2px;

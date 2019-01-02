@@ -78,12 +78,12 @@ export default class NotesDisplay extends React.Component {
     }
 
     getNoteDeleted = (request, note) => {
-        
+
         let newNotesArray = this.state.notesDisplay;
 
         for (let i = 0; i < newNotesArray.length; i++) {
             if (newNotesArray[i]._id === note._id) {
-                newNotesArray.splice(i,i+1);
+                newNotesArray.splice(i, i + 1);
             }
         }
 
@@ -102,44 +102,44 @@ export default class NotesDisplay extends React.Component {
                 return count++;
             }
             return count;
-        });        
+        });
 
         let pinnedNotes = (this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === true) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
-                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
+                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         }));
 
         let unPinnedNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === false) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
-                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
+                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         });
 
         let reminderNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.reminder !== "") {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
-                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
+                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         });
 
         let archiveNotes = this.state.notesDisplay.map((note, index) => {
-            if (note.trash === false && note.archive === true ) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
-                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
+            if (note.trash === false && note.archive === true) {
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
+                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         });
 
         let trashNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === true) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate} 
-                notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
+                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
+                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
             return null;
         });
@@ -156,35 +156,37 @@ export default class NotesDisplay extends React.Component {
                                     <div>
                                         {count > 0 ? (
                                             <div>
-                                                <span>Pinned</span>
-                                                {pinnedNotes}
-                                                <span>Others</span>
+                                                <div >Pinned</div>
+                                                <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
+                                                    {pinnedNotes}
+                                                </div>
+                                                <div>Others</div>
                                             </div>
                                         ) : (
                                                 <div>
                                                 </div>
                                             )}
 
-                                        <div>
+                                        <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
                                             {unPinnedNotes}
                                         </div>
                                     </div>
                                 );
                             case 'Reminders':
                                 return (
-                                    <div>
+                                    <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
                                         {reminderNotes}
                                     </div>
                                 );
                             case 'Archive':
                                 return (
-                                    <div>
+                                    <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
                                         {archiveNotes}
                                     </div>
                                 );
                             case 'Trash':
                                 return (
-                                    <div>
+                                    <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
                                         {trashNotes}
                                     </div>
                                 )

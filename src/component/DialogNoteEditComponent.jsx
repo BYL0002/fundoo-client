@@ -12,7 +12,7 @@ import ColorSection from './ColorSection';
 import UploadImage from './UploadImage';
 import ArchiveNote from './ArchiveNote';
 import PinNote from './PinNote';
-// import { Chip } from 'material-ui';
+import { Chip } from '@material-ui/core';
 
 // import { ClickAwayListener } from '@material-ui/core'
 
@@ -42,27 +42,6 @@ class DialogNoteEditComponent extends React.Component {
         })
     }
 
-    getReminderRemoved = (note) => {
-
-        let request = {
-            thread: "/updateNoteReminder",
-            data: {
-                note: {
-                    _id: note._id,
-                    reminder: ""
-                }
-            }
-        }
-
-        let noteTemp = this.state.note;
-        noteTemp.reminder = "";
-        this.setState({
-            note: noteTemp
-        })
-
-        this.props.getUpdate(request, this.state.note);
-    }
-
     render() {
 
         return (
@@ -72,19 +51,21 @@ class DialogNoteEditComponent extends React.Component {
                     open={this.props.displayStatus}
                     onClose={this.props.getNoteEdited}
                     aria-labelledby="responsive-dialog-title"
-                    // 
-                    className="dialogNoteEdit"
+                    // className="dialogNoteEdit"
                 >
                     <div style={{ backgroundColor: this.props.noteSelected.color }}>
-                        <DialogContent className="dialogNoteEdit" >
+                        <DialogContent id="dialogNoteEdit" >
 
-                            <div> <Input className="inputNoteEditDialog" value={this.props.noteSelected.title} disableUnderline /> </div>
+                            <div> <Input className="inputNoteEditDialog" value={this.props.noteSelected.title} disableUnderline
+                             onChange={(event) => this.props.getTitleEdit(event, this.props.noteSelected)} /> </div>
+
                             <PinNote noteSelected={this.props.noteSelected} getPin={this.props.getPin} getNotePin={this.props.noteSelected.pin} />
 
 
-                            <Input className="inputNoteEditDialog" value={this.props.noteSelected.description} disableUnderline />
+                            <Input className="inputNoteEditDialog" value={this.props.noteSelected.description} disableUnderline
+                             onChange={(event) => this.props.getDescriptionEdit(event, this.props.noteSelected)} />
 
-                            {/* {this.props.noteSelected.reminder === "" ? (
+                            {this.props.noteSelected.reminder === "" ? (
                                 <div>
                                 </div>
                             ) : (
@@ -97,13 +78,13 @@ class DialogNoteEditComponent extends React.Component {
                                             className="chipOnCardReminder"
                                         />
                                     </div>
-                                )} */}
+                                )}
 
                         </DialogContent>
 
-                        <DialogActions className="dialogEditNoteFeature" >
-                            <div className='notesFeatureDiv'>
-                                <div className='icons' style={{ position: 'fixed' }} >
+                        <DialogActions style={{display:'flex'}} >
+                            <div style={{display:'flex', justifyContent:'space-between', width:'100%'}}>
+                                <div className='icons' style={{ display:'flex' }} >
                                     <ReminderPopper getReminderChooseOption={this.props.getReminder} />
                                     <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')}
                                      alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
@@ -112,6 +93,7 @@ class DialogNoteEditComponent extends React.Component {
                                     <ArchiveNote getArchive={this.props.getArchive} getNoteArchive={false} noteSelected={'option'} />
 
                                 </div>
+                                
                                 <div><Button color="primary" className="closeNoteAddCardButton" onClick={this.props.getNoteEdited} >Close</Button></div>
                             </div>
                         </DialogActions>

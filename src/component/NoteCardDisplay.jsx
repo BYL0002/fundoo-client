@@ -149,6 +149,50 @@ export default class NoteCardDisplay extends React.Component {
 
     }
 
+    getTitleEdit = (event, note) => {
+        
+        let request = {
+            thread: "/updateNoteTitleDescription",
+            data: {
+                note: {
+                    _id: note._id,
+                    title : event.target.value
+                }
+            }
+        }
+
+        let noteTemp = this.state.note;
+        noteTemp.title = event.target.value;
+        
+        this.setState({
+            note: noteTemp
+        })
+
+        this.props.getUpdate(request, this.state.note);
+    }
+
+    getDescriptionEdit = (event, note) => {
+    
+        let request = {
+            thread: "/updateNoteTitleDescription",
+            data: {
+                note: {
+                    _id: note._id,
+                    description : event.target.value
+                }
+            }
+        }
+
+        let noteTemp = this.state.note;
+        noteTemp.description = event.target.value;
+        
+        this.setState({
+            note: noteTemp
+        })
+
+        this.props.getUpdate(request, this.state.note);
+    }
+
     getNoteDeleted = (note) => {
 
         let request = {
@@ -174,7 +218,7 @@ export default class NoteCardDisplay extends React.Component {
 
         return (
 
-            <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
+            <div >
 
                 <Card className={this.props.notesView ? "notesGridDisplayCard" : "notesListDisplayCard"} >
 
@@ -231,6 +275,8 @@ export default class NoteCardDisplay extends React.Component {
                     getPin={this.getPin}
                     getTrash={this.getTrash}
                     getArchive={this.getArchive}
+                    getTitleEdit={this.getTitleEdit}
+                    getDescriptionEdit = {this.getDescriptionEdit}
                      displayStatus={this.state.dialogDisplayStatus} noteSelected={this.state.note} />
                 </Card>
             </div>
