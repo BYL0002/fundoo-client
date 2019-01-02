@@ -201,7 +201,8 @@ class AddNotes extends React.Component {
                                                 />
                                             </div>
                                         )}
-                                    <div style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}} >
+                                    {/* <div style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}} > */}
+                                    <div>
 
                                         <div className="notenoteAddFeatureImagesDiv" >
                                             <ReminderPopper getReminderChooseOption={this.getReminder} />
@@ -209,10 +210,11 @@ class AddNotes extends React.Component {
                                             <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
                                             <UploadImage getImage={this.getImage} />
                                             <ArchiveNote getArchive={this.getArchive} getNoteArchive={false} noteSelected={'option'} />
+                                            <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
                                             
                                         </div>
                                         <div>
-                                        <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                        {/* <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button> */}
                                         </div>
                                     </div>
                                 </div>
