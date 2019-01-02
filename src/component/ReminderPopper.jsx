@@ -65,7 +65,6 @@ export default class ReminderPopper extends React.Component {
             this.setState({
                 open: false,
             })
-            console.log('1');
 
             reminderValueSet = moment(moment.now()).format('ddd Do MMM 8:00 ');
             this.props.getReminderChooseOption(reminderValueSet + 'PM', this.props.noteSelected);
@@ -75,7 +74,6 @@ export default class ReminderPopper extends React.Component {
             this.setState({
                 open: false,
             })
-            console.log('2');
 
             reminderValueSet = moment().add(1, 'days').format('ddd Do MMM 8:00 ');
 
@@ -90,7 +88,6 @@ export default class ReminderPopper extends React.Component {
             console.log('dayNumber', dayNumber);
 
             let day = 8 - dayNumber;
-            console.log('3');
 
             reminderValueSet = moment().add(day, 'days').format('ddd Do MMM 8:00 ');
             this.props.getReminderChooseOption(reminderValueSet + 'AM', this.props.noteSelected);
@@ -101,6 +98,7 @@ export default class ReminderPopper extends React.Component {
     render() {
         return (
             <div>
+                
                 <img onClick={this.handleReminderOtion('bottom')} className="noteAddFeatureImages"
                     src={require('../assets/images/reminder.svg')} alt="reminder" 
                     />
@@ -125,7 +123,7 @@ export default class ReminderPopper extends React.Component {
                                         <span>8:00 AM</span>
                                     </MenuItem>
                                     <MenuItem className="reminderLabel" onClick={this.setReminderOption} id={3} >
-                                        <span>Next Week : </span>
+                                        <span onClick={this.setReminderOption} id={3} >Next Week : </span>
                                         <span>Mon, 8:00 AM</span>
                                     </MenuItem>
                                     <MenuItem>
@@ -141,9 +139,6 @@ export default class ReminderPopper extends React.Component {
                     )}
                 </Popper>
 
-                {/* <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick}> */}
-
-                {/* </ClickAwayListener> */}
             </div>
         )
     }

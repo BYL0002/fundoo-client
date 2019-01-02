@@ -727,7 +727,6 @@ div .sideBarMenuItems {
 }
 
 .noteAddFeatureImages {
-  /* margin: 8px; */
   opacity: 0.7;
 }
 
@@ -745,16 +744,14 @@ div .reminderLabel {
   line-height : 10px;
   vertical-align : middle;
   margin: 5px;
-  width : 20px;
-  height : 20px;
 }
 
 .reminderTimeLabel {
   margin-left : 10px;
 }
 
-.closeNoteAddCardButton {
-  float: right;
+div .closeNoteAddCardButton {
+  margin-left: 140px;
 }
 
 
@@ -912,20 +909,20 @@ div .chipOnCardReminder {
 }
 
 #dialogNoteEdit {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 2px;
-  padding: -5px;
-  height: 100px;
-  /* z-index: 1; */
-  /* position: fixed; */
+  /* display: flex;
+  flex-wrap: wrap; */
+  margin: 5px;
+  padding: 0px;
+  height: 150px;
 }
 
 .inputNoteEditDialog {
-  margin-top: 10px;
-  margin-left : 10px;
+  margin: 5px;
+  padding: 5px;
+  /* margin-top: 10px;
+  margin-left : 10px; */
   width : 470px;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 
 .pinNoteImage {
@@ -933,11 +930,6 @@ div .chipOnCardReminder {
   line-height : 10px;
   margin-top : 10px;
 }
-
-/* div .dialogEditNoteFeature {
-  display: block  ; 
-  justify-content: space-between;
-} */
 
 .reminderPopper{
   position: fixed;
@@ -948,4 +940,8 @@ div .chipOnCardReminder {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+#dialogNote {
+  border-radius: 5px;
 }

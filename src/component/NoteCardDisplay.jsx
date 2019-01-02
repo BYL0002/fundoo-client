@@ -8,8 +8,10 @@
 import React from 'react';
 import { Card, Chip } from '@material-ui/core';
 import ReminderPopper from './ReminderPopper';
+import Collaborator from './Collaborator';
 import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
+import UploadImage from './UploadImage';
 import MoreOptions from './MoreOptions';
 import PinNote from './PinNote';
 import DialogNoteEditComponent from './DialogNoteEditComponent';
@@ -105,6 +107,28 @@ export default class NoteCardDisplay extends React.Component {
 
     }
 
+    getImage = (imageSet, note) => {
+        let request = {
+            thread: "/updateNoteImage",
+            data: {
+                note: {
+                    _id: note._id,
+                    image: imageSet
+                }
+            }
+        }
+
+        let noteTemp = this.state.note;
+        noteTemp.image = imageSet;
+        this.setState({
+            note: noteTemp
+        })
+
+        this.props.getUpdate(request, this.state.note);
+
+    }
+
+
     getTrash = (trashSet, note) => {
 
         let request = {
@@ -150,20 +174,20 @@ export default class NoteCardDisplay extends React.Component {
     }
 
     getTitleEdit = (event, note) => {
-        
+
         let request = {
             thread: "/updateNoteTitleDescription",
             data: {
                 note: {
                     _id: note._id,
-                    title : event.target.value
+                    title: event.target.value
                 }
             }
         }
 
         let noteTemp = this.state.note;
         noteTemp.title = event.target.value;
-        
+
         this.setState({
             note: noteTemp
         })
@@ -172,20 +196,20 @@ export default class NoteCardDisplay extends React.Component {
     }
 
     getDescriptionEdit = (event, note) => {
-    
+
         let request = {
             thread: "/updateNoteTitleDescription",
             data: {
                 note: {
                     _id: note._id,
-                    description : event.target.value
+                    description: event.target.value
                 }
             }
         }
 
         let noteTemp = this.state.note;
         noteTemp.description = event.target.value;
-        
+
         this.setState({
             note: noteTemp
         })
@@ -208,9 +232,9 @@ export default class NoteCardDisplay extends React.Component {
     }
 
     getNoteEdited = () => {
-        
+
         this.setState({
-            dialogDisplayStatus : !this.state.dialogDisplayStatus
+            dialogDisplayStatus: !this.state.dialogDisplayStatus
         });
     }
 
@@ -223,6 +247,13 @@ export default class NoteCardDisplay extends React.Component {
                 <Card className={this.props.notesView ? "notesGridDisplayCard" : "notesListDisplayCard"} >
 
                     <div style={{ backgroundColor: this.state.note.color, width: "-webkit-fill-available" }} >
+                        {this.state.note.image !== "" ? (
+                            <div style={{ backgroundImage: "url("+this.state.note.image+")" }} >
+                            </div>
+                        ) : (
+                                <div>
+                                </div>
+                            )}
                         <div className="noteCardDisplayTitleDiv" >
                             <div className="noteCardDisplayTitle" onClick={this.getNoteEdited} > {this.state.note.title}</div>
                             <PinNote noteSelected={this.state.note} getPin={this.getPin} getNotePin={this.state.note.pin} />
@@ -256,9 +287,9 @@ export default class NoteCardDisplay extends React.Component {
                             ) : (
                                     <div className='notesFeatureDiv' >
                                         <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={this.state.note} />
-                                        <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" />
+                                        <Collaborator />
                                         <ColorSection getColor={this.getBackGroundColor} noteSelected={this.state.note} />
-                                        <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" />
+                                        <UploadImage getImage={this.getImage} noteSelected={this.state.note} />
                                         <ArchiveNote noteSelected={this.state.note} getArchive={this.getArchive} getNoteArchive={this.state.note.archive} />
                                         <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash}
                                             getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
@@ -268,16 +299,16 @@ export default class NoteCardDisplay extends React.Component {
                         </div>
                     </div>
                     <DialogNoteEditComponent
-                    getNoteEdited={this.getNoteEdited}
-                    getBackGroundColor={this.getBackGroundColor}
-                    getReminder={this.getReminder}
-                    getReminderRemoved={this.getReminderRemoved}
-                    getPin={this.getPin}
-                    getTrash={this.getTrash}
-                    getArchive={this.getArchive}
-                    getTitleEdit={this.getTitleEdit}
-                    getDescriptionEdit = {this.getDescriptionEdit}
-                     displayStatus={this.state.dialogDisplayStatus} noteSelected={this.state.note} />
+                        getNoteEdited={this.getNoteEdited}
+                        getBackGroundColor={this.getBackGroundColor}
+                        getReminder={this.getReminder}
+                        getReminderRemoved={this.getReminderRemoved}
+                        getPin={this.getPin}
+                        getTrash={this.getTrash}
+                        getArchive={this.getArchive}
+                        getTitleEdit={this.getTitleEdit}
+                        getDescriptionEdit={this.getDescriptionEdit}
+                        displayStatus={this.state.dialogDisplayStatus} noteSelected={this.state.note} />
                 </Card>
             </div>
         )

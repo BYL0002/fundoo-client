@@ -9,6 +9,7 @@ import React from 'react';
 import { Card, InputBase, Button, Snackbar, IconButton, Chip } from '@material-ui/core';
 // import { ClickAwayListener } from '@material-ui/core'
 import ReminderPopper from './ReminderPopper';
+import Collaborator from './Collaborator';
 import ColorSection from './ColorSection';
 import NotesDisplay from './NotesDisplay';
 import ArchiveNote from './ArchiveNote';
@@ -69,6 +70,14 @@ class AddNotes extends React.Component {
         })
     }
 
+    getImage = (imageSelected, note) => {
+        console.log('image upload----', imageSelected);
+        
+        this.setState({
+            imageAdded: imageSelected
+        })
+    }
+
     getReminder = (reminderSet, note) => {
 
         this.setState({
@@ -119,6 +128,9 @@ class AddNotes extends React.Component {
 
     handleAddNoteRequest() {
 
+        console.log('image state set', this.state.imageAdded);
+        
+
         this.setState({
             isToggleAddCard: !this.state.isToggleAddCard,
             colorSelect: "rgb(255, 255, 255)",
@@ -128,7 +140,7 @@ class AddNotes extends React.Component {
             reminderChoosen: "",
             noteTitle: "",
             noteDescription: "",
-            imageAdded: "",
+            // imageAdded: "",
         });
 
         let userLogin = localStorage.getItem("userLogged");
@@ -143,7 +155,7 @@ class AddNotes extends React.Component {
                 collaborator: this.state.collaboratorChoosen,
                 reminder: this.state.reminderChoosen,
                 color: this.state.colorSelect,
-                imageAdded: this.state.imageAdded,
+                image: this.state.imageAdded,
                 archive: this.state.archiveChoosen,
                 pin: this.state.pinChoosen,
                 trash: false
@@ -151,14 +163,13 @@ class AddNotes extends React.Component {
         }
 
         NoteService.NotesAddition(request, (err, data) => {
-            
-            if(data !== null || data !== undefined)
-            {
+
+            if (data !== null || data !== undefined) {
                 this.notedisp.current.addNewNote(data);
             }
         });
     }
- 
+
     render() {
         let classCard;
         if (this.props.drawerStatus)
@@ -174,7 +185,7 @@ class AddNotes extends React.Component {
                         <div style={{ backgroundColor: this.state.colorSelect }} >
                             {this.state.isToggleAddCard ? (
                                 <div className="completeNoteTakeCard" >
-                                    <div>
+                                    <div style={{ display: 'flex' }} >
                                         <InputBase className="inputNoteTake" placeholder="Title" multiline name="noteTitle" onChange={this.handleInputValue} />
                                         <PinNote noteSelected={'option'} getPin={this.getPin} getNotePin={false} />
                                     </div>
@@ -195,13 +206,16 @@ class AddNotes extends React.Component {
                                                 />
                                             </div>
                                         )}
-                                    <div>
-                                        <ReminderPopper getReminderChooseOption={this.getReminder} />
-                                        <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                        <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
-                                        <UploadImage />
-                                        <ArchiveNote getArchive={this.getArchive} getNoteArchive={false} noteSelected={'option'} />
-                                        <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                    <div >
+                                        <div className="notesFeatureDiv" >
+                                            <ReminderPopper getReminderChooseOption={this.getReminder} />
+                                            <Collaborator collaboratorCardStatus={this.handleAddNoteCardDisplay} />
+                                            <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
+                                            <UploadImage getImage={this.getImage} />
+                                            <ArchiveNote getArchive={this.getArchive} getNoteArchive={false} noteSelected={'option'} />
+                                            <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             ) : (
@@ -248,9 +262,9 @@ class AddNotes extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                <NotesDisplay ref = {this.notedisp} sideBarSelected={this.props.sideBarSelected}
-                 getSidebarTabSelected={this.props.getSidebarTabSelected} notesView={this.props.notesView}
-                  sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} />
+                <NotesDisplay ref={this.notedisp} sideBarSelected={this.props.sideBarSelected}
+                    getSidebarTabSelected={this.props.getSidebarTabSelected} notesView={this.props.notesView}
+                    sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} />
             </div>
         )
     }

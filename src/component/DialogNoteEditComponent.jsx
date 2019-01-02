@@ -6,15 +6,36 @@
  */
 
 import React from 'react';
-import { Dialog, DialogContent, Input, Button, DialogActions } from '@material-ui/core';
+import { Dialog, DialogContent, Input, Button, DialogActions, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import ReminderPopper from './ReminderPopper';
+import Collaborator from './Collaborator';
 import ColorSection from './ColorSection';
 import UploadImage from './UploadImage';
 import ArchiveNote from './ArchiveNote';
 import PinNote from './PinNote';
 import { Chip } from '@material-ui/core';
 
-// import { ClickAwayListener } from '@material-ui/core'
+// import { ClickAwayListener } from '@material-ui/core';
+
+const theme = createMuiTheme({
+
+    typography: {
+        useNextVariants: true,
+    },
+    overrides: {
+        MuiDialog: {
+            paperWidthSm: {
+                overflowY: "visible",
+                borderRadius:5
+            }
+        },
+        MuiDialogContent: {
+            root: {
+                paddingTop: "0px"
+            }
+        }
+    }
+})
 
 /**
  * @description DialogNoteEditComponent class component
@@ -24,7 +45,8 @@ class DialogNoteEditComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: this.props.displayStatus
+            open: this.props.displayStatus,
+            noteSelected: this.props.noteSelected
         }
     }
 
@@ -46,59 +68,65 @@ class DialogNoteEditComponent extends React.Component {
 
         return (
             <div >
-                <Dialog
-                    // fullScreen={fullScreen}
-                    open={this.props.displayStatus}
-                    onClose={this.props.getNoteEdited}
-                    aria-labelledby="responsive-dialog-title"
-                    // className="dialogNoteEdit"
-                >
-                    <div style={{ backgroundColor: this.props.noteSelected.color }}>
-                        <DialogContent id="dialogNoteEdit" >
+                <MuiThemeProvider theme={theme}>
+                    <Dialog
+                        // fullScreen={fullScreen}
+                        open={this.props.displayStatus}
+                        onClose={this.props.getNoteEdited}
+                        aria-labelledby="responsive-dialog-title"
+                    >
+                        <div style={{ backgroundColor: this.props.noteSelected.color }}>
+                            <DialogContent id="dialogNoteEdit" >
 
-                            <div> <Input className="inputNoteEditDialog" value={this.props.noteSelected.title} disableUnderline
-                             onChange={(event) => this.props.getTitleEdit(event, this.props.noteSelected)} /> </div>
+                                <div style={{display:'flex'}} >
+                                    <Input className="inputNoteEditDialog" value={this.props.noteSelected.title}
+                                        disableUnderline
+                                        onChange={(event) => this.props.getTitleEdit(event, this.props.noteSelected)} />
 
-                            <PinNote noteSelected={this.props.noteSelected} getPin={this.props.getPin} getNotePin={this.props.noteSelected.pin} />
 
+                                    <PinNote noteSelected={this.props.noteSelected}
+                                        getPin={this.props.getPin} getNotePin={this.props.noteSelected.pin} />
 
-                            <Input className="inputNoteEditDialog" value={this.props.noteSelected.description} disableUnderline
-                             onChange={(event) => this.props.getDescriptionEdit(event, this.props.noteSelected)} />
-
-                            {this.props.noteSelected.reminder === "" ? (
-                                <div>
                                 </div>
-                            ) : (
-                                    <div >
-                                        <Chip
-                                            icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                            label={<span className="reminderShowOnCardText" >  {this.props.noteSelected.reminder} </span>}
-                                            onDelete={() => this.props.getReminderRemoved(this.props.noteSelected)}
-                                            variant="outlined"
-                                            className="chipOnCardReminder"
-                                        />
+
+                                <Input className="inputNoteEditDialog" value={this.props.noteSelected.description}
+                                    disableUnderline
+                                    onChange={(event) => this.props.getDescriptionEdit(event, this.props.noteSelected)} />
+
+                                {this.props.noteSelected.reminder === "" ? (
+                                    <div>
                                     </div>
-                                )}
+                                ) : (
+                                        <div >
+                                            <Chip
+                                                icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                                label={<span className="reminderShowOnCardText" >  {this.props.noteSelected.reminder} </span>}
+                                                onDelete={() => this.props.getReminderRemoved(this.props.noteSelected)}
+                                                variant="outlined"
+                                                className="chipOnCardReminder"
+                                            />
+                                        </div>
+                                    )}
 
-                        </DialogContent>
+                            </DialogContent>
 
-                        <DialogActions style={{display:'flex'}} >
-                            <div style={{display:'flex', justifyContent:'space-between', width:'100%'}}>
-                                <div className='icons' style={{ display:'flex' }} >
-                                    <ReminderPopper getReminderChooseOption={this.props.getReminder} />
-                                    <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')}
-                                     alt="addPerson" onClick={this.handleAddNoteCardDisplay} />
-                                    <ColorSection getColor={this.props.getBackGroundColor} initialColorValue={this.colorSelect} />
-                                    <UploadImage />
-                                    <ArchiveNote getArchive={this.props.getArchive} getNoteArchive={false} noteSelected={'option'} />
+                            <DialogActions style={{ display: 'flex' }} >
+                                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                                    <div className='icons' style={{ display: 'flex' }} >
+                                        <ReminderPopper getReminderChooseOption={this.props.getReminder} noteSelected={this.props.noteSelected} />
+                                        <Collaborator />
+                                        <ColorSection getColor={this.props.getBackGroundColor} initialColorValue={this.colorSelect} />
+                                        <UploadImage />
+                                        <ArchiveNote getArchive={this.props.getArchive} getNoteArchive={false} noteSelected={'option'} />
 
+                                    </div>
+
+                                    <div><Button color="primary" className="closeNoteAddCardButton" onClick={this.props.getNoteEdited} >Close</Button></div>
                                 </div>
-                                
-                                <div><Button color="primary" className="closeNoteAddCardButton" onClick={this.props.getNoteEdited} >Close</Button></div>
-                            </div>
-                        </DialogActions>
-                    </div>
-                </Dialog>
+                            </DialogActions>
+                        </div>
+                    </Dialog>
+                </MuiThemeProvider>
             </div>
         )
     }

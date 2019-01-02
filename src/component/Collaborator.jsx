@@ -5,7 +5,7 @@
  * @version 1.2
  */
 import React from 'react';
-import { Card, InputBase, Button, MenuItem } from '@material-ui/core';
+import { Card, Button } from '@material-ui/core';
 
 
 /**
@@ -20,6 +20,7 @@ class Collaborator extends React.Component {
     }
 
     handleDisplayCollaboratorCardStatus(event) {
+        
         this.setState({
             isToggleCollaboratorCard: !this.state.isToggleCollaboratorCard
         })
@@ -43,10 +44,10 @@ class Collaborator extends React.Component {
                         </div>
                     </Card>
                 ) : (
-                        <span>
+                        <div>
                             <img className="noteAddFeatureImages" src={require('../assets/images/personAdd.svg')} alt="addPerson"
                                 onClick={this.handleDisplayCollaboratorCardStatus.bind(this)} />
-                        </span>
+                        </div>
                     )
                 }
             </span>
