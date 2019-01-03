@@ -27,13 +27,20 @@ class Sidebar extends React.Component {
         super(props);
 
         this.state = {
-            TabSelected: ""
+            TabSelected: "",
+            labelDialogStatus:false
         }
 
     }
 
     sideBarOptionSelected = (event) => {
         this.props.sideBarSelected(event.target.textContent);
+    }
+
+    labelDialogStatusOnClick = () => {
+        this.setState({
+            labelDialogStatus: !this.state.labelDialogStatus
+        })
     }
 
     render() {
@@ -53,12 +60,12 @@ class Sidebar extends React.Component {
                 <MenuItem disabled>
                     <div style={{ float: "left" }} >LABELS</div>
                 </MenuItem>
-                <MenuItem className="sideBarMenuItems" onClick={this.sideBarOptionSelected} name="Edit Labels" >
-                    <AddLabel />
+                <MenuItem className="sideBarMenuItems" onClick={this.labelDialogStatusOnClick} name="Edit Labels" >
+                    <AddLabel labelDialogStatusOnClick={this.labelDialogStatusOnClick} labelDialogStatus={this.state.labelDialogStatus} />
                 </MenuItem>
                 <Divider />
                 <MenuItem className="sideBarMenuItems" onClick={this.sideBarOptionSelected} name="Archive" >
-                    <img className="sideBarImages" src={require('../assets/images/archiveImage.svg')} alt="archive" />
+                    <img className="sideBarImages" src={require('../assets/images/SideBarArchiveImage.svg')} alt="archive" />
                     <span className="sideBarText" >Archive</span>
                 </MenuItem>
                 <MenuItem className="sideBarMenuItems" onClick={this.sideBarOptionSelected} name="Trash" >

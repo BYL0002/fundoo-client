@@ -96,16 +96,20 @@ export default class NotesDisplay extends React.Component {
     }
 
     render() {
-        if(this.state.notesDisplay===null){
+        let count = 0;
+        
+        if (this.state.notesDisplay === null) {
             return null;
         }
-        let count = 0;
-        this.state.notesDisplay.map((note, index) => {
-            if (note.pin === true) {
-                return count++;
-            }
-            return count;
-        });
+        else {
+        
+            this.state.notesDisplay.map((note, index) => {
+                if (note.pin === true) {
+                    return count++;
+                }
+                return count;
+            });
+        }
 
         let pinnedNotes = (this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === true) {
@@ -148,7 +152,7 @@ export default class NotesDisplay extends React.Component {
         });
 
         return (
-            
+
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
 
                 <div>

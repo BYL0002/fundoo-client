@@ -53,15 +53,14 @@ const sendRequestwithImage = (request) => {
             'token': '' + tokenForSendNote
         }
 
-        return axios.post(request.thread,request.file,
+        return axios.post(request.thread, request.file,
             headers,
             {
                 data: request.data,
-                file: request.file,
-                'headers': {
-                    'token': '' + tokenForSendNote
-                }
-            }, request.file )
+                // 'headers': {
+                //     'token': '' + tokenForSendNote
+                // }
+            })
             .then(response => {
                 if (response.data.status) {
                     console.log('res on axios', response.data);
