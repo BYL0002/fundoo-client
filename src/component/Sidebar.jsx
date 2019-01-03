@@ -1,4 +1,5 @@
 import React from 'react';
+import AddLabel from './AddLabel';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import { MenuItem } from '@material-ui/core';
@@ -33,7 +34,6 @@ class Sidebar extends React.Component {
 
     sideBarOptionSelected = (event) => {
         this.props.sideBarSelected(event.target.textContent);
-        
     }
 
     render() {
@@ -54,8 +54,7 @@ class Sidebar extends React.Component {
                     <div style={{ float: "left" }} >LABELS</div>
                 </MenuItem>
                 <MenuItem className="sideBarMenuItems" onClick={this.sideBarOptionSelected} name="Edit Labels" >
-                    <img className="sideBarImages" src={require('../assets/images/SideBarLabelImage.svg')} alt="label" />
-                    <span className="sideBarText" >Edit Labels</span>
+                    <AddLabel />
                 </MenuItem>
                 <Divider />
                 <MenuItem className="sideBarMenuItems" onClick={this.sideBarOptionSelected} name="Archive" >

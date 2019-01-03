@@ -18,15 +18,18 @@ import { Chip } from '@material-ui/core';
 // import { ClickAwayListener } from '@material-ui/core';
 
 const theme = createMuiTheme({
-    overrides:{
-        MuiDialog:{
-            paperWidthSm:{
-                borderRadius:8
+    typography: {
+        useNextVariants: true,
+    },
+    overrides: {
+        MuiDialog: {
+            paperWidthSm: {
+                borderRadius: 8
             }
         },
-        MuiBackdrop:{
-            root:{
-                backgroundColor:'rgba(255, 255, 255,0.7)'
+        MuiBackdrop: {
+            root: {
+                backgroundColor: 'rgba(255, 255, 255,0.7)'
             }
         }
     }
@@ -65,14 +68,14 @@ class DialogNoteEditComponent extends React.Component {
         return (
             <div >
                 <MuiThemeProvider theme={theme}>
-                <Dialog
-                    // fullScreen={fullScreen}
-                    open={this.props.displayStatus}
-                    onClose={this.props.getNoteEdited}
-                    aria-labelledby="responsive-dialog-title"
+                    <Dialog
+                        // fullScreen={fullScreen}
+                        open={this.props.displayStatus}
+                        onClose={this.props.getNoteEdited}
+                        aria-labelledby="responsive-dialog-title"
                     // id="dialogBox"
-                >
-                    <div style={{ backgroundColor: this.props.noteSelected.color }} >
+                    >
+                        <div style={{ backgroundColor: this.props.noteSelected.color }} >
                             <DialogContent id="dialogNoteEdit" >
 
                                 <div style={{ display: 'flex' }} >
@@ -120,8 +123,8 @@ class DialogNoteEditComponent extends React.Component {
                                     <div><Button className="dialogCloseButton" color="primary" onClick={this.props.getNoteEdited} >Close</Button></div>
                                 </div>
                             </DialogActions>
-                    </div>
-                </Dialog>
+                        </div>
+                    </Dialog>
                 </MuiThemeProvider>
             </div>
         )

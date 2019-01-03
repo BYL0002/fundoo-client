@@ -17,6 +17,8 @@ import NoteService from '../service/NoteService';
 import CloseIcon from '@material-ui/icons/Close';
 import PinNote from './PinNote';
 import UploadImage from './UploadImage';
+import FormData from 'form-data';
+const Formdata = new FormData();
 
 /**
  * @description AddNotes class component
@@ -70,11 +72,15 @@ class AddNotes extends React.Component {
         })
     }
 
-    getImage = (imageSelected, note) => {
-        console.log('image upload----', imageSelected);
-        
+    getImage = (imageSelectedObject, note) => {
+        console.log('image upload----', imageSelectedObject.file);
+        console.log('image upload----', imageSelectedObject.name);
+
+        Formdata.append('file', imageSelectedObject.file);
+        // Formdata.append('name', imageSelectedObject.name);
+
         this.setState({
-            imageAdded: imageSelected
+            imageAdded: imageSelectedObject
         })
     }
 
@@ -129,7 +135,7 @@ class AddNotes extends React.Component {
     handleAddNoteRequest() {
 
         console.log('image state set', this.state.imageAdded);
-        
+
 
         this.setState({
             isToggleAddCard: !this.state.isToggleAddCard,
@@ -145,8 +151,35 @@ class AddNotes extends React.Component {
 
         let userLogin = localStorage.getItem("userLogged");
 
+        /**
+         * without image upload - request
+         */
+
+        // let request = {
+        //     thread: "/noteAddition",
+        //     data: {
+        //         sender: userLogin,
+        //         userId: "",
+        //         title: this.state.noteTitle,
+        //         description: this.state.noteDescription,
+        //         collaborator: this.state.collaboratorChoosen,
+        //         reminder: this.state.reminderChoosen,
+        //         color: this.state.colorSelect,
+        //         image: this.state.imageAdded,
+        //         archive: this.state.archiveChoosen,
+        //         pin: this.state.pinChoosen,
+        //         trash: false
+        //     }
+        // }
+
+
+        /**
+         * with image upload - request
+         */
+
         let request = {
             thread: "/noteAddition",
+            file : Formdata,
             data: {
                 sender: userLogin,
                 userId: "",
@@ -162,7 +195,7 @@ class AddNotes extends React.Component {
             }
         }
 
-        NoteService.NotesAddition(request, (err, data) => {
+        NoteService.NotesAdditionwithImage(request, (err, data) => {
 
             if (data !== null || data !== undefined) {
                 this.notedisp.current.addNewNote(data);
@@ -211,10 +244,10 @@ class AddNotes extends React.Component {
                                             <UploadImage getImage={this.getImage} />
                                             <ArchiveNote getArchive={this.getArchive} getNoteArchive={false} noteSelected={'option'} />
                                             <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
-                                            
+
                                         </div>
                                         <div>
-                                        {/* <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button> */}
+                                            {/* <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button> */}
                                         </div>
                                     </div>
                                 </div>

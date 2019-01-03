@@ -41,6 +41,46 @@ const sendRequest = (request) => {
     }
 }
 
+/**
+ * @description request axios with axios
+ * @param {requset} request 
+ */
+const sendRequestwithImage = (request) => {
+    try {
+        let tokenForSendNote = localStorage.getItem('userLogToken');
+
+        let headers = {
+            'token': '' + tokenForSendNote
+        }
+
+        return axios.post(request.thread,request.file,
+            headers,
+            {
+                data: request.data,
+                file: request.file,
+                'headers': {
+                    'token': '' + tokenForSendNote
+                }
+            }, request.file )
+            .then(response => {
+                if (response.data.status) {
+                    console.log('res on axios', response.data);
+
+                    return response.data.message;
+                }
+                else {
+                    console.log('Something Failed');
+                }
+            }).catch(error => {
+                console.log('error occured, try later');
+            })
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+
 
 const getRequest = (request) => {
     try {
@@ -77,6 +117,20 @@ const getRequest = (request) => {
 function NotesAddition(request, callback) {
 
     return sendRequest(request)
+        .then(res => {
+            // console.log('res on function', res);
+            return callback(null, res);
+        })
+}
+
+/**
+ * @description Image Upload
+ * @param {request} request 
+ * @param {callback} callback 
+ */
+function NotesAdditionwithImage(request, callback) {
+
+    return sendRequestwithImage(request)
         .then(res => {
             // console.log('res on function', res);
             return callback(null, res);
@@ -133,9 +187,6 @@ const sendUpdateRequest = (request) => {
 
 function NotesUpdation(request) {
 
-    console.log('request on service ------', request);
-    console.log('request on service ------', request.thread);
-
     return sendUpdateRequest(request)
         .then(res => {
             console.log('res on function', res);
@@ -145,4 +196,4 @@ function NotesUpdation(request) {
 /**
  * @exports Function to get request from components
  */
-module.exports = { NotesAddition, NoteDisplay, NotesUpdation };
+module.exports = { NotesAddition, NotesAdditionwithImage, NoteDisplay, NotesUpdation };

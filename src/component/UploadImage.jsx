@@ -23,7 +23,11 @@ export default class UploadImage extends React.Component {
 
     getImage = (event) => {
         console.log('event.target.value',event.target.files[0]);
-        this.props.getImage(event.target.files[0], this.props.noteSelected );
+        let requestImageDetails = {
+            file : event.target.files[0],
+            name : "file"
+        }
+        this.props.getImage(requestImageDetails, this.props.noteSelected );
     }
 
     render() {
@@ -32,7 +36,7 @@ export default class UploadImage extends React.Component {
                 <img className="noteAddFeatureImages" src={require('../assets/images/imageAdd.svg')} alt="uploadImage" onClick={this.triggerInputFile} />
 
                 <input ref={fileInput => this.fileInput = fileInput} type="file" style={{ 'display': 'none' }} 
-                onChange={this.getImage} id="imageFile" value="" name="" />
+                onChange={this.getImage} name="file" />
             </div>
         )
     }

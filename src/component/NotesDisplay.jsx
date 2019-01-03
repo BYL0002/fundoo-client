@@ -16,7 +16,7 @@ export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notesDisplay: [],
+            notesDisplay: null,
             newNote: this.props.getNewNote,
             snackbarStatus: false,
             snackbarMessage: "Reminder!",
@@ -96,6 +96,9 @@ export default class NotesDisplay extends React.Component {
     }
 
     render() {
+        if(this.state.notesDisplay===null){
+            return null;
+        }
         let count = 0;
         this.state.notesDisplay.map((note, index) => {
             if (note.pin === true) {
@@ -129,7 +132,7 @@ export default class NotesDisplay extends React.Component {
         });
 
         let archiveNotes = this.state.notesDisplay.map((note, index) => {
-            if (note.trash === false && note.archive === true) {
+            if (note.trash === false && note.archive === true && note.pin === false) {
                 return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
                     notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
             }
@@ -145,7 +148,7 @@ export default class NotesDisplay extends React.Component {
         });
 
         return (
-
+            
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
 
                 <div>
