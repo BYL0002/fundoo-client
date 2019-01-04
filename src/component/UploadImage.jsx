@@ -17,7 +17,7 @@ import React from 'react';
 export default class UploadImage extends React.Component {
 
     triggerInputFile = () => {
-        console.log("galat hai")
+
         this.fileInput.click();
     }
 

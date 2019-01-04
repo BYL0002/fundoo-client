@@ -11,7 +11,7 @@ import { Card, InputBase, Button, Snackbar, IconButton, Chip } from '@material-u
 import ReminderPopper from './ReminderPopper';
 import Collaborator from './Collaborator';
 import ColorSection from './ColorSection';
-import NotesDisplay from './NotesDisplay';
+// import NotesDisplay from './NotesDisplay';
 import ArchiveNote from './ArchiveNote';
 import NoteService from '../service/NoteService';
 import CloseIcon from '@material-ui/icons/Close';
@@ -45,7 +45,7 @@ class AddNotes extends React.Component {
         this.handleAddNoteCardDisplay = this.handleAddNoteCardDisplay.bind(this);
         this.handleAddNoteCardToggleStatus = this.handleAddNoteCardToggleStatus.bind(this);
         this.getBackGroundColor = this.getBackGroundColor.bind(this);
-        this.notedisp = React.createRef();
+        // this.notedisp = React.createRef();
     }
 
     handleAddNoteCardDisplay() {
@@ -192,7 +192,8 @@ class AddNotes extends React.Component {
         NoteService.NotesAdditionwithImage(request, (err, data) => {
 
             if (data !== null || data !== undefined) {
-                this.notedisp.current.addNewNote(data);
+                this.props.newNoteCreated(data);
+                // this.notedisp.current.addNewNote(data);
             }
         });
     }
@@ -288,9 +289,9 @@ class AddNotes extends React.Component {
                         </IconButton>,
                     ]}
                 />
-                <NotesDisplay ref={this.notedisp} sideBarSelected={this.props.sideBarSelected}
+                {/* <NotesDisplay ref={this.notedisp} sideBarSelected={this.props.sideBarSelected}
                     getSidebarTabSelected={this.props.getSidebarTabSelected} notesView={this.props.notesView}
-                    sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} />
+                    sidebarStatus={this.props.drawerStatus} getNewNote={this.state.newNote} /> */}
             </div>
         )
     }

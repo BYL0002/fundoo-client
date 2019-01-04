@@ -28,7 +28,9 @@ class Sidebar extends React.Component {
 
         this.state = {
             TabSelected: "",
-            labelDialogStatus:false
+            labelDialogStatus: false,
+            labelName: "",
+            labels: this.props.labels
         }
 
     }
@@ -43,50 +45,70 @@ class Sidebar extends React.Component {
         })
     }
 
-    labelDialogStatusFalse = () => {
+    getLabelEdit = (labelName) => {
         this.setState({
-            labelDialogStatus: false
+            labelName: labelName
+        })
+    }
+    
+    getLabels = (labels) => {
+
+        this.setState({
+            labels : labels
         })
     }
 
     render() {
+        
         const sideItems = (
             <div>
                 <MenuItem className="sideBarMenuItems" id={1} onClick={this.sideBarOptionSelected} >
-                {/* {this.props.sideBarSelectedOnClick === 'Notes' ? style={{}} } > */}
+                    {/* {this.props.sideBarSelectedOnClick === 'Notes' ? style={{}} } > */}
                     <img className="sideBarImages" src={require('../assets/images/SideBarNoteImage.svg')} alt="note" />
                     <span className="sideBarText" >Notes</span>
                 </MenuItem>
+                
                 <MenuItem onClick={this.sideBarOptionSelected} name="Reminder" className="sideBarMenuItems" >
                     <img className="sideBarImages" src={require('../assets/images/SideBarReminderImage.svg')} alt="reminder" />
                     <span className="sideBarText" >Reminders</span>
                 </MenuItem>
                 <Divider />
+                
                 <MenuItem disabled>
                     <div style={{ float: "left" }} >LABELS</div>
                 </MenuItem>
+
+                {this.state.labels.map( (option, index) => {
+                    
+                    return <MenuItem key={index} onClick={this.sideBarOptionSelected} name="Reminder" className="sideBarMenuItems" >
+                        <img className="sideBarImages" src={require('../assets/images/labelBullet.svg')} alt="labelBullet" />
+                        <span className="sideBarText" >{option.labels}</span>
+                    </MenuItem>
+                })}
+                
                 <MenuItem className="sideBarMenuItems" onClick={this.labelDialogStatusTrue} name="Edit Labels" >
-                    <AddLabel
-                     labelDialogStatusFalse={this.labelDialogStatusFalse}
-                      labelDialogStatus={this.state.labelDialogStatus} />
+                    <AddLabel getLabelEdit={this.getLabelEdit}
+                        getLabelCreated={() => this.props.getLabelCreated(this.state.labelName)}
+                        labels={this.props.labels} />
                 </MenuItem>
                 <Divider />
+                
                 <MenuItem className="sideBarMenuItems" onClick={this.sideBarOptionSelected} name="Archive" >
                     <img className="sideBarImages" src={require('../assets/images/SideBarArchiveImage.svg')} alt="archive" />
                     <span className="sideBarText" >Archive</span>
                 </MenuItem>
+                
                 <MenuItem className="sideBarMenuItems" onClick={this.sideBarOptionSelected} name="Trash" >
                     <img className="sideBarImages" src={require('../assets/images/SideBarTrashImage.svg')} alt="trash" />
                     <span className="sideBarText" >Trash</span>
                 </MenuItem>
+                
                 <MenuItem className="sideBarMenuItems" >
                     <span className="sideBarTextBottom" >Notes</span>
                     <span className="sideBarTextBottom" >Privacy</span>
                 </MenuItem>
             </div>
         );
-console.log('ABCD',this.state.labelDialogStatus);
-
 
         return (
             <div>

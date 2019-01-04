@@ -111,24 +111,18 @@ export default class NoteCardDisplay extends React.Component {
     }
 
     getImage = (imageSet, note) => {
-        let request = {
-            thread: "/updateNoteImage",
-            data: {
-                note: {
-                    _id: note._id,
-                    image: imageSet
-                }
-            }
-        }
-
 
         console.log('image upload----', imageSet);
 
-        Formdata.append('image', imageSet);
-        Formdata.append('note', note);
+        Formdata.append("image", imageSet);
+        Formdata.append("_id", note._id);
+        let request = {
+            thread: "/updateNoteImage",
+            data: Formdata
+        }
 
         let noteTemp = this.state.note;
-        noteTemp.image = imageSet;
+        noteTemp.image = 'data:image/jpg;base64, '+imageSet.toString("base64");
         this.setState({
             note: noteTemp
         })
