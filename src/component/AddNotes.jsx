@@ -72,16 +72,11 @@ class AddNotes extends React.Component {
         })
     }
 
-    getImage = (imageSelectedObject, note) => {
-        console.log('image upload----', imageSelectedObject.file);
-        console.log('image upload----', imageSelectedObject.name);
+    getImage = (imageSelected, note) => {
 
-        Formdata.append('file', imageSelectedObject.file);
-        // Formdata.append('name', imageSelectedObject.name);
+        console.log('image upload----', imageSelected);
 
-        this.setState({
-            imageAdded: imageSelectedObject
-        })
+        Formdata.append('image', imageSelected);
     }
 
     getReminder = (reminderSet, note) => {
@@ -100,7 +95,6 @@ class AddNotes extends React.Component {
     getPin = (pinSet, note) => {
 
         this.setState({
-            // pinChoosen: !this.state.pinChoosen
             pinChoosen: pinSet
         })
     }
@@ -179,7 +173,7 @@ class AddNotes extends React.Component {
 
         let request = {
             thread: "/noteAddition",
-            file : Formdata,
+            image : Formdata,
             data: {
                 sender: userLogin,
                 userId: "",
@@ -188,7 +182,7 @@ class AddNotes extends React.Component {
                 collaborator: this.state.collaboratorChoosen,
                 reminder: this.state.reminderChoosen,
                 color: this.state.colorSelect,
-                image: this.state.imageAdded,
+                image: "",
                 archive: this.state.archiveChoosen,
                 pin: this.state.pinChoosen,
                 trash: false
@@ -234,20 +228,19 @@ class AddNotes extends React.Component {
                                                 />
                                             </div>
                                         )}
-                                    {/* <div style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}} > */}
-                                    <div>
-
+                                    <div style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}} >
+                                
                                         <div className="notenoteAddFeatureImagesDiv" >
                                             <ReminderPopper getReminderChooseOption={this.getReminder} />
                                             <Collaborator collaboratorCardStatus={this.handleAddNoteCardDisplay} />
                                             <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
                                             <UploadImage getImage={this.getImage} />
                                             <ArchiveNote getArchive={this.getArchive} getNoteArchive={false} noteSelected={'option'} />
-                                            <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
+                                            
 
                                         </div>
                                         <div>
-                                            {/* <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button> */}
+                                            <Button onClick={this.handleAddNoteRequest.bind(this)} >Close</Button>
                                         </div>
                                     </div>
                                 </div>

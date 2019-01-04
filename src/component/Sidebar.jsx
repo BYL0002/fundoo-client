@@ -37,14 +37,19 @@ class Sidebar extends React.Component {
         this.props.sideBarSelected(event.target.textContent);
     }
 
-    labelDialogStatusOnClick = () => {
+    labelDialogStatusTrue = () => {
         this.setState({
-            labelDialogStatus: !this.state.labelDialogStatus
+            labelDialogStatus: true
+        })
+    }
+
+    labelDialogStatusFalse = () => {
+        this.setState({
+            labelDialogStatus: false
         })
     }
 
     render() {
-
         const sideItems = (
             <div>
                 <MenuItem className="sideBarMenuItems" id={1} onClick={this.sideBarOptionSelected} >
@@ -60,8 +65,10 @@ class Sidebar extends React.Component {
                 <MenuItem disabled>
                     <div style={{ float: "left" }} >LABELS</div>
                 </MenuItem>
-                <MenuItem className="sideBarMenuItems" onClick={this.labelDialogStatusOnClick} name="Edit Labels" >
-                    <AddLabel labelDialogStatusOnClick={this.labelDialogStatusOnClick} labelDialogStatus={this.state.labelDialogStatus} />
+                <MenuItem className="sideBarMenuItems" onClick={this.labelDialogStatusTrue} name="Edit Labels" >
+                    <AddLabel
+                     labelDialogStatusFalse={this.labelDialogStatusFalse}
+                      labelDialogStatus={this.state.labelDialogStatus} />
                 </MenuItem>
                 <Divider />
                 <MenuItem className="sideBarMenuItems" onClick={this.sideBarOptionSelected} name="Archive" >
@@ -78,6 +85,8 @@ class Sidebar extends React.Component {
                 </MenuItem>
             </div>
         );
+console.log('ABCD',this.state.labelDialogStatus);
+
 
         return (
             <div>

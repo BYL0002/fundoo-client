@@ -50,16 +50,16 @@ const sendRequestwithImage = (request) => {
         let tokenForSendNote = localStorage.getItem('userLogToken');
 
         let headers = {
-            'token': '' + tokenForSendNote
+            'token': tokenForSendNote
         }
 
-        return axios.post(request.thread, request.file,
+        return axios.post(request.thread,request.image,
             headers,
             {
                 data: request.data,
-                // 'headers': {
-                //     'token': '' + tokenForSendNote
-                // }
+                'headers': {
+                    'token': tokenForSendNote
+                }
             })
             .then(response => {
                 if (response.data.status) {

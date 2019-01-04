@@ -15,6 +15,9 @@ import UploadImage from './UploadImage';
 import MoreOptions from './MoreOptions';
 import PinNote from './PinNote';
 import DialogNoteEditComponent from './DialogNoteEditComponent';
+import FormData from 'form-data';
+const Formdata = new FormData();
+
 export default class NoteCardDisplay extends React.Component {
     constructor(props) {
         super(props);
@@ -117,6 +120,12 @@ export default class NoteCardDisplay extends React.Component {
                 }
             }
         }
+
+
+        console.log('image upload----', imageSet);
+
+        Formdata.append('image', imageSet);
+        Formdata.append('note', note);
 
         let noteTemp = this.state.note;
         noteTemp.image = imageSet;
@@ -248,7 +257,7 @@ export default class NoteCardDisplay extends React.Component {
 
                     <div style={{ backgroundColor: this.state.note.color, width: "-webkit-fill-available" }} >
                         {this.state.note.image !== "" ? (
-                            <div style={{ backgroundImage: "url("+this.state.note.image+")" }} >
+                            <div style={{ backgroundImage: "url("+this.state.note.image+")", width:"100%", height:"auto" }} >
                             </div>
                         ) : (
                                 <div>

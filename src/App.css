@@ -670,7 +670,7 @@ div .sideBarMenuItems {
 
 .inputNoteTake {
   margin: 10px;
-  width : 550px;
+  width : 450px;
 }
 
 .inputNoteTake div {
@@ -684,7 +684,7 @@ div .sideBarMenuItems {
 }
 
 .completeNoteTakeCard {
-  width : 600px;
+  width : 500px;
   min-height: 130px;
 }
 
@@ -693,6 +693,7 @@ div .sideBarMenuItems {
 } */
 
 .notenoteAddFeatureImagesDiv {
+  width: 280px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -886,12 +887,8 @@ div .chipOnCardReminder {
   flex-wrap: wrap;
 }
 
-#dialogNoteEdit {
-  /* display: flex;
-  flex-wrap: wrap; */
-  /* margin: 5px;
-  padding: 0px;
-  height: 150px; */
+div .dialogLabel {
+  padding: 10px;
 }
 
 .inputNoteEditDialog {
