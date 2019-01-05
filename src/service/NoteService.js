@@ -50,7 +50,7 @@ const sendRequestwithImage = (request) => {
         let tokenForSendNote = localStorage.getItem('userLogToken');
 
         let headers = {
-            'token': tokenForSendNote
+            'token': ''+tokenForSendNote
         }
 
         return axios.post(request.thread,request.image,
@@ -58,7 +58,7 @@ const sendRequestwithImage = (request) => {
             {
                 data: request.data,
                 'headers': {
-                    'token': tokenForSendNote
+                    'token': ''+tokenForSendNote
                 }
             })
             .then(response => {

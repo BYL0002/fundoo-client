@@ -18,6 +18,8 @@ import DialogNoteEditComponent from './DialogNoteEditComponent';
 import FormData from 'form-data';
 const Formdata = new FormData();
 
+
+
 export default class NoteCardDisplay extends React.Component {
     constructor(props) {
         super(props);
@@ -25,7 +27,7 @@ export default class NoteCardDisplay extends React.Component {
             note: this.props.noteSelected,
             dialogDisplayStatus: false
         }
-    }
+    } 
 
     getBackGroundColor = (colorSelected, note) => {
 
@@ -116,18 +118,23 @@ export default class NoteCardDisplay extends React.Component {
 
         Formdata.append("image", imageSet);
         Formdata.append("_id", note._id);
+
         let request = {
-            thread: "/updateNoteImage",
+            url: "/updateNoteImage",
             data: Formdata
         }
+        
+        this.props.getUpdateImage(request, note);
 
-        let noteTemp = this.state.note;
-        noteTemp.image = 'data:image/jpg;base64, '+imageSet.toString("base64");
-        this.setState({
-            note: noteTemp
-        })
+        // NoteServiceClassObject.sendUpdateRequest(request);
 
-        this.props.getUpdate(request, this.state.note);
+        // let noteTemp = this.state.note;
+        // noteTemp.image = 'data:image/jpg;base64, '+imageSet.toString("base64");
+        // console.log("image upload as string", noteTemp.image);
+        
+        // this.setState({
+        //     note: noteTemp
+        // })        
 
     }
 

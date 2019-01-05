@@ -45,6 +45,7 @@ class Dashboard extends React.Component {
     }
 
     newNoteCreated = (newNote) => {
+        // debugger;
         this.setState({
             newNoteCreated:newNote
         })

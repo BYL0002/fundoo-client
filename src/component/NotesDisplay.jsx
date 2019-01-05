@@ -12,6 +12,9 @@ import NoteCardDisplay from './NoteCardDisplay';
 const NoteServiceClass = require('../service/NoteServiceClass');
 const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 
+const NewNoteServiceClass = require('../service/NewNoteServiceClass');
+const NewNoteServiceClassObject = new NewNoteServiceClass.NewNoteServiceClass();
+
 export default class NotesDisplay extends React.Component {
     constructor(props) {
         super(props);
@@ -77,6 +80,33 @@ export default class NotesDisplay extends React.Component {
 
     }
 
+    getUpdateImage = (request, note) => {
+
+        console.log('req via props', request);
+        
+        NewNoteServiceClassObject.NotesUpdation(request, (err, data) => {
+            if (err) {
+                console.log("err", err);
+            }
+            else {
+                console.log('data', data);
+
+                // let newNotesArray = this.state.notesDisplay;
+
+                // for (let i = 0; i < newNotesArray.length; i++) {
+                //     if (newNotesArray[i]._id === data._id) {
+                //         newNotesArray[i] = data
+                //     }
+                // }
+
+                // this.setState({
+                //     notesDisplay: newNotesArray
+                // })
+            }
+        });
+
+    }
+
     getNoteDeleted = (request, note) => {
 
         let newNotesArray = this.state.notesDisplay;
@@ -97,13 +127,15 @@ export default class NotesDisplay extends React.Component {
 
     render() {
         let count = 0;
-        
+
         if (this.state.notesDisplay === null) {
             return null;
         }
         else {
-        
+
             this.state.notesDisplay.map((note, index) => {
+                console.log(note);
+                
                 if (note.pin === true) {
                     return count++;
                 }
@@ -114,7 +146,8 @@ export default class NotesDisplay extends React.Component {
         let pinnedNotes = (this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === true) {
                 return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
-                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
+                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected}
+                     getNoteDeleted={this.getNoteDeleted} getUpdateImage={this.getUpdateImage} />
             }
             return null;
         }));
@@ -122,7 +155,8 @@ export default class NotesDisplay extends React.Component {
         let unPinnedNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === false) {
                 return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
-                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected} getNoteDeleted={this.getNoteDeleted} />
+                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected}
+                     getNoteDeleted={this.getNoteDeleted} getUpdateImage={this.getUpdateImage} />
             }
             return null;
         });

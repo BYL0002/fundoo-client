@@ -189,7 +189,7 @@ class AddNotes extends React.Component {
             }
         }
 
-        NoteService.NotesAdditionwithImage(request, (err, data) => {
+        NoteService.NotesAddition(request, (err, data) => {
 
             if (data !== null || data !== undefined) {
                 this.props.newNoteCreated(data);
