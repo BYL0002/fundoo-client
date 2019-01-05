@@ -13,14 +13,15 @@ export class NewNoteServiceClass {
         try {
             let tokenForSendNote = localStorage.getItem('userLogToken');
 
-            // let headers = {
-            //     'token': '' + tokenForSendNote
-            // }
+            console.log('req before axios', request);
+            
 
             return axios({
                 method: 'post',
                 url: request.url,
-                headers: "" + tokenForSendNote,
+                headers: {
+                    "token" : "" + tokenForSendNote
+                },
                 data: request.data
             }).then(response => {
                 if (response.data.status) {

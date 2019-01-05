@@ -134,16 +134,16 @@ export default class NotesDisplay extends React.Component {
         else {
 
             this.state.notesDisplay.map((note, index) => {
-                console.log(note);
-                
                 if (note.pin === true) {
                     return count++;
                 }
+                
                 return count;
             });
         }
 
         let pinnedNotes = (this.state.notesDisplay.map((note, index) => {
+
             if (note.trash === false && note.archive === false && note.pin === true) {
                 return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
                     notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected}
@@ -151,6 +151,9 @@ export default class NotesDisplay extends React.Component {
             }
             return null;
         }));
+
+      
+        
 
         let unPinnedNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === false) {
