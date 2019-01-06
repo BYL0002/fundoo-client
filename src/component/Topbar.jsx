@@ -85,7 +85,7 @@ class TopbarComponent extends React.Component {
 
     NoteService.NoteDisplay(request, (err, data) => {
       // console.log('daata', data);
-      
+
       if (data !== null && data !== undefined) {
         self.setState({
           label: data
@@ -158,9 +158,12 @@ class TopbarComponent extends React.Component {
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
               </IconButton>
 
-              <Sidebar stateOpen={this.state.sidebarOpenStatus} sideBarSelected={this.sideBarSelected}
-                sideBarSelectedOnClick={this.state.sideBarSelected} getLabelCreated={this.getLabelCreated}
-                ref={this.refLabel} labels={this.state.label} />
+              <Sidebar stateOpen={this.state.sidebarOpenStatus}
+                sideBarSelected={this.sideBarSelected}
+                sideBarSelectedOnClick={this.state.sideBarSelected}
+                getLabelCreated={this.getLabelCreated}
+                ref={this.refLabel}
+                labels={this.state.label} />
 
               {this.state.sideBarSelected === "Notes" ? (
                 <div>
