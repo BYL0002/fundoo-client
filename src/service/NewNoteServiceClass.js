@@ -13,8 +13,7 @@ export class NewNoteServiceClass {
         try {
             let tokenForSendNote = localStorage.getItem('userLogToken');
 
-            console.log('req before axios', request);
-            
+            // console.log('req before axios', request);           
 
             return axios({
                 method: 'post',
@@ -25,7 +24,7 @@ export class NewNoteServiceClass {
                 data: request.data
             }).then(response => {
                 if (response.data.status) {
-                    console.log('res on axios', response.data);
+                    // console.log('res on axios', response.data);
 
                     return response.data;
                 }
@@ -41,12 +40,12 @@ export class NewNoteServiceClass {
         }
     }
 
-    NotesUpdation(request) {
+    NotesUpdation(request, callback) {
 
         return this.sendUpdateRequest(request)
             .then(res => {
                 console.log('res on function', res);
-                return res
+                return callback(null, res.message);
                 
             })
     }

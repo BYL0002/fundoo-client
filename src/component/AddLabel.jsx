@@ -39,7 +39,7 @@ export default class AddLabel extends React.Component {
             labelDialogStatus: false,
             open: false,
             closeSign: false,
-            deleteLabelSign : false
+            deleteLabelSign: false
         }
     }
 
@@ -78,7 +78,7 @@ export default class AddLabel extends React.Component {
 
     componentDidMount() {
         this.setState({
-            labels:this.props.labels
+            labels: this.props.labels
         })
     }
 
@@ -87,15 +87,12 @@ export default class AddLabel extends React.Component {
         return (
             <div >
                 <MuiThemeProvider theme={theme}>
-                    {/* {this.state.labels.map(option, index) => {
 
-                }} */}
                     <Dialog
                         open={this.state.open}
                         onClose={this.handleOpen}
                         aria-labelledby="responsive-dialog-title"
                     >
-                        {/* debugger;    */}
                         <DialogTitle className="dialogLabel" >Edit Labels</DialogTitle>
 
                         <DialogContent className="dialogLabel" >
@@ -110,31 +107,46 @@ export default class AddLabel extends React.Component {
                                             className="dialogLabel" onClick={this.ClosePlusSignChange} />
                                     )}
 
-                                <Input disableUnderline placeholder="Create new label" onChange={this.getLabelEdit} />
-                                <img src={require("../assets/images/rightTick.svg")} alt="AddLabel"
-                                    className="dialogLabel" onClick={this.props.getLabelCreated} />
+                                <Input disableUnderline
+                                    placeholder="Create new label"
+                                    onChange={this.getLabelEdit} />
+
+                                <img src={require("../assets/images/rightTick.svg")}
+                                    alt="AddLabel"
+                                    className="dialogLabel"
+                                    onClick={this.props.getLabelCreated} />
                             </div>
-                            {/* <div> */}
 
-                                {this.props.labels.map((labels, index) => {
-                                    return <div key={index} style={{display:"flex", height:"50px"}} >
+                            {this.props.labels.map((labels, index) => {
+                                return <div key={index}
+                                    style={{ display: "flex", height: "50px" }} >
 
 
-                                        {this.state.deleteLabelSign ? (
-                                            <img src={require("../assets/images/labelDelete.svg")} alt="labelDelete"
-                                                className="dialogLabel" onClick={this.ClosePlusSignChange} onMouseLeave={this.DeleteNotifySignChange} />
-                                        ) : (
-                                                <img src={require("../assets/images/labelBullet.svg")} alt="labelBullet"
-                                                    className="dialogLabel" onClick={this.ClosePlusSignChange} onMouseEnter={this.DeleteNotifySignChange} />
-                                            )}
+                                    {this.state.deleteLabelSign ? (
+                                        <img src={require("../assets/images/labelDelete.svg")}
+                                            alt="labelDelete"
+                                            className="dialogLabel"
+                                            onClick={this.ClosePlusSignChange}
+                                            onMouseLeave={this.DeleteNotifySignChange} />
+                                    ) : (
+                                            <img src={require("../assets/images/labelBullet.svg")}
+                                                alt="labelBullet"
+                                                className="dialogLabel"
+                                                onClick={this.ClosePlusSignChange}
+                                                onMouseEnter={this.DeleteNotifySignChange} />
+                                        )}
 
-                                        <Input disableUnderline placeholder={labels.labels} onChange={this.getLabelEdit}
-                                         onMouseEnter={this.DeleteNotifySignChange} onMouseLeave={this.DeleteNotifySignChange} />
-                                        <img src={require("../assets/images/SideBarLabelImage.svg")} alt="SideBarLabelImage"
-                                            className="dialogLabel" onClick={this.props.getLabelCreated} />
+                                    <Input disableUnderline
+                                        placeholder={labels.labels}
+                                        onChange={this.getLabelEdit}
+                                        onMouseEnter={this.DeleteNotifySignChange}
+                                        onMouseLeave={this.DeleteNotifySignChange} />
 
-                                    </div>
-                                })}
+                                    <img src={require("../assets/images/SideBarLabelImage.svg")} alt="SideBarLabelImage"
+                                        className="dialogLabel" onClick={this.props.getLabelCreated} />
+
+                                </div>
+                            })}
                             {/* </div> */}
                         </DialogContent>
 

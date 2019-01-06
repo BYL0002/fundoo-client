@@ -124,18 +124,20 @@ export default class NoteCardDisplay extends React.Component {
             data: Formdata
         }
         
-        this.props.getUpdateImage(request, note);
+        this.props.getUpdateImage(request, note,this.props.index);
 
-        // NoteServiceClassObject.sendUpdateRequest(request);
+    }
 
-        // let noteTemp = this.state.note;
-        // noteTemp.image = 'data:image/jpg;base64, '+imageSet.toString("base64");
-        // console.log("image upload as string", noteTemp.image);
+    addNewImage = (note) => {
+        console.log('note', note);
+
+        let noteTemp = note;
+        console.log("image upload as string------tempnote", noteTemp.image);
         
-        // this.setState({
-        //     note: noteTemp
-        // })        
-
+        this.setState({
+            note: noteTemp
+        })
+        
     }
 
 
@@ -258,8 +260,9 @@ export default class NoteCardDisplay extends React.Component {
 
                     <div style={{ backgroundColor: this.state.note.color, width: "-webkit-fill-available" }} >
                         {this.state.note.image !== "" ? (
-                            <div style={{ backgroundImage: "url("+this.state.note.image+")", width:"100%", height:"auto" }} >
-                            </div>
+                            
+                            <img src={this.props.noteSelected.image} style={{maxWidth:"100%", height:"auto"}} alt='gff'></img>
+                           
                         ) : (
                                 <div>
                                 </div>

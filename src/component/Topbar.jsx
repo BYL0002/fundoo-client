@@ -119,7 +119,6 @@ class TopbarComponent extends React.Component {
 
     let userLogin = localStorage.getItem("userLogged");
 
-
     let request = {
       thread: "/AddLabel",
       data: {
