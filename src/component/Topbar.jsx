@@ -161,7 +161,7 @@ class TopbarComponent extends React.Component {
 
               {this.state.sideBarSelected === "Notes" ? (
                 <div>
-                  <img className="topBarNoteImage" src={require("../assets/images/noteImage.jpg")} alt="noteImage" />
+                  <img style={{verticalAlign:"middle"}} src={require("../assets/images/noteImage.svg")} alt="noteImage" />
                   <span style={{ color: "black", marginRight: "30px" }}> FundooNotes </span>
                 </div>
               ) : (

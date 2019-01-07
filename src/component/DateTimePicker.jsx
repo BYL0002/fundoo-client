@@ -79,6 +79,7 @@ export default class DateTimePicker extends React.Component {
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper className="datePickerDiv" >
+                            
                                 {/* <div >
                                     <Input className = "dateTimePicker" name = "dt" type = "datetime-local" onChange = {this.handleDateTimeSelection} />
                                 </div> */}
@@ -94,8 +95,11 @@ export default class DateTimePicker extends React.Component {
                     )}
                 </Popper>
                 <span onClick={this.handleShowDateTimePickerPopper("right")} >
-                    <img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="clock" />
-                    <span className="reminderTimeLabel" id={new Date()} >Pick date & time : </span>
+                    
+                    <img className="reminderClock"
+                     src={require('../assets/images/clocktime.svg')} alt="clock" />
+                    
+                    <span style={{marginLeft:"10px"}} id={new Date()} >Pick date & time : </span>
                 </span>
             </div>
         )

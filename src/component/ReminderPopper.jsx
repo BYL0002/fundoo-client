@@ -131,7 +131,7 @@ export default class ReminderPopper extends React.Component {
                                     </MenuItem>
                                     <MenuItem>
                                         <img src={require('../assets/images/locationOn.svg')} alt="location" />
-                                        <span className="reminderLocationLabel" >Pick place : </span>
+                                        <span style={{marginLeft:"15px"}} >Pick place : </span>
                                     </MenuItem>
                                 </div>
                             </Paper>

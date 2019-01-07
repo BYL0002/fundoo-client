@@ -231,7 +231,7 @@ class AddNotes extends React.Component {
                                         )}
                                     <div style={{display:"flex", flexDirection:"row", justifyContent:'space-between'}} >
                                 
-                                        <div className="notenoteAddFeatureImagesDiv" >
+                                        <div className="noteAddFeatureImagesDiv" >
                                             <ReminderPopper getReminderChooseOption={this.getReminder} />
                                             <Collaborator collaboratorCardStatus={this.handleAddNoteCardDisplay} />
                                             <ColorSection getColor={this.getBackGroundColor} initialColorValue={this.colorSelect} />
@@ -262,7 +262,7 @@ class AddNotes extends React.Component {
                                         <span  >Collaborators</span>
                                     </div>
                                     <div>
-                                        <Button className="closeNoteAddCardButton" onClick={this.handleAddNoteCardDisplay} >Close</Button>
+                                        <Button className="closeNoteCollaboratorAddCardButton" onClick={this.handleAddNoteCardDisplay} >Close</Button>
                                     </div>
                                 </div>
                             </Card>

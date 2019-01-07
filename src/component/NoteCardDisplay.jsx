@@ -27,7 +27,7 @@ export default class NoteCardDisplay extends React.Component {
             note: this.props.noteSelected,
             dialogDisplayStatus: false
         }
-    } 
+    }
 
     getBackGroundColor = (colorSelected, note) => {
 
@@ -123,8 +123,8 @@ export default class NoteCardDisplay extends React.Component {
             url: "/updateNoteImage",
             data: Formdata
         }
-        
-        this.props.getUpdateImage(request, note,this.props.index);
+
+        this.props.getUpdateImage(request, note, this.props.index);
 
     }
 
@@ -133,11 +133,11 @@ export default class NoteCardDisplay extends React.Component {
 
         let noteTemp = note;
         console.log("image upload as string------tempnote", noteTemp.image);
-        
+
         this.setState({
             note: noteTemp
         })
-        
+
     }
 
 
@@ -165,12 +165,20 @@ export default class NoteCardDisplay extends React.Component {
 
     getArchive = (archiveSet, note) => {
 
+        if (archiveSet === true) {
+            note.pin = false;
+        }
+        else {
+            note.pin = this.state.note.pin;
+        }
+
         let request = {
             thread: "/updateNoteReminder",
             data: {
                 note: {
                     _id: note._id,
-                    archive: archiveSet
+                    archive: archiveSet,
+                    pin: note.pin
                 }
             }
         }
@@ -260,9 +268,9 @@ export default class NoteCardDisplay extends React.Component {
 
                     <div style={{ backgroundColor: this.state.note.color, width: "-webkit-fill-available" }} >
                         {this.state.note.image !== "" ? (
-                            
-                            <img src={this.props.noteSelected.image} style={{maxWidth:"100%", height:"auto"}} alt='gff'></img>
-                           
+
+                            <img src={this.props.noteSelected.image} style={{ maxWidth: "100%", height: "auto" }} alt='gff'></img>
+
                         ) : (
                                 <div>
                                 </div>
@@ -298,14 +306,26 @@ export default class NoteCardDisplay extends React.Component {
                                         getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
                                 </div>
                             ) : (
-                                    <div className='notenoteAddFeatureImagesDiv' >
-                                        <ReminderPopper getReminderChooseOption={this.getReminder} noteSelected={this.state.note} />
+                                    <div className='noteAddFeatureImagesDiv' >
+                                        <ReminderPopper getReminderChooseOption={this.getReminder}
+                                            noteSelected={this.state.note} />
+
                                         <Collaborator />
-                                        <ColorSection getColor={this.getBackGroundColor} noteSelected={this.state.note} />
-                                        <UploadImage getImage={this.getImage} noteSelected={this.state.note} />
-                                        <ArchiveNote noteSelected={this.state.note} getArchive={this.getArchive} getNoteArchive={this.state.note.archive} />
-                                        <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash}
-                                            getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
+
+                                        <ColorSection getColor={this.getBackGroundColor}
+                                            noteSelected={this.state.note} />
+
+                                        <UploadImage getImage={this.getImage}
+                                            noteSelected={this.state.note} />
+
+                                        <ArchiveNote noteSelected={this.state.note}
+                                            getArchive={this.getArchive}
+                                            getNoteArchive={this.state.note.archive} />
+
+                                        <MoreOptions noteSelected={this.state.note}
+                                            getTrash={this.getTrash}
+                                            getNoteDeleted={this.getNoteDeleted}
+                                            sideBarSelected={this.props.sideBarSelected} />
                                     </div>
                                 )}
 
@@ -321,7 +341,8 @@ export default class NoteCardDisplay extends React.Component {
                         getArchive={this.getArchive}
                         getTitleEdit={this.getTitleEdit}
                         getDescriptionEdit={this.getDescriptionEdit}
-                        displayStatus={this.state.dialogDisplayStatus} noteSelected={this.state.note} />
+                        displayStatus={this.state.dialogDisplayStatus}
+                        noteSelected={this.state.note} />
                 </Card>
             </div>
         )

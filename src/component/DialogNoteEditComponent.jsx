@@ -112,7 +112,7 @@ class DialogNoteEditComponent extends React.Component {
 
                             <DialogActions >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                                    <div className='notenoteAddFeatureImagesDiv' >
+                                    <div className='noteAddFeatureImagesDiv' >
                                         <ReminderPopper getReminderChooseOption={this.props.getReminder} noteSelected={this.props.noteSelected} />
                                         <Collaborator />
                                         <ColorSection getColor={this.props.getBackGroundColor} initialColorValue={this.colorSelect} />

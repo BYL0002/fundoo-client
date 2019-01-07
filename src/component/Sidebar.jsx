@@ -14,7 +14,7 @@ const theme = createMuiTheme({
         MuiDrawer: {
             paperAnchorLeft: {
                 top: 66,
-                width: 280,
+                width: 230,
                 background: 'white',
             }
         },
@@ -130,10 +130,10 @@ class Sidebar extends React.Component {
 
                 </MenuItem>
 
-                {/* <MenuItem className="sideBarMenuItems" >
+                <MenuItem className="sideBarMenuItems" >
                     <span className="sideBarTextBottom" >Notes</span>
                     <span className="sideBarTextBottom" >Privacy</span>
-                </MenuItem> */}
+                </MenuItem>
             </div>
         );
 
