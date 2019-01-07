@@ -548,11 +548,11 @@ body {
         height: auto;
     }
     .noteTakeCardAfterDrawerOpen {
+        transition: .50s;
         margin-left: 540px;
         margin-top: 130px;
         max-width: 500px;
         height: auto;
-        transition: .50s;
     }
     .inputNoteTake {
         margin: 10px;
