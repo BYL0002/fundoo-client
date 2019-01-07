@@ -72,7 +72,7 @@ class Sidebar extends React.Component {
                         src={require('../assets/images/SideBarNoteImage.svg')}
                         alt="note" />
 
-                    <span className="sideBarText" >Notes</span>
+                    <span >Notes</span>
 
                 </MenuItem>
 
@@ -81,7 +81,7 @@ class Sidebar extends React.Component {
                     style={this.props.sideBarSelectedOnClick === "Reminders" ? { backgroundColor: "#feefc3" } : {}} >
 
                     <img className="sideBarImages" src={require('../assets/images/SideBarReminderImage.svg')} alt="reminder" />
-                    <span className="sideBarText" >Reminders</span>
+                    <span >Reminders</span>
 
                 </MenuItem>
                 <Divider />
@@ -97,7 +97,7 @@ class Sidebar extends React.Component {
                         className="sideBarMenuItems"
                         style={this.props.sideBarSelectedOnClick === option.labels ? { backgroundColor: "#feefc3" } : {}} >
                         <img className="sideBarImages" src={require('../assets/images/labelBullet.svg')} alt="labelBullet" />
-                        <span className="sideBarText" >{option.labels}</span>
+                        <span >{option.labels}</span>
                     </MenuItem>
                 })}
 
@@ -117,7 +117,7 @@ class Sidebar extends React.Component {
                     style={this.props.sideBarSelectedOnClick === "Archive" ? { backgroundColor: "#feefc3" } : {}} >
 
                     <img className="sideBarImages" src={require('../assets/images/SideBarArchiveImage.svg')} alt="archive" />
-                    <span className="sideBarText" >Archive</span>
+                    <span >Archive</span>
 
                 </MenuItem>
 
@@ -126,7 +126,7 @@ class Sidebar extends React.Component {
                     style={this.props.sideBarSelectedOnClick === "Trash" ? { backgroundColor: "#feefc3" } : {}} >
 
                     <img className="sideBarImages" src={require('../assets/images/SideBarTrashImage.svg')} alt="trash" />
-                    <span className="sideBarText" >Trash</span>
+                    <span >Trash</span>
 
                 </MenuItem>
 

@@ -73,7 +73,6 @@ class DialogNoteEditComponent extends React.Component {
                         open={this.props.displayStatus}
                         onClose={this.props.getNoteEdited}
                         aria-labelledby="responsive-dialog-title"
-                    // id="dialogBox"
                     >
                         <div style={{ backgroundColor: this.props.noteSelected.color }} >
                             <DialogContent id="dialogNoteEdit" >

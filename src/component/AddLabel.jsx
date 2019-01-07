@@ -93,21 +93,21 @@ export default class AddLabel extends React.Component {
                         onClose={this.handleOpen}
                         aria-labelledby="responsive-dialog-title"
                     >
-                        <DialogTitle className="dialogLabel" >Edit Labels</DialogTitle>
+                        <DialogTitle className="dialogPadding" >Edit Labels</DialogTitle>
 
-                        <DialogContent className="dialogLabel" >
+                        <DialogContent className="dialogPadding" >
 
                             <div style={{ display: 'flex' }} >
 
                                 {this.state.closeSign ? (
                                     <img src={require("../assets/images/PlusSign.svg")}
                                         alt="addLabel"
-                                        className="dialogLabel"
+                                        className="dialogPadding"
                                         onClick={this.ClosePlusSignChange} />
                                 ) : (
                                         <img src={require("../assets/images/closeIcon.svg")}
                                             alt="editLabel"
-                                            className="dialogLabel"
+                                            className="dialogPadding"
                                             onClick={this.ClosePlusSignChange} />
                                     )}
 
@@ -117,7 +117,7 @@ export default class AddLabel extends React.Component {
 
                                 <img src={require("../assets/images/rightTick.svg")}
                                     alt="AddLabel"
-                                    className="dialogLabel"
+                                    className="dialogPadding"
                                     onClick={this.props.getLabelCreated} />
                             </div>
 
@@ -129,13 +129,13 @@ export default class AddLabel extends React.Component {
                                     {this.state.deleteLabelSign ? (
                                         <img src={require("../assets/images/labelDelete.svg")}
                                             alt="labelDelete"
-                                            className="dialogLabel"
+                                            className="dialogPadding"
                                             onClick={this.ClosePlusSignChange}
                                             onMouseLeave={this.DeleteNotifySignChange} />
                                     ) : (
                                             <img src={require("../assets/images/labelBullet.svg")}
                                                 alt="labelBullet"
-                                                className="dialogLabel"
+                                                className="dialogPadding"
                                                 onClick={this.ClosePlusSignChange}
                                                 onMouseEnter={this.DeleteNotifySignChange} />
                                         )}
@@ -149,7 +149,7 @@ export default class AddLabel extends React.Component {
 
                                     <img src={require("../assets/images/SideBarLabelImage.svg")}
                                         alt="SideBarLabelImage"
-                                        className="dialogLabel"
+                                        className="dialogPadding"
                                         onClick={this.props.getLabelCreated} />
 
                                 </div>

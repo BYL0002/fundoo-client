@@ -530,14 +530,8 @@ body {
     .sideBarImages {
         float: left;
         padding: 1%;
-        display: flex;
+        /* display: flex; */
         margin-right: 20px;
-    }
-    .sideBarText {
-        /* margin-right: -10%;
-          padding: 1%;
-          float: left;
-          display: flex; */
     }
     .sideBarTextBottom {
         margin-top: 2%;
@@ -588,6 +582,10 @@ body {
         flex-direction: row;
         justify-content: space-evenly;
     }
+    .reminderPopper {
+        position: fixed;
+        z-index: 1;
+    }
     div .reminderLabel {
         display: flex;
         justify-content: space-between;
@@ -606,7 +604,7 @@ body {
     .pinNoteImage {
         vertical-align: middle;
         line-height: 10px;
-        margin-top: 2px;
+        margin-top: 10px;
     }
     .colorSelectionPopperNoteAddCard {
         width: 145px;
@@ -704,71 +702,16 @@ body {
         padding: 7px;
         min-width: 200px;
     }
-}
-
-/* ----------------------------------------------------- */
-
-/* .dateTimePicker {
-    font-size: 18px;
-    height: 40px;
-    width: 200px;
-} */
-
-.reminderShowOnCardText {
-    font-size: 10px;
-    padding: 0px;
-}
-
-div .chipOnCardReminder {
-    margin-left: 5px;
-    margin-top: 15px;
-    height: 25px;
-}
-
-.pinnedNoteDiv {
-    max-width: 680px;
-    margin-bottom: 2px solid black;
-}
-
-.pinnedNoteTitle {
-    margin: 15px;
-}
-
-.OtherNoteShowDiv {
-    margin: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-div .dialogLabel {
-    padding: 10px;
-}
-
-.inputNoteEditDialog {
-    margin: 5px;
-    padding: 5px;
-    /* margin-top: 10px;
-  margin-left : 10px; */
-    width: 470px;
-    /* margin-bottom: 5px; */
-}
-
-.pinNoteImage {
-    vertical-align: middle;
-    line-height: 10px;
-    margin-top: 10px;
-}
-
-.reminderPopper {
-    position: fixed;
-    z-index: 1;
-}
-
-#dialogNote {
-    border-radius: 5px;
-}
-
-#dialogBox div {
-    border-radius: 30px;
+    div .dialogPadding {
+        padding: 10px;
+    }
+    .reminderShowOnCardText {
+        font-size: 10px;
+        padding: 0px;
+    }
+    div .chipOnCardReminder {
+        margin-left: 5px;
+        margin-top: 15px;
+        height: 25px;
+    }
 }
