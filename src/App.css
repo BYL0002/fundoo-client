@@ -318,158 +318,6 @@ body {
         margin-top: 50px;
         margin-bottom: 10px;
     }
-    /* ----------------------------------------------------Dashboard CSS Start------------------------------------- */
-    /* .topBarSearchDiv {
-        width: 380px;
-        border: 1px solid rgba(0, 0, 0, 0);
-        background: rgba(0, 0, 0, 0.04);
-        margin-right: 30px;
-        display: flex;
-        height: 35px;
-    }
-    .searchIconTopBar {
-        line-height: 14px;
-        margin-top: 0px;
-        vertical-align: middle;
-    }
-    .topBarSearchBar {
-        width: 350px;
-    } */
-    .refreshButtonOnTop {
-        /* margin-right: 25px;
-        vertical-align: middle;
-        line-height: 25px;
-        width: 28px;
-        height: 28px; */
-    }
-}
-
-@media only screen and (min-width: 1280px) {
-    div.Form {
-        align-self: center;
-        position: fixed;
-        top: 120px;
-        left: 340px;
-        width: 500px;
-        height: 380px;
-        background-color: white;
-    }
-    .formHeader {
-        margin-bottom: 30px;
-        font-size: 18px;
-        float: left;
-        width: 470px;
-        height: 20px;
-        border: 1px;
-        padding: 15px;
-        text-align: left;
-        bottom: 250px;
-        background-color: lightgray;
-    }
-    .beforeDashboardTitle {
-        float: right;
-    }
-    div .emailTextFieldLoginPage {
-        margin-left: 60px;
-        width: 350px;
-        margin-bottom: 10px;
-        font-size: 20px;
-    }
-    div .emailTextFieldLoginPage div {
-        font-size: 21px;
-    }
-    div .passwordTextFieldLoginPage {
-        margin-left: 60px;
-        width: 350px;
-        margin-bottom: 10px;
-    }
-    div .passwordTextFieldLoginPage div {
-        font-size: 21px;
-    }
-    div .emailTextFieldForgotPasswordPage {
-        margin-left: 60px;
-        width: 350px;
-        margin-bottom: 10px;
-    }
-    div .emailTextFieldForgotPasswordPage div {
-        font-size: 21px;
-    }
-    div .nameTextFieldRegisterPage {
-        margin-left: 60px;
-        width: 350px;
-        margin-bottom: 10px;
-    }
-    div .nameTextFieldRegisterPage div {
-        font-size: 21px;
-    }
-    div .emailTextFieldRegisterPage {
-        margin-left: 60px;
-        width: 350px;
-        margin-bottom: 10px;
-    }
-    div .emailTextFieldRegisterPage div {
-        font-size: 21px;
-    }
-    div .passwordTextFieldSetPasswordPage {
-        margin-left: 60px;
-        width: 350px;
-        margin-bottom: 10px;
-    }
-    div .passwordTextFieldSetPasswordPage div {
-        font-size: 21px;
-    }
-    div .confirmPasswordTextFieldSetPasswordPage {
-        margin-left: 60px;
-        width: 350px;
-        margin-bottom: 10px;
-    }
-    div .confirmPasswordTextFieldSetPasswordPage div {
-        font-size: 21px;
-    }
-    .forgotPasswordLinkLocationLoginPage {
-        margin-left: 280px;
-    }
-    .CenterTextStyle {
-        font-size: 11px;
-        margin-left: 150px;
-    }
-    .links {
-        text-decoration: none;
-        color: blue;
-        font-size: 15px;
-    }
-    div .LoginSubmitButtons {
-        margin-left: 110px;
-        width: 250px;
-        margin-top: 30px;
-        margin-bottom: 20px;
-        height: 40px;
-        font-size: 21px;
-    }
-    div .submitButtonForgotPasswordPage {
-        margin-left: 110px;
-        width: 250px;
-        margin-top: 30px;
-        margin-bottom: 20px;
-        height: 40px;
-        font-size: 21px;
-    }
-    div .registerButtonRegisterPage {
-        margin-left: 110px;
-        width: 250px;
-        margin-top: 30px;
-        margin-bottom: 20px;
-        height: 40px;
-        font-size: 21px;
-    }
-    div .setPasswordButtonSetPasswordPage {
-        margin-left: 110px;
-        width: 250px;
-        margin-top: 30px;
-        margin-bottom: 20px;
-        height: 40px;
-        font-size: 21px;
-    }
     /* ----------------------------------------------------Dashboard CSS ------------------------------------- */
     div .appBar {
         display: flex;
@@ -477,17 +325,17 @@ body {
         background-color: white;
     }
     .topBarSearchDiv {
-        width: 720px;
+        width: 650px;
         border: 1px solid rgba(0, 0, 0, 0);
         background: rgba(0, 0, 0, 0.04);
-        margin-right: 20px;
+        margin-right: 10px;
         display: flex;
     }
     .topBarSearchBar {
-        width: 670px;
+        width: 630px;
     }
     .cssClassNotesOnView {
-        margin-right: 200px;
+        margin-right: 100px;
         vertical-align: middle;
         line-height: 25px;
         margin-top: 2px;
@@ -497,7 +345,6 @@ body {
     /* ----------------------------------------------------Top Right User Section CSS------------------------------------- */
     #popupTopBar {
         margin-top: 11px;
-        /* margin-right: -10px; */
         width: 330px;
         height: 130px;
         display: flex;
@@ -530,7 +377,6 @@ body {
     .sideBarImages {
         float: left;
         padding: 1%;
-        /* display: flex; */
         margin-right: 20px;
     }
     .sideBarTextBottom {
@@ -714,4 +560,374 @@ body {
         margin-top: 15px;
         height: 25px;
     }
+}
+
+@media only screen and (min-width: 1280px) {
+    div.Form {
+        align-self: center;
+        position: fixed;
+        top: 120px;
+        left: 340px;
+        width: 500px;
+        height: 380px;
+        background-color: white;
+    }
+    .formHeader {
+        margin-bottom: 30px;
+        font-size: 18px;
+        float: left;
+        width: 470px;
+        height: 20px;
+        border: 1px;
+        padding: 15px;
+        text-align: left;
+        bottom: 250px;
+        background-color: lightgray;
+    }
+    .beforeDashboardTitle {
+        float: right;
+    }
+    div .emailTextFieldLoginPage {
+        margin-left: 60px;
+        width: 350px;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+    div .emailTextFieldLoginPage div {
+        font-size: 21px;
+    }
+    div .passwordTextFieldLoginPage {
+        margin-left: 60px;
+        width: 350px;
+        margin-bottom: 10px;
+    }
+    div .passwordTextFieldLoginPage div {
+        font-size: 21px;
+    }
+    div .emailTextFieldForgotPasswordPage {
+        margin-left: 60px;
+        width: 350px;
+        margin-bottom: 10px;
+    }
+    div .emailTextFieldForgotPasswordPage div {
+        font-size: 21px;
+    }
+    div .nameTextFieldRegisterPage {
+        margin-left: 60px;
+        width: 350px;
+        margin-bottom: 10px;
+    }
+    div .nameTextFieldRegisterPage div {
+        font-size: 21px;
+    }
+    div .emailTextFieldRegisterPage {
+        margin-left: 60px;
+        width: 350px;
+        margin-bottom: 10px;
+    }
+    div .emailTextFieldRegisterPage div {
+        font-size: 21px;
+    }
+    div .passwordTextFieldSetPasswordPage {
+        margin-left: 60px;
+        width: 350px;
+        margin-bottom: 10px;
+    }
+    div .passwordTextFieldSetPasswordPage div {
+        font-size: 21px;
+    }
+    div .confirmPasswordTextFieldSetPasswordPage {
+        margin-left: 60px;
+        width: 350px;
+        margin-bottom: 10px;
+    }
+    div .confirmPasswordTextFieldSetPasswordPage div {
+        font-size: 21px;
+    }
+    .forgotPasswordLinkLocationLoginPage {
+        margin-left: 280px;
+    }
+    .CenterTextStyle {
+        font-size: 11px;
+        margin-left: 150px;
+    }
+    .links {
+        text-decoration: none;
+        color: blue;
+        font-size: 15px;
+    }
+    div .LoginSubmitButtons {
+        margin-left: 110px;
+        width: 250px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        height: 40px;
+        font-size: 21px;
+    }
+    div .submitButtonForgotPasswordPage {
+        margin-left: 110px;
+        width: 250px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        height: 40px;
+        font-size: 21px;
+    }
+    div .registerButtonRegisterPage {
+        margin-left: 110px;
+        width: 250px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        height: 40px;
+        font-size: 21px;
+    }
+    div .setPasswordButtonSetPasswordPage {
+        margin-left: 110px;
+        width: 250px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        height: 40px;
+        font-size: 21px;
+    }
+    /* ----------------------------------------------------Dashboard CSS ------------------------------------- */
+    /* div .appBar {
+        display: flex;
+        padding: 1px;
+        background-color: white;
+    }
+    .topBarSearchDiv {
+        width: 720px;
+        border: 1px solid rgba(0, 0, 0, 0);
+        background: rgba(0, 0, 0, 0.04);
+        margin-right: 20px;
+        display: flex;
+    }
+    .topBarSearchBar {
+        width: 670px;
+    }
+    .cssClassNotesOnView {
+        margin-right: 200px;
+        vertical-align: middle;
+        line-height: 25px;
+        margin-top: 2px;
+        margin-left: 20px;
+        opacity: 10px;
+    } */
+    /* ----------------------------------------------------Top Right User Section CSS------------------------------------- */
+    /* #popupTopBar {
+        margin-top: 11px;
+        width: 330px;
+        height: 130px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    #userDetailsAppBarPopper {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-top: 30px;
+    }
+    div .logoutButton {
+        margin-top: 25px;
+        margin-left: 135px;
+        padding: 0%;
+    }
+    #userIconPopperTopBar {
+        width: 80px;
+        height: 80px;
+        margin: 12px;
+        float: left;
+        background-color: cadetblue;
+    } */
+    /* ----------------------------------------------------SideBar CSS ------------------------------------- */
+    /* div .sideBarMenuItems {
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 60px;
+    }
+    .sideBarImages {
+        float: left;
+        padding: 1%;
+        margin-right: 20px;
+    }
+    .sideBarTextBottom {
+        margin-top: 2%;
+        align-self: center;
+        margin-right: 8%;
+        font-size: 65%;
+    } */
+    /* ----------------------------------------------------Add Note CSS ------------------------------------- */
+    /* .noteTakeCard {
+        transition: .50s;
+        margin-left: 470px;
+        margin-top: 130px;
+        max-width: 500px;
+        height: auto;
+    }
+    .noteTakeCardAfterDrawerOpen {
+        transition: .50s;
+        margin-left: 540px;
+        margin-top: 130px;
+        max-width: 500px;
+        height: auto;
+    }
+    .inputNoteTake {
+        margin: 10px;
+        width: 450px;
+    }
+    .inputNoteTake div {
+        font-size: 18px;
+    }
+    .completeNoteTakeCard {
+        width: 500px;
+        min-height: 130px;
+    }
+    .CollaboratorHeading {
+        font-size: 20px;
+        margin: 10px;
+        padding: 5px;
+        height: 20px;
+        border-bottom: 1px solid black;
+    }
+    div .closeNoteCollaboratorAddCardButton {
+        margin-left: 420px;
+    } */
+    /* ----------------------------------------------------Notes Feature Dvi CSS ------------------------------------- */
+    /* .noteAddFeatureImagesDiv {
+        width: 280px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .reminderPopper {
+        position: fixed;
+        z-index: 1;
+    }
+    div .reminderLabel {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+    }
+    .reminderClock {
+        line-height: 10px;
+        vertical-align: middle;
+        margin: 5px;
+    }
+    .datePickerDiv {
+        width: 155px;
+        margin-top: 10px;
+        margin-left: 28px;
+    }
+    .pinNoteImage {
+        vertical-align: middle;
+        line-height: 10px;
+        margin-top: 10px;
+    }
+    .colorSelectionPopperNoteAddCard {
+        width: 145px;
+        margin: 5px;
+        height: 110px;
+    }
+    div .colorPalette {
+        margin: 5px;
+        width: 20px;
+        height: 20px;
+        border: 1px solid darkgrey;
+    }
+    div .colorPalette:hover {
+        border: 1px solid black;
+    } */
+    /* ----------------------------------------------------Notes Display Div CSS ------------------------------------- */
+    /* .NotesDisplayDivSidebarClose {
+        max-width: 970px;
+        margin-left: 260px;
+        margin-top: 40px;
+        display: flex;
+        transition: 0.50s;
+    }
+    .NotesDisplayDivSidebarOpen {
+        max-width: 970px;
+        transition: 0.50s;
+        margin-left: 310px;
+        margin-top: 40px;
+        display: flex;
+    }
+    .notesGridDisplayDiv {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .notesListDisplayDiv {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    div .notesGridDisplayCard {
+        display: flex;
+        flex-wrap: wrap;
+        min-width: 300px;
+        max-width: 300px;
+        word-wrap: break-word;
+        word-break: break-all;
+        min-height: 120px;
+        margin: 10px;
+        border-radius: 9px;
+    } */
+    /* class to point each component individually
+    .notenoteAddFeatureImages {}  */
+    /* .notesGridDisplayCard .noteAddFeatureImages {
+        visibility: hidden;
+    }
+    .notesGridDisplayCard:hover .noteAddFeatureImages {
+        visibility: visible;
+    }
+    .notesGridDisplayCard:hover {
+        box-shadow: 1px 1px 10px;
+    }
+    div .notesListDisplayCard {
+        display: flex;
+        flex-wrap: nowrap;
+        min-width: 500px;
+        max-width: 500px;
+        word-wrap: break-word;
+        word-break: break-all;
+        min-height: 100px;
+        margin: 10px;
+        border-radius: 9px;
+    }
+    .notesListDisplayCard .noteAddFeatureImages {
+        visibility: hidden;
+    }
+    .notesListDisplayCard:hover .noteAddFeatureImages {
+        visibility: visible;
+    }
+    .notesListDisplayCard:hover {
+        box-shadow: 1px 1px 10px;
+    } */
+    /* ----------------------------------------------------Notes Display Card CSS ------------------------------------- */
+    /* .noteCardDisplayTitleDiv {
+        display: flex;
+        font-size: 21px;
+        margin-left: 5px;
+        padding: 3px;
+    }
+    .noteCardDisplayTitle {
+        width: 100%;
+    }
+    .noteCardDisplayDescription {
+        font-size: 21px;
+        padding: 7px;
+        min-width: 200px;
+    }
+    div .dialogPadding {
+        padding: 10px;
+    }
+    .reminderShowOnCardText {
+        font-size: 10px;
+        padding: 0px;
+    }
+    div .chipOnCardReminder {
+        margin-left: 5px;
+        margin-top: 15px;
+        height: 25px;
+    } */
 }
