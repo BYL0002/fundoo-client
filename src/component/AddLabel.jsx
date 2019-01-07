@@ -100,11 +100,15 @@ export default class AddLabel extends React.Component {
                             <div style={{ display: 'flex' }} >
 
                                 {this.state.closeSign ? (
-                                    <img src={require("../assets/images/PlusSign.svg")} alt="addLabel"
-                                        className="dialogLabel" onClick={this.ClosePlusSignChange} />
+                                    <img src={require("../assets/images/PlusSign.svg")}
+                                        alt="addLabel"
+                                        className="dialogLabel"
+                                        onClick={this.ClosePlusSignChange} />
                                 ) : (
-                                        <img src={require("../assets/images/closeIcon.svg")} alt="editLabel"
-                                            className="dialogLabel" onClick={this.ClosePlusSignChange} />
+                                        <img src={require("../assets/images/closeIcon.svg")}
+                                            alt="editLabel"
+                                            className="dialogLabel"
+                                            onClick={this.ClosePlusSignChange} />
                                     )}
 
                                 <Input disableUnderline
@@ -143,8 +147,10 @@ export default class AddLabel extends React.Component {
                                         onMouseEnter={this.DeleteNotifySignChange}
                                         onMouseLeave={this.DeleteNotifySignChange} />
 
-                                    <img src={require("../assets/images/SideBarLabelImage.svg")} alt="SideBarLabelImage"
-                                        className="dialogLabel" onClick={this.props.getLabelCreated} />
+                                    <img src={require("../assets/images/SideBarLabelImage.svg")}
+                                        alt="SideBarLabelImage"
+                                        className="dialogLabel"
+                                        onClick={this.props.getLabelCreated} />
 
                                 </div>
                             })}
@@ -157,7 +163,10 @@ export default class AddLabel extends React.Component {
                 </MuiThemeProvider>
 
                 <div onClick={this.handleOpen} >
-                    <img src={require('../assets/images/SideBarLabelImage.svg')} alt="label" /> <span>Edit Labels</span>
+                    <img src={require('../assets/images/SideBarLabelImage.svg')}
+                        alt="label"
+                        className="sideBarImages" />
+                    <span>Edit Labels</span>
                 </div>
 
             </div>

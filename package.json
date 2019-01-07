@@ -18,6 +18,7 @@
     "react-favicon": "0.0.14",
     "react-file-base64": "^1.0.3",
     "react-google-login": "^4.0.1",
+    "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.3",

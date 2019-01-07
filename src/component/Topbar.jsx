@@ -7,31 +7,25 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Sidebar from './Sidebar';
 import TopBarSearchComponent from './TobBarSearchComponent';
 import AccountIconTopBar from './AccountIconTopBar';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+// import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import NoteService from '../service/NoteService';
 
 const NoteServiceClass = require('../service/NoteServiceClass');
 const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 
-const theme = createMuiTheme({
+// const theme = createMuiTheme({
 
-  typography: {
-    useNextVariants: true,
-  },
-  overrides: {
-    MuiToolbar: {
-      root: {
-        backgroundColor: 'white',
-        boxShadow: 0
-      }
-    },
-    MuiAppBar: {
-      colorPrimary: {
-        backgroundColor: 'white'
-      }
-    }
-  },
-})
+//   typography: {
+//     useNextVariants: true,
+//   },
+//   overrides: {
+//     MuiToolbar: {
+//       root: {
+//         boxShadow: 0
+//       }
+//     }
+//   },
+// })
 
 class TopbarComponent extends React.Component {
   constructor() {
@@ -150,9 +144,9 @@ class TopbarComponent extends React.Component {
     if (this.state.responseGot) return <Redirect to="/" />
     return (
       <div>
-        <MuiThemeProvider theme={theme}>
-          <AppBar position="fixed" style={{ padding: "1px" }} >
-            <Toolbar>
+        {/* <MuiThemeProvider theme={theme}> */}
+          <AppBar position="fixed"  >
+            <Toolbar className="appBar" >
 
               <IconButton style={{ color: "black" }} aria-label="Open drawer" >
                 <MenuIcon onClick={this.handleSideBar.bind(this)} />
@@ -168,7 +162,7 @@ class TopbarComponent extends React.Component {
               {this.state.sideBarSelected === "Notes" ? (
                 <div>
                   <img className="topBarNoteImage" src={require("../assets/images/noteImage.jpg")} alt="noteImage" />
-                  <span style={{ color: "black", marginRight: "5px" }}> FundooNotes </span>
+                  <span style={{ color: "black", marginRight: "30px" }}> FundooNotes </span>
                 </div>
               ) : (
                   <div style={{ color: "black" }} >{this.state.sideBarSelected}</div>
@@ -187,7 +181,7 @@ class TopbarComponent extends React.Component {
               <AccountIconTopBar />
             </Toolbar>
           </AppBar>
-        </MuiThemeProvider>
+        {/* </MuiThemeProvider> */}
       </div>
     );
   }

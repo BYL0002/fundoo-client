@@ -1,26 +1,10 @@
 import React from 'react';
-import { createMuiTheme, MuiThemeProvider, Button, Avatar, ClickAwayListener } from '@material-ui/core';
+import { Button, Avatar, ClickAwayListener } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import userService from '../service/UserService';
 import { Redirect } from 'react-router-dom';
-
-const theme = createMuiTheme({
-
-    typography: {
-        useNextVariants: true,
-    },
-    overrides: {
-        MuiButton: {
-            root: {
-                top: '25px',
-                marginLeft: '175px',
-                padding: 0,
-            }
-        },
-    }
-})
 
 class AccountIconTopBar extends React.Component {
     constructor(props) {
@@ -66,45 +50,39 @@ class AccountIconTopBar extends React.Component {
     render() {
         if (this.state.responseGot) return <Redirect to='/' />
         return (
-            <MuiThemeProvider theme={theme} >
-                <div>
-                    <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
-                        {({ TransitionProps }) => (
-                            <Fade {...TransitionProps} timeout={350}>
-                                <Paper>
-                                    <div id="popupTopBar" >
+            <div>
+                <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
+                    {({ TransitionProps }) => (
+                        <Fade {...TransitionProps} timeout={350}>
+                            <Paper>
+                                <div id="popupTopBar" >
+                                    <div>
                                         <div>
-                                            <div>
-                                                {/* {imageUrl === "" ? (
+                                            {/* {imageUrl === "" ? (
                                                 <Avatar id = "accountIconPopperTopBar" >{this.state.userLogInName[0] }</Avatar>
                                             ) : (
                                                 // <AccountCircle id = "accountIconPopperTopBar" />
                                                 <img src = {require( {imageUrl} ) } alt="userImage" />
                                             )} */}
-                                                <Avatar id="accountIconPopperTopBar" >{this.state.userLogInName[0]}</Avatar>
-                                            </div>
-                                            <div  >
-                                                <span className='userNameTopBarPopper' >{this.state.userLogInName} </span>
-                                            </div>
-                                            <div>
-                                                <span className='emailIdTopBarPopper'>{this.state.userLogInEmailId}</span>
-                                            </div>
-                                            <div>
-                                                <Button className="logoutButton" onClick={this.handleLogout.bind(this)}>Logout</Button>
-                                            </div>
-
+                                            <Avatar id="userIconPopperTopBar" >{this.state.userLogInName[0]}</Avatar>
+                                        </div>
+                                        <div id="userDetailsAppBarPopper" >
+                                            <div  >{this.state.userLogInName} </div>
+                                            <div >{this.state.userLogInEmailId}</div>
+                                            <Button className="logoutButton" onClick={this.handleLogout.bind(this)}>Logout</Button>
                                         </div>
                                     </div>
-                                </Paper>
-                            </Fade>
-                        )}
-                    </Popper>
+                                </div>
+                            </Paper>
+                        </Fade>
+                    )}
+                </Popper>
 
-                    <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick} >
-                    <Avatar onClick={this.handleProfileMenuOpen('bottom')} >{this.state.userLogInName[0]} </Avatar>
-                    </ClickAwayListener>
-                </div>
-            </MuiThemeProvider>
+                <ClickAwayListener onClickAway={this.handlePopperCloseOnOutsideClick} >
+                    <Avatar onClick={this.handleProfileMenuOpen('bottom')}
+                        style={{backgroundColor:"cadetblue"}} >{this.state.userLogInName[0]} </Avatar>
+                </ClickAwayListener>
+            </div>
         )
     }
 }
