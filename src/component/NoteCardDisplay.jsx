@@ -270,8 +270,8 @@ export default class NoteCardDisplay extends React.Component {
                         {this.state.note.image !== "" ? (
 
                             <img src={this.props.noteSelected.image}
-                             style= { this.props.notesView ? { maxWidth: "100%", height: "auto" } : { maxWidth: "-webkit-fill-available", height: "auto" } }
-                              alt='gff'></img>
+                                style={this.props.notesView ? { maxWidth: "100%", height: "auto" } : { maxWidth: "-webkit-fill-available", height: "auto" }}
+                                alt='gff'></img>
 
                         ) : (
                                 <div>
@@ -334,6 +334,8 @@ export default class NoteCardDisplay extends React.Component {
                         </div>
                     </div>
                     <DialogNoteEditComponent
+                        noteSelected={this.state.note}
+                        displayStatus={this.state.dialogDisplayStatus}
                         getNoteEdited={this.getNoteEdited}
                         getBackGroundColor={this.getBackGroundColor}
                         getReminder={this.getReminder}
@@ -343,8 +345,7 @@ export default class NoteCardDisplay extends React.Component {
                         getArchive={this.getArchive}
                         getTitleEdit={this.getTitleEdit}
                         getDescriptionEdit={this.getDescriptionEdit}
-                        displayStatus={this.state.dialogDisplayStatus}
-                        noteSelected={this.state.note} />
+                    />
                 </Card>
             </div>
         )

@@ -166,8 +166,10 @@ class TopbarComponent extends React.Component {
               <div>
                 {this.state.sideBarSelected === "Notes" ? (
                   <div>
-                    <img style={{ verticalAlign: "middle" }} src={require("../assets/images/noteImage.svg")} alt="noteImage" />
-                    <span style={{ color: "black"}}> FundooNotes </span>
+                    <img style={{ verticalAlign: "middle" }}
+                      className="topBarFundooNotesImage"
+                      src={require("../assets/images/noteImage.svg")} alt="noteImage" />
+                    <span style={{ color: "black" }}> FundooNotes </span>
                   </div>
                 ) : (
                     <div style={{ color: "black" }} >{this.state.sideBarSelected}</div>
@@ -181,7 +183,7 @@ class TopbarComponent extends React.Component {
 
               <div style={{ display: "flex" }}>
 
-                <img src={require("../assets/images/refresh.svg")} alt="Refresh" className="refreshButtonOnTop" onClick={this.refreshPage} />
+                <img style={{marginRight:"10px"}} src={require("../assets/images/refresh.svg")} alt="Refresh" className="refreshButtonOnTop" onClick={this.refreshPage} />
 
                 {this.state.isView ? (
                   <img src={require("../assets/images/gridNotes.svg")} alt="listView" className="cssClassNotesOnView" onClick={this.handleNotesView.bind(this)} />
