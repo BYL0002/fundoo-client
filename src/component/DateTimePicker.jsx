@@ -60,7 +60,7 @@ export default class DateTimePicker extends React.Component {
         })
         // console.log('selected date ', this.state.dateSelected);
         // console.log('selected date event ', event.target.value);
-        this.props.getDateTimePicked(event.target.value+' '+this.state.timeSelected);
+        this.props.getDateTimePicked(event.target.value + ' ' + this.state.timeSelected);
     }
 
     handleTimeSelection = (event) => {
@@ -68,7 +68,7 @@ export default class DateTimePicker extends React.Component {
             timeSelected: event.target.value
         })
         // console.log('selected time ', this.state.timeSelected);
-        this.props.getDateTimePicked(this.state.dateSelected+' '+event.target.value);
+        this.props.getDateTimePicked(this.state.dateSelected + ' ' + event.target.value);
     }
 
     render() {
@@ -79,11 +79,11 @@ export default class DateTimePicker extends React.Component {
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper className="datePickerDiv" >
-                            
+
                                 {/* <div >
                                     <Input className = "dateTimePicker" name = "dt" type = "datetime-local" onChange = {this.handleDateTimeSelection} />
                                 </div> */}
-                                
+
                                 <div>
                                     <input defaultValue={defaultDateFormat} type="date" onChange={this.handleDateSelection} />
                                 </div>
@@ -94,13 +94,15 @@ export default class DateTimePicker extends React.Component {
                         </Fade>
                     )}
                 </Popper>
-                <span onClick={this.handleShowDateTimePickerPopper("right")} >
-                    
-                    <img className="reminderClock"
-                     src={require('../assets/images/clocktime.svg')} alt="clock" />
-                    
-                    <span style={{marginLeft:"10px"}} id={new Date()} >Pick date & time : </span>
-                </span>
+                <div style={{ display: "flex" }} onClick={this.handleShowDateTimePickerPopper("right")} >
+
+                    <div >
+
+                        <img className="reminderClock"
+                            src={require('../assets/images/clocktime.svg')} alt="clock" />
+                    </div>
+                    <div style={{ marginLeft: "10px" }} className="reminderLabel" id={new Date()} >Pick date & time : </div>
+                </div>
             </div>
         )
     }

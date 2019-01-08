@@ -198,7 +198,254 @@ body {
         margin-top: 30px;
         margin-bottom: 10px;
     }
-    /* ----------------------------------------------------Dashboard CSS Start------------------------------------- */
+    /* ----------------------------------------------------Dashboard CSS ------------------------------------- */
+    div .appBar {
+        display: flex;
+        justify-content: space-between; 
+        padding: 1px;
+        background-color: white;
+    }
+    .topBarSearchDiv {
+        width: 250px;
+        border: 1px solid rgba(0, 0, 0, 0);
+        background: rgba(0, 0, 0, 0.04);
+        margin-right: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .topBarSearchBar {
+        width: 520px;
+    }
+    .cssClassNotesOnView {
+        margin-right: 90px;
+        margin-left: 20px;
+    }
+    /* ----------------------------------------------------Top Right User Section CSS------------------------------------- */
+    #popupTopBar {
+        margin-top: 11px;
+        width: 290px;
+        height: 91px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    #userDetailsAppBarPopper {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-top: 11px;
+    }
+    div .logoutButton {
+        margin-top: 11px;
+        margin-left: 135px;
+        padding: 0%;
+    }
+    #userIconPopperTopBar {
+        width: 50px;
+        height: 50px;
+        margin: 8px;
+        float: left;
+        background-color: cadetblue;
+    }
+    /* ----------------------------------------------------SideBar CSS ------------------------------------- */
+    div .sideBarMenuItems {
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 60px;
+    }
+    .sideBarImages {
+        float: left;
+        padding: 1%;
+        margin-right: 20px;
+    }
+    .sideBarTextBottom {
+        margin-top: 2%;
+        align-self: center;
+        margin-right: 8%;
+        font-size: 65%;
+    }
+    /* ----------------------------------------------------Add Note CSS ------------------------------------- */
+    .completeNoteTakeCard {
+        width: 365px;
+        min-height: 130px;
+    }
+    .noteTakeCard {
+        transition: .50s;
+        margin-left: 210px;
+        margin-top: 130px;
+        max-width: 370px;
+        height: auto;
+        box-shadow: 1px 1px 10px;
+    }
+    .noteTakeCardAfterDrawerOpen {
+        transition: .50s;
+        margin-left: 210px;
+        margin-top: 130px;
+        max-width: 370px;
+        height: auto;
+    }
+    .inputNoteTake {
+        margin: 10px;
+        width: 420px;
+    }
+    .inputNoteTake div {
+        font-size: 12px;
+    }
+    .CollaboratorHeading {
+        font-size: 16px;
+        margin: 10px;
+        padding: 5px;
+        height: 20px;
+        border-bottom: 1px solid black;
+    }
+    div .closeNoteCollaboratorAddCardButton {
+        margin-left: 290px;
+    }
+    /* ----------------------------------------------------Notes Feature Dvi CSS ------------------------------------- */
+    .noteAddFeatureImagesDiv {
+        width: 170px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .reminderPopper {
+        position: fixed;
+        z-index: 1;
+    }
+    div .reminderLabel {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+    .reminderClock {
+        line-height: 5px;
+        vertical-align: middle;
+        margin: 1px;
+    }
+    .datePickerDiv {
+        width: 140px;
+        margin-top: 10px;
+        margin-left: 40px;
+    }
+    .pinNoteImage {
+        vertical-align: middle;
+        margin-top: 11px;
+    }
+    .colorSelectionPopperNoteAddCard {
+        width: 130px;
+        margin: 5px;
+        height: 100px;
+    }
+    div .colorPalette {
+        margin: 3px;
+        width: 10px;
+        height: 10px;
+        border: 1px solid darkgrey;
+    }
+    div .colorPalette:hover {
+        border: 1px solid black;
+    }
+    /* ----------------------------------------------------Notes Display Div CSS ------------------------------------- */
+    .NotesDisplayDivSidebarClose {
+        max-width: 450px;
+        margin-left: 190px;
+        margin-top: 30px;
+        display: flex;
+        transition: 0.50s;
+    }
+    .NotesDisplayDivSidebarOpen {
+        max-width: 450px;
+        transition: 0.50s;
+        margin-left: 280px;
+        margin-top: 30px;
+        display: flex;
+    }
+    .notesGridDisplayDiv {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .notesListDisplayDiv {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    div .notesGridDisplayCard {
+        display: flex;
+        flex-wrap: wrap;
+        min-width: 200px;
+        max-width: 200px;
+        word-wrap: break-word;
+        word-break: break-all;
+        min-height: 100px;
+        margin: 10px;
+        border-radius: 9px;
+    }
+    /* class to point each component individually
+.notenoteAddFeatureImages {}  */
+    .notesGridDisplayCard .noteAddFeatureImages {
+        visibility: hidden;
+    }
+    .notesGridDisplayCard:hover .noteAddFeatureImages {
+        visibility: visible;
+    }
+    .notesGridDisplayCard:hover {
+        box-shadow: 1px 1px 10px;
+    }
+    div .notesListDisplayCard {
+        display: flex;
+        flex-wrap: nowrap;
+        min-width: 500px;
+        max-width: 500px;
+        word-wrap: break-word;
+        word-break: break-all;
+        min-height: 100px;
+        margin: 20px;
+        margin-left: 120px;
+        border-radius: 9px;
+    }
+    .textShowingPinnedAndOthersGRID {
+        margin-left: 10px;
+    }
+    .textShowingPinnedAndOthersLIST {
+        margin-left: 120px;
+    }
+    .notesListDisplayCard .noteAddFeatureImages {
+        visibility: hidden;
+    }
+    .notesListDisplayCard:hover .noteAddFeatureImages {
+        visibility: visible;
+    }
+    .notesListDisplayCard:hover {
+        box-shadow: 1px 1px 10px;
+    }
+    /* ----------------------------------------------------Notes Display Card CSS ------------------------------------- */
+    .noteCardDisplayTitleDiv {
+        display: flex;
+        font-size: 18px;
+        margin-left: 5px;
+        padding: 3px;
+    }
+    .noteCardDisplayTitle {
+        width: 100%;
+    }
+    .noteCardDisplayDescription {
+        font-size: 18px;
+        padding: 3px;
+        margin-left: 5px;
+        min-width: 350px;
+    }
+    div .dialogPadding {
+        padding: 10px;
+    }
+    .reminderShowOnCardText {
+        font-size: 10px;
+        padding: 0px;
+    }
+    div .chipOnCardReminder {
+        margin-left: 5px;
+        margin-top: 15px;
+        height: 25px;
+    }
 }
 
 @media only screen and (min-width: 960px) {
@@ -318,29 +565,256 @@ body {
         margin-top: 50px;
         margin-bottom: 10px;
     }
-    /* ----------------------------------------------------Dashboard CSS Start------------------------------------- */
-    /* .topBarSearchDiv {
-        width: 380px;
+    /* ----------------------------------------------------Dashboard CSS ------------------------------------- */
+    div .appBar {
+        display: flex;
+        justify-content: space-between;
+        padding: 1px;
+        background-color: white;
+    }
+    .topBarSearchDiv {
+        width: 550px;
         border: 1px solid rgba(0, 0, 0, 0);
         background: rgba(0, 0, 0, 0.04);
-        margin-right: 30px;
+        margin-right: 20px;
+        margin-left: 50px;
         display: flex;
-        height: 35px;
-    }
-    .searchIconTopBar {
-        line-height: 14px;
-        margin-top: 0px;
-        vertical-align: middle;
     }
     .topBarSearchBar {
-        width: 350px;
-    } */
-    .refreshButtonOnTop {
-        /* margin-right: 25px;
+        width: 520px;
+    }
+    .cssClassNotesOnView {
+        margin-right: 150px;
         vertical-align: middle;
         line-height: 25px;
-        width: 28px;
-        height: 28px; */
+        margin-top: 2px;
+        margin-left: 20px;
+        opacity: 10px;
+    }
+    /* ----------------------------------------------------Top Right User Section CSS------------------------------------- */
+    #popupTopBar {
+        margin-top: 11px;
+        width: 290px;
+        height: 91px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    #userDetailsAppBarPopper {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-top: 11px;
+    }
+    div .logoutButton {
+        margin-top: 11px;
+        margin-left: 135px;
+        padding: 0%;
+    }
+    #userIconPopperTopBar {
+        width: 50px;
+        height: 50px;
+        margin: 8px;
+        float: left;
+        background-color: cadetblue;
+    }
+    /* ----------------------------------------------------SideBar CSS ------------------------------------- */
+    div .sideBarMenuItems {
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 60px;
+    }
+    .sideBarImages {
+        float: left;
+        padding: 1%;
+        margin-right: 20px;
+    }
+    .sideBarTextBottom {
+        margin-top: 2%;
+        align-self: center;
+        margin-right: 8%;
+        font-size: 65%;
+    }
+    /* ----------------------------------------------------Add Note CSS ------------------------------------- */
+    .completeNoteTakeCard {
+        width: 450px;
+        min-height: 130px;
+    }
+    .noteTakeCard {
+        transition: .50s;
+        margin-left: 400px;
+        margin-top: 130px;
+        max-width: 450px;
+        height: auto;
+    }
+    .noteTakeCardAfterDrawerOpen {
+        transition: .50s;
+        margin-left: 450px;
+        margin-top: 130px;
+        max-width: 450px;
+        height: auto;
+    }
+    .inputNoteTake {
+        margin: 10px;
+        width: 420px;
+    }
+    .inputNoteTake div {
+        font-size: 15px;
+    }
+    .CollaboratorHeading {
+        font-size: 20px;
+        margin: 10px;
+        padding: 5px;
+        height: 20px;
+        border-bottom: 1px solid black;
+    }
+    div .closeNoteCollaboratorAddCardButton {
+        margin-left: 370px;
+    }
+    /* ----------------------------------------------------Notes Feature Dvi CSS ------------------------------------- */
+    .noteAddFeatureImagesDiv {
+        width: 250px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .reminderPopper {
+        position: fixed;
+        z-index: 1;
+    }
+    div .reminderLabel {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+    .reminderClock {
+        line-height: 5px;
+        vertical-align: middle;
+        margin: 1px;
+    }
+    .datePickerDiv {
+        width: 140px;
+        margin-top: 10px;
+        margin-left: 40px;
+    }
+    .pinNoteImage {
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+    .colorSelectionPopperNoteAddCard {
+        width: 130px;
+        margin: 5px;
+        height: 100px;
+    }
+    div .colorPalette {
+        margin: 3px;
+        width: 10px;
+        height: 10px;
+        border: 1px solid darkgrey;
+    }
+    div .colorPalette:hover {
+        border: 1px solid black;
+    }
+    /* ----------------------------------------------------Notes Display Div CSS ------------------------------------- */
+    .NotesDisplayDivSidebarClose {
+        max-width: 850px;
+        margin-left: 190px;
+        margin-top: 30px;
+        display: flex;
+        transition: 0.50s;
+    }
+    .NotesDisplayDivSidebarOpen {
+        max-width: 850px;
+        transition: 0.50s;
+        margin-left: 280px;
+        margin-top: 30px;
+        display: flex;
+    }
+    .notesGridDisplayDiv {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .notesListDisplayDiv {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    div .notesGridDisplayCard {
+        display: flex;
+        flex-wrap: wrap;
+        min-width: 240px;
+        max-width: 240px;
+        word-wrap: break-word;
+        word-break: break-all;
+        min-height: 100px;
+        margin: 10px;
+        border-radius: 9px;
+    }
+    /* class to point each component individually
+.notenoteAddFeatureImages {}  */
+    .notesGridDisplayCard .noteAddFeatureImages {
+        visibility: hidden;
+    }
+    .notesGridDisplayCard:hover .noteAddFeatureImages {
+        visibility: visible;
+    }
+    .notesGridDisplayCard:hover {
+        box-shadow: 1px 1px 10px;
+    }
+    div .notesListDisplayCard {
+        display: flex;
+        flex-wrap: nowrap;
+        min-width: 500px;
+        max-width: 500px;
+        word-wrap: break-word;
+        word-break: break-all;
+        min-height: 100px;
+        margin: 20px;
+        margin-left: 120px;
+        border-radius: 9px;
+    }
+    .textShowingPinnedAndOthersGRID {
+        margin-left: 10px;
+    }
+    .textShowingPinnedAndOthersLIST {
+        margin-left: 120px;
+    }
+    .notesListDisplayCard .noteAddFeatureImages {
+        visibility: hidden;
+    }
+    .notesListDisplayCard:hover .noteAddFeatureImages {
+        visibility: visible;
+    }
+    .notesListDisplayCard:hover {
+        box-shadow: 1px 1px 10px;
+    }
+    /* ----------------------------------------------------Notes Display Card CSS ------------------------------------- */
+    .noteCardDisplayTitleDiv {
+        display: flex;
+        font-size: 18px;
+        margin-left: 5px;
+        padding: 3px;
+    }
+    .noteCardDisplayTitle {
+        width: 100%;
+    }
+    .noteCardDisplayDescription {
+        font-size: 18px;
+        padding: 3px;
+        margin-left: 5px;
+        min-width: 350px;
+    }
+    div .dialogPadding {
+        padding: 10px;
+    }
+    .reminderShowOnCardText {
+        font-size: 10px;
+        padding: 0px;
+    }
+    div .chipOnCardReminder {
+        margin-left: 5px;
+        margin-top: 15px;
+        height: 25px;
     }
 }
 
@@ -473,6 +947,7 @@ body {
     /* ----------------------------------------------------Dashboard CSS ------------------------------------- */
     div .appBar {
         display: flex;
+        /* justify-content: space-between; */
         padding: 1px;
         background-color: white;
     }
@@ -497,7 +972,6 @@ body {
     /* ----------------------------------------------------Top Right User Section CSS------------------------------------- */
     #popupTopBar {
         margin-top: 11px;
-        /* margin-right: -10px; */
         width: 330px;
         height: 130px;
         display: flex;
@@ -530,7 +1004,6 @@ body {
     .sideBarImages {
         float: left;
         padding: 1%;
-        /* display: flex; */
         margin-right: 20px;
     }
     .sideBarTextBottom {
@@ -700,7 +1173,7 @@ body {
     .noteCardDisplayDescription {
         font-size: 21px;
         padding: 7px;
-        min-width: 200px;
+        min-width: 400px;
     }
     div .dialogPadding {
         padding: 10px;

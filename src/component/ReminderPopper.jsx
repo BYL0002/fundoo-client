@@ -98,13 +98,13 @@ export default class ReminderPopper extends React.Component {
     render() {
         return (
             <div>
-                
+
                 <img onClick={this.handleReminderOtion('bottom')} className="noteAddFeatureImages"
-                    src={require('../assets/images/reminder.svg')} alt="reminder" 
-                    />
+                    src={require('../assets/images/reminder.svg')} alt="reminder"
+                />
 
                 <Popper className='reminderPopper' open={this.state.open} transition disablePortal
-                anchorEl={this.state.anchorEl}
+                    anchorEl={this.state.anchorEl}
                 >
                     {({ TransitionProps, placement }) => (
                         <Grow
@@ -130,12 +130,16 @@ export default class ReminderPopper extends React.Component {
                                         <DateTimePicker getDateTimePicked={this.getDateTimePicked} />
                                     </MenuItem>
                                     <MenuItem>
-                                        <img src={require('../assets/images/locationOn.svg')} alt="location" />
-                                        <span style={{marginLeft:"15px"}} >Pick place : </span>
+                                        <div style={{display:"flex"}}>
+                                            <div>
+                                                <img src={require('../assets/images/locationOn.svg')} alt="location" />
+                                            </div>
+                                            <div className="reminderLabel" style={{ marginLeft: "15px" }} >Pick place : </div>
+                                        </div>
                                     </MenuItem>
                                 </div>
                             </Paper>
-                            </Grow>
+                        </Grow>
                     )}
                 </Popper>
 

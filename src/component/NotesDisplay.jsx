@@ -212,11 +212,11 @@ export default class NotesDisplay extends React.Component {
                                     <div>
                                         {count > 0 ? (
                                             <div>
-                                                <div >Pinned</div>
+                                                <div className = { this.props.notesView ? "textShowingPinnedAndOthersGRID" : "textShowingPinnedAndOthersLIST" } >Pinned</div>
                                                 <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
                                                     {pinnedNotes}
                                                 </div>
-                                                <div>Others</div>
+                                                <div className = { this.props.notesView ? "textShowingPinnedAndOthersGRID" : "textShowingPinnedAndOthersLIST" } >Others</div>
                                             </div>
                                         ) : (
                                                 <div>
