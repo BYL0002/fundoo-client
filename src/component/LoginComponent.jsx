@@ -77,7 +77,7 @@ class LoginComponent extends React.Component {
 
     handleSnackClose = (event, reason) => {
         if (reason === 'clickaway') {
-            return;
+            return ;
         }
 
         this.setState({ snackOpen: false });
@@ -144,74 +144,75 @@ class LoginComponent extends React.Component {
 
 
     render() {
+        // debugger;
 
         if (this.state.responseGot) return (<Redirect to="/dashboard" />)
 
         return (
             <div className="Form" >
-                <div className="formHeader">
-                    Log in<span className="beforeDashboardTitle" >Fundoo Notes</span>
-                </div>
-                <div  >
-                    <TextField label={this.props.name} name="email" onChange={this.setValue} required autoFocus
-                        className="emailTextFieldLoginPage" helperText={this.state.email === "" ? this.state.text : ""} ></TextField>
-                </div>
-                <div >
-                    <TextField className="passwordTextFieldLoginPage" label="Password" type={this.state.showpassword ? 'text' : 'password'} required
-                        value={this.state.password} onChange={this.setValue} name="password" helperText={this.state.password === "" ? this.state.text : ""}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
-                                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-                </div>
-                <div className="forgotPasswordLinkLocationLoginPage" >
-                    <a className="links" href="/forgotpassword">Forgot <b>Password</b></a>
-                </div>
-
-                <div >
-                    <Button fullWidth onClick={this.loginUser} variant='extendedFab'
-                        color="primary" className="LoginSubmitButtons" >Login</Button></div>
-                <div>
-                    <span className="CenterTextStyle" >Don't have account? </span>
-                    <a className="links" href="/register"> <b>Register</b> </a>
-                </div>
-
-                <GoogleLogin
-                    clientId="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com"
-                    buttonText="Login"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                />
-
-                <div className="g-signin2" data-onsuccess="onSignIn"></div>
-
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
+            <div className="formHeader">
+                Log in<span className="beforeDashboardTitle" >Fundoo Notes</span>
+            </div>
+            <div  >
+                <TextField label={this.props.name} name="email" onChange={this.setValue} required autoFocus
+                    className="emailTextFieldLoginPage" helperText={this.state.email === "" ? this.state.text : ""} ></TextField>
+            </div>
+            <div >
+                <TextField className="passwordTextFieldLoginPage" label="Password" type={this.state.showpassword ? 'text' : 'password'} required
+                    value={this.state.password} onChange={this.setValue} name="password" helperText={this.state.password === "" ? this.state.text : ""}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton aria-label="Toggle Password Visibility" onClick={this.handleShowPassword} >
+                                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        )
                     }}
-                    open={this.state.snackOpen}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    color="primary"
-                    variant="success"
-                    message={<span id="message-id">{this.state.snackMessage}</span>}
-                    action={[
-                        <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
-                            <CloseIcon />
-                        </IconButton>,
-                    ]}
                 />
             </div>
+            <div className="forgotPasswordLinkLocationLoginPage" >
+                <a className="links" href="/forgotpassword">Forgot <b>Password</b></a>
+            </div>
+
+            <div >
+                <Button fullWidth onClick={this.loginUser} variant='extendedFab'
+                    color="primary" className="LoginSubmitButtons" >Login</Button></div>
+            <div>
+                <span className="CenterTextStyle" >Don't have account? </span>
+                <a className="links" href="/register"> <b>Register</b> </a>
+            </div>
+
+            <GoogleLogin
+                clientId="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com"
+                buttonText="Login"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+            />
+
+            <div className="g-signin2" data-onsuccess="onSignIn"></div>
+
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={this.state.snackOpen}
+                autoHideDuration={6000}
+                onClose={this.handleSnackClose}
+                ContentProps={{
+                    'aria-describedby': 'message-id',
+                }}
+                color="primary"
+                variant="success"
+                message={<span id="message-id">{this.state.snackMessage}</span>}
+                action={[
+                    <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleSnackClose} >
+                        <CloseIcon />
+                    </IconButton>,
+                ]}
+            />
+        </div>
         )
     }
 }
