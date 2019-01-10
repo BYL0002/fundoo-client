@@ -60,13 +60,13 @@ class AccountIconTopBar extends React.Component {
                                 <div id="popupTopBar" >
                                     <div>
                                         <div>
-                                            {imageUrl === "" ? (
+                                            {/* {imageUrl === "" ? (
                                                 <Avatar id = "accountIconPopperTopBar" >{this.state.userLogInName[0] }</Avatar>
                                             ) : (
                                                 // <AccountCircle id = "accountIconPopperTopBar" />
                                                 <img src = {require( {imageUrl} ) } alt="userImage" />
-                                            )}
-                                            {/* <Avatar id="userIconPopperTopBar" >{this.state.userLogInName[0]}</Avatar> */}
+                                            )} */}
+                                            <Avatar id="userIconPopperTopBar" >{this.state.userLogInName[0]}</Avatar>
                                         </div>
                                         <div id="userDetailsAppBarPopper" >
                                             <div  >{this.state.userLogInName} </div>
