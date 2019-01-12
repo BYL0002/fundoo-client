@@ -50,8 +50,17 @@ export default class NotesDisplay extends React.Component {
         NoteService.NoteDisplay(request, (err, data) => {
 
             if (data !== null && data !== undefined) {
+
+                let tempArrayOfNotes = [];
+
+                for (let i = 0; i < data.length; i++) {
+                    // console.log("response.data.message[i].note---", response.data.message[i].note);
+
+                    tempArrayOfNotes.push(data[i].note);
+                }
+
                 self.setState({
-                    notesDisplay: data
+                    notesDisplay: tempArrayOfNotes
                 })
             }
             else {
@@ -81,7 +90,7 @@ export default class NotesDisplay extends React.Component {
 
     }
 
-    getUpdateImage = (request, note,index) => {
+    getUpdateImage = (request, note, index) => {
 
         NewNoteServiceClassObject.NotesUpdation(request, (err, data) => {
             if (err) {
@@ -90,8 +99,8 @@ export default class NotesDisplay extends React.Component {
             else {
                 let newNotesArray = this.state.notesDisplay;
 
-                    newNotesArray[index] = data;
-              
+                newNotesArray[index] = data;
+
                 this.setState({
                     notesDisplay: newNotesArray
                 })
@@ -122,7 +131,7 @@ export default class NotesDisplay extends React.Component {
     }
 
     render() {
-        
+
         let count = 0;
 
         if (this.state.notesDisplay === null) {
@@ -161,7 +170,7 @@ export default class NotesDisplay extends React.Component {
         let unPinnedNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === false) {
                 return <NoteCardDisplay key={index}
-                index={index}
+                    index={index}
                     noteSelected={note}
                     getUpdate={this.getUpdate}
                     notesView={this.props.notesView}
@@ -212,11 +221,11 @@ export default class NotesDisplay extends React.Component {
                                     <div>
                                         {count > 0 ? (
                                             <div>
-                                                <div className = { this.props.notesView ? "textShowingPinnedAndOthersGRID" : "textShowingPinnedAndOthersLIST" } >Pinned</div>
+                                                <div className={this.props.notesView ? "textShowingPinnedAndOthersGRID" : "textShowingPinnedAndOthersLIST"} >Pinned</div>
                                                 <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
                                                     {pinnedNotes}
                                                 </div>
-                                                <div className = { this.props.notesView ? "textShowingPinnedAndOthersGRID" : "textShowingPinnedAndOthersLIST" } >Others</div>
+                                                <div className={this.props.notesView ? "textShowingPinnedAndOthersGRID" : "textShowingPinnedAndOthersLIST"} >Others</div>
                                             </div>
                                         ) : (
                                                 <div>

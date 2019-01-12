@@ -8,7 +8,8 @@
 import React from 'react';
 import { Card, Chip } from '@material-ui/core';
 import ReminderPopper from './ReminderPopper';
-import Collaborator from './Collaborator';
+import CollabDialog from './CollabDialog';
+// import Collaborator from './Collaborator';
 import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import UploadImage from './UploadImage';
@@ -312,7 +313,7 @@ export default class NoteCardDisplay extends React.Component {
                                         <ReminderPopper getReminderChooseOption={this.getReminder}
                                             noteSelected={this.state.note} />
 
-                                        <Collaborator />
+                                        <CollabDialog />
 
                                         <ColorSection getColor={this.getBackGroundColor}
                                             noteSelected={this.state.note} />

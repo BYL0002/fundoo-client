@@ -64,7 +64,8 @@ class AccountIconTopBar extends React.Component {
                                                 // <AccountCircle id = "accountIconPopperTopBar" />
                                                 <img src = {require( {imageUrl} ) } alt="userImage" />
                                             )} */}
-                                            <Avatar id="userIconPopperTopBar" >{this.state.userLogInName[0]}</Avatar>
+                                            <Avatar style={{backgroundColor:"cadetblue"}}
+                                             className="userIconPopperTopBar" >{this.state.userLogInName[0]}</Avatar>
                                         </div>
                                         <div id="userDetailsAppBarPopper" >
                                             <div  >{this.state.userLogInName} </div>

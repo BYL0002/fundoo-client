@@ -138,7 +138,7 @@ body {
         margin-left: 135px;
         padding: 0%;
     }
-    #userIconPopperTopBar {
+    .userIconPopperTopBar {
         width: 50px;
         height: 50px;
         margin: 8px;
@@ -269,7 +269,6 @@ body {
         flex-wrap: nowrap;
     }
     div .notesGridDisplayCard {
-        
         display: flex;
         flex-wrap: nowrap;
         min-width: 370px;
@@ -487,12 +486,12 @@ body {
         margin-left: 135px;
         padding: 0%;
     }
-    #userIconPopperTopBar {
+    .userIconPopperTopBar {
         width: 50px;
         height: 50px;
         margin: 8px;
         float: left;
-        background-color: cadetblue;
+        background: cadetblue;
     }
     /* ----------------------------------------------------SideBar CSS ------------------------------------- */
     div .sideBarMenuItems {
@@ -859,13 +858,14 @@ body {
         margin-left: 135px;
         padding: 0%;
     }
-    #userIconPopperTopBar {
+    .userIconPopperTopBar {
         width: 50px;
         height: 50px;
         margin: 8px;
         float: left;
-        background-color: cadetblue;
+        background: cadetblue;
     }
+    
     /* ----------------------------------------------------SideBar CSS ------------------------------------- */
     div .sideBarMenuItems {
         border-top-right-radius: 60px;
@@ -1055,6 +1055,9 @@ body {
     div .dialogPadding {
         padding: 10px;
     }
+    #dialogPaddingCollab {
+        padding: 0px;
+    }
     .reminderShowOnCardText {
         font-size: 10px;
         padding: 0px;
@@ -1237,12 +1240,12 @@ body {
         margin-left: 135px;
         padding: 0%;
     }
-    #userIconPopperTopBar {
+    .userIconPopperTopBar {
         width: 80px;
         height: 80px;
         margin: 12px;
         float: left;
-        background-color: cadetblue;
+        background: cadetblue;
     }
     /* ----------------------------------------------------SideBar CSS ------------------------------------- */
     div .sideBarMenuItems {
