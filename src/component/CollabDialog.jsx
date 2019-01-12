@@ -8,6 +8,7 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogActions, createMuiTheme, MuiThemeProvider, Avatar } from '@material-ui/core';
 import { Card, Button } from '@material-ui/core';
+import NoteService from '../service/NoteService';
 
 const theme = createMuiTheme({
     typography: {
@@ -16,6 +17,7 @@ const theme = createMuiTheme({
     overrides: {
         MuiDialog: {
             paperWidthSm: {
+                width: 600,
                 borderRadius: 8
             }
         },
@@ -37,7 +39,43 @@ export default class CollabDialog extends React.Component {
         super(props);
         this.state = {
             open: false,
+            users: []
         }
+    }
+    componentDidMount() {
+
+        let request = {
+            thread: "/AllUsersDisplay",
+            data: {
+                userId: localStorage.getItem("userLoggedId")
+            }
+        }
+
+        var self = this;
+
+        NoteService.NoteDisplay(request, (err, data) => {
+
+            if (data !== null && data !== undefined) {
+
+                let tempArrayOfNotes = [];
+
+                for (let i = 0; i < data.length; i++) {
+                    // console.log("response.data.message[i].note---", response.data.message[i].note);
+
+                    tempArrayOfNotes.push(data[i].note);
+                }
+
+                self.setState({
+                    notesDisplay: tempArrayOfNotes
+                })
+            }
+            else {
+                self.setState({
+                    notesDisplay: []
+                })
+            }
+        });
+
     }
 
     handleOpen = () => {
@@ -57,27 +95,36 @@ export default class CollabDialog extends React.Component {
                         onClose={this.handleOpen}
                         aria-labelledby="responsive-dialog-title"
                     >
-                        <DialogContent id="dialogPaddingCollab" >
+                        {/* <DialogContent id="dialogPaddingCollab" > */}
 
-                            <div style={{ display: 'flex' }} >
+                        <div>
 
-                                <Card  >
-                                    <div  >
-                                        <div className="CollaboratorHeading" >
-                                            <span  >Collaborators</span>
-                                        </div>
+                            <Card style={{ width: "100%", border: "none" }} >
+                                <div  >
+                                    <div className="CollaboratorHeading" >
+                                        <span  >Collaborators</span>
                                     </div>
+                                </div>
+                                <div style={{ display: "flex" }} >
                                     <div>
                                         <Avatar className="userIconPopperTopBar"
-                                        style={{backgroundColor:"cadetblue"}} > { localStorage.getItem("userLogName")[0] } </Avatar>
-                                        <h3> {localStorage.getItem("userLogName")} (Owner) </h3>
-                                        <h5> {localStorage.getItem("userLogged")} </h5>
+                                            style={{ backgroundColor: "cadetblue" }} >
+
+                                            {localStorage.getItem("userLogName")[0]}
+
+                                        </Avatar>
+
                                     </div>
-                                </Card>
+                                    <div style={{ display: "flex", flexDirection: "column", marginTop: "14px" }}>
+                                        <b> {localStorage.getItem("userLogName")} (Owner) </b>
+                                        <b> {localStorage.getItem("userLogged")} </b>
+                                    </div>
+                                </div>
+                            </Card>
 
-                            </div>
+                        </div>
 
-                        </DialogContent>
+                        {/* </DialogContent> */}
 
                         <DialogActions >
                             <Button onClick={this.handleAddNoteCardDisplay} >Close</Button>
