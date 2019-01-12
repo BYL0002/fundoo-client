@@ -45,33 +45,36 @@ export default class CollabDialog extends React.Component {
     componentDidMount() {
 
         let request = {
-            thread: "/AllUsersDisplay",
-            data: {
-                userId: localStorage.getItem("userLoggedId")
-            }
+            thread: "/AllUsersDetails"
         }
 
         var self = this;
 
         NoteService.NoteDisplay(request, (err, data) => {
+            // console.log("data", data);
+
 
             if (data !== null && data !== undefined) {
 
-                let tempArrayOfNotes = [];
+                let tempArrayOfUsersDetails = [];
 
                 for (let i = 0; i < data.length; i++) {
-                    // console.log("response.data.message[i].note---", response.data.message[i].note);
 
-                    tempArrayOfNotes.push(data[i].note);
+                    tempArrayOfUsersDetails.push({
+                        name: data[i].name,
+                        emailId: data[i].email_id
+                    });
                 }
 
+                // console.log("data res", tempArrayOfUsersDetails);
+
                 self.setState({
-                    notesDisplay: tempArrayOfNotes
+                    users: tempArrayOfUsersDetails
                 })
             }
             else {
                 self.setState({
-                    notesDisplay: []
+                    users: []
                 })
             }
         });
@@ -97,14 +100,16 @@ export default class CollabDialog extends React.Component {
                     >
                         {/* <DialogContent id="dialogPaddingCollab" > */}
 
-                        <div>
+                        <div style={{ display: "flex" }} >
 
                             <Card style={{ width: "100%", border: "none" }} >
+
                                 <div  >
                                     <div className="CollaboratorHeading" >
                                         <span  >Collaborators</span>
                                     </div>
                                 </div>
+
                                 <div style={{ display: "flex" }} >
                                     <div>
                                         <Avatar className="userIconPopperTopBar"
@@ -120,6 +125,35 @@ export default class CollabDialog extends React.Component {
                                         <b> {localStorage.getItem("userLogged")} </b>
                                     </div>
                                 </div>
+
+
+                                {this.state.users.map((option, index) => {
+                                    if (option.name !== localStorage.getItem("userLogName")) {
+
+                                        return <div key={index} style={{ display: "flex" }} >
+
+                                            <div >
+                                                <Avatar className="userIconPopperTopBar"
+                                                    style={{ backgroundColor: "cadetblue" }} >
+
+                                                    {option.name[0]}
+
+                                                </Avatar>
+
+                                            </div>
+                                            <div style={{ display: "flex", flexDirection: "column", marginTop: "14px" }}>
+                                                <b> {option.name} </b>
+                                                <b> {option.emailId} </b>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    return <div key={index}></div>
+
+                                })}
+
+
+
                             </Card>
 
                         </div>
