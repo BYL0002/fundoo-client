@@ -277,7 +277,7 @@ export default class NoteCardDisplay extends React.Component {
         
     }
 
-    render() {
+    render() {        
 
         return (
 
@@ -348,7 +348,8 @@ export default class NoteCardDisplay extends React.Component {
                                         <MoreOptions noteSelected={this.state.note}
                                             getTrash={this.getTrash}
                                             getNoteDeleted={this.getNoteDeleted}
-                                            sideBarSelected={this.props.sideBarSelected} />
+                                            sideBarSelected={this.props.sideBarSelected}
+                                            allLabels={this.props.allLabels} />
                                     </div>
                                 )}
 

@@ -3,6 +3,8 @@ import { MenuItem } from '@material-ui/core';
 import { ClickAwayListener } from '@material-ui/core';
 import { Popper, Paper } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
+import LabelNoteAdditionDialog from '../component/LabelNoteAdditionDialog';
+
 
 export default class MoreOptions extends React.Component {
     constructor(props) {
@@ -37,8 +39,12 @@ export default class MoreOptions extends React.Component {
         this.props.getNoteDeleted(this.props.noteSelected);
     }
 
-    render() {
+    getNoteAddLabel = () => {
 
+    }
+
+    render() {
+        
         return (
             <div>
 
@@ -61,7 +67,11 @@ export default class MoreOptions extends React.Component {
                                     ) : (
                                             <div>
                                                 <MenuItem onClick={this.getNoteDelete} >Delete</MenuItem>
-                                                <MenuItem onClick={this.getNoteEitherDeleteOrArchive} >Add Label</MenuItem>
+
+                                                <LabelNoteAdditionDialog
+                                                    allLabels={this.props.allLabels} />
+                                                
+                                                {/* <MenuItem onClick={this.getNoteAddLabel} >Add Label</MenuItem> */}
                                             </div>
 
                                         )}

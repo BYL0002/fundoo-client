@@ -27,9 +27,9 @@ const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 //   },
 // })
 
-class TopbarComponent extends React.Component {
-  constructor() {
-    super();
+class Topbar extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       sidebarOpenStatus: false,
       responseGot: false,
@@ -84,6 +84,9 @@ class TopbarComponent extends React.Component {
         self.setState({
           label: data
         })
+
+        this.props.getTotalLabels(this.state.label);
+
         this.refLabel.current.getLabels(data);
       }
       else {
@@ -140,6 +143,7 @@ class TopbarComponent extends React.Component {
   }
 
   render() {
+    // console.log('labels on top bar ---', this.state.label);
 
     if (this.state.responseGot) return <Redirect to="/" />
     return (
@@ -172,7 +176,7 @@ class TopbarComponent extends React.Component {
                     <span style={{ color: "black" }}> FundooNotes </span>
                   </div>
                 ) : (
-                    <div style={{ color: "black" }} >{this.state.sideBarSelected}</div>
+                    <div style={{ color: "black", verticalAlign: "middle", lineHeight: "50px" }} >{this.state.sideBarSelected}</div>
                   )}
 
               </div>
@@ -183,7 +187,7 @@ class TopbarComponent extends React.Component {
 
               <div style={{ display: "flex" }}>
 
-                <img style={{marginRight:"10px"}} src={require("../assets/images/refresh.svg")} alt="Refresh" className="refreshButtonOnTop" onClick={this.refreshPage} />
+                <img style={{ marginRight: "10px" }} src={require("../assets/images/refresh.svg")} alt="Refresh" className="refreshButtonOnTop" onClick={this.refreshPage} />
 
                 {this.state.isView ? (
                   <img src={require("../assets/images/gridNotes.svg")} alt="listView" className="cssClassNotesOnView" onClick={this.handleNotesView.bind(this)} />
@@ -206,4 +210,4 @@ class TopbarComponent extends React.Component {
   }
 }
 
-export default TopbarComponent;
+export default Topbar;

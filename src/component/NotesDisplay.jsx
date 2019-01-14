@@ -171,7 +171,8 @@ export default class NotesDisplay extends React.Component {
                     getNoteDeleted={this.getNoteDeleted}
                     getUpdateImage={this.getUpdateImage}
                     ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition} />
+                    getCollabAddition={this.getCollabAddition}
+                    allLabels={this.props.allLabels} />
             }
             return null;
         }));
@@ -190,7 +191,8 @@ export default class NotesDisplay extends React.Component {
                     getNoteDeleted={this.getNoteDeleted}
                     getUpdateImage={this.getUpdateImage}
                     ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition} />
+                    getCollabAddition={this.getCollabAddition}
+                    allLabels={this.props.allLabels} />
             }
             return null;
         });
@@ -205,7 +207,8 @@ export default class NotesDisplay extends React.Component {
                     sideBarSelected={this.props.sideBarSelected}
                     getNoteDeleted={this.getNoteDeleted}
                     ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition} />
+                    getCollabAddition={this.getCollabAddition}
+                    allLabels={this.props.allLabels} />
             }
             return null;
         });
@@ -220,7 +223,8 @@ export default class NotesDisplay extends React.Component {
                     sideBarSelected={this.props.sideBarSelected}
                     getNoteDeleted={this.getNoteDeleted}
                     ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition} />
+                    getCollabAddition={this.getCollabAddition}
+                    allLabels={this.props.allLabels} />
             }
             return null;
         });
@@ -235,10 +239,11 @@ export default class NotesDisplay extends React.Component {
                     sideBarSelected={this.props.sideBarSelected}
                     getNoteDeleted={this.getNoteDeleted}
                     ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition} />
+                    getCollabAddition={this.getCollabAddition}
+                    allLabels={this.props.allLabels} />
             }
             return null;
-        });
+        });        
 
         return (
 
