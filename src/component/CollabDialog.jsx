@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Dialog, DialogContent, DialogActions, createMuiTheme, MuiThemeProvider, Avatar } from '@material-ui/core';
+import { Dialog, DialogActions, createMuiTheme, MuiThemeProvider, Avatar } from '@material-ui/core';
 import { Card, Button } from '@material-ui/core';
 import NoteService from '../service/NoteService';
 
@@ -61,6 +61,7 @@ export default class CollabDialog extends React.Component {
                 for (let i = 0; i < data.length; i++) {
 
                     tempArrayOfUsersDetails.push({
+                        _id: data[i]._id,
                         name: data[i].name,
                         emailId: data[i].email_id
                     });
@@ -85,6 +86,11 @@ export default class CollabDialog extends React.Component {
         this.setState({
             open: !this.state.open
         });
+    }
+
+    addCollab = ( collabDetails ) => {
+
+        this.props.collabDetail(collabDetails, this.props.noteSelected);
     }
 
     render() {
@@ -128,9 +134,10 @@ export default class CollabDialog extends React.Component {
 
 
                                 {this.state.users.map((option, index) => {
+                                    
                                     if (option.name !== localStorage.getItem("userLogName")) {
 
-                                        return <div key={index} style={{ display: "flex" }} >
+                                        return <div key={index} style={{ display: "flex" }} onClick={() => this.addCollab(option)} >
 
                                             <div >
                                                 <Avatar className="userIconPopperTopBar"

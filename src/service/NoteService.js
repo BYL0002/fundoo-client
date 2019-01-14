@@ -55,7 +55,7 @@ function NotesAddition(request, callback) {
 
     return sendRequest(request)
         .then(res => {
-            // console.log('res on function', res);
+            console.log('res on function', res);
             return callback(null, res);
         })
 }

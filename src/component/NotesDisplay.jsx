@@ -49,6 +49,9 @@ export default class NotesDisplay extends React.Component {
 
         NoteService.NoteDisplay(request, (err, data) => {
 
+            console.log("complete data of notes-----", data);
+            
+
             if (data !== null && data !== undefined) {
 
                 let tempArrayOfNotes = [];
@@ -130,6 +133,14 @@ export default class NotesDisplay extends React.Component {
 
     }
 
+    getCollabAddition = (request, note) => {
+
+        NoteService.NotesAddition(request, (err, data) => {
+            console.log("data on collab saved---", data);
+
+        })
+    }
+
     render() {
 
         let count = 0;
@@ -159,7 +170,8 @@ export default class NotesDisplay extends React.Component {
                     sideBarSelected={this.props.sideBarSelected}
                     getNoteDeleted={this.getNoteDeleted}
                     getUpdateImage={this.getUpdateImage}
-                    ref={this.noteImageUpdate} />
+                    ref={this.noteImageUpdate}
+                    getCollabAddition={this.getCollabAddition} />
             }
             return null;
         }));
@@ -177,34 +189,53 @@ export default class NotesDisplay extends React.Component {
                     sideBarSelected={this.props.sideBarSelected}
                     getNoteDeleted={this.getNoteDeleted}
                     getUpdateImage={this.getUpdateImage}
-                    ref={this.noteImageUpdate} />
+                    ref={this.noteImageUpdate}
+                    getCollabAddition={this.getCollabAddition} />
             }
             return null;
         });
 
         let reminderNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.reminder !== "") {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
-                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted} ref={this.noteImageUpdate} />
+                return <NoteCardDisplay
+                    key={index}
+                    noteSelected={note}
+                    getUpdate={this.getUpdate}
+                    notesView={this.props.notesView}
+                    sideBarSelected={this.props.sideBarSelected}
+                    getNoteDeleted={this.getNoteDeleted}
+                    ref={this.noteImageUpdate}
+                    getCollabAddition={this.getCollabAddition} />
             }
             return null;
         });
 
         let archiveNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === true && note.pin === false) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
-                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted} ref={this.noteImageUpdate} />
+                return <NoteCardDisplay
+                    key={index}
+                    noteSelected={note}
+                    getUpdate={this.getUpdate}
+                    notesView={this.props.notesView}
+                    sideBarSelected={this.props.sideBarSelected}
+                    getNoteDeleted={this.getNoteDeleted}
+                    ref={this.noteImageUpdate}
+                    getCollabAddition={this.getCollabAddition} />
             }
             return null;
         });
 
         let trashNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === true) {
-                return <NoteCardDisplay key={index} noteSelected={note} getUpdate={this.getUpdate}
-                    notesView={this.props.notesView} sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted} ref={this.noteImageUpdate} />
+                return <NoteCardDisplay
+                    key={index}
+                    noteSelected={note}
+                    getUpdate={this.getUpdate}
+                    notesView={this.props.notesView}
+                    sideBarSelected={this.props.sideBarSelected}
+                    getNoteDeleted={this.getNoteDeleted}
+                    ref={this.noteImageUpdate}
+                    getCollabAddition={this.getCollabAddition} />
             }
             return null;
         });

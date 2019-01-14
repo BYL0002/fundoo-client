@@ -259,6 +259,24 @@ export default class NoteCardDisplay extends React.Component {
         });
     }
 
+    collabDetail = (collabDetail, noteSelected) => {
+        console.log("collabDetail----", collabDetail);
+
+        let request = {
+            thread: "/AddCollab",
+            data: {
+                collab: {
+                    userId : localStorage.getItem("userLoggedId"),
+                    noteId: noteSelected._id,
+                    collabId : collabDetail._id
+                }
+            }
+        }
+
+        this.props.getCollabAddition(request, noteSelected);
+        
+    }
+
     render() {
 
         return (
@@ -313,7 +331,9 @@ export default class NoteCardDisplay extends React.Component {
                                         <ReminderPopper getReminderChooseOption={this.getReminder}
                                             noteSelected={this.state.note} />
 
-                                        <CollabDialog />
+                                        <CollabDialog
+                                            noteSelected={this.state.note}
+                                            collabDetail={this.collabDetail} />
 
                                         <ColorSection getColor={this.getBackGroundColor}
                                             noteSelected={this.state.note} />
