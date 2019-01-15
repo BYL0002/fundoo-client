@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Popper, Paper } from '@material-ui/core';
+import { Popper, Paper, ClickAwayListener } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 
@@ -35,9 +35,19 @@ export default class LabelNoteAdditionDialog extends React.Component {
         }));
     }
 
+    handlePopperOnOutsideClick = () => {
+        this.setState({
+            open: false
+        })
+    }
+
     addLabeltoNote = (event) => {
         console.log('label selected', event.target.textContent);
-        this.props.getNoteAddLabel(event.target.textContent);        
+        this.props.getNoteAddLabel(event.target.textContent);
+
+        this.setState({
+            open: false
+        })
     }
 
     render() {
@@ -56,9 +66,9 @@ export default class LabelNoteAdditionDialog extends React.Component {
 
                                         return <div key={index} >
 
-                                                <MenuItem onClick={ this.addLabeltoNote } >{option.labels}</MenuItem>
+                                            <MenuItem onClick={this.addLabeltoNote} >{option.labels}</MenuItem>
 
-                                            </div>
+                                        </div>
 
                                     })}
 
@@ -69,11 +79,14 @@ export default class LabelNoteAdditionDialog extends React.Component {
                     )}
                 </Popper>
 
-                <div onClick={this.handleShowLabelPopper("right")} >
+                <ClickAwayListener onClickAway={this.handlePopperOnOutsideClick} >
+                    <div onClick={this.handleShowLabelPopper("right")} >
 
-                    <MenuItem onClick={this.getNoteAddLabel} >Add Label</MenuItem>
+                        <MenuItem onClick={this.getNoteAddLabel} >Add Label</MenuItem>
 
-                </div>
+                    </div>
+                </ClickAwayListener>
+
             </div>
         )
 

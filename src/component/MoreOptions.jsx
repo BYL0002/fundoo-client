@@ -40,6 +40,9 @@ export default class MoreOptions extends React.Component {
     }
 
     getNoteAddLabel = (labelClicked) => {
+        this.setState({
+            open: false
+        })
         this.props.getNoteLabel(labelClicked, this.props.noteSelected);
     }
 
@@ -49,8 +52,8 @@ export default class MoreOptions extends React.Component {
             <div>
 
                 {/* <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}> */}
-                    <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
-                        src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
+                <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
+                    src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
                 {/* </ClickAwayListener> */}
 
                 <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>

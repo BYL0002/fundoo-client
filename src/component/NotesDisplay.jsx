@@ -102,7 +102,7 @@ export default class NotesDisplay extends React.Component {
             else {
 
                 let newNotesArray = this.state.notesDisplay;
-                
+
                 for (let i = 0; i < newNotesArray.length; i++) {
                     if (newNotesArray[i]._id === data._id) {
                         newNotesArray[i] = data
@@ -251,7 +251,27 @@ export default class NotesDisplay extends React.Component {
                     allLabels={this.props.allLabels} />
             }
             return null;
-        });        
+        });
+
+        let labelNotes = this.state.notesDisplay.map((note, index) => {
+            for(let i=0; i<note.labels.length; i++)
+            {
+                if( note.labels[i] === this.props.sideBarSelected )
+                {
+                    return <NoteCardDisplay
+                    key={index}
+                    noteSelected={note}
+                    getUpdate={this.getUpdate}
+                    notesView={this.props.notesView}
+                    sideBarSelected={this.props.sideBarSelected}
+                    getNoteDeleted={this.getNoteDeleted}
+                    ref={this.noteImageUpdate}
+                    getCollabAddition={this.getCollabAddition}
+                    allLabels={this.props.allLabels} />
+                }
+            }
+            return null;
+        });
 
         return (
 
@@ -300,7 +320,11 @@ export default class NotesDisplay extends React.Component {
                                     </div>
                                 )
                             default:
-                                return null;
+                                return (
+                                    <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
+                                        { labelNotes }
+                                    </div>
+                                );
                         }
                     })()}
                 </div>

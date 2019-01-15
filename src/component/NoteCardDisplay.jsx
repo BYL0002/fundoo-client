@@ -290,7 +290,7 @@ export default class NoteCardDisplay extends React.Component {
         }
 
         let noteTemp = this.state.note;
-        noteTemp.label.push( labelClicked );
+        noteTemp.labels.push(labelClicked);
 
         this.setState({
             note: noteTemp
@@ -299,20 +299,20 @@ export default class NoteCardDisplay extends React.Component {
         this.props.getUpdate(request, this.state.note);
     }
 
-    getLabelRemoved = () => {
+    getLabelRemoved = (labelSelected) => {
 
         let noteTemp = this.state.note;
-        for(let i=0; i<noteTemp.labels.length; i++)
-        {
-            if( noteTemp[i] === 
+        for (let i = 0; i < noteTemp.labels.length; i++) {
+            if (noteTemp.labels[i] === labelSelected) {
+                noteTemp.labels.splice(i, i + 1);
+            }
         }
-        noteTemp. = ;
 
         this.setState({
             note: noteTemp
         })
 
-        this.props.getUpdate(request, this.state.note);
+        // this.props.getUpdate(request, this.state.note);
     }
 
     render() {
@@ -343,37 +343,38 @@ export default class NoteCardDisplay extends React.Component {
                             {this.state.note.description}
                         </div>
 
-                        {this.state.note.reminder === "" ? (
-                            <div>
-                            </div>
-                        ) : (
-                                <div >
+                        <div style={{ display: "flex", flexWrap:"wrap" }} >
+
+                            {this.state.note.reminder === "" ? (
+                                <div>
+                                </div>
+                            ) : (
+                                    <div >
+                                        <Chip
+                                            icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                            label={<span className="reminderShowOnCardText" >  {this.state.note.reminder} </span>}
+                                            onDelete={() => this.getReminderRemoved(this.state.note)}
+                                            variant="outlined"
+                                            className="chipOnCardReminder"
+                                        />
+                                    </div>
+                                )}
+
+                            {this.state.note.labels.map((option, index) => {
+
+                                return <div key={index} >
                                     <Chip
-                                        icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                        label={<span className="reminderShowOnCardText" >  {this.state.note.reminder} </span>}
-                                        onDelete={() => this.getReminderRemoved(this.state.note)}
+                                        // icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                        label={<span className="reminderShowOnCardText" >  {option} </span>}
+                                        onDelete={() => this.getLabelRemoved(option)}
                                         variant="outlined"
                                         className="chipOnCardReminder"
                                     />
                                 </div>
-                            )}
 
-                        {this.state.note.labels.map((option, index) => {
+                            })}
 
-                            console.log("label--", option);
-                            
-
-                            return <div>
-                                <Chip
-                                    // icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                    label={<span className="reminderShowOnCardText" >  {option} </span>}
-                                    onDelete={() => this.getLabelRemoved(this.state.note)}
-                                    variant="outlined"
-                                    className="chipOnCardReminder"
-                                />
-                            </div>
-
-                        })}
+                        </div>
 
                         <div>
                             {this.props.sideBarSelected === "Trash" ? (
