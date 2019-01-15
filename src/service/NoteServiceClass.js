@@ -26,7 +26,7 @@ export class NoteServiceClass {
                 })
                 .then(response => {
                     if (response.data.status) {
-                        // console.log('res on axios', response.data);
+                        console.log('res on axios', response.data);
 
                         return response.data;
                     }

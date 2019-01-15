@@ -100,9 +100,17 @@ export default class NotesDisplay extends React.Component {
                 console.log("err", err);
             }
             else {
-                let newNotesArray = this.state.notesDisplay;
 
-                newNotesArray[index] = data;
+                let newNotesArray = this.state.notesDisplay;
+                
+                for (let i = 0; i < newNotesArray.length; i++) {
+                    if (newNotesArray[i]._id === data._id) {
+                        newNotesArray[i] = data
+                    }
+                }
+
+                // let newNotesArray = this.state.notesDisplay;
+                // newNotesArray[index] = data;
 
                 this.setState({
                     notesDisplay: newNotesArray

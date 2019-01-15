@@ -35,9 +35,9 @@ export default class LabelNoteAdditionDialog extends React.Component {
         }));
     }
 
-    addLabeltoNote = () => {
-        // console.log('label selected', val);
-        
+    addLabeltoNote = (event) => {
+        console.log('label selected', event.target.textContent);
+        this.props.getNoteAddLabel(event.target.textContent);        
     }
 
     render() {
@@ -56,7 +56,7 @@ export default class LabelNoteAdditionDialog extends React.Component {
 
                                         return <div key={index} >
 
-                                                <MenuItem>{option.labels}</MenuItem>
+                                                <MenuItem onClick={ this.addLabeltoNote } >{option.labels}</MenuItem>
 
                                             </div>
 

@@ -266,18 +266,56 @@ export default class NoteCardDisplay extends React.Component {
             thread: "/AddCollab",
             data: {
                 collab: {
-                    userId : localStorage.getItem("userLoggedId"),
+                    userId: localStorage.getItem("userLoggedId"),
                     noteId: noteSelected._id,
-                    collabId : collabDetail._id
+                    collabId: collabDetail._id
                 }
             }
         }
 
         this.props.getCollabAddition(request, noteSelected);
-        
+
     }
 
-    render() {        
+    getNoteLabel = (labelClicked, note) => {
+
+        let request = {
+            thread: "/updateLabel",
+            data: {
+                note: {
+                    _id: note._id,
+                    label: labelClicked
+                }
+            }
+        }
+
+        let noteTemp = this.state.note;
+        noteTemp.label.push( labelClicked );
+
+        this.setState({
+            note: noteTemp
+        })
+
+        this.props.getUpdate(request, this.state.note);
+    }
+
+    getLabelRemoved = () => {
+
+        let noteTemp = this.state.note;
+        for(let i=0; i<noteTemp.labels.length; i++)
+        {
+            if( noteTemp[i] === 
+        }
+        noteTemp. = ;
+
+        this.setState({
+            note: noteTemp
+        })
+
+        this.props.getUpdate(request, this.state.note);
+    }
+
+    render() {
 
         return (
 
@@ -320,11 +358,30 @@ export default class NoteCardDisplay extends React.Component {
                                 </div>
                             )}
 
+                        {this.state.note.labels.map((option, index) => {
+
+                            console.log("label--", option);
+                            
+
+                            return <div>
+                                <Chip
+                                    // icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                    label={<span className="reminderShowOnCardText" >  {option} </span>}
+                                    onDelete={() => this.getLabelRemoved(this.state.note)}
+                                    variant="outlined"
+                                    className="chipOnCardReminder"
+                                />
+                            </div>
+
+                        })}
+
                         <div>
                             {this.props.sideBarSelected === "Trash" ? (
                                 <div>
-                                    <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash}
-                                        getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
+                                    <MoreOptions noteSelected={this.state.note}
+                                        getTrash={this.getTrash}
+                                        getNoteDeleted={this.getNoteDeleted}
+                                        sideBarSelected={this.props.sideBarSelected} />
                                 </div>
                             ) : (
                                     <div className='noteAddFeatureImagesDiv' >
@@ -349,7 +406,8 @@ export default class NoteCardDisplay extends React.Component {
                                             getTrash={this.getTrash}
                                             getNoteDeleted={this.getNoteDeleted}
                                             sideBarSelected={this.props.sideBarSelected}
-                                            allLabels={this.props.allLabels} />
+                                            allLabels={this.props.allLabels}
+                                            getNoteLabel={this.getNoteLabel} />
                                     </div>
                                 )}
 

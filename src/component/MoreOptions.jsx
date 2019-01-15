@@ -35,24 +35,24 @@ export default class MoreOptions extends React.Component {
         this.props.getTrash(!this.props.noteSelected.trash, this.props.noteSelected);
     }
 
-    getNoteDeletedCompletely = () => {        
+    getNoteDeletedCompletely = () => {
         this.props.getNoteDeleted(this.props.noteSelected);
     }
 
-    getNoteAddLabel = () => {
-
+    getNoteAddLabel = (labelClicked) => {
+        this.props.getNoteLabel(labelClicked, this.props.noteSelected);
     }
 
     render() {
-        
+
         return (
             <div>
 
-                <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}>
+                {/* <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}> */}
                     <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
                         src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
-                </ClickAwayListener>
-                
+                {/* </ClickAwayListener> */}
+
                 <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
@@ -69,8 +69,10 @@ export default class MoreOptions extends React.Component {
                                                 <MenuItem onClick={this.getNoteDelete} >Delete</MenuItem>
 
                                                 <LabelNoteAdditionDialog
-                                                    allLabels={this.props.allLabels} />
-                                                
+                                                    allLabels={this.props.allLabels}
+                                                    openStatus={this.state.open}
+                                                    getNoteAddLabel={this.getNoteAddLabel} />
+
                                                 {/* <MenuItem onClick={this.getNoteAddLabel} >Add Label</MenuItem> */}
                                             </div>
 
