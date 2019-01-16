@@ -343,7 +343,7 @@ export default class NoteCardDisplay extends React.Component {
                             {this.state.note.description}
                         </div>
 
-                        <div style={{ display: "flex", flexWrap:"wrap" }} >
+                        <div style={{ display: "flex", flexWrap: "wrap" }} >
 
                             {this.state.note.reminder === "" ? (
                                 <div>
@@ -364,7 +364,7 @@ export default class NoteCardDisplay extends React.Component {
 
                                 return <div key={index} >
                                     <Chip
-                                        // icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                        icon={<img className="sideBarImages" src={require('../assets/images/labelBullet.svg')} alt="labelBullet" />}
                                         label={<span className="reminderShowOnCardText" >  {option} </span>}
                                         onDelete={() => this.getLabelRemoved(option)}
                                         variant="outlined"
