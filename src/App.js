@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router , Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import {Redirect} from 'react-router-dom';
 import './App.css';
 import LoginScreen from './screen/LoginScreen';
@@ -8,6 +8,9 @@ import ForgotPassword from './component/ForgotPassword';
 import Dashboard from './screen/Dashboard';
 import Register from './component/Register';
 import Favicon from 'react-favicon';
+
+import { Provider } from 'react-redux';
+import store from './store';
 
 // const Auth = {
 //   isAuth : false,
@@ -33,27 +36,29 @@ import Favicon from 'react-favicon';
 // }
 
 class App extends Component {
-  componentDidMount(){
+  componentDidMount() {
     document.title = "Fundoo Notes"
   }
   render() {
     return (
-      <div>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <meta name="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj" 
-        content="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com" />
-        <Favicon url = {require('../src/assets/images/browserTileNote.ico')} />
-        <Router>
-          <div>
-            <Route exact path = '/' component = {LoginScreen} />
-            <Route path = '/setpassword/:token' component = {SetPassword} />
-            <Route path = '/forgotpassword' component = {ForgotPassword} />
-            <Route path = '/register' component = {Register} />
-            <Route path = '/dashboard' component = {Dashboard} />
-            {/* <PrivateRoute  path = '/' Component = {LoginScreen} /> */}
-          </div>
-        </Router>
-      </div>
+      // <Provider store={ store } >
+        <div>
+          <script src="https://apis.google.com/js/platform.js" async defer></script>
+          <meta name="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj"
+            content="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com" />
+          <Favicon url={require('../src/assets/images/browserTileNote.ico')} />
+          <Router>
+            <div>
+              <Route exact path='/' component={LoginScreen} />
+              <Route path='/setpassword/:token' component={SetPassword} />
+              <Route path='/forgotpassword' component={ForgotPassword} />
+              <Route path='/register' component={Register} />
+              <Route path='/dashboard' component={Dashboard} />
+              {/* <PrivateRoute  path = '/' Component = {LoginScreen} /> */}
+            </div>
+          </Router>
+        </div>
+      // </Provider>
     );
   }
 }
