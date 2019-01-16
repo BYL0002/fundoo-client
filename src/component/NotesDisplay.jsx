@@ -55,12 +55,20 @@ export default class NotesDisplay extends React.Component {
             if (data !== null && data !== undefined) {
 
                 let tempArrayOfNotes = [];
+                let collabNoteDetails = [];
 
                 for (let i = 0; i < data.length; i++) {
                     // console.log("response.data.message[i].note---", response.data.message[i].note);
 
                     tempArrayOfNotes.push(data[i].note);
+                    collabNoteDetails.push({
+                        noteId : data[i].note._id,
+                        collabId : data[i].collab
+                    })
                 }
+
+                console.log("collab on notesDisplay component---", collabNoteDetails);
+                
 
                 self.setState({
                     notesDisplay: tempArrayOfNotes

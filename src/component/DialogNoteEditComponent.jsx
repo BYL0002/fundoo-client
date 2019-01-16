@@ -112,11 +112,24 @@ class DialogNoteEditComponent extends React.Component {
                             <DialogActions >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                                     <div className='noteAddFeatureImagesDiv' >
-                                        <ReminderPopper getReminderChooseOption={this.props.getReminder} noteSelected={this.props.noteSelected} />
+
+                                        <ReminderPopper
+                                            getReminderChooseOption={this.props.getReminder}
+                                            noteSelected={this.props.noteSelected} />
+
                                         <Collaborator />
-                                        <ColorSection getColor={this.props.getBackGroundColor} initialColorValue={this.colorSelect} />
+                                        <div>
+                                            <ColorSection
+                                                getColor={this.props.getBackGroundColor}
+                                                initialColorValue={this.colorSelect} />
+                                        </div>
                                         <UploadImage />
-                                        <ArchiveNote getArchive={this.props.getArchive} getNoteArchive={false} noteSelected={'option'} />
+
+                                        <ArchiveNote
+                                            getArchive={this.props.getArchive}
+                                            getNoteArchive={false}
+                                            noteSelected={'option'} />
+
                                     </div>
 
                                     <div><Button className="dialogCloseButton" color="primary" onClick={this.props.getNoteEdited} >Close</Button></div>
