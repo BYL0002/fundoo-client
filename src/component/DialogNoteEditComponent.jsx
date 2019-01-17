@@ -24,7 +24,8 @@ const theme = createMuiTheme({
     overrides: {
         MuiDialog: {
             paperWidthSm: {
-                borderRadius: 8
+                borderRadius: 8,
+                minWidth:630
             }
         },
         MuiBackdrop: {
@@ -77,7 +78,19 @@ class DialogNoteEditComponent extends React.Component {
                         <div style={{ backgroundColor: this.props.noteSelected.color }} >
                             <DialogContent id="dialogNoteEdit" >
 
-                                <div style={{ display: 'flex' }} >
+                                {this.props.noteSelected.image !== "" ? (
+
+                                    <img src={this.props.noteSelected.image}
+                                        // style={this.props.notesView ? { maxWidth: "100%", height: "auto" } : { maxWidth: "-webkit-fill-available", height: "auto" }}
+                                        style={{ width: "-webkit-fill-available", height: "auto" }}
+                                        alt='gff'></img>
+
+                                ) : (
+                                        <div>
+                                        </div>
+                                    )}
+
+                                <div style={{ display: 'flex', justifyContent:"space-between" }} >
                                     <Input className="inputNoteTake" value={this.props.noteSelected.title}
                                         disableUnderline
                                         onChange={(event) => this.props.getTitleEdit(event, this.props.noteSelected)} />

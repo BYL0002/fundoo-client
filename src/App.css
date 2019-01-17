@@ -1439,3 +1439,8 @@ body {
         height: 25px;
     }
 }
+
+#dialogNoteEdit {
+    padding: 0px;
+    overflow-y: visible;
+}
