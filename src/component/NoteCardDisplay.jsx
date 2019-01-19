@@ -19,8 +19,6 @@ import DialogNoteEditComponent from './DialogNoteEditComponent';
 import FormData from 'form-data';
 const Formdata = new FormData();
 
-
-
 export default class NoteCardDisplay extends React.Component {
     constructor(props) {
         super(props);
