@@ -264,7 +264,7 @@ export default class NotesDisplay extends React.Component {
         const ChartComponent = {
             animationEnabled: true,
             exportEnabled: true,
-            theme: "light2", //"light1", "dark1", "dark2"
+            theme: "dark2", //"light1", "dark1", "dark2"
             title: {
                 text: "Simple Column Chart with Index Labels"
             },

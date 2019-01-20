@@ -335,14 +335,12 @@ export default class NoteCardDisplay extends React.Component {
                         <div className="noteCardDisplayTitleDiv" >
                             <div className="noteCardDisplayTitle" onClick={this.getNoteEdited} > {this.state.note.title}</div>
                             <PinNote noteSelected={this.state.note} getPin={this.getPin} getNotePin={this.state.note.pin} />
-
                         </div>
                         <div className="noteCardDisplayDescription" onClick={this.getNoteEdited} >
                             {this.state.note.description}
                         </div>
 
                         <div style={{ display: "flex", flexWrap: "wrap" }} >
-
                             {this.state.note.reminder === "" ? (
                                 <div>
                                 </div>
@@ -359,7 +357,6 @@ export default class NoteCardDisplay extends React.Component {
                                 )}
 
                             {this.state.note.labels.map((option, index) => {
-
                                 return <div key={index} >
                                     <Chip
                                         icon={<img className="sideBarImages" src={require('../assets/images/labelBullet.svg')} alt="labelBullet" />}
@@ -371,7 +368,6 @@ export default class NoteCardDisplay extends React.Component {
                                 </div>
 
                             })}
-
                         </div>
 
                         <div>
