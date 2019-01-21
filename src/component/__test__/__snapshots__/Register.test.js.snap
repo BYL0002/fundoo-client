@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register should render correctly in "debug" mode 1`] = `
+<div
+  className="Form"
+>
+  <div
+    className="formHeader"
+  >
+    Register
+    <span
+      className="beforeDashboardTitle"
+    >
+      Fundoo Notes
+    </span>
+  </div>
+  <div>
+    <div>
+      <TextField
+        className="nameTextFieldRegisterPage"
+        label="Name"
+        name="name"
+        onChange={[Function]}
+        required={false}
+        select={false}
+        value=""
+        variant="standard"
+      />
+    </div>
+    <div>
+      <TextField
+        className="emailTextFieldRegisterPage"
+        label="Email"
+        name="email"
+        onChange={[Function]}
+        required={false}
+        select={false}
+        value=""
+        variant="standard"
+      />
+    </div>
+    <div>
+      <WithStyles(Button)
+        className="registerButtonRegisterPage"
+        color="primary"
+        onClick={[Function]}
+        variant="extendedFab"
+      >
+        Submit
+      </WithStyles(Button)>
+    </div>
+    <div>
+      <span
+        className="CenterTextStyle"
+      >
+        Have an account? 
+      </span>
+      <a
+        className="links"
+        href="/"
+      >
+         
+        <b>
+          Login
+        </b>
+         
+      </a>
+    </div>
+  </div>
+</div>
+`;
