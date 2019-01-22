@@ -9,8 +9,8 @@ import Dashboard from './screen/Dashboard';
 import Register from './component/Register';
 import Favicon from 'react-favicon';
 
-import { Provider } from 'react-redux';
-import store from './redux/store';
+// import { Provider } from 'react-redux';
+// import store from './redux/store';
 
 // const Auth = {
 //   isAuth : false,
@@ -41,7 +41,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Provider store={ store } >
+      // <Provider store={ store } >
         <div>
           <script src="https://apis.google.com/js/platform.js" async defer></script>
           <meta name="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj"
@@ -58,7 +58,7 @@ class App extends Component {
             </div>
           </Router>
         </div>
-      </Provider>
+      // </Provider>
     );
   }
 }
