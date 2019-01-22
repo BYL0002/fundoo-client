@@ -303,7 +303,6 @@ export default class NotesDisplay extends React.Component {
         return (
 
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
-
                 <div>
                     {(() => {
                         switch (this.props.sideBarSelected) {
