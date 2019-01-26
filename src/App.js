@@ -37,6 +37,7 @@ import Favicon from 'react-favicon';
 
 class App extends Component {
 <<<<<<< HEAD
+<<<<<<< HEAD
   componentDidMount(){
     document.title = "FundooNotes"
   }
@@ -68,6 +69,13 @@ class App extends Component {
   }
   render() {
     return (
+=======
+  componentDidMount() {
+    document.title = "Fundoo Notes"
+  }
+  render() {
+    return (
+>>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
       // <Provider store={ store } >
         <div>
           <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -86,6 +94,9 @@ class App extends Component {
           </Router>
         </div>
       // </Provider>
+<<<<<<< HEAD
+>>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
+=======
 >>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
     );
   }
