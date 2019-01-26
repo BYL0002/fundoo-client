@@ -9,6 +9,15 @@ import React from 'react';
 import NoteService from '../service/NoteService';
 import NoteCardDisplay from './NoteCardDisplay';
 
+// import CanvasJS from '../assets/canvas/canvasjs.react';
+// import CanvasJSChart from '../assets/canvas/canvasjs.react';
+
+import { CanvasJS, CanvasJSChart } from '../assets/canvas/canvasjs.react';
+
+// const CanvasJSReact = require('../assets/canvas/canvasjs.react');
+// const CanvasJS = CanvasJSReact.CanvasJS;
+// const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
 const NoteServiceClass = require('../service/NoteServiceClass');
 const NoteServiceClassObject = new NoteServiceClass.NoteServiceClass();
 
@@ -50,17 +59,25 @@ export default class NotesDisplay extends React.Component {
         NoteService.NoteDisplay(request, (err, data) => {
 
             console.log("complete data of notes-----", data);
-            
+
 
             if (data !== null && data !== undefined) {
 
                 let tempArrayOfNotes = [];
+                let collabNoteDetails = [];
 
                 for (let i = 0; i < data.length; i++) {
                     // console.log("response.data.message[i].note---", response.data.message[i].note);
 
                     tempArrayOfNotes.push(data[i].note);
+                    collabNoteDetails.push({
+                        noteId: data[i].note._id,
+                        collabId: data[i].collab
+                    })
                 }
+
+                console.log("collab on notesDisplay component---", collabNoteDetails);
+
 
                 self.setState({
                     notesDisplay: tempArrayOfNotes
@@ -151,6 +168,22 @@ export default class NotesDisplay extends React.Component {
 
     render() {
 
+        let numberOfPinnedNotes = 0, numberOfOtherNotes = 0, numberOfReminderNotes = 0;
+
+        const noteComponentCALL = (index, note) => {
+            return <NoteCardDisplay key={index}
+                index={index}
+                noteSelected={note}
+                getUpdate={this.getUpdate}
+                notesView={this.props.notesView}
+                sideBarSelected={this.props.sideBarSelected}
+                getNoteDeleted={this.getNoteDeleted}
+                getUpdateImage={this.getUpdateImage}
+                ref={this.noteImageUpdate}
+                getCollabAddition={this.getCollabAddition}
+                allLabels={this.props.allLabels} />
+        }
+
         let count = 0;
 
         if (this.state.notesDisplay === null) {
@@ -170,17 +203,11 @@ export default class NotesDisplay extends React.Component {
         let pinnedNotes = (this.state.notesDisplay.map((note, index) => {
 
             if (note.trash === false && note.archive === false && note.pin === true) {
-                return <NoteCardDisplay key={index}
-                    index={index}
-                    noteSelected={note}
-                    getUpdate={this.getUpdate}
-                    notesView={this.props.notesView}
-                    sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted}
-                    getUpdateImage={this.getUpdateImage}
-                    ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition}
-                    allLabels={this.props.allLabels} />
+
+                numberOfPinnedNotes++;
+                // console.log('numberOfPinnedNotes', numberOfPinnedNotes);
+
+                return noteComponentCALL(index, note);
             }
             return null;
         }));
@@ -190,93 +217,92 @@ export default class NotesDisplay extends React.Component {
 
         let unPinnedNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.pin === false) {
-                return <NoteCardDisplay key={index}
-                    index={index}
-                    noteSelected={note}
-                    getUpdate={this.getUpdate}
-                    notesView={this.props.notesView}
-                    sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted}
-                    getUpdateImage={this.getUpdateImage}
-                    ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition}
-                    allLabels={this.props.allLabels} />
+
+                numberOfOtherNotes++;
+                // console.log('numberOfOtherNotes', numberOfOtherNotes);
+
+                return noteComponentCALL(index, note);
             }
             return null;
         });
 
         let reminderNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === false && note.reminder !== "") {
-                return <NoteCardDisplay
-                    key={index}
-                    noteSelected={note}
-                    getUpdate={this.getUpdate}
-                    notesView={this.props.notesView}
-                    sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted}
-                    ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition}
-                    allLabels={this.props.allLabels} />
+
+                numberOfReminderNotes++;
+                // console.log('numberOfReminderNotes', numberOfReminderNotes);
+
+                return noteComponentCALL(index, note);
             }
             return null;
         });
 
         let archiveNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === false && note.archive === true && note.pin === false) {
-                return <NoteCardDisplay
-                    key={index}
-                    noteSelected={note}
-                    getUpdate={this.getUpdate}
-                    notesView={this.props.notesView}
-                    sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted}
-                    ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition}
-                    allLabels={this.props.allLabels} />
+                return noteComponentCALL(index, note);
             }
             return null;
         });
 
         let trashNotes = this.state.notesDisplay.map((note, index) => {
             if (note.trash === true) {
-                return <NoteCardDisplay
-                    key={index}
-                    noteSelected={note}
-                    getUpdate={this.getUpdate}
-                    notesView={this.props.notesView}
-                    sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted}
-                    ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition}
-                    allLabels={this.props.allLabels} />
+                return noteComponentCALL(index, note);
             }
             return null;
         });
 
         let labelNotes = this.state.notesDisplay.map((note, index) => {
-            for(let i=0; i<note.labels.length; i++)
-            {
-                if( note.labels[i] === this.props.sideBarSelected )
-                {
-                    return <NoteCardDisplay
-                    key={index}
-                    noteSelected={note}
-                    getUpdate={this.getUpdate}
-                    notesView={this.props.notesView}
-                    sideBarSelected={this.props.sideBarSelected}
-                    getNoteDeleted={this.getNoteDeleted}
-                    ref={this.noteImageUpdate}
-                    getCollabAddition={this.getCollabAddition}
-                    allLabels={this.props.allLabels} />
+            for (let i = 0; i < note.labels.length; i++) {
+                if (note.labels[i] === this.props.sideBarSelected) {
+                    return noteComponentCALL(index, note);
                 }
             }
             return null;
         });
 
+
+        const ChartComponent = {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "dark2", //"light1", "dark1", "dark2"
+            title: {
+                text: "Simple Column Chart with Index Labels"
+            },
+            data: [{
+                type: "column", //change type to bar, line, area, pie, etc
+                //indexLabel: "{y}", //Shows y value on all Data Points
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "outside",
+                dataPoints: [
+                    { x: 10, y: numberOfPinnedNotes, label:"Pin Notes" },
+                    { x: 20, y: numberOfOtherNotes, label: "Other Notes" },
+                    { x: 30, y: numberOfReminderNotes, label: "Reminder Notes" },
+                    { x: 40, y: 65 },
+                    { x: 50, y: 92, indexLabel: "Highest" },
+                ]
+            }]
+        }
+        
+        const options = {
+			title: {
+				text: "Basic Column Chart"
+			},
+			data: [
+			{
+				// Change type to "doughnut", "line", "splineArea", etc.
+				type: "column",
+				dataPoints: [
+					{ label: "Pin",  y: numberOfPinnedNotes  },
+					{ label: "Other", y: numberOfOtherNotes  },
+					{ label: "Reminder", y: numberOfReminderNotes  },
+				]
+			}
+			]
+		}
+
         return (
 
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
-
                 <div>
                     {(() => {
                         switch (this.props.sideBarSelected) {
@@ -318,11 +344,17 @@ export default class NotesDisplay extends React.Component {
                                     <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
                                         {trashNotes}
                                     </div>
+                                );
+                            case 'NotesStat':
+                                return (
+                                    <div>
+                                        <CanvasJSChart options={options} />
+                                    </div>
                                 )
                             default:
                                 return (
                                     <div className={this.props.notesView ? "notesGridDisplayDiv" : "notesListDisplayDiv"} >
-                                        { labelNotes }
+                                        {labelNotes}
                                     </div>
                                 );
                         }
@@ -332,4 +364,4 @@ export default class NotesDisplay extends React.Component {
             </div>
         )
     }
-}
+}        

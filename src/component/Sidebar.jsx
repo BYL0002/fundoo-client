@@ -120,6 +120,16 @@ class Sidebar extends React.Component {
 
                 </MenuItem>
 
+
+                <MenuItem className="sideBarMenuItems"
+                    onClick={this.sideBarOptionSelected} name="NotesStat"
+                    style={this.props.sideBarSelectedOnClick === "NotesStat" ? { backgroundColor: "#feefc3" } : {}} >
+
+                    <img className="sideBarImages" src={require('../assets/images/SideBarArchiveImage.svg')} alt="NotesStat" />
+                    <span >NotesStat</span>
+
+                </MenuItem>
+
                 <MenuItem className="sideBarMenuItems"
                     onClick={this.sideBarOptionSelected} name="Trash"
                     style={this.props.sideBarSelectedOnClick === "Trash" ? { backgroundColor: "#feefc3" } : {}} >

@@ -19,8 +19,6 @@ import DialogNoteEditComponent from './DialogNoteEditComponent';
 import FormData from 'form-data';
 const Formdata = new FormData();
 
-
-
 export default class NoteCardDisplay extends React.Component {
     constructor(props) {
         super(props);
@@ -327,7 +325,7 @@ export default class NoteCardDisplay extends React.Component {
                         {this.state.note.image !== "" ? (
 
                             <img src={this.props.noteSelected.image}
-                                style={this.props.notesView ? { maxWidth: "100%", height: "auto" } : { maxWidth: "-webkit-fill-available", height: "auto" }}
+                                style={this.props.notesView ? { maxWidth: "100%", height: "auto" } : { width: "-webkit-fill-available", height: "auto" }}
                                 alt='gff'></img>
 
                         ) : (
@@ -337,14 +335,12 @@ export default class NoteCardDisplay extends React.Component {
                         <div className="noteCardDisplayTitleDiv" >
                             <div className="noteCardDisplayTitle" onClick={this.getNoteEdited} > {this.state.note.title}</div>
                             <PinNote noteSelected={this.state.note} getPin={this.getPin} getNotePin={this.state.note.pin} />
-
                         </div>
                         <div className="noteCardDisplayDescription" onClick={this.getNoteEdited} >
                             {this.state.note.description}
                         </div>
 
-                        <div style={{ display: "flex", flexWrap:"wrap" }} >
-
+                        <div style={{ display: "flex", flexWrap: "wrap" }} >
                             {this.state.note.reminder === "" ? (
                                 <div>
                                 </div>
@@ -361,10 +357,9 @@ export default class NoteCardDisplay extends React.Component {
                                 )}
 
                             {this.state.note.labels.map((option, index) => {
-
                                 return <div key={index} >
                                     <Chip
-                                        // icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                        icon={<img className="sideBarImages" src={require('../assets/images/labelBullet.svg')} alt="labelBullet" />}
                                         label={<span className="reminderShowOnCardText" >  {option} </span>}
                                         onDelete={() => this.getLabelRemoved(option)}
                                         variant="outlined"
@@ -373,7 +368,6 @@ export default class NoteCardDisplay extends React.Component {
                                 </div>
 
                             })}
-
                         </div>
 
                         <div>

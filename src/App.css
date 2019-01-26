@@ -1587,5 +1587,14 @@ body {
         margin-left: 5px;
         margin-top: 15px;
         height: 25px;
+<<<<<<< HEAD
     } */
+=======
+    }
+}
+
+#dialogNoteEdit {
+    padding: 0px;
+    overflow-y: visible;
+>>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
 }
