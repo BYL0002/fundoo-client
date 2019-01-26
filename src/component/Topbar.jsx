@@ -77,7 +77,7 @@ class Topbar extends React.Component {
 
     var self = this;
 
-    NoteService.NoteDisplay(request, (err, data) => {
+    NoteService.LabelsDisplay(request, (err, data) => {
       // console.log('daata', data);
 
       if (data !== null && data !== undefined) {

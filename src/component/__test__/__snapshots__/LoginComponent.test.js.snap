@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyComponent should render correctly in "debug" mode 1`] = `
+<div
+  className="Form"
+>
+  <div
+    className="formHeader"
+  >
+    Log in
+    <span
+      className="beforeDashboardTitle"
+    >
+      Fundoo Notes
+    </span>
+  </div>
+  <div>
+    <TextField
+      autoFocus={true}
+      className="emailTextFieldLoginPage"
+      helperText=""
+      name="email"
+      onChange={[Function]}
+      required={true}
+      select={false}
+      variant="standard"
+    />
+  </div>
+  <div>
+    <TextField
+      InputProps={
+        Object {
+          "endAdornment": <WithStyles(InputAdornment)
+            position="end"
+          >
+            <WithStyles(IconButton)
+              aria-label="Toggle Password Visibility"
+              onClick={[Function]}
+            >
+              <pure(VisibilityIcon) />
+            </WithStyles(IconButton)>
+          </WithStyles(InputAdornment)>,
+        }
+      }
+      className="passwordTextFieldLoginPage"
+      helperText=""
+      label="Password"
+      name="password"
+      onChange={[Function]}
+      required={true}
+      select={false}
+      type="password"
+      value=""
+      variant="standard"
+    />
+  </div>
+  <div
+    className="forgotPasswordLinkLocationLoginPage"
+  >
+    <a
+      className="links"
+      href="/forgotpassword"
+    >
+      Forgot 
+      <b>
+        Password
+      </b>
+    </a>
+  </div>
+  <div>
+    <WithStyles(Button)
+      className="LoginSubmitButtons"
+      color="primary"
+      fullWidth={true}
+      onClick={[Function]}
+      variant="extendedFab"
+    >
+      Login
+    </WithStyles(Button)>
+  </div>
+  <div>
+    <span
+      className="CenterTextStyle"
+    >
+      Don't have account? 
+    </span>
+    <a
+      className="links"
+      href="/register"
+    >
+       
+      <b>
+        Register
+      </b>
+       
+    </a>
+  </div>
+  <e
+    accessType="online"
+    buttonText="Login"
+    clientId="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com"
+    cookiePolicy="single_host_origin"
+    disabledStyle={
+      Object {
+        "opacity": 0.6,
+      }
+    }
+    fetchBasicProfile={true}
+    icon={true}
+    isSignedIn={false}
+    jsSrc="https://apis.google.com/js/client:platform.js"
+    onFailure={[Function]}
+    onRequest={[Function]}
+    onSuccess={[Function]}
+    prompt=""
+    scope="profile email"
+    tag="button"
+    theme="light"
+    type="button"
+    uxMode="popup"
+  />
+  <div
+    className="g-signin2"
+    data-onsuccess="onSignIn"
+  />
+  <WithStyles(Snackbar)
+    ContentProps={
+      Object {
+        "aria-describedby": "message-id",
+      }
+    }
+    action={
+      Array [
+        <WithStyles(IconButton)
+          aria-label="Close"
+          color="inherit"
+          onClick={[Function]}
+        >
+          <pure(CloseIcon) />
+        </WithStyles(IconButton)>,
+      ]
+    }
+    anchorOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "bottom",
+      }
+    }
+    autoHideDuration={6000}
+    color="primary"
+    message={
+      <span
+        id="message-id"
+      >
+        
+      </span>
+    }
+    onClose={[Function]}
+    open={false}
+    variant="success"
+  />
+</div>
+`;
