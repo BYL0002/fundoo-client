@@ -13,7 +13,8 @@ class Dashboard extends React.Component {
             noteViewStatus: true,
             sidebarTabSelected: "",
             sideBarSelected: "Notes",
-            newNoteCreated: {}
+            newNoteCreated: {},
+            labels: {}
         }
         this.handleDrawerStatus = this.handleDrawerStatus.bind(this);
         this.notedisp = React.createRef();
@@ -53,7 +54,14 @@ class Dashboard extends React.Component {
         this.notedisp.current.addNewNote(newNote);
     }
 
+    getTotalLabels = (totalLabel) => {
+        this.setState({
+            labels: totalLabel
+        })
+    }
+
     render() {
+
         if (localStorage.getItem('userLogToken') === null) {
             return <Redirect to="/" />
         }
@@ -62,9 +70,11 @@ class Dashboard extends React.Component {
             // eslint-disable-next-line
 
             <div>
-                <Topbar getTopBarStatus={this.handleDrawerStatus}
+                <Topbar
+                    getTopBarStatus={this.handleDrawerStatus}
                     notesView={this.handleNotesView}
-                    sideBarSelected={this.sideBarSelected} />
+                    sideBarSelected={this.sideBarSelected}
+                    getTotalLabels={this.getTotalLabels} />
 
                 <AddNotes drawerStatus={this.state.drawerStatus}
                     notesView={this.state.noteViewStatus}
@@ -76,7 +86,8 @@ class Dashboard extends React.Component {
                     sideBarSelected={this.state.sideBarSelected}
                     getSidebarTabSelected={this.props.getSidebarTabSelected}
                     notesView={this.state.noteViewStatus}
-                    sidebarStatus={this.state.drawerStatus} />
+                    sidebarStatus={this.state.drawerStatus}
+                    allLabels={this.state.labels} />
 
             </div>
         )

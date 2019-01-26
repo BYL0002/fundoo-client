@@ -67,7 +67,6 @@ class Sidebar extends React.Component {
                     id={1}
                     onClick={this.sideBarOptionSelected} >
 
-                    {/* {this.props.sideBarSelectedOnClick === 'Notes' ? style={{}} } > */}
                     <img className="sideBarImages"
                         src={require('../assets/images/SideBarNoteImage.svg')}
                         alt="note" />

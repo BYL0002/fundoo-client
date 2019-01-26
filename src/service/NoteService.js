@@ -7,6 +7,11 @@
 
 const axios = require('axios');
 
+
+/**
+ * @description request axios with axios
+ * @param {requset} request 
+ */
 const sendRequest = (request) => {
     try {
         let tokenForSendNote = localStorage.getItem('userLogToken');
@@ -42,45 +47,23 @@ const sendRequest = (request) => {
 }
 
 /**
- * @description request axios with axios
- * @param {requset} request 
+ * @description Image Upload
+ * @param {request} request 
+ * @param {callback} callback 
  */
-const sendRequestwithImage = (request) => {
-    try {
-        let tokenForSendNote = localStorage.getItem('userLogToken');
+function NotesAddition(request, callback) {
 
-        let headers = {
-            'token': ''+tokenForSendNote
-        }
-
-        return axios.post(request.thread,request.image,
-            headers,
-            {
-                data: request.data,
-                'headers': {
-                    'token': ''+tokenForSendNote
-                }
-            })
-            .then(response => {
-                if (response.data.status) {
-                    console.log('res on axios', response.data);
-
-                    return response.data.message;
-                }
-                else {
-                    console.log('Something Failed');
-                }
-            }).catch(error => {
-                console.log('error occured, try later');
-            })
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return sendRequest(request)
+        .then(res => {
+            console.log('res on function', res);
+            return callback(null, res);
+        })
 }
 
-
-
+/**
+ * @description GET for Notes & Collab
+ * @param {Object} request 
+ */
 const getRequest = (request) => {
     try {
 
@@ -93,9 +76,10 @@ const getRequest = (request) => {
             }
         };
 
-        return axios.get(request.thread, config )
+        return axios.get(request.thread, config)
             .then(response => {
                 if (response.data.status) {
+
                     // console.log('res on axios', response.data);
 
                     return response.data.message;
@@ -112,44 +96,29 @@ const getRequest = (request) => {
     }
 }
 
-
-function NotesAddition(request, callback) {
-
-    return sendRequest(request)
-        .then(res => {
-            // console.log('res on function', res);
-            return callback(null, res);
-        })
-}
-
 /**
- * @description Image Upload
- * @param {request} request 
- * @param {callback} callback 
+ * @description Function to send request of get for notes display
+ * @param {Object} request 
+ * @param {Callback} callback 
  */
-function NotesAdditionwithImage(request, callback) {
-
-    return sendRequestwithImage(request)
-        .then(res => {
-            // console.log('res on function', res);
-            return callback(null, res);
-        })
-}
-
-
 function NoteDisplay(request, callback) {
 
     getRequest(request)
         .then(res => {
+
             // console.log('res on function', res);
             return callback(null, res);
         }).catch(err => {
+
             console.log('err in then in function', err);
             return callback(err);
         })
 }
 
-
+/**
+ * @description Function to send request for updatation
+ * @param {Object} request 
+ */
 const sendUpdateRequest = (request) => {
     try {
         let tokenForSendNote = localStorage.getItem('userLogToken');
@@ -195,4 +164,4 @@ function NotesUpdation(request) {
 /**
  * @exports Function to get request from components
  */
-module.exports = { NotesAddition, NotesAdditionwithImage, NoteDisplay, NotesUpdation };
+module.exports = { NotesAddition, NoteDisplay, NotesUpdation };

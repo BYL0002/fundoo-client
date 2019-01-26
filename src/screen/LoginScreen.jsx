@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 // import Textfield from '../component/TextfieldComponent';
 // import TextFieldPassword from '../component/TextFieldPasswordComponent';
 import LoginComponent from '../component/LoginComponent';
@@ -6,16 +6,19 @@ import LoginComponent from '../component/LoginComponent';
 
 let var1;
 
-class LoginScreen extends React.Component {
+class LoginScreen extends Component {
+    
     get(value) {
         var1 = value;
         console.log('var1 on screen : ---- ',var1);
         
     }
     render() {
+        // debugger;
         return (
             // <div className = "Form" >
             <div className="backgroundImage" >
+            
                 <LoginComponent name = "Email"/>
                 {/* <Textfield name = "Email" />
                 { <TextFieldPassword name = "password1" get = {this.get.bind(this)} /> }

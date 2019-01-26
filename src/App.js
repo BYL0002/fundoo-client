@@ -42,7 +42,11 @@ class App extends Component {
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <meta name="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj" 
         content="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com" />
+<<<<<<< HEAD
         <Favicon url = {require('../src/assets/images/google-keep.ico')} />
+=======
+        <Favicon url = {require('../src/assets/images/browserTileNote.ico')} />
+>>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         <Router>
           <div>
             <Route exact path = '/' component = {LoginScreen} />

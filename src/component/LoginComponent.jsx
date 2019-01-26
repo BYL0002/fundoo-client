@@ -26,8 +26,8 @@ import { GoogleLogin } from 'react-google-login';
 // }
 
 const responseGoogle = (response) => {
-    console.log('response from success ---- ',response);
-    console.log('response from success ---- ',response.profileObj.imageUrl);
+    console.log('response from success ---- ', response);
+    console.log('response from success ---- ', response.profileObj.imageUrl);
 }
 
 
@@ -144,6 +144,7 @@ class LoginComponent extends React.Component {
 
 
     render() {
+        // debugger;
 
         if (this.state.responseGot) return (<Redirect to="/dashboard" />)
 

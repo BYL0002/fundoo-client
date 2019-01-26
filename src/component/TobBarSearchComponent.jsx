@@ -8,7 +8,7 @@ class TopBarSearchComponent extends React.Component {
             <div className="topBarSearchDiv" >
                 {/* <span className="searchIconTopBar"> <SearchIcon/></span> */}
                 <img className="searchIconTopBar" src={require("../assets/images/searchIcon.svg") } alt="searchIcon" />
-                <span > <InputBase className = "topBarSearchBar" placeholder="Search" /></span>
+                <span > <InputBase id = "topBarSearchBar" placeholder="Search" /></span>
             </div>
         )
     }

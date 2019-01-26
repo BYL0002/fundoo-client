@@ -3,6 +3,8 @@ import { MenuItem } from '@material-ui/core';
 import { ClickAwayListener } from '@material-ui/core';
 import { Popper, Paper } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
+import LabelNoteAdditionDialog from '../component/LabelNoteAdditionDialog';
+
 
 export default class MoreOptions extends React.Component {
     constructor(props) {
@@ -33,8 +35,15 @@ export default class MoreOptions extends React.Component {
         this.props.getTrash(!this.props.noteSelected.trash, this.props.noteSelected);
     }
 
-    getNoteDeletedCompletely = () => {        
+    getNoteDeletedCompletely = () => {
         this.props.getNoteDeleted(this.props.noteSelected);
+    }
+
+    getNoteAddLabel = (labelClicked) => {
+        this.setState({
+            open: false
+        })
+        this.props.getNoteLabel(labelClicked, this.props.noteSelected);
     }
 
     render() {
@@ -42,11 +51,11 @@ export default class MoreOptions extends React.Component {
         return (
             <div>
 
-                <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}>
-                    <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
-                        src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
-                </ClickAwayListener>
-                
+                {/* <ClickAwayListener onClickAway={this.handlePopperOptionOnOutsideClick}> */}
+                <img onClick={this.handleShowMoreOptionPopper('bottom')} className="noteAddFeatureImages"
+                    src={require('../assets/images/moreOptions.svg')} alt="moreOptions" />
+                {/* </ClickAwayListener> */}
+
                 <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
@@ -61,7 +70,13 @@ export default class MoreOptions extends React.Component {
                                     ) : (
                                             <div>
                                                 <MenuItem onClick={this.getNoteDelete} >Delete</MenuItem>
-                                                <MenuItem onClick={this.getNoteEitherDeleteOrArchive} >Add Label</MenuItem>
+
+                                                <LabelNoteAdditionDialog
+                                                    allLabels={this.props.allLabels}
+                                                    openStatus={this.state.open}
+                                                    getNoteAddLabel={this.getNoteAddLabel} />
+
+                                                {/* <MenuItem onClick={this.getNoteAddLabel} >Add Label</MenuItem> */}
                                             </div>
 
                                         )}
