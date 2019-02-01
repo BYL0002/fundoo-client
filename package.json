@@ -30,7 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --env=jsdom --coverage"
   },
   "proxy": "http://localhost:8000/",
   "eslintConfig": {
@@ -62,7 +63,8 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
-    "setupFiles": ["./src/setupTests.js"]
+    "setupFiles": [
+      "./src/setupTests.js"
+    ]
   }
-  
 }
