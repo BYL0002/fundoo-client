@@ -6,6 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import userService from '../service/UserService';
 import { Redirect } from 'react-router-dom';
 
+const imageUrl="";
+
 class AccountIconTopBar extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +18,7 @@ class AccountIconTopBar extends React.Component {
             responseGot: false,
             userLogInEmailId: localStorage.getItem("userLogged"),
             userLogInName: localStorage.getItem("userLogName"),
-            // userLogImage : imageUrl
+            userLogImage : imageUrl
         };
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
     }

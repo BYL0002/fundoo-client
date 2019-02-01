@@ -60,10 +60,8 @@ function NotesAddition(request, callback) {
         })
 }
 
-/**
- * @description GET for Notes & Collab
- * @param {Object} request 
- */
+// GET for Notes & Collab
+
 const getRequest = (request) => {
     try {
 
@@ -81,6 +79,65 @@ const getRequest = (request) => {
                 if (response.data.status) {
 
                     // console.log('res on axios', response.data);
+
+                    let tempArrayOfNotes = [];
+
+                    for(let i = 0 ; i < response.data.message.length; i++)
+                    {
+                        // console.log("response.data.message[i].note---", response.data.message[i].note);
+                        
+                        tempArrayOfNotes.push(response.data.message[i].note);
+                    }
+
+                    // console.log('res on axios note data', response.data.message);
+
+                    console.log('res on axios note data in tempArrayOfNotes----', tempArrayOfNotes);
+
+                    return tempArrayOfNotes;
+                }
+                else {
+                    console.log('Something Failed');
+                }
+            }).catch(error => {
+                console.log('error occured, try later');
+            })
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+// GET for Labels
+
+const getRequestLabel = (request) => {
+    try {
+
+        let tokenToGetNote = localStorage.getItem('userLogToken');
+        // console.log('request.thread', request.thread, tokenToGetNote);
+
+        let config = {
+            'headers': {
+                'token': '' + tokenToGetNote
+            }
+        };
+
+        return axios.get(request.thread, config )
+            .then(response => {
+                if (response.data.status) {
+                    // console.log('res on axios', response.data);
+
+                    let tempArrayOfNotes = [];
+
+                    for(let i = 0 ; i < response.data.message.length; i++)
+                    {
+                        // console.log("response.data.message[i].note---", response.data.message[i].note);
+                        
+                        tempArrayOfNotes.push(response.data.message[i].note);
+                    }
+
+                    // console.log('res on axios note data', response.data.message);
+
+                    console.log('res on axios note data in tempArrayOfNotes----', tempArrayOfNotes);
 
                     return response.data.message;
                 }
@@ -115,10 +172,18 @@ function NoteDisplay(request, callback) {
         })
 }
 
-/**
- * @description Function to send request for updatation
- * @param {Object} request 
- */
+function LabelsDisplay(request, callback) {
+
+    getRequestLabel(request)
+        .then(res => {
+            // console.log('res on function', res);
+            return callback(null, res);
+        }).catch(err => {
+            console.log('err in then in function', err);
+            return callback(err);
+        })
+}
+
 const sendUpdateRequest = (request) => {
     try {
         let tokenForSendNote = localStorage.getItem('userLogToken');
@@ -164,4 +229,4 @@ function NotesUpdation(request) {
 /**
  * @exports Function to get request from components
  */
-module.exports = { NotesAddition, NoteDisplay, NotesUpdation };
+module.exports = { NotesAddition, NotesAdditionwithImage, NoteDisplay, NotesUpdation, LabelsDisplay };

@@ -142,7 +142,7 @@ export default class AddLabel extends React.Component {
 
                                     <Input disableUnderline
                                         placeholder={labels.labels}
-                                        value={labels.labels}
+                                        // value={labels.labels}
                                         onChange={this.getLabelEdit}
                                         onMouseEnter={this.DeleteNotifySignChange}
                                         onMouseLeave={this.DeleteNotifySignChange} />
