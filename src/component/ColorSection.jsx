@@ -7,7 +7,8 @@
 
 import React from 'react'
 import { Popper, Paper, IconButton, ClickAwayListener } from '@material-ui/core';
-import Fade from '@material-ui/core/Fade';
+// import Fade from '@material-ui/core/Fade';
+import Grow from '@material-ui/core/Grow'
 
 /**
  * @description Class Component to get color selection process done
@@ -28,18 +29,18 @@ export default class ColorSection extends React.Component {
     }
 
 
-    handleShowColorPopper = placement => event => {
+    handleShowColorPopper = event => {
         const { currentTarget } = event;
         this.setState(state => ({
             anchorEl: currentTarget,
-            open: state.placement !== placement || !state.open,
-            placement,
+            open: !state.open,
+
         }));
     }
 
     handleColorPopperOnOutsideClick = () => {
         this.setState({
-            open : false
+            open: false
         })
     }
 
@@ -115,7 +116,47 @@ export default class ColorSection extends React.Component {
 
         return (
             <div>
-                <Popper open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
+
+                <ClickAwayListener onClickAway={this.handleColorPopperOnOutsideClick} >
+                    <div>
+
+                        <img onClick={this.handleShowColorPopper}
+                            className="noteAddFeatureImages"
+                            src={require('../assets/images/color.svg')}
+                            alt="color"
+                        />
+
+                        <Popper
+                            className='reminderPopper'
+                            open={this.state.open}
+                            anchorEl={this.state.anchorEl}
+                            placement='bottom'
+                            transition disablePortal
+                        >
+                            {({ TransitionProps, placement }) => (
+                                <Grow
+                                    {...TransitionProps}
+                                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                                >
+                                    <Paper   >
+                                        <Paper className="colorSelectionPopperNoteAddCard"  >
+                                            <div >
+                                                {colorPaletteClassName.map((option, index) => (
+                                                    <IconButton className="colorPalette" style={{ backgroundColor: option.colorCode }}
+                                                        key={index}
+                                                        title={option.colorName}
+                                                        onClick={() => this.handleColorClick(option.colorCode)}
+                                                    ></IconButton>
+                                                ))}
+                                            </div>
+                                        </Paper>
+                                    </Paper>
+                                </Grow>
+                            )}
+                        </Popper>
+                    </div>
+                    {/* <Popper className='reminderPopper' 
+                 open={this.state.open} anchorEl={this.state.anchorEl} placement={this.state.placement} transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper className="colorSelectionPopperNoteAddCard"  >
@@ -131,13 +172,7 @@ export default class ColorSection extends React.Component {
                             </Paper>
                         </Fade>
                     )}
-                </Popper>
-                <ClickAwayListener onClickAway={this.handleColorPopperOnOutsideClick} >
-                    <img onClick={this.handleShowColorPopper('bottom')} className="noteAddFeatureImages" 
-                    src={require('../assets/images/color.svg')} alt="color" 
-                    // onMouseEnter={this.handleShowColorPopper('bottom')} 
-                    // onMouseLeave={this.handleShowColorPopper('bottom')} 
-                />
+                </Popper> */}
                 </ClickAwayListener>
             </div>
         )

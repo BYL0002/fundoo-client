@@ -24,7 +24,9 @@ const theme = createMuiTheme({
     overrides: {
         MuiDialog: {
             paperWidthSm: {
-                borderRadius: 8
+                borderRadius: 8,
+                minWidth: 600,
+                // overflowY:"visible"
             }
         },
         MuiBackdrop: {
@@ -74,54 +76,85 @@ class DialogNoteEditComponent extends React.Component {
                         onClose={this.props.getNoteEdited}
                         aria-labelledby="responsive-dialog-title"
                     >
-                        <div style={{ backgroundColor: this.props.noteSelected.color }} >
-                            <DialogContent id="dialogNoteEdit" >
+                        <div style={{ backgroundColor: this.props.noteSelected.color, overflowY:"hidden" }} >
 
-                                <div style={{ display: 'flex' }} >
-                                    <Input className="inputNoteTake" value={this.props.noteSelected.title}
+                            <div style={{ overflowY:"scroll" }} >
+                                <DialogContent id="dialogNoteEdit" >
+
+                                    {this.props.noteSelected.image !== "" ? (
+
+                                        <img src={this.props.noteSelected.image}
+                                            // style={this.props.notesView ? { maxWidth: "100%", height: "auto" } : { maxWidth: "-webkit-fill-available", height: "auto" }}
+                                            style={{ width: "-webkit-fill-available", height: "auto" }}
+                                            alt='gff'></img>
+
+                                    ) : (
+                                            <div>
+                                            </div>
+                                        )}
+
+                                    <div style={{ display: 'flex', justifyContent: "space-between" }} >
+                                        <Input className="inputNoteTake" value={this.props.noteSelected.title}
+                                            disableUnderline
+                                            onChange={(event) => this.props.getTitleEdit(event, this.props.noteSelected)} />
+
+
+                                        <PinNote noteSelected={this.props.noteSelected}
+                                            getPin={this.props.getPin} getNotePin={this.props.noteSelected.pin} />
+
+                                    </div>
+
+                                    <Input className="inputNoteTake" value={this.props.noteSelected.description}
                                         disableUnderline
-                                        onChange={(event) => this.props.getTitleEdit(event, this.props.noteSelected)} />
+                                        onChange={(event) => this.props.getDescriptionEdit(event, this.props.noteSelected)} />
 
-
-                                    <PinNote noteSelected={this.props.noteSelected}
-                                        getPin={this.props.getPin} getNotePin={this.props.noteSelected.pin} />
-
-                                </div>
-
-                                <Input className="inputNoteTake" value={this.props.noteSelected.description}
-                                    disableUnderline
-                                    onChange={(event) => this.props.getDescriptionEdit(event, this.props.noteSelected)} />
-
-                                {this.props.noteSelected.reminder === "" ? (
-                                    <div>
-                                    </div>
-                                ) : (
-                                        <div >
-                                            <Chip
-                                                icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                                label={<span className="reminderShowOnCardText" >  {this.props.noteSelected.reminder} </span>}
-                                                onDelete={() => this.props.getReminderRemoved(this.props.noteSelected)}
-                                                variant="outlined"
-                                                className="chipOnCardReminder"
-                                            />
+                                    {this.props.noteSelected.reminder === "" ? (
+                                        <div>
                                         </div>
-                                    )}
+                                    ) : (
+                                            <div >
+                                                <Chip
+                                                    icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                                    label={<span className="reminderShowOnCardText" >  {this.props.noteSelected.reminder} </span>}
+                                                    onDelete={() => this.props.getReminderRemoved(this.props.noteSelected)}
+                                                    variant="outlined"
+                                                    className="chipOnCardReminder"
+                                                />
+                                            </div>
+                                        )}
 
-                            </DialogContent>
+                                </DialogContent>
+                            </div>
 
-                            <DialogActions >
-                                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                                    <div className='noteAddFeatureImagesDiv' >
-                                        <ReminderPopper getReminderChooseOption={this.props.getReminder} noteSelected={this.props.noteSelected} />
-                                        <Collaborator />
-                                        <ColorSection getColor={this.props.getBackGroundColor} initialColorValue={this.colorSelect} />
-                                        <UploadImage />
-                                        <ArchiveNote getArchive={this.props.getArchive} getNoteArchive={false} noteSelected={'option'} />
+                            <div style={{ position:"fixed" }} >
+                                <DialogActions >
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                                        <div className='noteAddFeatureImagesDiv' >
+
+                                            <ReminderPopper
+                                                getReminderChooseOption={this.props.getReminder}
+                                                noteSelected={this.props.noteSelected} />
+
+                                            <Collaborator />
+                                            <div>
+                                                <ColorSection
+                                                    getColor={this.props.getBackGroundColor}
+                                                    initialColorValue={this.colorSelect} />
+                                            </div>
+                                            <UploadImage />
+
+                                            <ArchiveNote
+                                                getArchive={this.props.getArchive}
+                                                getNoteArchive={false}
+                                                noteSelected={'option'} />
+
+                                        </div>
+
+                                        <div><Button className="dialogCloseButton" color="primary" onClick={this.props.getNoteEdited} >Close</Button></div>
                                     </div>
-
-                                    <div><Button className="dialogCloseButton" color="primary" onClick={this.props.getNoteEdited} >Close</Button></div>
-                                </div>
-                            </DialogActions>
+                                </DialogActions>
+                            </div>
+                            
                         </div>
                     </Dialog>
                 </MuiThemeProvider>

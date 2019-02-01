@@ -149,31 +149,8 @@ class AddNotes extends React.Component {
          * without image upload - request
          */
 
-        // let request = {
-        //     thread: "/noteAddition",
-        //     data: {
-        //         sender: userLogin,
-        //         userId: "",
-        //         title: this.state.noteTitle,
-        //         description: this.state.noteDescription,
-        //         collaborator: this.state.collaboratorChoosen,
-        //         reminder: this.state.reminderChoosen,
-        //         color: this.state.colorSelect,
-        //         image: this.state.imageAdded,
-        //         archive: this.state.archiveChoosen,
-        //         pin: this.state.pinChoosen,
-        //         trash: false
-        //     }
-        // }
-
-
-        /**
-         * with image upload - request
-         */
-
         let request = {
             thread: "/noteAddition",
-            image : Formdata,
             data: {
                 sender: userLogin,
                 userId: "",
@@ -182,16 +159,39 @@ class AddNotes extends React.Component {
                 collaborator: this.state.collaboratorChoosen,
                 reminder: this.state.reminderChoosen,
                 color: this.state.colorSelect,
-                image: "",
+                image: this.state.imageAdded,
                 archive: this.state.archiveChoosen,
                 pin: this.state.pinChoosen,
                 trash: false
             }
         }
 
+
+        /**
+         * with image upload - request
+         */
+
+        // let request = {
+        //     thread: "/noteAddition",
+        //     image : Formdata,
+        //     data: {
+        //         sender: userLogin,
+        //         userId: "",
+        //         title: this.state.noteTitle,
+        //         description: this.state.noteDescription,
+        //         collaborator: this.state.collaboratorChoosen,
+        //         reminder: this.state.reminderChoosen,
+        //         color: this.state.colorSelect,
+        //         image: "",
+        //         archive: this.state.archiveChoosen,
+        //         pin: this.state.pinChoosen,
+        //         trash: false
+        //     }
+        // }
+
         NoteService.NotesAddition(request, (err, data) => {
 
-            if (data !== null || data !== undefined) {
+            if (data !== null || data != undefined) {
                 this.props.newNoteCreated(data);
                 // this.notedisp.current.addNewNote(data);
             }

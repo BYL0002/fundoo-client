@@ -8,7 +8,8 @@
 import React from 'react';
 import { Card, Chip } from '@material-ui/core';
 import ReminderPopper from './ReminderPopper';
-import Collaborator from './Collaborator';
+import CollabDialog from './CollabDialog';
+// import Collaborator from './Collaborator';
 import ColorSection from './ColorSection';
 import ArchiveNote from './ArchiveNote';
 import UploadImage from './UploadImage';
@@ -17,8 +18,6 @@ import PinNote from './PinNote';
 import DialogNoteEditComponent from './DialogNoteEditComponent';
 import FormData from 'form-data';
 const Formdata = new FormData();
-
-
 
 export default class NoteCardDisplay extends React.Component {
     constructor(props) {
@@ -258,6 +257,62 @@ export default class NoteCardDisplay extends React.Component {
         });
     }
 
+    collabDetail = (collabDetail, noteSelected) => {
+        console.log("collabDetail----", collabDetail);
+
+        let request = {
+            thread: "/AddCollab",
+            data: {
+                collab: {
+                    userId: localStorage.getItem("userLoggedId"),
+                    noteId: noteSelected._id,
+                    collabId: collabDetail._id
+                }
+            }
+        }
+
+        this.props.getCollabAddition(request, noteSelected);
+
+    }
+
+    getNoteLabel = (labelClicked, note) => {
+
+        let request = {
+            thread: "/updateLabel",
+            data: {
+                note: {
+                    _id: note._id,
+                    label: labelClicked
+                }
+            }
+        }
+
+        let noteTemp = this.state.note;
+        noteTemp.labels.push(labelClicked);
+
+        this.setState({
+            note: noteTemp
+        })
+
+        this.props.getUpdate(request, this.state.note);
+    }
+
+    getLabelRemoved = (labelSelected) => {
+
+        let noteTemp = this.state.note;
+        for (let i = 0; i < noteTemp.labels.length; i++) {
+            if (noteTemp.labels[i] === labelSelected) {
+                noteTemp.labels.splice(i, i + 1);
+            }
+        }
+
+        this.setState({
+            note: noteTemp
+        })
+
+        // this.props.getUpdate(request, this.state.note);
+    }
+
     render() {
 
         return (
@@ -270,7 +325,7 @@ export default class NoteCardDisplay extends React.Component {
                         {this.state.note.image !== "" ? (
 
                             <img src={this.props.noteSelected.image}
-                                style={this.props.notesView ? { maxWidth: "100%", height: "auto" } : { maxWidth: "-webkit-fill-available", height: "auto" }}
+                                style={this.props.notesView ? { maxWidth: "100%", height: "auto" } : { width: "-webkit-fill-available", height: "auto" }}
                                 alt='gff'></img>
 
                         ) : (
@@ -280,39 +335,57 @@ export default class NoteCardDisplay extends React.Component {
                         <div className="noteCardDisplayTitleDiv" >
                             <div className="noteCardDisplayTitle" onClick={this.getNoteEdited} > {this.state.note.title}</div>
                             <PinNote noteSelected={this.state.note} getPin={this.getPin} getNotePin={this.state.note.pin} />
-
                         </div>
                         <div className="noteCardDisplayDescription" onClick={this.getNoteEdited} >
                             {this.state.note.description}
                         </div>
 
-                        {this.state.note.reminder === "" ? (
-                            <div>
-                            </div>
-                        ) : (
-                                <div >
+                        <div style={{ display: "flex", flexWrap: "wrap" }} >
+                            {this.state.note.reminder === "" ? (
+                                <div>
+                                </div>
+                            ) : (
+                                    <div >
+                                        <Chip
+                                            icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
+                                            label={<span className="reminderShowOnCardText" >  {this.state.note.reminder} </span>}
+                                            onDelete={() => this.getReminderRemoved(this.state.note)}
+                                            variant="outlined"
+                                            className="chipOnCardReminder"
+                                        />
+                                    </div>
+                                )}
+
+                            {this.state.note.labels.map((option, index) => {
+                                return <div key={index} >
                                     <Chip
-                                        icon={<img className="reminderClock" src={require('../assets/images/clocktime.svg')} alt="reminderClock" />}
-                                        label={<span className="reminderShowOnCardText" >  {this.state.note.reminder} </span>}
-                                        onDelete={() => this.getReminderRemoved(this.state.note)}
+                                        icon={<img className="sideBarImages" src={require('../assets/images/labelBullet.svg')} alt="labelBullet" />}
+                                        label={<span className="reminderShowOnCardText" >  {option} </span>}
+                                        onDelete={() => this.getLabelRemoved(option)}
                                         variant="outlined"
                                         className="chipOnCardReminder"
                                     />
                                 </div>
-                            )}
+
+                            })}
+                        </div>
 
                         <div>
                             {this.props.sideBarSelected === "Trash" ? (
                                 <div>
-                                    <MoreOptions noteSelected={this.state.note} getTrash={this.getTrash}
-                                        getNoteDeleted={this.getNoteDeleted} sideBarSelected={this.props.sideBarSelected} />
+                                    <MoreOptions noteSelected={this.state.note}
+                                        getTrash={this.getTrash}
+                                        getNoteDeleted={this.getNoteDeleted}
+                                        sideBarSelected={this.props.sideBarSelected} />
                                 </div>
                             ) : (
                                     <div className='noteAddFeatureImagesDiv' >
                                         <ReminderPopper getReminderChooseOption={this.getReminder}
                                             noteSelected={this.state.note} />
 
-                                        <Collaborator />
+                                        <CollabDialog
+                                            noteSelected={this.state.note}
+                                            collabDetail={this.collabDetail} />
 
                                         <ColorSection getColor={this.getBackGroundColor}
                                             noteSelected={this.state.note} />
@@ -327,7 +400,9 @@ export default class NoteCardDisplay extends React.Component {
                                         <MoreOptions noteSelected={this.state.note}
                                             getTrash={this.getTrash}
                                             getNoteDeleted={this.getNoteDeleted}
-                                            sideBarSelected={this.props.sideBarSelected} />
+                                            sideBarSelected={this.props.sideBarSelected}
+                                            allLabels={this.props.allLabels}
+                                            getNoteLabel={this.getNoteLabel} />
                                     </div>
                                 )}
 
