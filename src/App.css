@@ -815,27 +815,11 @@ body {
     /* ----------------------------------------------------Dashboard CSS ------------------------------------- */
     div .appBar {
         display: flex;
-<<<<<<< HEAD
-=======
         justify-content: space-between;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         padding: 1px;
         background-color: white;
     }
     .topBarSearchDiv {
-<<<<<<< HEAD
-        width: 650px;
-        border: 1px solid rgba(0, 0, 0, 0);
-        background: rgba(0, 0, 0, 0.04);
-        margin-right: 10px;
-        display: flex;
-    }
-    .topBarSearchBar {
-        width: 630px;
-    }
-    .cssClassNotesOnView {
-        margin-right: 100px;
-=======
         width: 550px;
         border: 1px solid rgba(0, 0, 0, 0);
         background: rgba(0, 0, 0, 0.04);
@@ -848,7 +832,6 @@ body {
     }
     .cssClassNotesOnView {
         margin-right: 150px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         vertical-align: middle;
         line-height: 25px;
         margin-top: 2px;
@@ -858,13 +841,8 @@ body {
     /* ----------------------------------------------------Top Right User Section CSS------------------------------------- */
     #popupTopBar {
         margin-top: 11px;
-<<<<<<< HEAD
-        width: 330px;
-        height: 130px;
-=======
         width: 290px;
         height: 91px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         display: flex;
         justify-content: space-between;
         flex-direction: column;
@@ -873,22 +851,6 @@ body {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-<<<<<<< HEAD
-        margin-top: 30px;
-    }
-    div .logoutButton {
-        margin-top: 25px;
-        margin-left: 135px;
-        padding: 0%;
-    }
-    #userIconPopperTopBar {
-        width: 80px;
-        height: 80px;
-        margin: 12px;
-        float: left;
-        background-color: cadetblue;
-    }
-=======
         margin-top: 11px;
     }
     div .logoutButton {
@@ -904,7 +866,6 @@ body {
         background: cadetblue;
     }
     
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
     /* ----------------------------------------------------SideBar CSS ------------------------------------- */
     div .sideBarMenuItems {
         border-top-right-radius: 60px;
@@ -922,13 +883,6 @@ body {
         font-size: 65%;
     }
     /* ----------------------------------------------------Add Note CSS ------------------------------------- */
-<<<<<<< HEAD
-    .noteTakeCard {
-        transition: .50s;
-        margin-left: 470px;
-        margin-top: 130px;
-        max-width: 500px;
-=======
     .completeNoteTakeCard {
         width: 450px;
         min-height: 130px;
@@ -938,39 +892,21 @@ body {
         margin-left: 400px;
         margin-top: 130px;
         max-width: 450px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         height: auto;
     }
     .noteTakeCardAfterDrawerOpen {
         transition: .50s;
-<<<<<<< HEAD
-        margin-left: 540px;
-        margin-top: 130px;
-        max-width: 500px;
-=======
         margin-left: 450px;
         margin-top: 130px;
         max-width: 450px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         height: auto;
     }
     .inputNoteTake {
         margin: 10px;
-<<<<<<< HEAD
-        width: 450px;
-    }
-    .inputNoteTake div {
-        font-size: 18px;
-    }
-    .completeNoteTakeCard {
-        width: 500px;
-        min-height: 130px;
-=======
         width: 420px;
     }
     .inputNoteTake div {
         font-size: 15px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
     }
     .CollaboratorHeading {
         font-size: 20px;
@@ -980,19 +916,11 @@ body {
         border-bottom: 1px solid black;
     }
     div .closeNoteCollaboratorAddCardButton {
-<<<<<<< HEAD
-        margin-left: 420px;
-    }
-    /* ----------------------------------------------------Notes Feature Dvi CSS ------------------------------------- */
-    .noteAddFeatureImagesDiv {
-        width: 280px;
-=======
         margin-left: 370px;
     }
     /* ----------------------------------------------------Notes Feature Dvi CSS ------------------------------------- */
     .noteAddFeatureImagesDiv {
         width: 250px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -1004,34 +932,6 @@ body {
     div .reminderLabel {
         display: flex;
         justify-content: space-between;
-<<<<<<< HEAD
-        font-size: 15px;
-    }
-    .reminderClock {
-        line-height: 10px;
-        vertical-align: middle;
-        margin: 5px;
-    }
-    .datePickerDiv {
-        width: 155px;
-        margin-top: 10px;
-        margin-left: 28px;
-    }
-    .pinNoteImage {
-        vertical-align: middle;
-        line-height: 10px;
-        margin-top: 10px;
-    }
-    .colorSelectionPopperNoteAddCard {
-        width: 145px;
-        margin: 5px;
-        height: 110px;
-    }
-    div .colorPalette {
-        margin: 5px;
-        width: 20px;
-        height: 20px;
-=======
         font-size: 14px;
     }
     .reminderClock {
@@ -1057,7 +957,6 @@ body {
         margin: 3px;
         width: 10px;
         height: 10px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         border: 1px solid darkgrey;
     }
     div .colorPalette:hover {
@@ -1065,30 +964,17 @@ body {
     }
     /* ----------------------------------------------------Notes Display Div CSS ------------------------------------- */
     .NotesDisplayDivSidebarClose {
-<<<<<<< HEAD
-        max-width: 970px;
-        margin-left: 260px;
-        margin-top: 40px;
-=======
         max-width: 850px;
         margin-left: 190px;
         margin-top: 30px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         display: flex;
         transition: 0.50s;
     }
     .NotesDisplayDivSidebarOpen {
-<<<<<<< HEAD
-        max-width: 970px;
-        transition: 0.50s;
-        margin-left: 310px;
-        margin-top: 40px;
-=======
         max-width: 850px;
         transition: 0.50s;
         margin-left: 280px;
         margin-top: 30px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         display: flex;
     }
     .notesGridDisplayDiv {
@@ -1104,28 +990,16 @@ body {
     div .notesGridDisplayCard {
         display: flex;
         flex-wrap: wrap;
-<<<<<<< HEAD
-        min-width: 300px;
-        max-width: 300px;
-        word-wrap: break-word;
-        word-break: break-all;
-        min-height: 120px;
-=======
         min-width: 240px;
         max-width: 240px;
         word-wrap: break-word;
         word-break: break-all;
         min-height: 100px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         margin: 10px;
         border-radius: 9px;
     }
     /* class to point each component individually
-<<<<<<< HEAD
-    .notenoteAddFeatureImages {}  */
-=======
 .notenoteAddFeatureImages {}  */
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
     .notesGridDisplayCard .noteAddFeatureImages {
         visibility: hidden;
     }
@@ -1143,11 +1017,6 @@ body {
         word-wrap: break-word;
         word-break: break-all;
         min-height: 100px;
-<<<<<<< HEAD
-        margin: 10px;
-        border-radius: 9px;
-    }
-=======
         margin: 20px;
         margin-left: 120px;
         border-radius: 9px;
@@ -1158,7 +1027,6 @@ body {
     .textShowingPinnedAndOthersLIST {
         margin-left: 120px;
     }
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
     .notesListDisplayCard .noteAddFeatureImages {
         visibility: hidden;
     }
@@ -1171,11 +1039,7 @@ body {
     /* ----------------------------------------------------Notes Display Card CSS ------------------------------------- */
     .noteCardDisplayTitleDiv {
         display: flex;
-<<<<<<< HEAD
-        font-size: 21px;
-=======
         font-size: 18px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         margin-left: 5px;
         padding: 3px;
     }
@@ -1183,26 +1047,17 @@ body {
         width: 100%;
     }
     .noteCardDisplayDescription {
-<<<<<<< HEAD
-        font-size: 21px;
-        padding: 7px;
-        min-width: 200px;
-=======
         font-size: 18px;
         padding: 3px;
         margin-left: 5px;
         min-width: 350px;
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
     }
     div .dialogPadding {
         padding: 10px;
     }
-<<<<<<< HEAD
-=======
     #dialogPaddingCollab {
         padding: 0px;
     }
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
     .reminderShowOnCardText {
         font-size: 10px;
         padding: 0px;
@@ -1390,13 +1245,8 @@ body {
         height: 80px;
         margin: 12px;
         float: left;
-<<<<<<< HEAD
-        background-color: cadetblue;
-    } */
-=======
         background: cadetblue;
     }
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
     /* ----------------------------------------------------SideBar CSS ------------------------------------- */
     /* div .sideBarMenuItems {
         border-top-right-radius: 60px;
@@ -1587,17 +1437,11 @@ body {
         margin-left: 5px;
         margin-top: 15px;
         height: 25px;
-<<<<<<< HEAD
     } */
-=======
-    }
+    
 }
 
 #dialogNoteEdit {
     padding: 0px;
     overflow-y: visible;
-<<<<<<< HEAD
->>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
-=======
->>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
 }

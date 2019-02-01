@@ -229,4 +229,4 @@ function NotesUpdation(request) {
 /**
  * @exports Function to get request from components
  */
-module.exports = { NotesAddition, NotesAdditionwithImage, NoteDisplay, NotesUpdation, LabelsDisplay };
+module.exports = { NotesAddition, NoteDisplay, NotesUpdation, LabelsDisplay };

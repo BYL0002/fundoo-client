@@ -36,8 +36,7 @@ import Favicon from 'react-favicon';
 // }
 
 class App extends Component {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   componentDidMount(){
     document.title = "FundooNotes"
   }
@@ -47,11 +46,7 @@ class App extends Component {
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <meta name="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj" 
         content="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com" />
-<<<<<<< HEAD
         <Favicon url = {require('../src/assets/images/google-keep.ico')} />
-=======
-        <Favicon url = {require('../src/assets/images/browserTileNote.ico')} />
->>>>>>> 9fb476a9dbcbc6e328ccacdb0057d188f3842ea2
         <Router>
           <div>
             <Route exact path = '/' component = {LoginScreen} />
@@ -63,41 +58,6 @@ class App extends Component {
           </div>
         </Router>
       </div>
-=======
-  componentDidMount() {
-    document.title = "Fundoo Notes"
-  }
-  render() {
-    return (
-=======
-  componentDidMount() {
-    document.title = "Fundoo Notes"
-  }
-  render() {
-    return (
->>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
-      // <Provider store={ store } >
-        <div>
-          <script src="https://apis.google.com/js/platform.js" async defer></script>
-          <meta name="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj"
-            content="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com" />
-          <Favicon url={require('../src/assets/images/browserTileNote.ico')} />
-          <Router>
-            <div>
-              <Route exact path='/' component={LoginScreen} />
-              <Route path='/setpassword/:token' component={SetPassword} />
-              <Route path='/forgotpassword' component={ForgotPassword} />
-              <Route path='/register' component={Register} />
-              <Route path='/dashboard' component={Dashboard} />
-              {/* <PrivateRoute  path = '/' Component = {LoginScreen} /> */}
-            </div>
-          </Router>
-        </div>
-      // </Provider>
-<<<<<<< HEAD
->>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
-=======
->>>>>>> d70eb1d72e6a69d913ab9fc978ca1b2fd445c754
     );
   }
 }
