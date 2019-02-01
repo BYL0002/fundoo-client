@@ -28,14 +28,16 @@ class CanvasJSChart extends React.Component {
 		this.chart.render();
 	}
 	componentWillUnmount() {
+		console.log("Unmount canvas")
 		//Destroy chart and remove reference
-		this.chart.destroy();
+		// this.chart.destroy();
 		if(this.props.onRef)
 			this.props.onRef(undefined);
 	}		
 	render() {		
 		//return React.createElement('div', { id: this.chartContainerId, style: this.containerProps });		
-		return <div id = {this.chartContainerId} style = {this.containerProps}/>		
+		console.log(this.chartContainerId)
+		return <div id={this.chartContainerId} style = {this.containerProps}/>		
 	}	
 }
 

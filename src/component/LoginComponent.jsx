@@ -25,10 +25,10 @@ import { GoogleLogin } from 'react-google-login';
 //     console.error('err', err)
 // }
 
-const responseGoogle = (response) => {
-    console.log('response from success ---- ', response);
-    console.log('response from success ---- ', response.profileObj.imageUrl);
-}
+// const responseGoogle = (response) => {
+//     console.log('response from success ---- ', response);
+//     console.log('response from success ---- ', response.profileObj.imageUrl);
+// }
 
 
 /**
@@ -183,12 +183,12 @@ class LoginComponent extends React.Component {
                     <a className="links" href="/register"> <b>Register</b> </a>
                 </div>
 
-                <GoogleLogin
+                {/* <GoogleLogin
                     clientId="1094333084310-jjpvtc8dui543p8skrhhvotbe68rcenj.apps.googleusercontent.com"
                     buttonText="Login"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
-                />
+                /> */}
 
                 <div className="g-signin2" data-onsuccess="onSignIn"></div>
 
