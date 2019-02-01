@@ -37,7 +37,7 @@
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --env=jsdom --coverage"
   },
-  "proxy": "http://172.17.0.3:8000/",
+  "proxy": "http://172.24.0.4:8000/",
   "eslintConfig": {
     "extends": "react-app"
   },
