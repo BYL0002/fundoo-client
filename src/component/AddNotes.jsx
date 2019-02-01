@@ -191,7 +191,7 @@ class AddNotes extends React.Component {
 
         NoteService.NotesAddition(request, (err, data) => {
 
-            if (data !== null || data !== undefined) {
+            if (data !== null || data != undefined) {
                 this.props.newNoteCreated(data);
                 // this.notedisp.current.addNewNote(data);
             }
