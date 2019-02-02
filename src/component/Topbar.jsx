@@ -142,6 +142,10 @@ class Topbar extends React.Component {
 
   }
 
+  SearchSelected = (value) => {
+    this.props.SearchSelected(value);
+  }
+
   render() {
     // console.log('labels on top bar ---', this.state.label);
 
@@ -182,7 +186,9 @@ class Topbar extends React.Component {
               </div>
             </div>
 
-            <TopBarSearchComponent />
+            <TopBarSearchComponent
+              SearchSelected={this.SearchSelected}
+            />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
 
               <div style={{ display: "flex" }}>

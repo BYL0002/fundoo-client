@@ -14,7 +14,8 @@ class Dashboard extends React.Component {
             sidebarTabSelected: "",
             sideBarSelected: "Notes",
             newNoteCreated: {},
-            labels: {}
+            labels: {},
+            SearchSelected : ""
         }
         this.handleDrawerStatus = this.handleDrawerStatus.bind(this);
         this.notedisp = React.createRef();
@@ -60,6 +61,12 @@ class Dashboard extends React.Component {
         })
     }
 
+    SearchSelected = (searchKeyword) => {
+        this.setState({
+            SearchSelected: searchKeyword
+        })
+    }
+
     render() {
 
         if (localStorage.getItem('userLogToken') === null) {
@@ -74,7 +81,8 @@ class Dashboard extends React.Component {
                     getTopBarStatus={this.handleDrawerStatus}
                     notesView={this.handleNotesView}
                     sideBarSelected={this.sideBarSelected}
-                    getTotalLabels={this.getTotalLabels} />
+                    getTotalLabels={this.getTotalLabels}
+                    SearchSelected={this.SearchSelected} />
 
                 <AddNotes drawerStatus={this.state.drawerStatus}
                     notesView={this.state.noteViewStatus}
@@ -87,7 +95,8 @@ class Dashboard extends React.Component {
                     getSidebarTabSelected={this.props.getSidebarTabSelected}
                     notesView={this.state.noteViewStatus}
                     sidebarStatus={this.state.drawerStatus}
-                    allLabels={this.state.labels} />
+                    allLabels={this.state.labels}
+                    SearchSelected={this.state.SearchSelected} />
 
             </div>
         )

@@ -95,7 +95,6 @@ export default class NotesDisplay extends React.Component {
     getUpdate = (request, note) => {
 
         let newNotesArray = this.state.notesDisplay;
-
         for (let i = 0; i < newNotesArray.length; i++) {
             if (newNotesArray[i]._id === note._id) {
                 newNotesArray[i] = note
@@ -105,9 +104,7 @@ export default class NotesDisplay extends React.Component {
         this.setState({
             notesDisplay: newNotesArray
         })
-
         NoteServiceClassObject.NotesUpdation(request);
-
     }
 
     getUpdateImage = (request, note, index) => {
@@ -119,7 +116,6 @@ export default class NotesDisplay extends React.Component {
             else {
 
                 let newNotesArray = this.state.notesDisplay;
-
                 for (let i = 0; i < newNotesArray.length; i++) {
                     if (newNotesArray[i]._id === data._id) {
                         newNotesArray[i] = data
@@ -274,7 +270,7 @@ export default class NotesDisplay extends React.Component {
                 indexLabelFontColor: "#5A5757",
                 indexLabelPlacement: "outside",
                 dataPoints: [
-                    { x: 10, y: numberOfPinnedNotes, label:"Pin Notes" },
+                    { x: 10, y: numberOfPinnedNotes, label: "Pin Notes" },
                     { x: 20, y: numberOfOtherNotes, label: "Other Notes" },
                     { x: 30, y: numberOfReminderNotes, label: "Reminder Notes" },
                     { x: 40, y: 65 },
@@ -282,28 +278,44 @@ export default class NotesDisplay extends React.Component {
                 ]
             }]
         }
-        
+
         const options = {
-			title: {
-				text: "Basic Column Chart"
-			},
-			data: [
-			{
-				// Change type to "doughnut", "line", "splineArea", etc.
-				type: "column",
-				dataPoints: [
-					{ label: "Pin",  y: numberOfPinnedNotes  },
-					{ label: "Other", y: numberOfOtherNotes  },
-					{ label: "Reminder", y: numberOfReminderNotes  },
-				]
-			}
-			]
-		}
+            title: {
+                text: "Basic Column Chart"
+            },
+            data: [
+                {
+                    // Change type to "doughnut", "line", "splineArea", etc.
+                    type: "column",
+                    dataPoints: [
+                        { label: "Pin", y: numberOfPinnedNotes },
+                        { label: "Other", y: numberOfOtherNotes },
+                        { label: "Reminder", y: numberOfReminderNotes },
+                    ]
+                }
+            ]
+        }
+
+        // const SearchNotes = {
+        //     let searchedNotes = this.state.notesDisplay.filter(
+        //         noteObject = noteObject.note.title.includes(this.props.SearchSelected) ||
+        //                     noteObject.note.title.includes(this.props.SearchSelected)
+        //     )
+        // }
+
 
         return (
 
             <div className={this.props.sidebarStatus ? "NotesDisplayDivSidebarOpen" : "NotesDisplayDivSidebarClose"} >
                 <div>
+                    {/* {this.props.SearchSelected !== "" ? (
+                        <div>
+                        </div>
+                    ) : (
+                            <div>
+                            </div>
+                        )} */}
+
                     {(() => {
                         switch (this.props.sideBarSelected) {
                             case 'Notes':

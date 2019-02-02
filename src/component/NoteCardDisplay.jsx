@@ -306,11 +306,21 @@ export default class NoteCardDisplay extends React.Component {
             }
         }
 
+        let request = {
+            thread: "/deleteLabel",
+            data: {
+                note: {
+                    _id: note._id,
+                    label: labelClicked
+                }
+            }
+        }
+
         this.setState({
             note: noteTemp
         })
 
-        // this.props.getUpdate(request, this.state.note);
+        this.props.getUpdate(request, this.state.note);
     }
 
     render() {
