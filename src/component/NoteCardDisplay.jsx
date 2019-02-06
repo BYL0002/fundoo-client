@@ -310,8 +310,8 @@ export default class NoteCardDisplay extends React.Component {
             thread: "/deleteLabel",
             data: {
                 note: {
-                    _id: note._id,
-                    label: labelClicked
+                    _id: this.state.note._id,
+                    label: labelSelected
                 }
             }
         }
