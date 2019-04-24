@@ -19,7 +19,7 @@ npm install - which will install all modules present in package.json file.
 
 A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
 
-_For more examples and usage, please refer to the [Wiki][wiki]._
+https://github.com/BYL0002/fundoo-client/issues/2#issue-436583446
 
 ### Installing
 
